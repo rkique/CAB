@@ -1,0 +1,10 @@
+Welcome to Eric's Projects
+
+Linear Encodings from Task Adaptation through Finetuning
+[https://openreview.net/pdf?id=wCm3TFLNwr].
+
+Linearities from In-Context Learning
+[https://aclanthology.org/2025.naacl-srw.22/].
+
+Identifying Language Model Features by Syntactic Similarities
+[other/syntax-sae.pdf]
