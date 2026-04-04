@@ -1,0 +1,27 @@
+<body>
+<div class="help-text">
+                <h1 class="help-finish"> Connect unrelated words via neighbors</h1>
+                    <p>
+                        Each day, there are 5 word pairs with a start and target word.
+                    </p>
+                    <h1 class="help-finish">Click a word to see its neighbors</h1>
+                    <p>
+                        Neighbors are words that frequently appear in similar contexts and convey related meanings.
+                    </p>
+                    <div class="--grayed-out help-example">
+                        <div class="separator">
+                            <hr class="separator-line">
+                            <span class="help-example-label"> Example </span>
+                            <hr class="separator-line">
+                        </div>
+                        <span>
+                            <em>whisper ⟶ shouting ⟶ scuffle</em><br><br>
+                            <em>whisper</em> and <em>shouting</em> are both exclamations.<br>
+                            A <em>shouting</em> match might lead to a <em>scuffle</em>.
+                        </span>
+                        <hr class="separator-line separator-end">
+                    </div>
+                    <p>Choose neighbors which relate to the target word. The progress bar shows the remaining distance.
+                    </p>
+</div>
+</body>
