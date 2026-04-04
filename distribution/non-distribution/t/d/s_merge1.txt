@@ -1,0 +1,5 @@
+meanings   | 1 | word.golf
+neighbors   | 4 | word.golf
+shouting   | 3 | word.golf
+whisper   | 2 | word.golf
+word   | 4 | word.golf

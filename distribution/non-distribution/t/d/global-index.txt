@@ -1,0 +1,5 @@
+meanings | word.golf 1 word.golf/help 1 
+neighbors | word.golf 4 word.golf/help 1 
+shouting | word.golf 3 word.golf/help 2 
+whisper | word.golf 2 
+word | word.golf 4 

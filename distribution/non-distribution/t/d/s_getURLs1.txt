@@ -1,0 +1,8 @@
+<p class="bio">I am a researcher and creative in my final year at Brown University studying math,
+                    computer science, and linguistics. My research focuses are in task adaptation and applied
+                    interpretability of LLMs. More broadly, I'm interested in novel applications of emerging technologies. You can contact me by
+                    <a href="mailto:eriq.xia@gmail.com"><span class="toggle" style="display: inline;">email</span></a> or reach out on
+                    <a href="https://www.instagram.com/eriq.xia/"><span class="toggle" style="display: inline;">instagram</span></a>. I
+                    post art on <a href="https://www.instagram.com/in0cenc/">
+                        <span>in0cenc</span></a>.
+                </p>

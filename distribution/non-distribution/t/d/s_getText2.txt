@@ -1,0 +1,25 @@
+CONNECT UNRELATED WORDS VIA NEIGHBORS
+
+Each day, there are 5 word pairs with a start and target word.
+
+
+CLICK A WORD TO SEE ITS NEIGHBORS
+
+Neighbors are words that frequently appear in similar contexts and convey
+related meanings.
+
+--------------------------------------------------------------------------------
+
+Example
+
+--------------------------------------------------------------------------------
+
+whisper ⟶ shouting ⟶ scuffle
+
+whisper and shouting are both exclamations.
+A shouting match might lead to a scuffle.
+
+--------------------------------------------------------------------------------
+
+Choose neighbors which relate to the target word. The progress bar shows the
+remaining distance.
