@@ -1,0 +1,3 @@
+apple | url1 10 url3 1
+banana | url2 1
+orange | url4 2
