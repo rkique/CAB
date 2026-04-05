@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brown Course Search</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { margin-bottom: 20px; }
+    form { display: flex; gap: 8px; margin-bottom: 20px; }
+    input[type="text"] { flex: 1; padding: 10px 14px; font-size: 16px; border: 2px solid #ccc; border-radius: 6px; }
+    input[type="text"]:focus { outline: none; border-color: #4a6fa5; }
+    button { padding: 10px 24px; font-size: 16px; background: #4a6fa5; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #3a5f95; }
+    button:disabled { background: #999; cursor: not-allowed; }
+    #meta { color: #666; margin-bottom: 16px; font-size: 14px; }
+    .result { border-bottom: 1px solid #eee; padding: 12px 0; }
+    .result:last-child { border-bottom: none; }
+    .result-code { font-weight: 700; color: #4a6fa5; }
+    .result-title { font-weight: 600; margin-left: 8px; }
+    .result-score { float: right; color: #999; font-size: 13px; }
+    .result-desc { margin-top: 4px; font-size: 14px; color: #555; }
+    .result-meta { margin-top: 2px; font-size: 13px; color: #888; }
+    #error { color: #c0392b; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Brown Course Search</h1>
+  <form id="searchForm">
+    <input type="text" id="query" placeholder="e.g. machine learning" autofocus>
+    <button type="submit" id="btn">Search</button>
+  </form>
+  <div id="error"></div>
+  <div id="meta"></div>
+  <div id="results"></div>
+
+  <script>
+    const form = document.getElementById('searchForm');
+    const queryInput = document.getElementById('query');
+    const btn = document.getElementById('btn');
+    const metaDiv = document.getElementById('meta');
+    const resultsDiv = document.getElementById('results');
+    const errorDiv = document.getElementById('error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = queryInput.value.trim();
+      if (!query) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Searching...';
+      errorDiv.textContent = '';
+      metaDiv.textContent = '';
+      resultsDiv.innerHTML = '';
+
+      try {
+        const res = await fetch('/search', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({query})
+        });
+        const data = await res.json();
+
+        if (data.error) {
+          errorDiv.textContent = data.error;
+          return;
+        }
+
+        metaDiv.textContent = `${data.results.length} results from ${data.total_docs} courses in ${data.time_ms} ms`;
+
+        for (const r of data.results) {
+          const div = document.createElement('div');
+          div.className = 'result';
+          const desc = r.description ? r.description.slice(0, 200) + (r.description.length > 200 ? '...' : '') : '';
+          div.innerHTML = `
+            <div><span class="result-code">${esc(r.code)}</span><span class="result-title">${esc(r.title)}</span><span class="result-score">${r.score.toFixed(4)}</span></div>
+            <div class="result-desc">${esc(desc)}</div>
+            <div class="result-meta">${esc(r.instr || '')} ${esc(r.meets || '')}</div>
+          `;
+          resultsDiv.appendChild(div);
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Request failed: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Search';
+      }
+    });
+
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+  </script>
+</body>
+</html>
