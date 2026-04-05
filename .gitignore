@@ -1,1 +1,16 @@
-courses_overview.json
+# macOS files
+.DS_Store
+
+node_modules
+package-lock.json
+
+# in case a student adds an ssh key to the repo
+*.pem
+
+store
+log.txt
+submission.zip
+
+dist
+stencil
+.npm-cache

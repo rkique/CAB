@@ -1,0 +1,64 @@
+{
+  "name": "cs1380:m0",
+  "version": "1.0.0",
+  "author": {
+    "name": "<Isaac Calderon>",
+    "email": "<isaac_calderon@brown.edu>",
+    "cslogin": "<iacalder>"
+  },
+  "description": "A set of components for cs1380's search engine.",
+  "dependencies": {
+    "html-to-text": "^9.0.5",
+    "jsdom": "^23.2.0",
+    "natural": "^6.10.4"
+  },
+  "scripts": {
+    "test": "jest --maxWorkers=1",
+    "lint": "eslint . --config .eslintrc --rulesdir ../scripts/eslint-rules --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-config-google": "^0.14.0",
+    "javascript-obfuscator": "^4.1.0",
+    "jest": "^29.7.0"
+  },
+  "ec2": {
+    "ip": "3.17.58.163",
+    "port": 8080
+  },
+  "report": [
+    {
+      "milestone": "M0",
+      "hours": 15,
+      "loc": {
+        "sloc": 150,
+        "jloc": 400
+      },
+      "dev": {
+        "cpu-no": 16,
+        "mem-gb": 48,
+        "ssd-gb": 1000
+      },
+      "throughput": {
+        "dev": {
+          "corpus": "https://cs.brown.edu/courses/csci1380/sandbox/2/",
+          "throughput": {
+            "crawler_pages_per_sec": 2.074688796680498,
+            "index_pages_per_second": 0.738,
+            "query_qps": 0.2841716396703609
+          }
+        },
+        "aws": [{
+          "corpus": "https://cs.brown.edu/courses/csci1380/sandbox/2/",
+          "throughput": {
+            "crawler_pages_per_sec": 0.44923629829290207,
+            "index_pages_per_second": 0.180,
+            "query_qps": 0.08125622117943405
+          }
+        }],
+        "gs": []
+      },
+      "dloc": 0
+    }
+  ]
+}

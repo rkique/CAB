@@ -1,6 +1,0 @@
-    brown
-    quick
-    quick       brown
-    the
-    the quick
-    the quick   brown
