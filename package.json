@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "@brown-ds/distribution": "latest",
+    "natural": "^8.1.1",
     "yargs": "^17.7.2"
   },
   "report": [
@@ -41,46 +42,50 @@
         "aws": []
       },
       "latency": {
-        "dev": [{
-          "base": {
-            "serialize_ms": 0.0004259611250000008,
-            "deserialize_ms": 0.0003646166250000007,
-            "sample_count": 8,
-            "repetitions": 1000
-          },
-          "callables": {
-            "serialize_ms": 0.0004353513333333377,
-            "deserialize_ms": 0.0007888123333333286,
-            "sample_count": 3,
-            "repetitions": 1000
-          },
-          "structured": {
-            "serialize_ms": 0.11982452424999993,
-            "deserialize_ms": 0.01926606049999998,
-            "sample_count": 4,
-            "repetitions": 1000
+        "dev": [
+          {
+            "base": {
+              "serialize_ms": 0.0004259611250000008,
+              "deserialize_ms": 0.0003646166250000007,
+              "sample_count": 8,
+              "repetitions": 1000
+            },
+            "callables": {
+              "serialize_ms": 0.0004353513333333377,
+              "deserialize_ms": 0.0007888123333333286,
+              "sample_count": 3,
+              "repetitions": 1000
+            },
+            "structured": {
+              "serialize_ms": 0.11982452424999993,
+              "deserialize_ms": 0.01926606049999998,
+              "sample_count": 4,
+              "repetitions": 1000
+            }
           }
-        }],
-        "aws": [{
-          "base": {
-            "serialize_ms": 0.0015173034999999993,
-            "deserialize_ms": 0.0014926740000000003,
-            "sample_count": 8,
-            "repetitions": 1000
-          },
-          "callables": {
-            "serialize_ms": 0.0014277956666666671,
-            "deserialize_ms": 0.0033298556666666646,
-            "sample_count": 3,
-            "repetitions": 1000
-          },
-          "structured": {
-            "serialize_ms": 0.4638243252500001,
-            "deserialize_ms": 0.07783971175000003,
-            "sample_count": 4,
-            "repetitions": 1000
+        ],
+        "aws": [
+          {
+            "base": {
+              "serialize_ms": 0.0015173034999999993,
+              "deserialize_ms": 0.0014926740000000003,
+              "sample_count": 8,
+              "repetitions": 1000
+            },
+            "callables": {
+              "serialize_ms": 0.0014277956666666671,
+              "deserialize_ms": 0.0033298556666666646,
+              "sample_count": 3,
+              "repetitions": 1000
+            },
+            "structured": {
+              "serialize_ms": 0.4638243252500001,
+              "deserialize_ms": 0.07783971175000003,
+              "sample_count": 4,
+              "repetitions": 1000
+            }
           }
-        }]
+        ]
       },
       "dloc": 6000
     },
@@ -95,19 +100,26 @@
       },
       "throughput": {
         "dev": [
-          {"requests_per_second": 879.31}        
+          {
+            "requests_per_second": 879.31
+          }
         ],
         "aws": [
-          {"requests_per_second": 700.09}        
+          {
+            "requests_per_second": 700.09
+          }
         ]
       },
       "latency": {
         "dev": [
-          {"average_latency_ms": 1.1373}
+          {
+            "average_latency_ms": 1.1373
+          }
         ],
         "aws": [
-          {"average_latency_ms": 1.4284}
-
+          {
+            "average_latency_ms": 1.4284
+          }
         ]
       },
       "dloc": 5000
@@ -122,8 +134,12 @@
         "ssd-gb": 1000
       },
       "latency": {
-        "dev": [245],
-        "aws": [435]
+        "dev": [
+          245
+        ],
+        "aws": [
+          435
+        ]
       },
       "dloc": -5
     },
@@ -138,36 +154,46 @@
       },
       "throughput": {
         "dev": [
-        "put Throughput stats",
-        {"Total time"   : "640.5 ms",
-        "Throughput"   : "1561.21 ops/sec"},
-
-        "get throughput stats",
-        {"Total time": "503.1 ms",
-        "Throughput": "1987 ops/sec"}
-
+          "put Throughput stats",
+          {
+            "Total time": "640.5 ms",
+            "Throughput": "1561.21 ops/sec"
+          },
+          "get throughput stats",
+          {
+            "Total time": "503.1 ms",
+            "Throughput": "1987 ops/sec"
+          }
         ],
-
-        "aws": 
-        ["put Throughput stats",
-        {"Total time"   : "5124.8 ms",
-        "Throughput"   : "195.13 ops/sec"},
-
-        "get throughput stats",
-        {"Total time": "4740.9 ms",
-        "Throughput": "210.93 ops/sec"}
-
+        "aws": [
+          "put Throughput stats",
+          {
+            "Total time": "5124.8 ms",
+            "Throughput": "195.13 ops/sec"
+          },
+          "get throughput stats",
+          {
+            "Total time": "4740.9 ms",
+            "Throughput": "210.93 ops/sec"
+          }
         ]
       },
       "latency": {
         "dev": [
-          {"put_latency_mean": "0.64 ms"},
-          {"get_latency_mean": "0.50 ms"}
+          {
+            "put_latency_mean": "0.64 ms"
+          },
+          {
+            "get_latency_mean": "0.50 ms"
+          }
         ],
         "aws": [
-          {"put_latency_mean": "5.12 ms"},
-          {"get_latency_mean": "4.73 ms"}
-
+          {
+            "put_latency_mean": "5.12 ms"
+          },
+          {
+            "get_latency_mean": "4.73 ms"
+          }
         ]
       },
       "dloc": 0
@@ -183,12 +209,16 @@
       },
       "throughput": {
         "dev": [
-          {"Throughput" : "18.9637 runs/s"}
+          {
+            "Throughput": "18.9637 runs/s"
+          }
         ]
       },
       "latency": {
         "dev": [
-          {"Average latency" : "0.052727 s/run"}
+          {
+            "Average latency": "0.052727 s/run"
+          }
         ]
       },
       "dloc": 0
