@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+courses_overview.json filter=lfs diff=lfs merge=lfs -text
 index.json filter=lfs diff=lfs merge=lfs -text

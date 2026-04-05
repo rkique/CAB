@@ -1,0 +1,6 @@
+node_modules/
+package-lock.json
+*.swp
+p[123]
+submission
+submission.zip

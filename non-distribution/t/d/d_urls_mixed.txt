@@ -1,0 +1,4 @@
+https://example.com/path/page1.html
+https://example.com/absolute/page2.html
+https://example.org/external.html
+https://example.com/path/#section1
