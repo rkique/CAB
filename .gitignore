@@ -9,6 +9,9 @@ package-lock.json
 
 store
 log.txt
+embeddings.json
+embeddings.jsonl
+.env
 submission.zip
 
 dist
