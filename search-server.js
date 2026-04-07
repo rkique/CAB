@@ -3,6 +3,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const readline = require('readline');
 const natural = require('natural/lib/natural/stemmers/porter_stemmer');
 
 const DIST_PORT = 3001;
@@ -34,10 +35,26 @@ function stemTokens(tokens) {
 }
 
 // --- Bootstrap distribution framework ---
+const {OpenAI} = require('openai');
+
+// Load .env if present
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
+    const [k, ...v] = line.split('=');
+    if (k && v.length) process.env[k.trim()] = v.join('=').trim();
+  }
+}
+
 const distribution = require('./distribution.js')({ip: '127.0.0.1', port: DIST_PORT});
+
+const EMBEDDING_MODEL = 'text-embedding-3-small';
+const EMBEDDING_DIMENSIONS = 256;
 
 let allKeys = [];
 let totalDocs = 0;
+let embeddings = {};   // key -> float[], loaded from embeddings.json if present
+let openaiClient = null;
 
 function startDistributionNode(cb) {
   distribution.node.start(() => {
@@ -60,71 +77,114 @@ function setupGroup(cb) {
 }
 
 //load courses across nodes via. distribution.group.put
-function loadCourses(cb) {
-  console.log('Loading courses...');
-  const raw = fs.readFileSync(path.join(__dirname, 'courses_overview.json'), 'utf8');
-  const semesters = JSON.parse(raw);
-
-  const courses = [];
-  for (const sem of semesters) {
-    if (!sem.results) continue;
-    for (const c of sem.results) {
-      courses.push({
-        code: c.code || '',
-        title: c.title || '',
-        description: c.description || '',
-        crn: c.crn || '',
-        srcdb: c.srcdb || sem.srcdb || '',
-        instr: c.instr || '',
-        meets: c.meets || '',
-      });
-    }
+function loadEmbeddings(cb) {
+  const embeddingsPath = path.join(__dirname, 'embeddings.jsonl');
+  if (!fs.existsSync(embeddingsPath)) {
+    console.log('No embeddings.jsonl found — falling back to TF-IDF search.');
+    return cb();
   }
-
-  totalDocs = courses.length;
-  console.log(`Parsed ${totalDocs} courses, storing...`);
-
-  let i = 0;
-  const BATCH = 50;
-
-  function next() {
-    if (i >= courses.length) {
-      console.log(`All ${totalDocs} courses stored.`);
-      return cb();
-    }
-
-    let pending = 0;
-    let errored = false;
-    const end = Math.min(i + BATCH, courses.length);
-
-    for (; i < end; i++) {
-      const c = courses[i];
-      const key = `${c.crn}:${c.srcdb}`;
-      allKeys.push(key);
-      pending++;
-
-      distribution[GID].store.put(c, key, (e) => {
-        if (errored) return;
-        if (e) {
-          errored = true;
-          return cb(e);
-        }
-        pending--;
-        if (pending === 0) next();
-      });
-    }
-  }
-
-  next();
+  const rl = readline.createInterface({input: fs.createReadStream(embeddingsPath)});
+  rl.on('line', (line) => {
+    if (!line.trim()) return;
+    const obj = JSON.parse(line);
+    embeddings[obj.k] = obj.v;
+  });
+  rl.on('close', () => {
+    console.log(`Loaded ${Object.keys(embeddings).length} embeddings.`);
+    cb();
+  });
+  rl.on('error', cb);
 }
 
-function search(queryStr, cb) {
-  const t0 = Date.now();
+function loadCourses(cb) {
+  console.log('Loading courses...');
+
+  loadEmbeddings((err) => {
+    if (err) return cb(err);
+
+    const raw = fs.readFileSync(path.join(__dirname, 'courses_overview.json'), 'utf8');
+    const semesters = JSON.parse(raw);
+
+    const courses = [];
+    for (const sem of semesters) {
+      if (!sem.results) continue;
+      for (const c of sem.results) {
+        courses.push({
+          code: c.code || '',
+          title: c.title || '',
+          description: c.description || '',
+          crn: c.crn || '',
+          srcdb: c.srcdb || sem.srcdb || '',
+          instr: c.instr || '',
+          meets: c.meets || '',
+        });
+      }
+    }
+
+    totalDocs = courses.length;
+    console.log(`Parsed ${totalDocs} courses, storing...`);
+
+    let i = 0;
+    const BATCH = 50;
+
+    function next() {
+      if (i >= courses.length) {
+        console.log(`All ${totalDocs} courses stored.`);
+        return cb();
+      }
+
+      let pending = 0;
+      let errored = false;
+      const end = Math.min(i + BATCH, courses.length);
+
+      for (; i < end; i++) {
+        const c = courses[i];
+        const key = `${c.crn}:${c.srcdb}`;
+        allKeys.push(key);
+        pending++;
+
+        if (embeddings[key]) c.embedding = embeddings[key];
+        distribution[GID].store.put(c, key, (e) => {
+          if (errored) return;
+          if (e) {
+            errored = true;
+            return cb(e);
+          }
+          pending--;
+          if (pending === 0) next();
+        });
+      }
+    }
+
+    next();
+  });
+}
+
+function getOpenAIClient() {
+  if (!openaiClient) {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) throw new Error('OPENAI_API_KEY environment variable is not set.');
+    openaiClient = new OpenAI({apiKey});
+  }
+  return openaiClient;
+}
+
+async function embedQuery(queryStr) {
+  const client = getOpenAIClient();
+  const res = await client.embeddings.create({
+    model: EMBEDDING_MODEL,
+    input: queryStr,
+    dimensions: EMBEDDING_DIMENSIONS,
+  });
+  return res.data[0].embedding; // float[]
+}
+
+function searchTFIDF(queryStr, t0, cb) {
   const tokens = tokenize(queryStr);
   const queryStems = [...new Set(stemTokens(tokens))];
 
   if (queryStems.length === 0) {
-    return cb(null, {results: [], time_ms: Date.now() - t0, total_docs: totalDocs});
+    return cb(null, {results: [], time_ms: Date.now() - t0, total_docs: totalDocs, mode: 'tfidf'});
   }
 
   const querySet = JSON.stringify(queryStems);
@@ -176,7 +236,6 @@ function search(queryStr, cb) {
     return out;
   `);
 
-  //Aggregate documents for a single term.
   const reduce = (term, values) => {
     const out = {};
     out[term] = {term: term, df: values.length, docs: values};
@@ -186,41 +245,81 @@ function search(queryStr, cb) {
   distribution[GID].mr.exec({keys: allKeys, map, reduce}, (err, results) => {
     if (err) return cb(err);
 
-    // Post-MR scoring: compute TF-IDF per document
     const docScores = {};
-
     for (const item of results) {
       for (const term of Object.keys(item)) {
         const data = item[term];
-        const df = data.df;
-        const idf = Math.log(N / (df + 1));
-
+        const idf = Math.log(N / (data.df + 1));
         for (const doc of data.docs) {
-          const tfNorm = doc.tf / doc.totalTerms;
-          const score = tfNorm * idf;
+          const score = (doc.tf / doc.totalTerms) * idf;
           const dk = doc.key;
-
           if (!docScores[dk]) {
-            docScores[dk] = {
-              code: doc.code,
-              title: doc.title,
-              description: doc.description,
-              instr: doc.instr,
-              meets: doc.meets,
-              score: 0,
-            };
+            docScores[dk] = {code: doc.code, title: doc.title, description: doc.description, instr: doc.instr, meets: doc.meets, score: 0};
           }
           docScores[dk].score += score;
         }
       }
     }
 
-    const ranked = Object.values(docScores)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 50);
-
-    cb(null, {results: ranked, time_ms: Date.now() - t0, total_docs: totalDocs});
+    const ranked = Object.values(docScores).sort((a, b) => b.score - a.score).slice(0, 50);
+    cb(null, {results: ranked, time_ms: Date.now() - t0, total_docs: totalDocs, mode: 'tfidf'});
   });
+}
+
+function searchEmbeddings(queryVec, t0, cb) {
+  const queryVecJson = JSON.stringify(queryVec);
+
+  const map = new Function('key', 'value', `
+    if (!value.embedding) return [];
+    var q = ${queryVecJson};
+    var d = value.embedding;
+    var dot = 0, normQ = 0, normD = 0;
+    for (var i = 0; i < q.length; i++) {
+      dot += q[i] * d[i];
+      normQ += q[i] * q[i];
+      normD += d[i] * d[i];
+    }
+    var sim = dot / (Math.sqrt(normQ) * Math.sqrt(normD));
+    if (sim < 0.3) return [];
+    var o = {};
+    o['results'] = {key: key, code: value.code, title: value.title, description: value.description, instr: value.instr, meets: value.meets, score: sim};
+    return [o];
+  `);
+
+  const reduce = (_, values) => {
+    const out = {};
+    out['results'] = values;
+    return out;
+  };
+
+  distribution[GID].mr.exec({keys: allKeys, map, reduce}, (err, results) => {
+    if (err) return cb(err);
+
+    const docs = [];
+    for (const item of results) {
+      if (item['results']) {
+        const v = item['results'];
+        if (Array.isArray(v)) docs.push(...v);
+        else docs.push(v);
+      }
+    }
+
+    const ranked = docs.sort((a, b) => b.score - a.score).slice(0, 50);
+    cb(null, {results: ranked, time_ms: Date.now() - t0, total_docs: totalDocs, mode: 'embedding'});
+  });
+}
+
+function search(queryStr, cb) {
+  const t0 = Date.now();
+  const useEmbeddings = Object.keys(embeddings).length > 0;
+
+  if (!useEmbeddings) {
+    return searchTFIDF(queryStr, t0, cb);
+  }
+
+  embedQuery(queryStr).then((queryVec) => {
+    searchEmbeddings(queryVec, t0, cb);
+  }).catch(cb);
 }
 
 // --- HTTP server ---
