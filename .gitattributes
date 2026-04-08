@@ -1,8 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+data/all_courses.json filter=lfs diff=lfs merge=lfs -text
 courses_overview.json filter=lfs diff=lfs merge=lfs -text
-*.json filter=lfs diff=lfs merge=lfs -text
-courses_overview.json !text !filter !merge !diff
-non-distribution/package.json !text !filter !merge !diff
-package.json !text !filter !merge !diff
-tsconfig.json !text !filter !merge !diff
