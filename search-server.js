@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
+const { runIndexer } = require('./indexer.js');
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const natural = require('natural/lib/natural/stemmers/porter_stemmer');
+
 
 const DIST_PORT = 3001;
 const HTTP_PORT = 3000;
@@ -56,6 +59,101 @@ let totalDocs = 0;
 let embeddings = {};   // key -> float[], loaded from embeddings.json if present
 let openaiClient = null;
 
+// --- helpers
+function getFaissK(topK, filter = {}) {
+  let multiplier = 3;
+  if (filter.days?.length > 0) multiplier++;
+  if (filter.season) multiplier++;
+  if (filter.year) multiplier++;
+  return topK * multiplier;
+}
+
+function filterSections(results, filters = {}) {
+  return results
+    .map((course) => {
+      let sections = course.sections || [];
+
+      if (filters.days?.length > 0) {
+        sections = sections.filter((s) =>
+          filters.days.every((d) => s.days.includes(d))
+        );
+      }
+      if (filters.season) {
+        sections = sections.filter((s) => s.season === filters.season);
+      }
+      if (filters.year) {
+        sections = sections.filter((s) => s.year === filters.year);
+      }
+      if (filters.semester) {
+        sections = sections.filter((s) => s.semester === filters.semester);
+      }
+      if (filters.noPermReq) {
+        sections = sections.filter((s) => s.permreq === 'N');
+      }
+
+      return { ...course, sections };
+    })
+    .filter((course) => course.sections.length > 0);
+}
+
+function deduplicateResults(results) {
+  const byTitle = {};
+
+  for (const course of results) {
+    // strip cross-listing suffixes like "(ENGL 1711L)"
+    const normalizedTitle = course.title.replace(/\s*\(.*?\)\s*$/, '').trim();
+
+    if (!byTitle[normalizedTitle]) {
+      byTitle[normalizedTitle] = {
+        ...course,
+        crossListings: [course.code],
+      };
+    } else {
+      if (course.score > byTitle[normalizedTitle].score) {
+        byTitle[normalizedTitle] = {
+          ...course,
+          crossListings: byTitle[normalizedTitle].crossListings,
+        };
+      }
+      byTitle[normalizedTitle].crossListings.push(course.code);
+    }
+  }
+
+  return Object.values(byTitle).sort((a, b) => b.score - a.score);
+}
+
+function parseQueryFilters(queryStr) {
+  const filters = {};
+  const lower = queryStr.toLowerCase();
+
+  // days
+  const days = [];
+  if (lower.match(/\bmon(day)?\b|\bmwf\b|\bmw\b/)) days.push('M');
+  if (lower.match(/\btue(sday)?\b|\btu\b|\btuth\b|\btuth\b/)) days.push('Tu');
+  if (lower.match(/\bwed(nesday)?\b|\bmwf\b|\bmw\b/)) days.push('W');
+  if (lower.match(/\bthu(rsday)?\b|\bth\b|\btuth\b/)) days.push('Th');
+  if (lower.match(/\bfri(day)?\b|\bmwf\b/)) days.push('F');
+  if (days.length > 0) filters.days = [...new Set(days)];
+
+  // season
+  if (lower.includes('fall')) filters.season = 'Fall';
+  else if (lower.includes('spring')) filters.season = 'Spring';
+  else if (lower.includes('summer')) filters.season = 'Summer';
+  else if (lower.includes('winter')) filters.season = 'Winter';
+
+  // year e.g. "2026"
+  const yearMatch = lower.match(/\b(20\d{2})\b/);
+  if (yearMatch) filters.year = parseInt(yearMatch[1]);
+
+  // no permission required
+  if (lower.match(/\bno perm|\bno permission|\bopen enroll/)) {
+    filters.noPermReq = true;
+  }
+
+  return filters;
+}
+
+// startup
 function startDistributionNode(cb) {
   distribution.node.start(() => {
     console.log(`Distribution node started on port ${DIST_PORT}`);
@@ -76,88 +174,41 @@ function setupGroup(cb) {
   });
 }
 
-//load courses across nodes via. distribution.group.put
-function loadEmbeddings(cb) {
-  const embeddingsPath = path.join(__dirname, 'embeddings.jsonl');
-  if (!fs.existsSync(embeddingsPath)) {
-    console.log('No embeddings.jsonl found — falling back to TF-IDF search.');
-    return cb();
+//load courses across nodes
+async function loadIndex(cb) {
+  console.log('Running indexer...');
+
+  const { index } = await runIndexer(distribution, GID);
+
+  allKeys = Object.keys(index);
+  totalDocs = allKeys.length;
+  console.log(`Index has ${totalDocs} unique courses.`);
+
+  const faissService = {
+    buildFaiss: function(gid, cb) {
+      globalThis.distribution.local.store.get({ key : null, gid}, (err, vals) => {
+        if (err) return cb(err);
+        const records = Object.values(vals);
+        const { buildLocalFaiss, localSearch } = require('./localIndex.js');
+
+        buildLocalFaiss(records);
+        globalThis.__localFaissSearch = localSearch;
+        console.log(`Built local FAISS with ${records.length} courses.`);
+        cb(null, { built : records.length });
+      })
+    }
   }
-  const rl = readline.createInterface({input: fs.createReadStream(embeddingsPath)});
-  rl.on('line', (line) => {
-    if (!line.trim()) return;
-    const obj = JSON.parse(line);
-    embeddings[obj.k] = obj.v;
-  });
-  rl.on('close', () => {
-    console.log(`Loaded ${Object.keys(embeddings).length} embeddings.`);
-    cb();
-  });
-  rl.on('error', cb);
-}
 
-function loadCourses(cb) {
-  console.log('Loading courses...');
-
-  loadEmbeddings((err) => {
+  distribution[GID].routes.put(faissService, 'faiss', (err, val) => {
     if (err) return cb(err);
 
-    const raw = fs.readFileSync(path.join(__dirname, 'courses_overview.json'), 'utf8');
-    const semesters = JSON.parse(raw);
+    distribution[GID].comm.send([GID], { service : 'faiss', method : 'buildFaiss'}, (err, results) => {
+      if (err && Object.values(err).length > 0) return cb(err);
 
-    const courses = [];
-    for (const sem of semesters) {
-      if (!sem.results) continue;
-      for (const c of sem.results) {
-        courses.push({
-          code: c.code || '',
-          title: c.title || '',
-          description: c.description || '',
-          crn: c.crn || '',
-          srcdb: c.srcdb || sem.srcdb || '',
-          instr: c.instr || '',
-          meets: c.meets || '',
-        });
-      }
-    }
-
-    totalDocs = courses.length;
-    console.log(`Parsed ${totalDocs} courses, storing...`);
-
-    let i = 0;
-    const BATCH = 50;
-
-    function next() {
-      if (i >= courses.length) {
-        console.log(`All ${totalDocs} courses stored.`);
-        return cb();
-      }
-
-      let pending = 0;
-      let errored = false;
-      const end = Math.min(i + BATCH, courses.length);
-
-      for (; i < end; i++) {
-        const c = courses[i];
-        const key = `${c.crn}:${c.srcdb}`;
-        allKeys.push(key);
-        pending++;
-
-        if (embeddings[key]) c.embedding = embeddings[key];
-        distribution[GID].store.put(c, key, (e) => {
-          if (errored) return;
-          if (e) {
-            errored = true;
-            return cb(e);
-          }
-          pending--;
-          if (pending === 0) next();
-        });
-      }
-    }
-
-    next();
-  });
+      console.log('All nodes built local FAISS:', results);
+      cb()
+    })
+  })
 }
 
 function getOpenAIClient() {
@@ -177,6 +228,18 @@ async function embedQuery(queryStr) {
     dimensions: EMBEDDING_DIMENSIONS,
   });
   return res.data[0].embedding; // float[]
+}
+
+async function embedQueryFaiss(queryStr) {
+  const client = getOpenAIClient();
+  const res = await client.embeddings.create({
+    model: EMBEDDING_MODEL,
+    input: queryStr,
+    dimensions: EMBEDDING_DIMENSIONS,
+  });
+  const raw = res.data[0].embedding;
+  const norm = Math.sqrt(raw.reduce((s, x) => s + x * x, 0));
+  return raw.map((x) => x / norm);   // ← normalize
 }
 
 function searchTFIDF(queryStr, t0, cb) {
@@ -309,17 +372,120 @@ function searchEmbeddings(queryVec, t0, cb) {
   });
 }
 
+function searchFaiss(queryVec, queryStr, t0, cb) {
+  const topK = 20;
+
+  const filters = parseQueryFilters(queryStr);
+  const faissK = getFaissK(topK, filters);
+  const queryVecJson = JSON.stringify(queryVec);
+
+  const searchId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+
+  const map = new Function('key', 'value', `
+    var sid = '__faiss_${searchId}';
+    if (globalThis[sid]) return [];
+    globalThis[sid] = true;
+
+    if (typeof globalThis.__localFaissSearch !== 'function') {
+      throw new Error('__localFaissSearch not ready — buildFaiss may not have run');
+    }
+
+    var queryVector = ${queryVecJson};
+    var results = globalThis.__localFaissSearch(queryVector, ${faissK});
+
+    return results.map(function(r) {
+      var o = {};
+      o['results'] = r;
+      return o;
+    });
+  `);
+
+  const reduce = (_, values) => {
+    const out = {};
+    out['results'] = values;
+    return out;
+  };
+
+  distribution[GID].mr.exec({ keys : allKeys, map, reduce}, (err, results) => {
+    if (err) return cb(err);
+
+    const docs = [];
+    for (const item of results) {
+      if (item['results']) {
+        const v = item['results'];
+        if (Array.isArray(v)) docs.push(...v);
+        else docs.push(v);
+      }
+    }
+
+    const seen = new Set();
+    const merged = docs
+      .sort((a, b) => b.score - a.score)
+      .filter((r) => {
+        if (seen.has(r.code)) return false;
+        seen.add(r.code);
+        return true;
+      })
+      .slice(0, faissK);
+
+    if (merged.length === 0) {
+      return cb(null, {
+        results: [],
+        time_ms: Date.now() - t0,
+        total_docs: totalDocs,
+        mode: 'faiss',
+        filters,
+      });
+    }
+
+    let pending = merged.length;
+    const fullResults = [];
+    let errored = false;
+
+    merged.forEach(({ code, score }) => {
+      distribution[GID].store.get(code, (err, record) => {
+        if (errored) return;
+        if (err) { errored = true; return cb(err); }
+
+        fullResults.push({ ...record, score });
+        pending--;
+
+        if (pending === 0) {
+          const filtered = filterSections(fullResults, filters);
+
+          const deduped = deduplicateResults(filtered);
+
+          const ranked = deduped
+            .sort((a, b) => b.score - a.score)
+            .slice(0, topK);
+
+          cb(null, {
+            results: ranked,
+            time_ms: Date.now() - t0,
+            total_docs: totalDocs,
+            mode: 'faiss',
+            filters,  
+          });
+        }
+      });
+    });
+  });
+}
+
 function search(queryStr, cb) {
   const t0 = Date.now();
-  const useEmbeddings = Object.keys(embeddings).length > 0;
+  // const useEmbeddings = Object.keys(embeddings).length > 0;
 
-  if (!useEmbeddings) {
-    return searchTFIDF(queryStr, t0, cb);
-  }
+  // // if (!useEmbeddings) {
+  // //   return searchTFIDF(queryStr, t0, cb);
+  // // }
 
-  embedQuery(queryStr).then((queryVec) => {
-    searchEmbeddings(queryVec, t0, cb);
-  }).catch(cb);
+  embedQueryFaiss(queryStr).then((queryVec) => {
+    searchFaiss(queryVec, queryStr, t0, cb);
+  }).catch((err) => {
+    console.warn('Embedding failed, falling back to TF-IDF', err.message || err);
+    searchTFIDF(queryStr, t0, cb);
+  });
 }
 
 // --- HTTP server ---
@@ -382,8 +548,8 @@ startDistributionNode(() => {
       console.error('Group setup failed:', e);
       process.exit(1);
     }
-    loadCourses((e) => {
-      if (e) {
+    loadIndex((e) => {
+      if (e && Object.values(e).length > 0) {
         console.error('Course loading failed:', e);
         process.exit(1);
       }

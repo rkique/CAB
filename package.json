@@ -24,7 +24,9 @@
   "license": "ISC",
   "dependencies": {
     "@brown-ds/distribution": "latest",
+    "faiss-node": "^0.5.1",
     "natural": "^8.1.1",
+    "openai": "^6.34.0",
     "yargs": "^17.7.2"
   },
   "report": [

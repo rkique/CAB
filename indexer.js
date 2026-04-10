@@ -2,13 +2,21 @@
 
 //Reads courses_overview.json + embeddings.jsonl
 //Collapses by course code (so that there's only one record per unique course)
+//Also uses FAISS indexing for the search query
 
+const { IndexFlatIP } = require('faiss-node');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
+const util = require('util');
 const COURSES_FILE = path.join(__dirname, 'courses_overview.json');
 const EMBEDDINGS_FILE = path.join(__dirname, 'embeddings.jsonl');
+
+function normalize(v) {
+  const norm = Math.sqrt(v.reduce((sum, x) => sum + x * x, 0));
+  return v.map(x => x / norm);
+}
 
 function parseDays(meets) {
     if (!meets || meets === 'TBA') return [];
@@ -83,7 +91,7 @@ async function buildIndex(courseMap) {
                 code: course.code, 
                 title: course.title,
                 description: course.description || '', 
-                vector: v,
+                vector: normalize(v),
                 sections: [],
             };
         }
@@ -116,17 +124,181 @@ async function saveIndex(index, outputFile = 'index.json') {
     console.log(`index saved to ${outPath}`);
 }
 
-// async function main() {
-//     const courseMap = await buildCourseMap();
-//     const index = await buildIndex(courseMap);
+function buildFaissIndex(index) {
+    console.log('------------------- faiss -------------------');
 
+    const records = Object.values(index);
+    const dim = records[0].vector.length;
+
+    const faissIndex = new IndexFlatIP(dim);
+    const idMap = [];
+    const flat = [];
+    
+    records.forEach((r, i) => {
+        flat.push(...r.vector);
+        idMap.push(r.code);
+    })
+
+    faissIndex.add(flat);
+    console.log(`FAISS index built with ${faissIndex.ntotal()} vectors.`);
+
+    return { faissIndex, idMap }
+}
+
+async function saveFaissIndex(faissIndex, idMap, index) {
+  const idMapPath = path.join(__dirname, 'idmap.json');
+  fs.writeFileSync(idMapPath, JSON.stringify(idMap, null, 2));
+  console.log(`idMap saved to ${idMapPath}`);
+
+  const records = Object.values(index);
+  const readable = records.map(r => ({
+    code: r.code,
+    title: r.title,
+    vector: r.vector,
+  }));
+
+  const readablePath = path.join(__dirname, 'faiss_readable.json');
+  fs.writeFileSync(readablePath, JSON.stringify(readable, null, 2));
+  console.log(`Readable FAISS index saved to ${readablePath}`);
+}
+
+function testSearch(faissIndex, idMap, index, topK = 5) {
+  console.log('------------------- test search -------------------');
+
+  const records = Object.values(index);
+
+  const testRecord = records[Math.floor(Math.random() * records.length)];
+  console.log(`Query course: ${testRecord.code} — ${testRecord.title}`);
+  console.log(`Description: ${testRecord.description.slice(0, 100)}...`);
+
+  const { labels, distances } = faissIndex.search(testRecord.vector, topK);
+
+  console.log(labels)
+  console.log(`Top ${topK} similar courses:`);
+  labels.forEach((idx, i) => {
+    const match = index[idMap[idx]];
+    console.log(`  ${i + 1}. [${distances[i].toFixed(4)}] ${match.code} — ${match.title}`);
+  });
+}
+
+// function distribute(index, distribution, groupname) {
+//     console.log(`Distributing to group "${groupname}"...`);
+
+//     const entries = Object.entries(index);
+//     let done = 0;
+//     const errors = [];
+
+//     const BATCH = 50;
+//     for (let i = 0; i < entries.length; i += BATCH) {
+//         const batch = entries.slice(i, i + BATCH);
+//         for (const [code, record] of batch) {
+//             distribution[groupname].store.put(record, code, (err) => {
+//                 if (err) {
+//                     errors++;
+//                     console.warn(`Error storing ${code}: ${err}`);
+//                 } else {
+//                     done++;
+//                 }
+//             })
+//         }
+//     }
 // }
 
+// function distribute(index, distribution, groupname) {
+//   console.log(`Distributing to group "${groupname}"...`);
+
+//   const entries = Object.entries(index);
+//   let done = 0;
+//   let errors = 0;
+
+//   return new Promise((resolve, reject) => {
+//     let pending = entries.length;
+
+//     for (const [code, record] of entries) {
+//       distribution[groupname].store.put(record, code, (err) => {
+//         if (err) {
+//           errors++;
+//           console.warn(`  Error storing ${code}: ${err}`);
+//         } else {
+//           done++;
+//         }
+
+//         pending--;
+//         if (pending === 0) {
+//           console.log(`Done. ${done} courses distributed, ${errors} errors.`);
+//           resolve();
+//         }
+//       });
+//     }
+//   });
+// }
+
+function distribute(index, distribution, groupname) {
+  console.log(`Distributing to group "${groupname}"...`);
+
+  const entries = Object.entries(index);
+  let done = 0;
+  let errors = 0;
+
+  return new Promise((resolve, reject) => {
+    const CONCURRENCY = 20;   // max simultaneous puts
+    let activeCount = 0;
+    let entryIndex = 0;
+
+    function next() {
+      // fill up to CONCURRENCY active requests
+      while (activeCount < CONCURRENCY && entryIndex < entries.length) {
+        const [code, record] = entries[entryIndex++];
+        activeCount++;
+
+        distribution[groupname].store.put(record, code, (err) => {
+          activeCount--;
+          if (err) {
+            errors++;
+            console.warn(`  Error storing ${code}: ${err.message}`);
+          } else {
+            done++;
+            if (done % 100 === 0) {
+              console.log(`  ${done}/${entries.length} courses distributed...`);
+            }
+          }
+
+          if (entryIndex < entries.length) {
+            next();   // kick off next batch
+          } else if (activeCount === 0) {
+            console.log(`Done. ${done} courses distributed, ${errors} errors.`);
+            resolve();
+          }
+        });
+      }
+    }
+
+    next();
+  });
+}
+
+async function runIndexer(distribution, groupname) {
+    const courseMap = await buildCourseMap();
+    const index = await buildIndex(courseMap);
+    // const { faissIndex, idMap } = buildFaissIndex(index);
+    await distribute(index, distribution, groupname);
+
+    return { index };
+}
 
 if (require.main === module) {
   (async () => {
     const courseMap = await buildCourseMap();
-    const index    = await buildIndex(courseMap);
+    const index = await buildIndex(courseMap);
+    const {faissIndex, idMap } = buildFaissIndex(index);
+
+    console.log(`total vectors: ${faissIndex.ntotal()}`);
+    console.log(`dimensions: ${faissIndex.getDimension()}`);
+    await saveFaissIndex(faissIndex, idMap, index);
     await saveIndex(index);
+
+    testSearch(faissIndex, idMap, index);
   })().catch(console.error);
 }
+
+module.exports = { runIndexer }
