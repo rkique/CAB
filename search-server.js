@@ -8,6 +8,10 @@ const path = require('path');
 const readline = require('readline');
 const natural = require('natural/lib/natural/stemmers/porter_stemmer');
 
+// load localIndex at module level — require works here
+const { buildLocalFaiss, localSearch } = require('./localIndex.js');
+globalThis.__buildLocalFaiss = buildLocalFaiss;
+globalThis.__localFaissSearch = localSearch;
 
 const DIST_PORT = 3001;
 const HTTP_PORT = 3000;
@@ -183,31 +187,41 @@ async function loadIndex(cb) {
   allKeys = Object.keys(index);
   totalDocs = allKeys.length;
   console.log(`Index has ${totalDocs} unique courses.`);
-
   const faissService = {
-    buildFaiss: function(gid, cb) {
-      globalThis.distribution.local.store.get({ key : null, gid}, (err, vals) => {
-        if (err) return cb(err);
-        const records = Object.values(vals);
-        const { buildLocalFaiss, localSearch } = require('./localIndex.js');
+    buildFaiss: function(gid, keys, cb) {
+      console.log('buildFaiss called!', gid, 'keys:', keys.length);
 
-        buildLocalFaiss(records);
-        globalThis.__localFaissSearch = localSearch;
-        console.log(`Built local FAISS with ${records.length} courses.`);
-        cb(null, { built : records.length });
-      })
+      const records = [];
+      let pending = keys.length;
+
+      if (pending === 0) return cb(null, { built: 0 });
+
+      keys.forEach((key) => {
+        globalThis.distribution.local.store.get({ key, gid }, (err, record) => {
+          if (!err && record) records.push(record);
+          pending--;
+          if (pending === 0) {
+            globalThis.__buildLocalFaiss(records);
+            console.log(`Built local FAISS with ${records.length} courses.`);
+            cb(null, { built: records.length });
+          }
+        });
+      });
     }
   }
 
   distribution[GID].routes.put(faissService, 'faiss', (err, val) => {
-    if (err) return cb(err);
+    console.log('routes.put callback fired, err:', err, 'val:', val);
+    if (err && Object.values(err).length > 0) return cb(err);
+    console.log('routes.put result:', err, val);
 
-    distribution[GID].comm.send([GID], { service : 'faiss', method : 'buildFaiss'}, (err, results) => {
-      if (err && Object.values(err).length > 0) return cb(err);
-
+    console.log('sending buildFaiss to all nodes...');
+    // pass allKeys when calling buildFaiss
+    distribution[GID].comm.send([GID, allKeys], { service: 'faiss', method: 'buildFaiss' }, (err, results) => {
+      if (err && Object.values(err).some(Boolean)) return cb(err);
       console.log('All nodes built local FAISS:', results);
-      cb()
-    })
+      cb();
+    });
   })
 }
 
