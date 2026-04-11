@@ -1,5 +1,5 @@
 // run_node.js
-require('./distribution.js')();
+require('../distribution.js')();
 
 globalThis.distribution.node.start((err) => {
   if (err) {

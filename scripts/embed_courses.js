@@ -21,16 +21,10 @@ const path = require('path');
 const readline = require('readline');
 const {OpenAI} = require('openai');
 
-const envPath = path.join(__dirname, '.env');
-if (fs.existsSync(envPath)) {
-  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
-    const [k, ...v] = line.split('=');
-    if (k && v.length) process.env[k.trim()] = v.join('=').trim();
-  }
-}
-
-const COURSES_FILE = path.join(__dirname, 'courses_overview.json');
-const EMBEDDINGS_FILE = path.join(__dirname, 'embeddings.jsonl');
+const KEY_FILE = path.join(__dirname, '..', 'data', 'openai.key');
+const DATA_DIR = path.join(__dirname, '..', 'data');
+const COURSES_FILE = path.join(DATA_DIR, 'courses_overview.json');
+const EMBEDDINGS_FILE = path.join(DATA_DIR, 'embeddings.jsonl');
 
 const BATCH_SIZE = 200;  
 const CONCURRENCY = 1;
@@ -84,11 +78,11 @@ function appendBatch(batch, vecs) {
 }
 
 async function main() {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    console.error('Error: OPENAI_API_KEY environment variable is not set.');
+  if (!fs.existsSync(KEY_FILE)) {
+    console.error(`Error: ${KEY_FILE} not found.`);
     process.exit(1);
   }
+  const apiKey = fs.readFileSync(KEY_FILE, 'utf8').trim();
 
   const client = new OpenAI({apiKey});
 

@@ -15,9 +15,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const root = path.join(__dirname, '..');
-const overviewPath = path.join(root, 'courses_overview.json');
-const descriptionsPath = path.join(root, 'course_descriptions.json');
+const dataDir = path.join(__dirname, '..', 'data');
+const overviewPath = path.join(dataDir, 'courses_overview.json');
+const descriptionsPath = path.join(dataDir, 'course_descriptions.json');
 
 console.log('Loading course_descriptions.json...');
 const descriptions = JSON.parse(fs.readFileSync(descriptionsPath, 'utf-8'));

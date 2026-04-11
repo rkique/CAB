@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { runIndexer } = require('./indexer.js');
+const { runIndexer } = require('../scripts/indexer.js');
 
 const http = require('http');
 const fs = require('fs');
@@ -9,7 +9,7 @@ const readline = require('readline');
 const natural = require('natural/lib/natural/stemmers/porter_stemmer');
 
 // load localIndex at module level — require works here
-const { buildLocalFaiss, localSearch } = require('./localIndex.js');
+const { buildLocalFaiss, localSearch } = require('../scripts/localIndex.js');
 globalThis.__buildLocalFaiss = buildLocalFaiss;
 globalThis.__localFaissSearch = localSearch;
 
@@ -44,16 +44,11 @@ function stemTokens(tokens) {
 // --- Bootstrap distribution framework ---
 const {OpenAI} = require('openai');
 
-// Load .env if present
-const envPath = path.join(__dirname, '.env');
-if (fs.existsSync(envPath)) {
-  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
-    const [k, ...v] = line.split('=');
-    if (k && v.length) process.env[k.trim()] = v.join('=').trim();
-  }
-}
+// Load API key from openai.key file
+const keyPath = path.join(__dirname, '..', 'data', 'openai.key');
+const OPENAI_API_KEY = fs.readFileSync(keyPath, 'utf8').trim();
 
-const distribution = require('./distribution.js')({ip: '127.0.0.1', port: DIST_PORT});
+const distribution = require('../distribution.js')({ip: '127.0.0.1', port: DIST_PORT});
 
 const EMBEDDING_MODEL = 'text-embedding-3-small';
 const EMBEDDING_DIMENSIONS = 256;
@@ -227,9 +222,7 @@ async function loadIndex(cb) {
 
 function getOpenAIClient() {
   if (!openaiClient) {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) throw new Error('OPENAI_API_KEY environment variable is not set.');
-    openaiClient = new OpenAI({apiKey});
+    openaiClient = new OpenAI({apiKey: OPENAI_API_KEY});
   }
   return openaiClient;
 }

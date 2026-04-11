@@ -4,6 +4,8 @@
 node_modules
 package-lock.json
 
+data/openai.key
+
 # in case a student adds an ssh key to the repo
 *.pem
 

@@ -1,4 +1,4 @@
-const distribution = require('./distribution.js')();
+const distribution = require('../distribution.js')();
 const crypto = require('crypto');
 
 function parseFlag(name, fallback = null) {

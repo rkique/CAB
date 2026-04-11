@@ -10,8 +10,9 @@ const path = require('path');
 const readline = require('readline');
 
 const util = require('util');
-const COURSES_FILE = path.join(__dirname, 'courses_overview.json');
-const EMBEDDINGS_FILE = path.join(__dirname, 'embeddings.jsonl');
+const DATA_DIR = path.join(__dirname, '..', 'data');
+const COURSES_FILE = path.join(DATA_DIR, 'courses_overview.json');
+const EMBEDDINGS_FILE = path.join(DATA_DIR, 'embeddings.jsonl');
 
 function normalize(v) {
   const norm = Math.sqrt(v.reduce((sum, x) => sum + x * x, 0));
@@ -119,7 +120,7 @@ async function buildIndex(courseMap) {
 }
 
 async function saveIndex(index, outputFile = 'index.json') {
-    const outPath = path.join(__dirname, outputFile);
+    const outPath = path.join(DATA_DIR, outputFile);
     fs.writeFileSync(outPath, JSON.stringify(index, null, 2));
     console.log(`index saved to ${outPath}`);
 }
@@ -146,7 +147,7 @@ function buildFaissIndex(index) {
 }
 
 async function saveFaissIndex(faissIndex, idMap, index) {
-  const idMapPath = path.join(__dirname, 'idmap.json');
+  const idMapPath = path.join(DATA_DIR, 'idmap.json');
   fs.writeFileSync(idMapPath, JSON.stringify(idMap, null, 2));
   console.log(`idMap saved to ${idMapPath}`);
 
@@ -157,7 +158,7 @@ async function saveFaissIndex(faissIndex, idMap, index) {
     vector: r.vector,
   }));
 
-  const readablePath = path.join(__dirname, 'faiss_readable.json');
+  const readablePath = path.join(DATA_DIR, 'faiss_readable.json');
   fs.writeFileSync(readablePath, JSON.stringify(readable, null, 2));
   console.log(`Readable FAISS index saved to ${readablePath}`);
 }
