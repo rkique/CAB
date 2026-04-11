@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { runIndexer } = require('../scripts/indexer.js');
+const { runIndexer, buildCourseMap, buildIndex } = require('../scripts/indexer.js');
 const { generateRAGResponse } = require('../scripts/rag.js');
 
 const http = require('http');
@@ -14,9 +14,37 @@ const { buildLocalFaiss, localSearch } = require('../scripts/localIndex.js');
 globalThis.__buildLocalFaiss = buildLocalFaiss;
 globalThis.__localFaissSearch = localSearch;
 
+const LOCAL_MODE = process.argv.includes('--local');
 const DIST_PORT = 3001;
 const HTTP_PORT = 3000;
 const GID = 'courses';
+let localIndex = null; // in-memory index for local mode
+
+// --- Rate limiting ---
+const MAX_QUERY_LENGTH = 500;
+const MAX_REQUESTS_PER_DAY = 25;
+const rateLimitMap = new Map(); // ip -> { count, resetTime }
+
+function getRateLimitInfo(ip) {
+  const now = Date.now();
+  let entry = rateLimitMap.get(ip);
+  if (!entry || now >= entry.resetTime) {
+    entry = { count: 0, resetTime: now + 24 * 60 * 60 * 1000 };
+    rateLimitMap.set(ip, entry);
+  }
+  return entry;
+}
+
+function checkRateLimit(ip) {
+  const entry = getRateLimitInfo(ip);
+  if (entry.count >= MAX_REQUESTS_PER_DAY) return false;
+  entry.count++;
+  return true;
+}
+
+function getClientIP(req) {
+  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
+}
 
 // Common English stopwords
 const STOPWORDS = new Set([
@@ -222,6 +250,59 @@ async function loadIndex(cb) {
   })
 }
 
+async function loadIndexLocal(cb) {
+  /* Local mode: build index and FAISS in-process, no distribution. */
+  console.log('Running indexer (local mode — no distribution)...');
+
+  const courseMap = await buildCourseMap();
+  const index = await buildIndex(courseMap);
+
+  localIndex = index;
+  allKeys = Object.keys(index);
+  totalDocs = allKeys.length;
+  console.log(`Index has ${totalDocs} unique courses.`);
+
+  const records = Object.values(index);
+  buildLocalFaiss(records);
+  console.log('Local FAISS index built.');
+  cb();
+}
+
+function searchFaissLocal(queryVec, queryStr, t0, cb) {
+  const topK = 40;
+  const filters = parseQueryFilters(queryStr);
+  const faissK = getFaissK(topK, filters);
+
+  const results = localSearch(queryVec, faissK);
+
+  if (results.length === 0) {
+    return cb(null, {
+      results: [],
+      time_ms: Date.now() - t0,
+      total_docs: totalDocs,
+      mode: 'faiss-local',
+      filters,
+    });
+  }
+
+  const fullResults = results.map(({ code, score }) => ({
+    ...localIndex[code],
+    score,
+  }));
+
+  const filtered = filterSections(fullResults, filters);
+  const deduped = deduplicateResults(filtered);
+  const ranked = deduped.sort((a, b) => b.score - a.score).slice(0, topK);
+
+  cb(null, {
+    results: ranked,
+    time_ms: Date.now() - t0,
+    total_docs: totalDocs,
+    mode: 'faiss-local',
+    filters,
+  });
+}
+
 function getOpenAIClient() {
   if (!openaiClient) {
     openaiClient = new OpenAI({apiKey: OPENAI_API_KEY});
@@ -346,9 +427,10 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
 
 function search(queryStr, cb) {
   const t0 = Date.now();
+  const faissSearchFn = LOCAL_MODE ? searchFaissLocal : searchFaiss;
 
   embedQueryFaiss(queryStr).then((queryVec) => {
-    searchFaiss(queryVec, queryStr, t0, async (err, faissResult) => {
+    faissSearchFn(queryVec, queryStr, t0, async (err, faissResult) => {
       if (err) return cb(err);
 
       try {
@@ -515,12 +597,11 @@ function startHTTPServer() {
   /* Start a simple HTTP server that serves the search UI and handles search requests. */
 
   const htmlPath = path.join(__dirname, 'search.html');
-  const html = fs.readFileSync(htmlPath, 'utf8');
 
   const server = http.createServer((req, res) => {
     if (req.method === 'GET' && (req.url === '/' || req.url === '/index.html')) {
       res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end(html);
+      res.end(fs.readFileSync(htmlPath, 'utf8'));
       return;
     }
 
@@ -537,6 +618,14 @@ function startHTTPServer() {
     }
 
     if (req.method === 'POST' && req.url === '/search') {
+      const clientIP = getClientIP(req);
+
+      if (!checkRateLimit(clientIP)) {
+        res.writeHead(429, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({error: 'Daily request limit reached. Please try again tomorrow.'}));
+        return;
+      }
+
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
@@ -547,6 +636,12 @@ function startHTTPServer() {
           if (!query || typeof query !== 'string') {
             res.writeHead(400, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({error: 'Missing query string'}));
+            return;
+          }
+
+          if (query.length > MAX_QUERY_LENGTH) {
+            res.writeHead(400, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({error: `Query too long (max ${MAX_QUERY_LENGTH} characters).`}));
             return;
           }
 
@@ -578,18 +673,29 @@ function startHTTPServer() {
 }
 
 // --- Startup sequence ---
-startDistributionNode(() => {
-  setupGroup((e) => {
+if (LOCAL_MODE) {
+  console.log('Starting in LOCAL mode (--local flag detected)');
+  loadIndexLocal((e) => {
     if (e) {
-      console.error('Group setup failed:', e);
+      console.error('Course loading failed:', e);
       process.exit(1);
     }
-    loadIndex((e) => {
-      if (e && Object.values(e).length > 0) {
-        console.error('Course loading failed:', e);
+    startHTTPServer();
+  });
+} else {
+  startDistributionNode(() => {
+    setupGroup((e) => {
+      if (e) {
+        console.error('Group setup failed:', e);
         process.exit(1);
       }
-      startHTTPServer();
+      loadIndex((e) => {
+        if (e && Object.values(e).length > 0) {
+          console.error('Course loading failed:', e);
+          process.exit(1);
+        }
+        startHTTPServer();
+      });
     });
   });
-});
+}

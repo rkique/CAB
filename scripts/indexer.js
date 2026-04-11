@@ -97,7 +97,7 @@ async function buildIndex(courseMap) {
             };
         }
 
-        index[course.code].sections.push({
+        const section = {
             crn: course.crn,
             srcdb: course.srcdb,
             ...parseSrcdb(course.srcdb),
@@ -109,7 +109,34 @@ async function buildIndex(courseMap) {
             end_date: course.end_date || '',
             permreq: course.permreq || 'N',
             schd: course.schd || '',
-        });
+        };
+
+        // Critical Review & rating fields (only present on some records)
+        if (course.cr_avg_hours != null) section.cr_avg_hours = course.cr_avg_hours;
+        if (course.cr_max_hours != null) section.cr_max_hours = course.cr_max_hours;
+        if (course.cr_course_avg != null) section.cr_course_avg = course.cr_course_avg;
+        if (course.cr_prof_avg != null) section.cr_prof_avg = course.cr_prof_avg;
+        if (course.cr_class_size != null) section.cr_class_size = course.cr_class_size;
+        if (course.cr_num_respondents != null) section.cr_num_respondents = course.cr_num_respondents;
+        if (course.cr_attendance != null) section.cr_attendance = course.cr_attendance;
+        if (course.cr_grades != null) section.cr_grades = course.cr_grades;
+        if (course.cr_concs != null) section.cr_concs = course.cr_concs;
+        if (course.cr_nonconcs != null) section.cr_nonconcs = course.cr_nonconcs;
+        if (course.cr_frosh != null) section.cr_frosh = course.cr_frosh;
+        if (course.cr_soph != null) section.cr_soph = course.cr_soph;
+        if (course.cr_jun != null) section.cr_jun = course.cr_jun;
+        if (course.cr_sen != null) section.cr_sen = course.cr_sen;
+        if (course.cr_grad != null) section.cr_grad = course.cr_grad;
+        if (course.cr_professor != null) section.cr_professor = course.cr_professor;
+        if (course.cr_edition != null) section.cr_edition = course.cr_edition;
+        if (course.cr_requirement != null) section.cr_requirement = course.cr_requirement;
+        if (course.course_rating != null) section.course_rating = course.course_rating;
+        if (course.professor_rating != null) section.professor_rating = course.professor_rating;
+        if (course.average_hours != null) section.average_hours = course.average_hours;
+        if (course.max_hours != null) section.max_hours = course.max_hours;
+        if (course.programs != null) section.programs = course.programs;
+
+        index[course.code].sections.push(section);
     }
 
     console.log(`Processed ${seen} embeddings`);
@@ -302,4 +329,4 @@ if (require.main === module) {
   })().catch(console.error);
 }
 
-module.exports = { runIndexer }
+module.exports = { runIndexer, buildCourseMap, buildIndex }

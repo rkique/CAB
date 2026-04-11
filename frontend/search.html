@@ -30,6 +30,7 @@
     }
     .header h1 {
       font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+      font-style: normal;
       font-size: 2.4rem;
       font-weight: 700;
       color: #1a1a1a;
@@ -70,20 +71,95 @@
     }
     .search-bar input::placeholder { color: #aaa; }
     .search-bar button {
-      padding: 14px 28px;
-      font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      padding: 14px 20px;
+      font-size: 18px;
       background: #8b0000;
       color: #fff;
       border: none;
       cursor: pointer;
       transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
     }
     .search-bar button:hover { background: #6d0000; }
     .search-bar button:disabled { background: #bbb; cursor: not-allowed; }
+
+    /* Toolbar (shown after search) */
+    .toolbar {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 16px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e0ddd8;
+    }
+    .toolbar img {
+      width: 108px;
+      height: auto;
+      margin-right: 12px;
+    }
+    .toolbar h1 {
+      font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-right: 50px;
+    }
+    body.results-mode .header { display: none; }
+    body.results-mode .data-info { display: none; }
+    body.results-mode .toolbar { display: flex; }
+
+    /* Loading indicator */
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 40px 0;
+    }
+    #loading .loading-msg {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .blinking-dots span {
+      animation: blink 1.4s infinite both;
+      font-size: 20px;
+      color: #bbb;
+      margin: 0 2px;
+    }
+    .blinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .blinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink {
+      0%, 80%, 100% { opacity: 0; }
+      40% { opacity: 1; }
+    }
+
+    /* Data info collapsible */
+    .data-info {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .data-info summary {
+      text-decoration: underline;
+      font-size: 13px;
+      color: #999;
+      cursor: pointer;
+      list-style: none;
+    }
+    .data-info summary::-webkit-details-marker { display: none; }
+    .data-info summary::before { content: ''; }
+    .data-info[open] summary { margin-bottom: 8px; }
+    .data-info .info-body {
+      text-align: left;
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+      background: #fff;
+      border: 1px solid #e0ddd8;
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
 
     /* Meta */
     #meta { color: #999; margin-bottom: 16px; font-size: 13px; text-align: center; }
@@ -156,16 +232,33 @@
 <body>
   <div class="header">
     <img src="images/bruno.png" width="300%" alt="Bruno">
-    <h1>BrunoRAG</h1>
+    <h1><i>Bruno</i>RAG</h1>
     <div class="subtitle">Brown University Course Search</div>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <img src="images/bruno.png" alt="Bruno">
+    <h1>BrunoRAG</h1>
   </div>
 
   <form id="searchForm">
     <div class="search-bar">
-      <input type="text" id="query" placeholder="e.g. easy public health electives, WRIT classes in neuroscience" autofocus>
-      <button type="submit" id="btn">Search</button>
+      <input type="text" id="query" placeholder="e.g. easy public health electives, WRIT classes in neuroscience" maxlength="500" autofocus>
+      <button type="submit" id="btn">&#9654;</button>
     </div>
   </form>
+
+  <details class="data-info">
+    <summary>What's being searched?</summary>
+    <div class="info-body">
+      BrunoRAG searches across ten years of Brown University's Courses@Brown (CAB), from Fall of 2016 to Fall 2026. Each course is embedded using OpenAI's <code>text-embedding-3-small</code> model and indexed with FAISS for fast semantic similarity search.
+    </div>
+  </details>
+
+  <div id="loading">
+    <div class="loading-msg" id="loadingMsg"></div>
+    <div class="blinking-dots"><span>.</span><span>.</span><span>.</span></div>
+  </div>
 
   <div id="error"></div>
   <div id="meta"></div>
@@ -186,9 +279,45 @@
     const citedLabel = document.getElementById('cited-label');
     const otherLabel = document.getElementById('other-label');
     const errorDiv = document.getElementById('error');
+    const loadingDiv = document.getElementById('loading');
+    const loadingMsg = document.getElementById('loadingMsg');
 
-    function cabLink(code) {
-      return 'https://cab.brown.edu/search?p=' + encodeURIComponent(code);
+    const LOADING_MESSAGES = [
+      'Analyzing query',
+      'Synthesizing information',
+      'Preparing advice'
+    ];
+    let loadingInterval = null;
+
+    function startLoading() {
+      let idx = 0;
+      loadingMsg.textContent = LOADING_MESSAGES[0];
+      loadingDiv.style.display = 'block';
+      loadingInterval = setInterval(() => {
+        idx++;
+        if (idx < LOADING_MESSAGES.length) {
+          loadingMsg.textContent = LOADING_MESSAGES[idx];
+        }
+      }, 2000);
+    }
+
+    function stopLoading() {
+      clearInterval(loadingInterval);
+      loadingDiv.style.display = 'none';
+    }
+
+    function enterResultsMode() {
+      document.body.classList.add('results-mode');
+    }
+
+    function latestSrcdb(sections) {
+      if (!sections || sections.length === 0) return '999999';
+      return sections.reduce((best, s) => s.srcdb > best ? s.srcdb : best, sections[0].srcdb);
+    }
+
+    function cabLink(code, sections) {
+      const srcdb = latestSrcdb(sections);
+      return 'https://cab.brown.edu/?keyword=' + encodeURIComponent(code) + '&srcdb=' + srcdb;
     }
 
     function renderCard(r, isCited) {
@@ -202,7 +331,7 @@
 
       div.innerHTML = `
         <div class="card-header">
-          <div><span class="card-code"><a href="${cabLink(r.code)}" target="_blank">${esc(r.code)}</a></span><span class="card-title">${esc(r.title)}</span></div>
+          <div><span class="card-code"><a href="${cabLink(r.code, sections)}" target="_blank">${esc(r.code)}</a></span><span class="card-title">${esc(r.title)}</span></div>
           <span class="card-score">${r.score.toFixed(4)}</span>
         </div>
         <div class="card-desc">${esc(desc)}</div>
@@ -211,13 +340,17 @@
       return div;
     }
 
+    // Build a lookup from code -> sections for linking in answer text
+    let resultsByCode = {};
+
     function renderAnswer(text, citedCodes) {
       let html = esc(text);
       html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
       for (const code of citedCodes) {
         const escaped = code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const re = new RegExp('\\b' + escaped + '\\b', 'g');
-        html = html.replace(re, `<a href="${cabLink(code)}" target="_blank">${code}</a>`);
+        const sections = resultsByCode[code]?.sections || [];
+        html = html.replace(re, `<a href="${cabLink(code, sections)}" target="_blank">${code}</a>`);
       }
       html = html.split('\n\n').map(p => p.trim()).filter(Boolean).map(p => '<p>' + p + '</p>').join('');
       return html;
@@ -229,7 +362,7 @@
       if (!query) return;
 
       btn.disabled = true;
-      btn.textContent = 'Searching...';
+      enterResultsMode();
       errorDiv.textContent = '';
       metaDiv.textContent = '';
       answerDiv.style.display = 'none';
@@ -238,6 +371,7 @@
       othersDiv.innerHTML = '';
       citedLabel.style.display = 'none';
       otherLabel.style.display = 'none';
+      startLoading();
 
       try {
         const res = await fetch('/search', {
@@ -253,6 +387,10 @@
         }
 
         metaDiv.textContent = `${data.results.length} courses retrieved in ${data.time_ms} ms`;
+
+        // Build code -> result lookup for linking
+        resultsByCode = {};
+        for (const r of data.results) resultsByCode[r.code] = r;
 
         if (data.answer) {
           const citedSet = new Set(data.cited_courses || []);
@@ -282,8 +420,8 @@
       } catch (err) {
         errorDiv.textContent = 'Request failed: ' + err.message;
       } finally {
+        stopLoading();
         btn.disabled = false;
-        btn.textContent = 'Search';
       }
     });
 

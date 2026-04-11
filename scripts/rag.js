@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const GENERATION_MODEL = 'gpt-4.1-mini';
+const GENERATION_MODEL = 'gpt-5.4-mini';
 const MAX_CONTEXT_COURSES = 40;
 const MAX_DESC_CHARS = 400;
 
@@ -19,54 +19,129 @@ const currentData = JSON.parse(fs.readFileSync(CURRENT_FILE, 'utf8'));
 const CURRENT_CODES = new Set(currentData.codes);
 const CURRENT_SEMESTERS = currentData.semesters.join(' and ');
 
-const SYSTEM_PROMPT = `You are a knowledgeable Brown University course advisor. A student will ask about courses and you will receive two lists of candidate courses from the catalog:
+const SYSTEM_PROMPT = `You are a knowledgeable Brown University course advisor. A student will ask about courses.
+
+------ In Context Data Available -------
+You will receive two JSON arrays of candidate courses from the catalog:
 
 1. CURRENTLY OFFERED — courses available in ${CURRENT_SEMESTERS}. You should primarily recommend from this list.
+
 2. OTHER RELEVANT — courses that match the query but are NOT currently offered. You may briefly mention these as alternatives the student could look into in future semesters, but clearly note they are not currently offered.
 
+- Each course is a JSON object. 
+- Every course has: code, title, description, semesters, meets, instructors. Some courses also have Brown's Critical Review data. When they are available, use them to inform your recommendations:
+
+- cr_avg_hours, cr_max_hours: avg and max hours per week
+- cr_course_avg: course rating (out of 5)
+- cr_prof_avg: professor rating (out of 5)
+- cr_class_size: typical class size
+- cr_grades: grade distribution info
+- cr_attendance: attendance expectations
+- cr_num_respondents: number of Critical Review respondents
+- cr_enrollment: breakdown by class year (frosh/soph/jun/sen/grad) and concentrator status
+- course_rating, professor_rating: additional rating data
+- average_hours, max_hours: workload data
+- programs: curricular programs (e.g. WRIT, DPLL)
+
 Your job:
-- Write a helpful, concise response recommending relevant courses.
-- Prioritize currently offered courses. If none of the currently offered courses match the query well, say so honestly and mention relevant alternatives from the other list.
-- Reference courses using the exact format: **CODE: Title** (e.g. **CSCI 1380: Distributed Computer Systems**)
-- Consider course level (0000-level = intro, 1000+ = advanced), description content, meeting patterns, and any other relevant signals.
-- Keep your response to 2-4 short paragraphs. Be direct and informative.
+- Write a helpful, concise response recommending relevant courses based on the provided lists.
+
+- Use the Critical Review data to inform your recommendations — mention workload (avg hours), course/professor ratings, and class size when relevant to the query. Prioritize the currently offered courses. If none match the query, report this. Mention relevant alternatives if they fit.
+
 - Do NOT invent courses. Only reference courses from the provided lists.
+
+- Prefer in-person courses over online courses unless otherwise specified. If the query specifies a discipline, prefer departments matching that discipline unless otherwise specified.
+
+- Reference courses either with CODE, CODE: Course Name, or CODE with description, ensuring the response focuses on the most relevant and helpful courses.
+
+- Here is an example answer to the query "engineering classes with hands-on components" which uses all three:
+
+"For engineering classes with hands-on components, the best option for this semester is ENGN1240: Biomedical Engineering Design and Innovation. As a capstone course, students work within teams on biomedical engineering projects, applying design principles in a project-based setting with clinical advisors.
+
+Other strong options for Fall 2026 include ENGN 1650, an embedded microprocessor design class, ENGN 1931D, an introduction to designing mechanical components, and ENGN 0030, the classic introductory course which introduces different engineering disciplines and design processes. Some courses which are heavily oriented towards building skills but are not offered this semester are VISA 1720, a course on physical computing, and ENGN 1931Z: Interfaces, Information and Automation."
+
+- Your response should be one holistic answer and can be from 2 - 3 paragraphs. You should describe courses in detail if the detail is relevant to the query.
+
 - After your response, output a JSON block on its own line in this exact format:
 CITED_COURSES: ["CODE1", "CODE2", ...]
-listing every course code you mentioned.`;
+listing every course code you mentioned.
+
+- The user does not directly ask questions to you. Do not end responses with messages such as "If you want, I can ...".
+
+`
+
+
 
 function buildContext(currentCandidates, otherCandidates) {
-  function formatCourse(c, i) {
-    const desc = (c.description || '').slice(0, MAX_DESC_CHARS);
-    const semesters = (c.sections || [])
-      .map((s) => s.semester)
-      .filter(Boolean);
-    const unique = [...new Set(semesters)].slice(0, 5);
-    const semStr = unique.length > 0 ? unique.join(', ') : 'N/A';
+  function formatCourse(c) {
+    const sections = c.sections || [];
 
-    const meets = (c.sections || [])
-      .map((s) => s.meets)
-      .filter((m) => m && m !== 'TBA');
-    const meetStr = [...new Set(meets)].slice(0, 3).join(' / ') || 'TBA';
+    const obj = {
+      code: c.code,
+      title: c.title,
+      description: (c.description || '').slice(0, MAX_DESC_CHARS),
+      semesters: [...new Set(sections.map((s) => s.semester).filter(Boolean))].slice(0, 5),
+      meets: [...new Set(sections.map((s) => s.meets).filter((m) => m && m !== 'TBA'))].slice(0, 3),
+      instructors: [...new Set(sections.map((s) => s.instr).filter(Boolean))].slice(0, 3),
+    };
 
-    return `${i + 1}. [${c.code}] ${c.title}\n   Meets: ${meetStr} | Offered: ${semStr}\n   ${desc}`;
+    // Aggregate CR / rating fields from the most recent section that has them
+    const crFields = [
+      'cr_avg_hours', 'cr_max_hours', 'cr_course_avg', 'cr_prof_avg',
+      'cr_class_size', 'cr_num_respondents', 'cr_attendance', 'cr_grades',
+      'cr_professor', 'cr_edition', 'cr_requirement',
+      'course_rating', 'professor_rating', 'average_hours', 'max_hours',
+      'programs',
+    ];
+    // Pick from the most recent section with data
+    const sorted = [...sections].sort((a, b) => (b.srcdb || '').localeCompare(a.srcdb || ''));
+    for (const field of crFields) {
+      for (const s of sorted) {
+        if (s[field] != null && s[field] !== '') {
+          obj[field] = s[field];
+          break;
+        }
+      }
+    }
+
+    // Enrollment breakdown
+    const enrollFields = ['cr_frosh', 'cr_soph', 'cr_jun', 'cr_sen', 'cr_grad', 'cr_concs', 'cr_nonconcs'];
+    const enrollment = {};
+    for (const field of enrollFields) {
+      for (const s of sorted) {
+        if (s[field] != null && s[field] !== '') {
+          enrollment[field.replace('cr_', '')] = s[field];
+          break;
+        }
+      }
+    }
+    if (Object.keys(enrollment).length > 0) obj.cr_enrollment = enrollment;
+
+    return obj;
   }
 
-  let text = '';
+  const context = {};
 
   if (currentCandidates.length > 0) {
-    text += `CURRENTLY OFFERED (${CURRENT_SEMESTERS}):\n`;
-    text += currentCandidates.map(formatCourse).join('\n\n');
+    context.currently_offered = {
+      label: `Courses available in ${CURRENT_SEMESTERS}`,
+      courses: currentCandidates.map(formatCourse),
+    };
   } else {
-    text += `CURRENTLY OFFERED: None of the retrieved courses are offered in ${CURRENT_SEMESTERS}.\n`;
+    context.currently_offered = {
+      label: `None of the retrieved courses are offered in ${CURRENT_SEMESTERS}`,
+      courses: [],
+    };
   }
 
   if (otherCandidates.length > 0) {
-    text += `\n\nOTHER RELEVANT (not currently offered):\n`;
-    text += otherCandidates.slice(0, 10).map(formatCourse).join('\n\n');
+    context.other_relevant = {
+      label: 'Courses that match but are NOT currently offered',
+      courses: otherCandidates.slice(0, 10).map(formatCourse),
+    };
   }
 
-  return text;
+  return JSON.stringify(context, null, 2);
 }
 
 function parseCitedCourses(text) {
@@ -109,7 +184,7 @@ async function generateRAGResponse(client, query, candidates) {
       {role: 'user', content: `Student query: "${query}"\n\n${context}`},
     ],
     temperature: 0.3,
-    max_tokens: 1024,
+    max_completion_tokens: 1024,
   });
 
   const raw = response.choices[0].message.content;
