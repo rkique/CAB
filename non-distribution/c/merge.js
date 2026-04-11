@@ -1,40 +1,7 @@
 #!/usr/bin/env node
-
-/*
-Merge the current inverted index (assuming the right structure) with the global index file
-Usage: input > ./merge.js global-index > output
-
-The inverted indices have the different structures!
-
-Each line of a local index is formatted as:
-  - `<word/ngram> | <frequency> | <url>`
-
-Each line of a global index is be formatted as:
-  - `<word/ngram> | <url_1> <frequency_1> <url_2> <frequency_2> ... <url_n> <frequency_n>`
-  - Where pairs of `url` and `frequency` are in descending order of frequency
-  - Everything after `|` is space-separated
-
--------------------------------------------------------------------------------------
-Example:
-
-local index:
-  word1 word2 | 8 | url1
-  word3 | 1 | url9
-EXISTING global index:
-  word1 word2 | url4 2
-  word3 | url3 2
-
-merge into the NEW global index:
-  word1 word2 | url1 8 url4 2
-  word3 | url3 2 url9 1
-
-Remember to error gracefully, particularly when reading the global index file.
-*/
-
 const fs = require('fs');
 // const { url } = require('inspector');
 const readline = require('readline');
-// The `compare` function can be used for sorting.
 const compare = (a, b) => {
   if (a.freq > b.freq) {
     return -1;

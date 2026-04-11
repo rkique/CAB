@@ -3,45 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brown Course Search</title>
+  <title>BrunoRAG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-    h1 { margin-bottom: 20px; }
-    form { display: flex; gap: 8px; margin-bottom: 20px; }
-    input[type="text"] { flex: 1; padding: 10px 14px; font-size: 16px; border: 2px solid #ccc; border-radius: 6px; }
-    input[type="text"]:focus { outline: none; border-color: #4a6fa5; }
-    button { padding: 10px 24px; font-size: 16px; background: #4a6fa5; color: white; border: none; border-radius: 6px; cursor: pointer; }
-    button:hover { background: #3a5f95; }
-    button:disabled { background: #999; cursor: not-allowed; }
-    #meta { color: #666; margin-bottom: 16px; font-size: 14px; }
-    .result { border-bottom: 1px solid #eee; padding: 12px 0; }
-    .result:last-child { border-bottom: none; }
-    .result-code { font-weight: 700; color: #4a6fa5; }
-    .result-title { font-weight: 600; margin-left: 8px; }
-    .result-score { float: right; color: #999; font-size: 13px; }
-    .result-desc { margin-top: 4px; font-size: 14px; color: #555; }
-    .result-meta { margin-top: 2px; font-size: 13px; color: #888; }
-    #error { color: #c0392b; margin-bottom: 12px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      color: #2c2c2c;
+      background: #faf9f7;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 48px 0 32px;
+    }
+    .header img {
+      width: 400px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+    }
+    .header {
+      font-family:  Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #888;
+      margin-top: 4px;
+    }
+    .subtitle {
+      font-style: regular;
+    }
+    /* Search */
+    .search-bar {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border: 1.5px solid #c8c3bb;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .search-bar:focus-within { border-color: #8b0000; }
+    .search-bar input[type="text"] {
+      flex: 1;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #2c2c2c;
+    }
+    .search-bar input::placeholder { color: #aaa; }
+    .search-bar button {
+      padding: 14px 28px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: #8b0000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-bar button:hover { background: #6d0000; }
+    .search-bar button:disabled { background: #bbb; cursor: not-allowed; }
+
+    /* Meta */
+    #meta { color: #999; margin-bottom: 16px; font-size: 13px; text-align: center; }
+    #error { color: #8b0000; margin-bottom: 12px; text-align: center; font-size: 14px; }
+
+    /* Answer */
+    #answer {
+      background: #fff;
+      border: 1px solid #e0ddd8;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      line-height: 1.75;
+      font-size: 15px;
+      display: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    #answer p { margin-bottom: 12px; }
+    #answer p:last-child { margin-bottom: 0; }
+    #answer strong { font-weight: 600; }
+    #answer a { color: #8b0000; text-decoration: none; font-weight: 600; }
+    #answer a:hover { text-decoration: underline; }
+
+    /* Section labels */
+    .section-label {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 24px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e0ddd8;
+    }
+
+    /* Course cards */
+    .course-card {
+      background: #fff;
+      border: 1px solid #e0ddd8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .course-card:hover {
+      border-color: #8b0000;
+      box-shadow: 0 2px 8px rgba(139,0,0,0.08);
+    }
+    .course-card.cited { border-left: 3px solid #8b0000; }
+    .card-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .card-code {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-weight: 700;
+      color: #8b0000;
+    }
+    .card-code a { color: inherit; text-decoration: none; }
+    .card-code a:hover { text-decoration: underline; }
+    .card-title {
+      font-weight: 600;
+      margin-left: 10px;
+      color: #1a1a1a;
+    }
+    .card-score { color: #bbb; font-size: 12px; font-family: 'Inter', sans-serif; }
+    .card-desc { margin-top: 6px; font-size: 14px; color: #666; line-height: 1.55; }
+    .card-meta { margin-top: 6px; font-size: 13px; color: #999; }
   </style>
 </head>
 <body>
-  <h1>Brown Course Search</h1>
+  <div class="header">
+    <img src="images/bruno.png" width="300%" alt="Bruno">
+    <h1>BrunoRAG</h1>
+    <div class="subtitle">Brown University Course Search</div>
+  </div>
+
   <form id="searchForm">
-    <input type="text" id="query" placeholder="e.g. machine learning" autofocus>
-    <button type="submit" id="btn">Search</button>
+    <div class="search-bar">
+      <input type="text" id="query" placeholder="e.g. easy public health electives, WRIT classes in neuroscience" autofocus>
+      <button type="submit" id="btn">Search</button>
+    </div>
   </form>
+
   <div id="error"></div>
   <div id="meta"></div>
-  <div id="results"></div>
+  <div id="answer"></div>
+  <div id="cited-label" class="section-label" style="display:none">Referenced Courses</div>
+  <div id="cited"></div>
+  <div id="other-label" class="section-label" style="display:none">Other Relevant Courses</div>
+  <div id="others"></div>
 
   <script>
     const form = document.getElementById('searchForm');
     const queryInput = document.getElementById('query');
     const btn = document.getElementById('btn');
     const metaDiv = document.getElementById('meta');
-    const resultsDiv = document.getElementById('results');
+    const answerDiv = document.getElementById('answer');
+    const citedDiv = document.getElementById('cited');
+    const othersDiv = document.getElementById('others');
+    const citedLabel = document.getElementById('cited-label');
+    const otherLabel = document.getElementById('other-label');
     const errorDiv = document.getElementById('error');
+
+    function cabLink(code) {
+      return 'https://cab.brown.edu/search?p=' + encodeURIComponent(code);
+    }
+
+    function renderCard(r, isCited) {
+      const div = document.createElement('div');
+      div.className = 'course-card' + (isCited ? ' cited' : '');
+      const desc = r.description ? r.description.slice(0, 250) + (r.description.length > 250 ? '...' : '') : '';
+      const sections = r.sections || [];
+      const semesters = [...new Set(sections.map(s => s.semester).filter(Boolean))].slice(0, 4).join(', ');
+      const meets = [...new Set(sections.map(s => s.meets).filter(m => m && m !== 'TBA'))].slice(0, 3).join(' / ') || 'TBA';
+      const instrs = [...new Set(sections.map(s => s.instr).filter(Boolean))].slice(0, 3).join(', ');
+
+      div.innerHTML = `
+        <div class="card-header">
+          <div><span class="card-code"><a href="${cabLink(r.code)}" target="_blank">${esc(r.code)}</a></span><span class="card-title">${esc(r.title)}</span></div>
+          <span class="card-score">${r.score.toFixed(4)}</span>
+        </div>
+        <div class="card-desc">${esc(desc)}</div>
+        <div class="card-meta">${esc(instrs)} &middot; ${esc(meets)}${semesters ? ' &middot; ' + esc(semesters) : ''}</div>
+      `;
+      return div;
+    }
+
+    function renderAnswer(text, citedCodes) {
+      let html = esc(text);
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      for (const code of citedCodes) {
+        const escaped = code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const re = new RegExp('\\b' + escaped + '\\b', 'g');
+        html = html.replace(re, `<a href="${cabLink(code)}" target="_blank">${code}</a>`);
+      }
+      html = html.split('\n\n').map(p => p.trim()).filter(Boolean).map(p => '<p>' + p + '</p>').join('');
+      return html;
+    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -52,7 +232,12 @@
       btn.textContent = 'Searching...';
       errorDiv.textContent = '';
       metaDiv.textContent = '';
-      resultsDiv.innerHTML = '';
+      answerDiv.style.display = 'none';
+      answerDiv.innerHTML = '';
+      citedDiv.innerHTML = '';
+      othersDiv.innerHTML = '';
+      citedLabel.style.display = 'none';
+      otherLabel.style.display = 'none';
 
       try {
         const res = await fetch('/search', {
@@ -67,18 +252,32 @@
           return;
         }
 
-        metaDiv.textContent = `${data.results.length} results from ${data.total_docs} courses in ${data.time_ms} ms`;
+        metaDiv.textContent = `${data.results.length} courses retrieved in ${data.time_ms} ms`;
 
-        for (const r of data.results) {
-          const div = document.createElement('div');
-          div.className = 'result';
-          const desc = r.description ? r.description.slice(0, 200) + (r.description.length > 200 ? '...' : '') : '';
-          div.innerHTML = `
-            <div><span class="result-code">${esc(r.code)}</span><span class="result-title">${esc(r.title)}</span><span class="result-score">${r.score.toFixed(4)}</span></div>
-            <div class="result-desc">${esc(desc)}</div>
-            <div class="result-meta">${esc(r.instr || '')} ${esc(r.meets || '')}</div>
-          `;
-          resultsDiv.appendChild(div);
+        if (data.answer) {
+          const citedSet = new Set(data.cited_courses || []);
+          answerDiv.innerHTML = renderAnswer(data.answer, data.cited_courses || []);
+          answerDiv.style.display = 'block';
+
+          const citedResults = [];
+          const otherResults = [];
+          for (const r of data.results) {
+            if (citedSet.has(r.code)) citedResults.push(r);
+            else otherResults.push(r);
+          }
+
+          if (citedResults.length > 0) {
+            citedLabel.style.display = 'block';
+            for (const r of citedResults) citedDiv.appendChild(renderCard(r, true));
+          }
+          if (otherResults.length > 0) {
+            otherLabel.style.display = 'block';
+            for (const r of otherResults) othersDiv.appendChild(renderCard(r, false));
+          }
+        } else {
+          for (const r of data.results) {
+            citedDiv.appendChild(renderCard(r, false));
+          }
         }
       } catch (err) {
         errorDiv.textContent = 'Request failed: ' + err.message;

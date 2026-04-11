@@ -3,6 +3,11 @@ const { IndexFlatIP, Index } = require('faiss-node');
 let faissIndex = null;
 let idMap = [];
 
+/* 
+This file manages the local FAISS index on each node. 
+It provides functions to build the index from a subset of data and perform local searches.
+ The main indexer script will call these functions to create and query the local shards.
+*/
 function buildLocalFaiss(data) {
     if (!data || data.length ===0) {
         console.log('No records on this node.');
@@ -21,6 +26,11 @@ function buildLocalFaiss(data) {
     faissIndex.add(flat);
     console.log(`Local FAISS shard ready: ${faissIndex.ntotal()} vectors.`);
 }
+
+/*
+Performs a local search on the FAISS index with the given query vector and returns the top K results.
+Each result includes the course code and the similarity score.
+*/
 
 function localSearch(queryVector, topK=20) {
     if (!faissIndex || faissIndex.ntotal() === 0) return [];
