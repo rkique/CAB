@@ -1,0 +1,7 @@
+NODE_NAME=worker0 CLUSTER_CONFIG=./cluster.aws.json node worker-server-faiss.js
+
+NODE_NAME=worker1 CLUSTER_CONFIG=./cluster.aws.json node worker-server-faiss.js
+
+NODE_NAME=worker2 CLUSTER_CONFIG=./cluster.aws.json node worker-server-faiss.js
+
+DEPLOY_MODE=distributed-aws CLUSTER_CONFIG=./cluster.aws.json node frontend/search-server-distributed.jss

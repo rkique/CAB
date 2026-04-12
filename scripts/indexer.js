@@ -268,6 +268,8 @@ function distribute(index, distribution, groupname) {
   let done = 0;
   let errors = 0;
 
+  const localGroup = globalThis.distribution.local;
+
   return new Promise((resolve, reject) => {
     const CONCURRENCY = 20;   // max simultaneous puts
     let activeCount = 0;
