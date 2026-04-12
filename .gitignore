@@ -4,11 +4,6 @@
 node_modules
 package-lock.json
 
-le
-reference
-
-data/openai.key
-
 # in case a student adds an ssh key to the repo
 *.pem
 
@@ -22,3 +17,14 @@ submission.zip
 dist
 stencil
 .npm-cache
+
+# generated deployment artifacts
+shards/
+all_keys.json
+
+# local secrets / machine-specific deployment config
+data/openai.key
+aws-vars.sh
+cluster.json
+cluster.local.json
+cluster.aws.json
