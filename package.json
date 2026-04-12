@@ -17,18 +17,19 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-  "test": "./scripts/test.sh",
-  "lint": "./scripts/lint.sh",
-  "embed": "node embed_courses.js",
-  "shard": "node scripts/shard_courses.js",
-  "worker": "node worker-server.js",
-  "coordinator": "node coordinator-server.js"
-},
+    "test": "./scripts/test.sh",
+    "lint": "./scripts/lint.sh",
+    "embed": "node embed_courses.js",
+    "shard": "node scripts/shard_courses.js",
+    "worker": "node worker-server.js",
+    "coordinator": "node coordinator-server.js"
+  },
   "author": "Isaac Calderon",
   "license": "ISC",
   "dependencies": {
     "@brown-ds/distribution": "latest",
     "natural": "^8.1.1",
+    "openai": "^6.34.0",
     "yargs": "^17.7.2"
   },
   "report": [
