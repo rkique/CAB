@@ -6,24 +6,24 @@ const { generateRAGResponse } = require('../scripts/rag.js');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const natural = require('natural/lib/natural/stemmers/porter_stemmer');
 
 // load localIndex at module level — require works here
-const { buildLocalFaiss, localSearch } = require('../scripts/localIndex.js');
+const { buildLocalFaiss, localSearch, localSearchFiltered } = require('../scripts/localIndex.js');
 globalThis.__buildLocalFaiss = buildLocalFaiss;
 globalThis.__localFaissSearch = localSearch;
+globalThis.__localFaissSearchFiltered = localSearchFiltered;
 
 const LOCAL_MODE = process.argv.includes('--local');
 const DIST_PORT = 3001;
 const HTTP_PORT = 3000;
 const GID = 'courses';
-let localIndex = null; // in-memory index for local mode
+let localIndex = null;
 
 // --- Rate limiting ---
 const MAX_QUERY_LENGTH = 500;
 const MAX_REQUESTS_PER_DAY = 25;
-const rateLimitMap = new Map(); // ip -> { count, resetTime }
+const rateLimitMap = new Map();
 
 function getRateLimitInfo(ip) {
   const now = Date.now();
@@ -46,7 +46,6 @@ function getClientIP(req) {
   return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
 }
 
-// Common English stopwords
 const STOPWORDS = new Set([
   'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
   'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
@@ -70,10 +69,8 @@ function stemTokens(tokens) {
   return tokens.map((t) => stem(t));
 }
 
-// --- Bootstrap distribution framework ---
 const {OpenAI} = require('openai');
 
-// Load API key from openai.key file
 const keyPath = path.join(__dirname, '..', 'data', 'openai.key');
 const OPENAI_API_KEY = fs.readFileSync(keyPath, 'utf8').trim();
 
@@ -84,7 +81,6 @@ const EMBEDDING_DIMENSIONS = 256;
 
 let allKeys = [];
 let totalDocs = 0;
-let embeddings = {};   // key -> float[], loaded from embeddings.json if present
 let openaiClient = null;
 
 // --- helpers
@@ -97,30 +93,18 @@ function getFaissK(topK, filter = {}) {
 }
 
 function filterSections(results, filters = {}) {
-  /*Given the search results and the parsed filters, filter out sections that don't match the criteria.*/
-
   return results
     .map((course) => {
       let sections = course.sections || [];
-
       if (filters.days?.length > 0) {
         sections = sections.filter((s) =>
           filters.days.every((d) => s.days.includes(d))
         );
       }
-      if (filters.season) {
-        sections = sections.filter((s) => s.season === filters.season);
-      }
-      if (filters.year) {
-        sections = sections.filter((s) => s.year === filters.year);
-      }
-      if (filters.semester) {
-        sections = sections.filter((s) => s.semester === filters.semester);
-      }
-      if (filters.noPermReq) {
-        sections = sections.filter((s) => s.permreq === 'N');
-      }
-
+      if (filters.season) sections = sections.filter((s) => s.season === filters.season);
+      if (filters.year) sections = sections.filter((s) => s.year === filters.year);
+      if (filters.semester) sections = sections.filter((s) => s.semester === filters.semester);
+      if (filters.noPermReq) sections = sections.filter((s) => s.permreq === 'N');
       return { ...course, sections };
     })
     .filter((course) => course.sections.length > 0);
@@ -129,14 +113,9 @@ function filterSections(results, filters = {}) {
 function deduplicateResults(results) {
   const byTitle = {};
   for (const course of results) {
-    // strip cross-listing suffixes like "(ENGL 1711L)"
     const normalizedTitle = course.title.replace(/\s*\(.*?\)\s*$/, '').trim();
-
     if (!byTitle[normalizedTitle]) {
-      byTitle[normalizedTitle] = {
-        ...course,
-        crossListings: [course.code],
-      };
+      byTitle[normalizedTitle] = { ...course, crossListings: [course.code] };
     } else {
       if (course.score > byTitle[normalizedTitle].score) {
         byTitle[normalizedTitle] = {
@@ -152,29 +131,50 @@ function deduplicateResults(results) {
 
 function parseQueryFilters(queryStr) {
   const filters = {};
-  const lower = queryStr.toLowerCase();
 
-  // days
-  const days = [];
-  if (lower.match(/\bmon(day)?\b|\bmwf\b|\bmw\b/)) days.push('M');
-  if (lower.match(/\btue(sday)?\b|\btu\b|\btuth\b|\btuth\b/)) days.push('Tu');
-  if (lower.match(/\bwed(nesday)?\b|\bmwf\b|\bmw\b/)) days.push('W');
-  if (lower.match(/\bthu(rsday)?\b|\bth\b|\btuth\b/)) days.push('Th');
-  if (lower.match(/\bfri(day)?\b|\bmwf\b/)) days.push('F');
-  if (days.length > 0) filters.days = [...new Set(days)];
+  // normalize separators so "Monday, W, and Friday" → "monday w friday"
+  const normalized = queryStr.toLowerCase()
+    .replace(/\band\b/g, ' ')
+    .replace(/[,;\/]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const days = new Set();
+
+  // shorthands first
+  if (normalized.match(/\bmwf\b/)) { days.add('M'); days.add('W'); days.add('F'); }
+  if (normalized.match(/\b(tuth|tth)\b/)) { days.add('Tu'); days.add('Th'); }
+  if (normalized.match(/\bmw\b/)) { days.add('M'); days.add('W'); }
+
+  // full names
+  if (normalized.match(/\bmonday\b|\bmon\b/)) days.add('M');
+  if (normalized.match(/\btuesday\b|\btues\b|\btue\b/)) days.add('Tu');
+  if (normalized.match(/\bwednesday\b|\bwed\b/)) days.add('W');
+  if (normalized.match(/\bthursday\b|\bthurs\b|\bthu\b/)) days.add('Th');
+  if (normalized.match(/\bfriday\b|\bfri\b/)) days.add('F');
+
+  // single letters — Th before T, careful with standalone letters
+  if (normalized.match(/\bth\b/)) days.add('Th');
+  if (normalized.match(/\bthu\b/)) days.add('Th');
+  if (normalized.match(/\btu\b/)) days.add('Tu');
+  if (normalized.match(/(?<![a-s,u-z])m\b/)) days.add('M');
+  if (normalized.match(/\bw\b/)) days.add('W');
+  if (normalized.match(/\bf\b/)) days.add('F');
+
+  if (days.size > 0) filters.days = [...days];
 
   // season
-  if (lower.includes('fall')) filters.season = 'Fall';
-  else if (lower.includes('spring')) filters.season = 'Spring';
-  else if (lower.includes('summer')) filters.season = 'Summer';
-  else if (lower.includes('winter')) filters.season = 'Winter';
+  if (normalized.includes('fall')) filters.season = 'Fall';
+  else if (normalized.includes('spring')) filters.season = 'Spring';
+  else if (normalized.includes('summer')) filters.season = 'Summer';
+  else if (normalized.includes('winter')) filters.season = 'Winter';
 
-  // year e.g. "2026"
-  const yearMatch = lower.match(/\b(20\d{2})\b/);
+  // year
+  const yearMatch = normalized.match(/\b(20\d{2})\b/);
   if (yearMatch) filters.year = parseInt(yearMatch[1]);
 
   // no permission required
-  if (lower.match(/\bno perm|\bno permission|\bopen enroll/)) {
+  if (normalized.match(/\bno perm|\bno permission|\bopen enroll/)) {
     filters.noPermReq = true;
   }
 
@@ -194,7 +194,6 @@ function setupGroup(cb) {
   const node = distribution.node.config;
   const group = {};
   group[id.getSID(node)] = node;
-
   distribution.local.groups.put({gid: GID}, group, (e) => {
     if (e) return cb(e);
     console.log(`Group '${GID}' created`);
@@ -203,24 +202,18 @@ function setupGroup(cb) {
 }
 
 async function loadIndex(cb) {
-  /* Load the course index and embeddings, then build the FAISS index on each node. */
-  
   console.log('Running indexer...');
-
   const { index } = await runIndexer(distribution, GID);
-
   allKeys = Object.keys(index);
   totalDocs = allKeys.length;
   console.log(`Index has ${totalDocs} unique courses.`);
+
   const faissService = {
     buildFaiss: function(gid, keys, cb) {
       console.log('buildFaiss called!', gid, 'keys:', keys.length);
-
       const records = [];
       let pending = keys.length;
-
       if (pending === 0) return cb(null, { built: 0 });
-
       keys.forEach((key) => {
         globalThis.distribution.local.store.get({ key, gid }, (err, record) => {
           if (!err && record) records.push(record);
@@ -232,36 +225,29 @@ async function loadIndex(cb) {
           }
         });
       });
-    }
-  }
+    },
+  };
 
   distribution[GID].routes.put(faissService, 'faiss', (err, val) => {
     console.log('routes.put callback fired, err:', err, 'val:', val);
     if (err && Object.values(err).length > 0) return cb(err);
-    console.log('routes.put result:', err, val);
-
     console.log('sending buildFaiss to all nodes...');
-    // pass allKeys when calling buildFaiss
     distribution[GID].comm.send([GID, allKeys], { service: 'faiss', method: 'buildFaiss' }, (err, results) => {
       if (err && Object.values(err).some(Boolean)) return cb(err);
       console.log('All nodes built local FAISS:', results);
       cb();
     });
-  })
+  });
 }
 
 async function loadIndexLocal(cb) {
-  /* Local mode: build index and FAISS in-process, no distribution. */
   console.log('Running indexer (local mode — no distribution)...');
-
   const courseMap = await buildCourseMap();
   const index = await buildIndex(courseMap);
-
   localIndex = index;
   allKeys = Object.keys(index);
   totalDocs = allKeys.length;
   console.log(`Index has ${totalDocs} unique courses.`);
-
   const records = Object.values(index);
   buildLocalFaiss(records);
   console.log('Local FAISS index built.');
@@ -272,8 +258,14 @@ function searchFaissLocal(queryVec, queryStr, t0, cb) {
   const topK = 40;
   const filters = parseQueryFilters(queryStr);
   const faissK = getFaissK(topK, filters);
+  const hasFilters = filters.days || filters.season || filters.year;
 
-  const results = localSearch(queryVec, faissK);
+  // use filtered search if filters are present
+  const results = hasFilters
+    ? localSearchFiltered(queryVec, faissK, filters)
+    : localSearch(queryVec, faissK);
+
+  console.log(`[local] FAISS returned ${results.length} results, filters:`, filters);
 
   if (results.length === 0) {
     return cb(null, {
@@ -311,9 +303,6 @@ function getOpenAIClient() {
 }
 
 async function embedQueryFaiss(queryStr) {
-/*
-Embed the query string using the same OpenAI embedding model used for the courses.
-*/
   const client = getOpenAIClient();
   const res = await client.embeddings.create({
     model: EMBEDDING_MODEL,
@@ -322,16 +311,16 @@ Embed the query string using the same OpenAI embedding model used for the course
   });
   const raw = res.data[0].embedding;
   const norm = Math.sqrt(raw.reduce((s, x) => s + x * x, 0));
-  return raw.map((x) => x / norm);   // ← normalize
+  return raw.map((x) => x / norm);
 }
 
 function searchFaiss(queryVec, queryStr, t0, cb) {
   const topK = 40;
-
   const filters = parseQueryFilters(queryStr);
   const faissK = getFaissK(topK, filters);
   const queryVecJson = JSON.stringify(queryVec);
-
+  const filtersJson = JSON.stringify(filters);
+  const hasFilters = !!(filters.days || filters.season || filters.year);
   const searchId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
 
   const map = new Function('key', 'value', `
@@ -339,12 +328,21 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
     if (globalThis[sid]) return [];
     globalThis[sid] = true;
 
-    if (typeof globalThis.__localFaissSearch !== 'function') {
-      throw new Error('__localFaissSearch not ready — buildFaiss may not have run');
+    var filters = ${filtersJson};
+    var hasFilters = ${hasFilters};
+
+    var searchFn = hasFilters && typeof globalThis.__localFaissSearchFiltered === 'function'
+      ? globalThis.__localFaissSearchFiltered
+      : globalThis.__localFaissSearch;
+
+    if (typeof searchFn !== 'function') {
+      throw new Error('FAISS search function not ready — buildFaiss may not have run');
     }
 
     var queryVector = ${queryVecJson};
-    var results = globalThis.__localFaissSearch(queryVector, ${faissK});
+    var results = hasFilters
+      ? searchFn(queryVector, ${faissK}, filters)
+      : searchFn(queryVector, ${faissK});
 
     return results.map(function(r) {
       var o = {};
@@ -359,7 +357,7 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
     return out;
   };
 
-  distribution[GID].mr.exec({ keys : allKeys, map, reduce}, (err, results) => {
+  distribution[GID].mr.exec({ keys: allKeys, map, reduce }, (err, results) => {
     if (err) return cb(err);
 
     const docs = [];
@@ -399,25 +397,18 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
       distribution[GID].store.get(code, (err, record) => {
         if (errored) return;
         if (err) { errored = true; return cb(err); }
-
         fullResults.push({ ...record, score });
         pending--;
-
         if (pending === 0) {
           const filtered = filterSections(fullResults, filters);
-
           const deduped = deduplicateResults(filtered);
-
-          const ranked = deduped
-            .sort((a, b) => b.score - a.score)
-            .slice(0, topK);
-
+          const ranked = deduped.sort((a, b) => b.score - a.score).slice(0, topK);
           cb(null, {
             results: ranked,
             time_ms: Date.now() - t0,
             total_docs: totalDocs,
             mode: 'faiss',
-            filters,  
+            filters,
           });
         }
       });
@@ -432,12 +423,10 @@ function search(queryStr, cb) {
   embedQueryFaiss(queryStr).then((queryVec) => {
     faissSearchFn(queryVec, queryStr, t0, async (err, faissResult) => {
       if (err) return cb(err);
-
       try {
         const {answer, cited_courses} = await generateRAGResponse(
           getOpenAIClient(), queryStr, faissResult.results
         );
-
         cb(null, {
           answer,
           cited_courses,
@@ -458,144 +447,8 @@ function search(queryStr, cb) {
   });
 }
 
-//Old TF-IDF and Embed code.
-
-// function searchTFIDF(queryStr, t0, cb) {
-//   const tokens = tokenize(queryStr);
-//   const queryStems = [...new Set(stemTokens(tokens))];
-
-//   if (queryStems.length === 0) {
-//     return cb(null, {results: [], time_ms: Date.now() - t0, total_docs: totalDocs, mode: 'tfidf'});
-//   }
-
-//   const querySet = JSON.stringify(queryStems);
-//   const N = totalDocs;
-
-//   const map = new Function('key', 'value', `
-//     var queryStems = ${querySet};
-
-//     // Inline Porter stemmer (from natural, no require needed)
-//     function catGroups(t){return t.replace(/[^aeiouy]+y/g,'CV').replace(/[aeiou]+/g,'V').replace(/[^V]+/g,'C')}
-//     function catChars(t){return t.replace(/[^aeiouy]y/g,'CV').replace(/[aeiou]/g,'V').replace(/[^V]/g,'C')}
-//     function meas(t){if(!t)return -1;return catGroups(t).replace(/^C/,'').replace(/V$/,'').length/2}
-//     function endsDbl(t){return t.match(/([^aeiou])\\1$/)}
-//     function attRepl(t,p,r,cb){var res=null;if(typeof p==='string'&&t.substr(0-p.length)===p)res=t.replace(new RegExp(p+'$'),r);else if(p instanceof RegExp&&t.match(p))res=t.replace(p,r);if(res&&cb)return cb(res);return res}
-//     function attReplPats(t,reps,mt){var r=t;for(var i=0;i<reps.length;i++){if(mt==null||meas(attRepl(t,reps[i][0],reps[i][1]))>mt){r=attRepl(r,reps[i][0],reps[i][2])||r}}return r}
-//     function replPats(t,reps,mt){return attReplPats(t,reps,mt)||t}
-//     function replRx(t,rx,parts,mm){var p,r='';if(rx.test(t)){p=rx.exec(t);parts.forEach(function(i){r+=p[i]})}if(meas(r)>mm)return r;return null}
-//     function s1a(t){if(t.match(/(ss|i)es$/))return t.replace(/(ss|i)es$/,'$1');if(t.substr(-1)==='s'&&t.substr(-2,1)!=='s'&&t.length>2)return t.replace(/s?$/,'');return t}
-//     function s1b(t){var r;if(t.substr(-3)==='eed'){if(meas(t.substr(0,t.length-3))>0)return t.replace(/eed$/,'ee')}else{r=attRepl(t,/(ed|ing)$/,'',function(t2){if(catGroups(t2).indexOf('V')>=0){r=attReplPats(t2,[['at','','ate'],['bl','','ble'],['iz','','ize']]);if(r!==t2)return r;if(endsDbl(t2)&&t2.match(/[^lsz]$/))return t2.replace(/([^aeiou])\\1$/,'$1');if(meas(t2)===1&&catChars(t2).substr(-3)==='CVC'&&t2.match(/[^wxy]$/))return t2+'e';return t2}return null});if(r)return r}return t}
-//     function s1c(t){var cg=catGroups(t);if(t.substr(-1)==='y'&&cg.substr(0,cg.length-1).indexOf('V')>-1)return t.replace(/y$/,'i');return t}
-//     function s2(t){return replPats(t,[['ational','','ate'],['tional','','tion'],['enci','','ence'],['anci','','ance'],['izer','','ize'],['abli','','able'],['bli','','ble'],['alli','','al'],['entli','','ent'],['eli','','e'],['ousli','','ous'],['ization','','ize'],['ation','','ate'],['ator','','ate'],['alism','','al'],['iveness','','ive'],['fulness','','ful'],['ousness','','ous'],['aliti','','al'],['iviti','','ive'],['biliti','','ble'],['logi','','log']],0)}
-//     function s3(t){return replPats(t,[['icate','','ic'],['ative','',''],['alize','','al'],['iciti','','ic'],['ical','','ic'],['ful','',''],['ness','','']],0)}
-//     function s4(t){return replRx(t,/^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/,[1],1)||replRx(t,/^(.+?)(s|t)(ion)$/,[1,2],1)||t}
-//     function s5a(t){var m=meas(t.replace(/e$/,''));if(m>1||(m===1&&!(catChars(t).substr(-4,3)==='CVC'&&t.match(/[^wxy].$/))))t=t.replace(/e$/,'');return t}
-//     function s5b(t){if(meas(t)>1)return t.replace(/ll$/,'l');return t}
-//     function stem(w){if(w.length<3)return w;return s5b(s5a(s4(s3(s2(s1c(s1b(s1a(w.toLowerCase()))))))));}
-
-//     var text = ((value.title || '') + ' ' + (value.description || '') + ' ' + (value.code || '')).toLowerCase();
-//     var words = text.split(/[^a-z]+/).filter(function(w) { return w; });
-//     var stemmed = words.map(stem);
-//     var totalTerms = stemmed.length;
-//     if (totalTerms === 0) return [];
-
-//     var tfCounts = {};
-//     for (var i = 0; i < queryStems.length; i++) tfCounts[queryStems[i]] = 0;
-//     for (var i = 0; i < stemmed.length; i++) {
-//       if (tfCounts.hasOwnProperty(stemmed[i])) tfCounts[stemmed[i]]++;
-//     }
-
-//     var out = [];
-//     for (var i = 0; i < queryStems.length; i++) {
-//       var t = queryStems[i];
-//       if (tfCounts[t] > 0) {
-//         var o = {};
-//         o[t] = {key: key, code: value.code, title: value.title, description: value.description, instr: value.instr, meets: value.meets, tf: tfCounts[t], totalTerms: totalTerms};
-//         out.push(o);
-//       }
-//     }
-//     return out;
-//   `);
-
-//   const reduce = (term, values) => {
-//     const out = {};
-//     out[term] = {term: term, df: values.length, docs: values};
-//     return out;
-//   };
-
-//   distribution[GID].mr.exec({keys: allKeys, map, reduce}, (err, results) => {
-//     if (err) return cb(err);
-
-//     const docScores = {};
-//     for (const item of results) {
-//       for (const term of Object.keys(item)) {
-//         const data = item[term];
-//         const idf = Math.log(N / (data.df + 1));
-//         for (const doc of data.docs) {
-//           const score = (doc.tf / doc.totalTerms) * idf;
-//           const dk = doc.key;
-//           if (!docScores[dk]) {
-//             docScores[dk] = {code: doc.code, title: doc.title, description: doc.description, instr: doc.instr, meets: doc.meets, score: 0};
-//           }
-//           docScores[dk].score += score;
-//         }
-//       }
-//     }
-
-//     const ranked = Object.values(docScores).sort((a, b) => b.score - a.score).slice(0, 50);
-//     cb(null, {results: ranked, time_ms: Date.now() - t0, total_docs: totalDocs, mode: 'tfidf'});
-//   });
-// }
-
-// function searchEmbeddings(queryVec, t0, cb) {
-//   const queryVecJson = JSON.stringify(queryVec);
-
-//   const map = new Function('key', 'value', `
-//     if (!value.embedding) return [];
-//     var q = ${queryVecJson};
-//     var d = value.embedding;
-//     var dot = 0, normQ = 0, normD = 0;
-//     for (var i = 0; i < q.length; i++) {
-//       dot += q[i] * d[i];
-//       normQ += q[i] * q[i];
-//       normD += d[i] * d[i];
-//     }
-//     var sim = dot / (Math.sqrt(normQ) * Math.sqrt(normD));
-//     if (sim < 0.3) return [];
-//     var o = {};
-//     o['results'] = {key: key, code: value.code, title: value.title, description: value.description, instr: value.instr, meets: value.meets, score: sim};
-//     return [o];
-//   `);
-
-//   const reduce = (_, values) => {
-//     const out = {};
-//     out['results'] = values;
-//     return out;
-//   };
-
-//   distribution[GID].mr.exec({keys: allKeys, map, reduce}, (err, results) => {
-//     if (err) return cb(err);
-
-//     const docs = [];
-//     for (const item of results) {
-//       if (item['results']) {
-//         const v = item['results'];
-//         if (Array.isArray(v)) docs.push(...v);
-//         else docs.push(v);
-//       }
-//     }
-
-//     const ranked = docs.sort((a, b) => b.score - a.score).slice(0, 50);
-//     cb(null, {results: ranked, time_ms: Date.now() - t0, total_docs: totalDocs, mode: 'embedding'});
-//   });
-// }
-
-
 // --- HTTP server ---
-
 function startHTTPServer() {
-  /* Start a simple HTTP server that serves the search UI and handles search requests. */
-
   const htmlPath = path.join(__dirname, 'search.html');
 
   const server = http.createServer((req, res) => {
@@ -605,7 +458,6 @@ function startHTTPServer() {
       return;
     }
 
-    // Serve static files from frontend/images/
     if (req.method === 'GET' && req.url.startsWith('/images/')) {
       const filePath = path.join(__dirname, req.url);
       if (fs.existsSync(filePath)) {
@@ -619,7 +471,6 @@ function startHTTPServer() {
 
     if (req.method === 'POST' && req.url === '/search') {
       const clientIP = getClientIP(req);
-
       if (!checkRateLimit(clientIP)) {
         res.writeHead(429, {'Content-Type': 'application/json'});
         res.end(JSON.stringify({error: 'Daily request limit reached. Please try again tomorrow.'}));
@@ -627,9 +478,7 @@ function startHTTPServer() {
       }
 
       let body = '';
-      req.on('data', (chunk) => {
-        body += chunk.toString();
-      });
+      req.on('data', (chunk) => { body += chunk.toString(); });
       req.on('end', () => {
         try {
           const {query} = JSON.parse(body);
@@ -638,13 +487,11 @@ function startHTTPServer() {
             res.end(JSON.stringify({error: 'Missing query string'}));
             return;
           }
-
           if (query.length > MAX_QUERY_LENGTH) {
             res.writeHead(400, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({error: `Query too long (max ${MAX_QUERY_LENGTH} characters).`}));
             return;
           }
-
           search(query, (err, result) => {
             if (err) {
               console.error('Search error:', err);

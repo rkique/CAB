@@ -32,10 +32,11 @@ const distribution = require('./distribution.js')({
   port: worker.distPort,
 });
 
-const { buildLocalFaiss, localSearch } = require('./scripts/localIndex.js');
+const { buildLocalFaiss, localSearch, localSearchFiltered } = require('./scripts/localIndex.js');
 
 globalThis.__buildLocalFaiss = buildLocalFaiss;
 globalThis.__localFaissSearch = localSearch;
+globalThis.__localFaissSearhFiltered = localSearchFiltered;
 globalThis.distribution = distribution;
 
 const GID = cluster.gid || 'courses';

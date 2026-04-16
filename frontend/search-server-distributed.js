@@ -165,27 +165,50 @@ function parseQueryFilters(queryStr) {
   const filters = {};
   const lower = queryStr.toLowerCase();
 
-  // days
-  const days = [];
-  if (lower.match(/\bmon(day)?\b|\bmwf\b|\bmw\b/)) days.push('M');
-  if (lower.match(/\btue(sday)?\b|\btu\b|\btuth\b|\btuth\b/)) days.push('Tu');
-  if (lower.match(/\bwed(nesday)?\b|\bmwf\b|\bmw\b/)) days.push('W');
-  if (lower.match(/\bthu(rsday)?\b|\bth\b|\btuth\b/)) days.push('Th');
-  if (lower.match(/\bfri(day)?\b|\bmwf\b/)) days.push('F');
-  if (days.length > 0) filters.days = [...new Set(days)];
+
+  // normalize separators so "Monday, W, and Friday" → "monday w friday"
+  const normalized = lower
+    .replace(/\band\b/g, ' ')
+    .replace(/[,;\/]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const days = new Set();
+
+  // MWF shorthand
+  if (normalized.match(/\bmwf\b/)) { days.add('M'); days.add('W'); days.add('F'); }
+  // TuTh / TTh shorthand
+  if (normalized.match(/\b(tuth|tth|tuth)\b/)) { days.add('Tu'); days.add('Th'); }
+  // MW shorthand
+  if (normalized.match(/\bmw\b/)) { days.add('M'); days.add('W'); }
+
+  // individual days — order matters, check longer patterns first
+  if (normalized.match(/\bmonday s?\b|\bmon\b/)) days.add('M');
+  if (normalized.match(/\btuesday s?\b|\btues\b|\btue\b/)) days.add('Tu');
+  if (normalized.match(/\bwednesday s?\b|\bwed\b/)) days.add('W');
+  if (normalized.match(/\bthursday s?\b|\bthurs\b|\bthu\b|\bth\b/)) days.add('Th');
+  if (normalized.match(/\bfriday s?\b|\bfri\b/)) days.add('F');
+
+  // single letter — only if standalone word, Th before T
+  if (normalized.match(/\bth\b/)) days.add('Th');
+  if (normalized.match(/\b(?<!t)m\b/)) days.add('M');
+  if (normalized.match(/\bw\b/)) days.add('W');
+  if (normalized.match(/\bf\b/)) days.add('F');
+
+  if (days.size > 0) filters.days = [...days];
 
   // season
-  if (lower.includes('fall')) filters.season = 'Fall';
-  else if (lower.includes('spring')) filters.season = 'Spring';
-  else if (lower.includes('summer')) filters.season = 'Summer';
-  else if (lower.includes('winter')) filters.season = 'Winter';
+  if (normalized.includes('fall')) filters.season = 'Fall';
+  else if (normalized.includes('spring')) filters.season = 'Spring';
+  else if (normalized.includes('summer')) filters.season = 'Summer';
+  else if (normalized.includes('winter')) filters.season = 'Winter';
 
-  // year e.g. "2026"
-  const yearMatch = lower.match(/\b(20\d{2})\b/);
+  // year
+  const yearMatch = normalized.match(/\b(20\d{2})\b/);
   if (yearMatch) filters.year = parseInt(yearMatch[1]);
 
   // no permission required
-  if (lower.match(/\bno perm|\bno permission|\bopen enroll/)) {
+  if (normalized.match(/\bno perm|\bno permission|\bopen enroll/)) {
     filters.noPermReq = true;
   }
 
@@ -307,6 +330,8 @@ async function embedQueryFaiss(queryStr) {
 function searchFaiss(queryVec, queryStr, t0, cb) {
   const topK = 40;
   const filters = parseQueryFilters(queryStr);
+  const filtersJson = JSON.stringify(filters);
+  const hasFilters = filters.days || filters.season || filters.year;
   const faissK = getFaissK(topK, filters);
   const queryVecJson = JSON.stringify(queryVec);
   const searchId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
@@ -316,12 +341,16 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
     if (globalThis[sid]) return [];
     globalThis[sid] = true;
 
+    var filters = ${filtersJson};
+    var hasFilters = ${hasFilters ? 'true' : 'false'};
+
+    varSearchFn = hasFilters && typeof globalThis.__localFaissSearchFiltered === 'function' ? globalThis.__localFaissSearchFiltered : globalThis.__localFaissSearch;
     if (typeof globalThis.__localFaissSearch !== 'function') {
       throw new Error('__localFaissSearch not ready — buildFaiss may not have run');
     }
 
     var queryVector = ${queryVecJson};
-    var results = globalThis.__localFaissSearch(queryVector, ${faissK});
+    var results = hasFilters ? searchFn(queryVector, ${faissK}, filters) : searchFn(queryVector, ${faissK});
     console.log('[worker-query] local FAISS returned ' + results.length + ' hits');
     if (results.length > 0) {
     console.log('[worker-query] top local codes: ' + results.slice(0, 5).map(function(r) { return r.code; }).join(', '));
