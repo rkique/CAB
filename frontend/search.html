@@ -263,7 +263,7 @@
   <div id="error"></div>
   <div id="meta"></div>
   <div id="answer"></div>
-  <div id="cited-label" class="section-label" style="display:none">Referenced Courses</div>
+  <div id="cited-label" class="section-label" style="display:none">Best Matches</div>
   <div id="cited"></div>
   <div id="other-label" class="section-label" style="display:none">Other Relevant Courses</div>
   <div id="others"></div>
@@ -386,34 +386,30 @@
           return;
         }
 
-        metaDiv.textContent = `${data.results.length} courses retrieved in ${data.time_ms} ms`;
+        const allResults = [...(data.filteredResults || []), ...(data.unfilteredResults || [])];
+        metaDiv.textContent = `${allResults.length} courses retrieved in ${data.time_ms} ms`;
 
         // Build code -> result lookup for linking
         resultsByCode = {};
-        for (const r of data.results) resultsByCode[r.code] = r;
+        for (const r of allResults) resultsByCode[r.code] = r;
 
         if (data.answer) {
-          const citedSet = new Set(data.cited_courses || []);
           answerDiv.innerHTML = renderAnswer(data.answer, data.cited_courses || []);
           answerDiv.style.display = 'block';
 
-          const citedResults = [];
-          const otherResults = [];
-          for (const r of data.results) {
-            if (citedSet.has(r.code)) citedResults.push(r);
-            else otherResults.push(r);
-          }
+          const filtered = data.filteredResults || [];
+          const unfiltered = data.unfilteredResults || [];
 
-          if (citedResults.length > 0) {
+          if (filtered.length > 0) {
             citedLabel.style.display = 'block';
-            for (const r of citedResults) citedDiv.appendChild(renderCard(r, true));
+            for (const r of filtered) citedDiv.appendChild(renderCard(r, true));
           }
-          if (otherResults.length > 0) {
+          if (unfiltered.length > 0) {
             otherLabel.style.display = 'block';
-            for (const r of otherResults) othersDiv.appendChild(renderCard(r, false));
+            for (const r of unfiltered) othersDiv.appendChild(renderCard(r, false));
           }
         } else {
-          for (const r of data.results) {
+          for (const r of allResults) {
             citedDiv.appendChild(renderCard(r, false));
           }
         }

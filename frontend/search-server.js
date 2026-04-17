@@ -6,7 +6,6 @@ const { generateRAGResponse } = require('../scripts/rag.js');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const natural = require('natural/lib/natural/stemmers/porter_stemmer');
 
 // load localIndex at module level — require works here
 const { buildLocalFaiss, localSearch, localSearchFiltered } = require('../scripts/localIndex.js');
@@ -46,29 +45,6 @@ function getClientIP(req) {
   return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
 }
 
-const STOPWORDS = new Set([
-  'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-  'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
-  'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
-  'could', 'should', 'may', 'might', 'shall', 'can', 'this', 'that',
-  'these', 'those', 'it', 'its', 'not', 'no', 'as', 'if', 'then', 'than',
-  'so', 'up', 'out', 'about', 'into', 'over', 'after', 'before', 'between',
-  'under', 'above', 'such', 'each', 'which', 'their', 'there', 'they',
-  'them', 'we', 'he', 'she', 'you', 'my', 'your', 'our', 'his', 'her',
-  'all', 'any', 'both', 'few', 'more', 'most', 'other', 'some', 'only',
-  'own', 'same', 'also', 'just', 'very', 'well',
-]);
-
-const stem = natural.stem;
-
-function tokenize(text) {
-  return text.toLowerCase().split(/[^a-z]+/).filter((w) => w && !STOPWORDS.has(w));
-}
-
-function stemTokens(tokens) {
-  return tokens.map((t) => stem(t));
-}
-
 const {OpenAI} = require('openai');
 
 const keyPath = path.join(__dirname, '..', 'data', 'openai.key');
@@ -79,106 +55,113 @@ const distribution = require('../distribution.js')({ip: '127.0.0.1', port: DIST_
 const EMBEDDING_MODEL = 'text-embedding-3-small';
 const EMBEDDING_DIMENSIONS = 256;
 
+const {
+  FILTER_FIELDS,
+  VALID_OPS,
+  validateFilters,
+  matchesCondition,
+  sectionMatchesAll,
+  applyFilters,
+  getFaissK,
+  buildDepartmentPriorityFilterStages,
+  mergeStageResults,
+  rewriteDepartmentProgramFilters,
+  augmentDepartmentFilters,
+} = require('./filters.js');
+
 let allKeys = [];
 let totalDocs = 0;
 let openaiClient = null;
 
-// --- helpers
-function getFaissK(topK, filter = {}) {
-  let multiplier = 3;
-  if (filter.days?.length > 0) multiplier++;
-  if (filter.season) multiplier++;
-  if (filter.year) multiplier++;
-  return topK * multiplier;
+function normalizeSpaces(str) {
+  return String(str || '').replace(/\s+/g, ' ').trim();
 }
 
-function filterSections(results, filters = {}) {
-  return results
-    .map((course) => {
-      let sections = course.sections || [];
-      if (filters.days?.length > 0) {
-        sections = sections.filter((s) =>
-          filters.days.every((d) => s.days.includes(d))
-        );
-      }
-      if (filters.season) sections = sections.filter((s) => s.season === filters.season);
-      if (filters.year) sections = sections.filter((s) => s.year === filters.year);
-      if (filters.semester) sections = sections.filter((s) => s.semester === filters.semester);
-      if (filters.noPermReq) sections = sections.filter((s) => s.permreq === 'N');
-      return { ...course, sections };
-    })
-    .filter((course) => course.sections.length > 0);
+function ensureSemanticCoverage(originalQuery, rewordedQuery, preservedTokens = []) {
+  const base = normalizeSpaces(rewordedQuery);
+  const lowerBase = ` ${base.toLowerCase()} `;
+
+  const missingTokens = preservedTokens
+    .map((t) => normalizeSpaces(t))
+    .filter(Boolean)
+    .filter((t) => !lowerBase.includes(` ${t.toLowerCase()} `));
+
+  if (missingTokens.length === 0) return base || normalizeSpaces(originalQuery);
+  return normalizeSpaces(`${missingTokens.join(' ')} ${base}`);
 }
 
-function deduplicateResults(results) {
-  const byTitle = {};
-  for (const course of results) {
-    const normalizedTitle = course.title.replace(/\s*\(.*?\)\s*$/, '').trim();
-    if (!byTitle[normalizedTitle]) {
-      byTitle[normalizedTitle] = { ...course, crossListings: [course.code] };
-    } else {
-      if (course.score > byTitle[normalizedTitle].score) {
-        byTitle[normalizedTitle] = {
-          ...course,
-          crossListings: byTitle[normalizedTitle].crossListings,
-        };
-      }
-      byTitle[normalizedTitle].crossListings.push(course.code);
-    }
+
+function loadFile(filePath) {
+  try {
+    let text = fs.readFileSync(filePath, 'utf8').trim();
+    return text;
+  } catch (err) {
+    throw new Error(`Failed to load file at ${filePath}: ${err.message || err}`);
   }
-  return Object.values(byTitle).sort((a, b) => b.score - a.score);
 }
 
-function parseQueryFilters(queryStr) {
-  const filters = {};
-
-  // normalize separators so "Monday, W, and Friday" → "monday w friday"
-  const normalized = queryStr.toLowerCase()
-    .replace(/\band\b/g, ' ')
-    .replace(/[,;\/]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-  const days = new Set();
-
-  // shorthands first
-  if (normalized.match(/\bmwf\b/)) { days.add('M'); days.add('W'); days.add('F'); }
-  if (normalized.match(/\b(tuth|tth)\b/)) { days.add('Tu'); days.add('Th'); }
-  if (normalized.match(/\bmw\b/)) { days.add('M'); days.add('W'); }
-
-  // full names
-  if (normalized.match(/\bmonday\b|\bmon\b/)) days.add('M');
-  if (normalized.match(/\btuesday\b|\btues\b|\btue\b/)) days.add('Tu');
-  if (normalized.match(/\bwednesday\b|\bwed\b/)) days.add('W');
-  if (normalized.match(/\bthursday\b|\bthurs\b|\bthu\b/)) days.add('Th');
-  if (normalized.match(/\bfriday\b|\bfri\b/)) days.add('F');
-
-  // single letters — Th before T, careful with standalone letters
-  if (normalized.match(/\bth\b/)) days.add('Th');
-  if (normalized.match(/\bthu\b/)) days.add('Th');
-  if (normalized.match(/\btu\b/)) days.add('Tu');
-  if (normalized.match(/(?<![a-s,u-z])m\b/)) days.add('M');
-  if (normalized.match(/\bw\b/)) days.add('W');
-  if (normalized.match(/\bf\b/)) days.add('F');
-
-  if (days.size > 0) filters.days = [...days];
-
-  // season
-  if (normalized.includes('fall')) filters.season = 'Fall';
-  else if (normalized.includes('spring')) filters.season = 'Spring';
-  else if (normalized.includes('summer')) filters.season = 'Summer';
-  else if (normalized.includes('winter')) filters.season = 'Winter';
-
-  // year
-  const yearMatch = normalized.match(/\b(20\d{2})\b/);
-  if (yearMatch) filters.year = parseInt(yearMatch[1]);
-
-  // no permission required
-  if (normalized.match(/\bno perm|\bno permission|\bopen enroll/)) {
-    filters.noPermReq = true;
+function getQueryVector(queryStr, rewordedQuery, filters) {
+  /* 
+  Get the Query Vector.
+  */
+  const semantic = normalizeSpaces(rewordedQuery);
+  if (!semantic && Array.isArray(filters) && filters.length > 0) {
+    // neutral vector.
+    return new Array(EMBEDDING_DIMENSIONS).fill(0);
   }
+  const embedStr = semantic || queryStr;
+  return embedQueryFaiss(embedStr);
+}
 
-  return filters;
+const preQueryPrompt = loadFile(path.join(__dirname, 'prompts/pre_query.txt'));
+
+//Pre-Query LLM filter.
+async function preQueryReword(queryStr) {
+  try {
+    const client = getOpenAIClient();
+    const res = await client.chat.completions.create({
+      model: 'gpt-5.4-mini',
+      temperature: 0,
+      response_format: { type: 'json_object' },
+      messages: [
+        {
+          role: 'system',
+          content: preQueryPrompt,
+        },
+        {
+          role: 'user',
+          content: `ACTUAL_USER_QUERY_TEXT (verbatim):\n${queryStr}`,
+        },
+      ],
+    });
+
+    const parsed = JSON.parse(res.choices[0].message.content);
+    const validatedFilters = validateFilters(parsed.filters || []);
+    const normalizedFilters = validateFilters(rewriteDepartmentProgramFilters(validatedFilters));
+    const instructorIntent = false;
+    const removedInstrTokens = instructorIntent
+      ? []
+      : normalizedFilters
+        .filter((f) => f.field === 'instr' && typeof f.value === 'string')
+        .map((f) => f.value);
+
+    const baseFilters = instructorIntent
+      ? normalizedFilters
+      : normalizedFilters.filter((f) => f.field !== 'instr');
+
+    const filters = validateFilters(augmentDepartmentFilters(baseFilters, queryStr));
+
+    const rawRewordedQuery = typeof parsed.rewordedQuery === 'string' ? parsed.rewordedQuery : queryStr;
+
+    const rewordedQuery = ensureSemanticCoverage(queryStr, rawRewordedQuery, removedInstrTokens);
+
+    console.log('[preQueryReword] filters:', JSON.stringify(filters), 'reworded:', rewordedQuery);
+
+    return { filters, rewordedQuery };
+  } catch (err) {
+    console.warn('[preQueryReword] LLM call failed, falling back:', err.message || err);
+    return { filters: [], rewordedQuery: queryStr };
+  }
 }
 
 // startup
@@ -254,22 +237,21 @@ async function loadIndexLocal(cb) {
   cb();
 }
 
-function searchFaissLocal(queryVec, queryStr, t0, cb) {
+function searchFaissLocal(queryVec, filters, t0, cb) {
   const topK = 40;
-  const filters = parseQueryFilters(queryStr);
-  const faissK = getFaissK(topK, filters);
-  const hasFilters = filters.days || filters.season || filters.year;
+  const hasFilters = filters.length > 0;
 
-  // use filtered search if filters are present
-  const results = hasFilters
-    ? localSearchFiltered(queryVec, faissK, filters)
-    : localSearch(queryVec, faissK);
+  // 1. Unfiltered search (broad, over whole index)
+  const unfilteredResults = localSearch(queryVec, topK);
+  const unfilteredFull = unfilteredResults.map(({ code, score }) => ({
+    ...localIndex[code],
+    score,
+  }));
 
-  console.log(`[local] FAISS returned ${results.length} results, filters:`, filters);
-
-  if (results.length === 0) {
+  if (!hasFilters) {
     return cb(null, {
-      results: [],
+      filteredResults: unfilteredFull.slice(0, topK),
+      unfilteredResults: unfilteredFull.slice(0, topK),
       time_ms: Date.now() - t0,
       total_docs: totalDocs,
       mode: 'faiss-local',
@@ -277,17 +259,47 @@ function searchFaissLocal(queryVec, queryStr, t0, cb) {
     });
   }
 
-  const fullResults = results.map(({ code, score }) => ({
+  const departmentStages = buildDepartmentPriorityFilterStages(filters);
+  if (departmentStages) {
+    const stagedFiltered = departmentStages.map((stageFilters) => {
+      const stageK = getFaissK(topK, stageFilters);
+      return localSearchFiltered(queryVec, stageK, stageFilters);
+    });
+
+    const prioritizedFiltered = mergeStageResults(stagedFiltered, topK);
+    const filteredFull = prioritizedFiltered.map(({ code, score }) => ({
+      ...localIndex[code],
+      score,
+    }));
+    const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
+
+    console.log(`[local] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}`);
+
+    return cb(null, {
+      filteredResults: filteredSectioned.slice(0, topK),
+      unfilteredResults: unfilteredFull.slice(0, topK),
+      time_ms: Date.now() - t0,
+      total_docs: totalDocs,
+      mode: 'faiss-local',
+      filters,
+    });
+  }
+
+  // 2. Filtered search (restricted index)
+  const faissK = getFaissK(topK, filters);
+  const filteredResults = localSearchFiltered(queryVec, faissK, filters);
+
+  console.log(`[local] unfiltered: ${unfilteredResults.length}, filtered: ${filteredResults.length}, filters: ${JSON.stringify(filters)}`);
+
+  const filteredFull = filteredResults.map(({ code, score }) => ({
     ...localIndex[code],
     score,
   }));
-
-  const filtered = filterSections(fullResults, filters);
-  const deduped = deduplicateResults(filtered);
-  const ranked = deduped.sort((a, b) => b.score - a.score).slice(0, topK);
+  const filteredSectioned = applyFilters(filteredFull, filters);
 
   cb(null, {
-    results: ranked,
+    filteredResults: filteredSectioned.slice(0, topK),
+    unfilteredResults: unfilteredFull.slice(0, topK),
     time_ms: Date.now() - t0,
     total_docs: totalDocs,
     mode: 'faiss-local',
@@ -314,14 +326,10 @@ async function embedQueryFaiss(queryStr) {
   return raw.map((x) => x / norm);
 }
 
-function searchFaiss(queryVec, queryStr, t0, cb) {
-  const topK = 40;
-  const filters = parseQueryFilters(queryStr);
-  const faissK = getFaissK(topK, filters);
+function _distFaissSearch(queryVec, k, filters, searchId, cb) {
   const queryVecJson = JSON.stringify(queryVec);
-  const filtersJson = JSON.stringify(filters);
-  const hasFilters = !!(filters.days || filters.season || filters.year);
-  const searchId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const filtersJson = JSON.stringify(filters || []);
+  const hasFilters = filters && filters.length > 0;
 
   const map = new Function('key', 'value', `
     var sid = '__faiss_${searchId}';
@@ -329,7 +337,7 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
     globalThis[sid] = true;
 
     var filters = ${filtersJson};
-    var hasFilters = ${hasFilters};
+    var hasFilters = ${hasFilters ? 'true' : 'false'};
 
     var searchFn = hasFilters && typeof globalThis.__localFaissSearchFiltered === 'function'
       ? globalThis.__localFaissSearchFiltered
@@ -341,8 +349,8 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
 
     var queryVector = ${queryVecJson};
     var results = hasFilters
-      ? searchFn(queryVector, ${faissK}, filters)
-      : searchFn(queryVector, ${faissK});
+      ? searchFn(queryVector, ${k}, filters)
+      : searchFn(queryVector, ${k});
 
     return results.map(function(r) {
       var o = {};
@@ -377,60 +385,146 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
         seen.add(r.code);
         return true;
       })
-      .slice(0, faissK);
+      .slice(0, k);
 
-    if (merged.length === 0) {
-      return cb(null, {
-        results: [],
-        time_ms: Date.now() - t0,
-        total_docs: totalDocs,
-        mode: 'faiss',
-        filters,
-      });
-    }
+    cb(null, merged);
+  });
+}
 
-    let pending = merged.length;
-    const fullResults = [];
-    let errored = false;
+function _hydrateResults(codes, cb) {
+  if (codes.length === 0) return cb(null, []);
+  let pending = codes.length;
+  const fullResults = [];
+  let errored = false;
 
-    merged.forEach(({ code, score }) => {
-      distribution[GID].store.get(code, (err, record) => {
-        if (errored) return;
-        if (err) { errored = true; return cb(err); }
-        fullResults.push({ ...record, score });
-        pending--;
-        if (pending === 0) {
-          const filtered = filterSections(fullResults, filters);
-          const deduped = deduplicateResults(filtered);
-          const ranked = deduped.sort((a, b) => b.score - a.score).slice(0, topK);
+  codes.forEach(({ code, score }) => {
+    distribution[GID].store.get(code, (err, record) => {
+      if (errored) return;
+      if (err) { errored = true; return cb(err); }
+      fullResults.push({ ...record, score });
+      pending--;
+      if (pending === 0) cb(null, fullResults);
+    });
+  });
+}
+
+function searchFaiss(queryVec, filters, t0, cb) {
+  const topK = 40;
+  const hasFilters = filters.length > 0;
+  const ts = Date.now();
+  const rnd = Math.random().toString(36).slice(2);
+
+  // 1. Unfiltered search
+  _distFaissSearch(queryVec, topK, [], `${ts}_unf_${rnd}`, (err, unfilteredMerged) => {
+    if (err) return cb(err);
+
+    _hydrateResults(unfilteredMerged, (err, unfilteredFull) => {
+      if (err) return cb(err);
+
+      if (!hasFilters) {
+        return cb(null, {
+          filteredResults: unfilteredFull.slice(0, topK),
+          unfilteredResults: unfilteredFull.slice(0, topK),
+          time_ms: Date.now() - t0,
+          total_docs: totalDocs,
+          mode: 'faiss',
+          filters,
+        });
+      }
+
+      const departmentStages = buildDepartmentPriorityFilterStages(filters);
+      if (departmentStages) {
+        const stagedMerged = [];
+
+        function finalizeDepartmentStages() {
+          const prioritizedMerged = mergeStageResults(stagedMerged, topK);
+          _hydrateResults(prioritizedMerged, (hydrateErr, filteredFull) => {
+            if (hydrateErr) return cb(hydrateErr);
+
+            const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
+
+            console.log(`[dist] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}, unfiltered: ${unfilteredFull.length}`);
+
+            cb(null, {
+              filteredResults: filteredSectioned.slice(0, topK),
+              unfilteredResults: unfilteredFull.slice(0, topK),
+              time_ms: Date.now() - t0,
+              total_docs: totalDocs,
+              mode: 'faiss',
+              filters,
+            });
+          });
+        }
+
+        function runDepartmentStage(idx) {
+          if (idx >= departmentStages.length) return finalizeDepartmentStages();
+
+          const stageFilters = departmentStages[idx];
+          const stageK = getFaissK(topK, stageFilters);
+          _distFaissSearch(queryVec, stageK, stageFilters, `${ts}_dep_${idx}_${rnd}`, (stageErr, stageMerged) => {
+            if (stageErr) return cb(stageErr);
+            stagedMerged.push(stageMerged || []);
+
+            if (mergeStageResults(stagedMerged, topK).length >= topK) {
+              return finalizeDepartmentStages();
+            }
+
+            return runDepartmentStage(idx + 1);
+          });
+        }
+
+        return runDepartmentStage(0);
+      }
+
+      // 2. Filtered search
+      const faissK = getFaissK(topK, filters);
+      _distFaissSearch(queryVec, faissK, filters, `${ts}_fil_${rnd}`, (err, filteredMerged) => {
+        if (err) return cb(err);
+
+        _hydrateResults(filteredMerged, (err, filteredFull) => {
+          if (err) return cb(err);
+
+          const filteredSectioned = applyFilters(filteredFull, filters);
+
+          console.log(`[dist] filtered: ${filteredSectioned.length}, unfiltered: ${unfilteredFull.length}`);
+
           cb(null, {
-            results: ranked,
+            filteredResults: filteredSectioned.slice(0, topK),
+            unfilteredResults: unfilteredFull.slice(0, topK),
             time_ms: Date.now() - t0,
             total_docs: totalDocs,
             mode: 'faiss',
             filters,
           });
-        }
+        });
       });
     });
   });
 }
 
-function search(queryStr, cb) {
+async function search(queryStr, cb) {
   const t0 = Date.now();
   const faissSearchFn = LOCAL_MODE ? searchFaissLocal : searchFaiss;
 
-  embedQueryFaiss(queryStr).then((queryVec) => {
-    faissSearchFn(queryVec, queryStr, t0, async (err, faissResult) => {
+  try {
+    const { filters, rewordedQuery } = await preQueryReword(queryStr);
+    console.log(`[search] original: "${queryStr}" → reworded: "${rewordedQuery}" | filters: ${JSON.stringify(filters)}`);
+    const queryVec = await getQueryVector(queryStr, rewordedQuery, filters);
+
+    faissSearchFn(queryVec, filters, t0, async (err, faissResult) => {
       if (err) return cb(err);
       try {
         const {answer, cited_courses} = await generateRAGResponse(
-          getOpenAIClient(), queryStr, faissResult.results
+          getOpenAIClient(),
+          rewordedQuery || queryStr,
+          faissResult.filteredResults,
+          faissResult.unfilteredResults,
         );
         cb(null, {
           answer,
           cited_courses,
-          results: faissResult.results,
+          filteredResults: faissResult.filteredResults,
+          unfilteredResults: faissResult.unfilteredResults,
           time_ms: Date.now() - t0,
           total_docs: faissResult.total_docs,
           mode: 'faiss+rag',
@@ -441,10 +535,10 @@ function search(queryStr, cb) {
         cb(null, faissResult);
       }
     });
-  }).catch((err) => {
-    console.error('Embedding failed:', err.message || err);
+  } catch (err) {
+    console.error('Search failed:', err.message || err);
     cb(err);
-  });
+  }
 }
 
 // --- HTTP server ---
@@ -521,17 +615,19 @@ function startHTTPServer() {
 
 // --- Exports for search-server-distributed.js ---
 module.exports = {
-  STOPWORDS,
   MAX_QUERY_LENGTH,
   MAX_REQUESTS_PER_DAY,
   EMBEDDING_MODEL,
   EMBEDDING_DIMENSIONS,
-  tokenize,
-  stemTokens,
+  FILTER_FIELDS,
+  VALID_OPS,
+  validateFilters,
+  matchesCondition,
+  sectionMatchesAll,
   getFaissK,
-  filterSections,
-  deduplicateResults,
-  parseQueryFilters,
+  getQueryVector,
+  applyFilters,
+  preQueryReword,
   getClientIP,
   getRateLimitInfo,
   checkRateLimit,

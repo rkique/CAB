@@ -47,22 +47,59 @@ function localSearch(queryVector, topK=20) {
     }));
 }
 
-function localSearchFiltered(queryVector, topK = 20, filters = {}) {
+function matchesCondition(fieldValue, op, value) {
+    if (fieldValue === null || fieldValue === undefined) return false;
+    switch (op) {
+        case 'eq': return fieldValue === value;
+        case 'ne': return fieldValue !== value;
+        case 'lt': return typeof fieldValue === 'number' && fieldValue < value;
+        case 'gt': return typeof fieldValue === 'number' && fieldValue > value;
+        case 'lte': return typeof fieldValue === 'number' && fieldValue <= value;
+        case 'gte': return typeof fieldValue === 'number' && fieldValue >= value;
+        case 'includes_all':
+            return Array.isArray(fieldValue) && Array.isArray(value) &&
+                value.every((v) => fieldValue.includes(v));
+        case 'includes_any':
+            return Array.isArray(fieldValue) && Array.isArray(value) &&
+                value.some((v) => fieldValue.includes(v));
+        default: return false;
+    }
+}
+
+function getRecordCodePrefix(record) {
+    return String(record && record.code ? record.code : '').split(/\s+/)[0].toUpperCase();
+}
+
+function matchesFilter(record, section, condition) {
+    if (!condition) return true;
+
+    if (condition.field === 'code_prefix') {
+        const prefix = getRecordCodePrefix(record);
+        if (!prefix) return false;
+
+        if (condition.op === 'eq') return prefix === String(condition.value || '').toUpperCase();
+        if (condition.op === 'ne') return prefix !== String(condition.value || '').toUpperCase();
+
+        if ((condition.op === 'includes_any' || condition.op === 'includes_all') && Array.isArray(condition.value)) {
+            const values = condition.value.map((v) => String(v || '').toUpperCase());
+            return values.includes(prefix);
+        }
+
+        return false;
+    }
+
+    return matchesCondition(section[condition.field], condition.op, condition.value);
+}
+
+function localSearchFiltered(queryVector, topK = 20, filters = []) {
     if (!allRecords || allRecords.length === 0) return [];
+    if (!Array.isArray(filters) || filters.length === 0) return localSearch(queryVector, topK);
 
     const filtered = allRecords.filter((r) => {
-        if (!filters.days && !filters.season && !filters.year) return true;
-
         const sections = r.sections || [];
-
-        return sections.some((s) => {
-        if (filters.days?.length > 0) {
-            if (!filters.days.every((d) => (s.days || []).includes(d))) return false;
-        }
-        if (filters.season && s.season !== filters.season) return false;
-        if (filters.year && s.year !== filters.year) return false;
-        return true;
-        });
+        return sections.some((s) =>
+            filters.every((c) => matchesFilter(r, s, c))
+        );
     })
 
     if (filtered.length === 0) return [];

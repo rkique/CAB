@@ -12,15 +12,18 @@ const {OpenAI} = require('openai');
 const {
   MAX_QUERY_LENGTH,
   MAX_REQUESTS_PER_DAY,
-  EMBEDDING_MODEL,
-  EMBEDDING_DIMENSIONS,
-  getFaissK,
-  filterSections,
-  deduplicateResults,
-  parseQueryFilters,
+  getQueryVector,
+  preQueryReword,
   getClientIP,
   checkRateLimit,
 } = require('./search-server.js');
+
+const {
+  getFaissK,
+  applyFilters,
+  buildDepartmentPriorityFilterStages,
+  mergeStageResults,
+} = require('./filters.js');
 
 const CLUSTER_PATH = process.env.CLUSTER_CONFIG ?
   path.resolve(process.env.CLUSTER_CONFIG) :
@@ -154,28 +157,11 @@ function getOpenAIClient() {
   return openaiClient;
 }
 
-async function embedQueryFaiss(queryStr) {
-  const client = getOpenAIClient();
-  const res = await client.embeddings.create({
-    model: EMBEDDING_MODEL,
-    input: queryStr,
-    dimensions: EMBEDDING_DIMENSIONS,
-  });
-
-  const raw = res.data[0].embedding;
-  const norm = Math.sqrt(raw.reduce((s, x) => s + x * x, 0));
-  return raw.map((x) => x / norm);
-}
-
-// --- Distributed FAISS search ---
-function searchFaiss(queryVec, queryStr, t0, cb) {
-  const topK = 40;
-  const filters = parseQueryFilters(queryStr);
-  const filtersJson = JSON.stringify(filters);
-  const hasFilters = filters.days || filters.season || filters.year;
-  const faissK = getFaissK(topK, filters);
+// --- Distributed FAISS search helpers ---
+function _distFaissSearch(queryVec, k, filters, searchId, cb) {
   const queryVecJson = JSON.stringify(queryVec);
-  const searchId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const filtersJson = JSON.stringify(filters || []);
+  const hasFilters = filters && filters.length > 0;
 
   const map = new Function('key', 'value', `
     var sid = '__faiss_${searchId}';
@@ -185,16 +171,18 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
     var filters = ${filtersJson};
     var hasFilters = ${hasFilters ? 'true' : 'false'};
 
-    varSearchFn = hasFilters && typeof globalThis.__localFaissSearchFiltered === 'function' ? globalThis.__localFaissSearchFiltered : globalThis.__localFaissSearch;
-    if (typeof globalThis.__localFaissSearch !== 'function') {
-      throw new Error('__localFaissSearch not ready — buildFaiss may not have run');
+    var searchFn = hasFilters && typeof globalThis.__localFaissSearchFiltered === 'function'
+      ? globalThis.__localFaissSearchFiltered
+      : globalThis.__localFaissSearch;
+    if (typeof searchFn !== 'function') {
+      throw new Error('FAISS search function not ready — buildFaiss may not have run');
     }
 
     var queryVector = ${queryVecJson};
-    var results = hasFilters ? searchFn(queryVector, ${faissK}, filters) : searchFn(queryVector, ${faissK});
+    var results = hasFilters ? searchFn(queryVector, ${k}, filters) : searchFn(queryVector, ${k});
     console.log('[worker-query] local FAISS returned ' + results.length + ' hits');
     if (results.length > 0) {
-    console.log('[worker-query] top local codes: ' + results.slice(0, 5).map(function(r) { return r.code; }).join(', '));
+      console.log('[worker-query] top local codes: ' + results.slice(0, 5).map(function(r) { return r.code; }).join(', '));
     }
     return results.map(function(r) {
       var o = {};
@@ -230,76 +218,147 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
         seen.add(r.code);
         return true;
       })
-      .slice(0, faissK);
+      .slice(0, k);
 
-    if (merged.length === 0) {
-      return cb(null, {
-        results: [],
-        time_ms: Date.now() - t0,
-        total_docs: totalDocs,
-        mode: `faiss-${DEPLOY_MODE}`,
-        filters,
-      });
-    }
-    console.log(`[coordinator] merged down to ${merged.length} unique candidate courses`);
-    console.log('[coordinator] top merged codes:', merged.slice(0, 10).map((r) => r.code).join(', '));
+    cb(null, merged);
+  });
+}
 
+function _hydrateResults(codes, cb) {
+  if (codes.length === 0) return cb(null, []);
+  let pending = codes.length;
+  const fullResults = [];
+  let errored = false;
 
-    let pending = merged.length;
-    const fullResults = [];
-    let errored = false;
+  codes.forEach(({ code, score }) => {
+    distribution[GID].store.get(code, (getErr, record) => {
+      if (errored) return;
+      if (getErr) { errored = true; return cb(getErr); }
+      fullResults.push({ ...record, score });
+      pending--;
+      if (pending === 0) cb(null, fullResults);
+    });
+  });
+}
 
-    merged.forEach(({ code, score }) => {
-        distribution[GID].store.get(code, (getErr, record) => {
-          if (errored) return;
-          if (getErr) {
-            errored = true;
-            return cb(getErr);
-          }
-      
-          fullResults.push({ ...record, score });
-          pending--;
-      
-          if (pending === 0) {
-            const filtered = filterSections(fullResults, filters);
-            const deduped = deduplicateResults(filtered);
-            const ranked = deduped.sort((a, b) => b.score - a.score).slice(0, topK);
-      
-            console.log(`[coordinator] fetched ${fullResults.length} full records from distributed store`);
-            console.log(`[coordinator] final ranked results: ${ranked.length}`);
-            console.log('[coordinator] final top codes:', ranked.slice(0, 10).map((r) => r.code).join(', '));
-      
+// --- Distributed FAISS search ---
+function searchFaiss(queryVec, filters, t0, cb) {
+  const topK = 40;
+  const hasFilters = filters.length > 0;
+  const ts = Date.now();
+  const rnd = Math.random().toString(36).slice(2);
+
+  // 1. Unfiltered search
+  _distFaissSearch(queryVec, topK, [], `${ts}_unf_${rnd}`, (err, unfilteredMerged) => {
+    if (err) return cb(err);
+
+    _hydrateResults(unfilteredMerged, (err, unfilteredFull) => {
+      if (err) return cb(err);
+
+      if (!hasFilters) {
+        return cb(null, {
+          filteredResults: unfilteredFull.slice(0, topK),
+          unfilteredResults: unfilteredFull.slice(0, topK),
+          time_ms: Date.now() - t0,
+          total_docs: totalDocs,
+          mode: `faiss-${DEPLOY_MODE}`,
+          filters,
+        });
+      }
+
+      const departmentStages = buildDepartmentPriorityFilterStages(filters);
+      if (departmentStages) {
+        const stagedMerged = [];
+
+        function finalizeDepartmentStages() {
+          const prioritizedMerged = mergeStageResults(stagedMerged, topK);
+          _hydrateResults(prioritizedMerged, (hydrateErr, filteredFull) => {
+            if (hydrateErr) return cb(hydrateErr);
+
+            const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
+
+            console.log(`[coordinator] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}, unfiltered: ${unfilteredFull.length}`);
+
             cb(null, {
-              results: ranked,
+              filteredResults: filteredSectioned.slice(0, topK),
+              unfilteredResults: unfilteredFull.slice(0, topK),
               time_ms: Date.now() - t0,
               total_docs: totalDocs,
               mode: `faiss-${DEPLOY_MODE}`,
               filters,
             });
-          }
+          });
+        }
+
+        function runDepartmentStage(idx) {
+          if (idx >= departmentStages.length) return finalizeDepartmentStages();
+
+          const stageFilters = departmentStages[idx];
+          const stageK = getFaissK(topK, stageFilters);
+          _distFaissSearch(queryVec, stageK, stageFilters, `${ts}_dep_${idx}_${rnd}`, (stageErr, stageMerged) => {
+            if (stageErr) return cb(stageErr);
+            stagedMerged.push(stageMerged || []);
+
+            if (mergeStageResults(stagedMerged, topK).length >= topK) {
+              return finalizeDepartmentStages();
+            }
+
+            return runDepartmentStage(idx + 1);
+          });
+        }
+
+        return runDepartmentStage(0);
+      }
+
+      // 2. Filtered search
+      const faissK = getFaissK(topK, filters);
+      _distFaissSearch(queryVec, faissK, filters, `${ts}_fil_${rnd}`, (err, filteredMerged) => {
+        if (err) return cb(err);
+
+        _hydrateResults(filteredMerged, (err, filteredFull) => {
+          if (err) return cb(err);
+
+          const filteredSectioned = applyFilters(filteredFull, filters);
+
+          console.log(`[coordinator] filtered: ${filteredSectioned.length}, unfiltered: ${unfilteredFull.length}`);
+
+          cb(null, {
+            filteredResults: filteredSectioned.slice(0, topK),
+            unfilteredResults: unfilteredFull.slice(0, topK),
+            time_ms: Date.now() - t0,
+            total_docs: totalDocs,
+            mode: `faiss-${DEPLOY_MODE}`,
+            filters,
+          });
         });
       });
     });
+  });
 }
 
-function search(queryStr, cb) {
+async function search(queryStr, cb) {
   const t0 = Date.now();
 
-  embedQueryFaiss(queryStr).then((queryVec) => {
-    searchFaiss(queryVec, queryStr, t0, async (err, faissResult) => {
+  try {
+    const { filters, rewordedQuery } = await preQueryReword(queryStr);
+    const queryVec = await getQueryVector(queryStr, rewordedQuery, filters);
+
+    searchFaiss(queryVec, filters, t0, async (err, faissResult) => {
       if (err) return cb(err);
 
       try {
         const { answer, cited_courses } = await generateRAGResponse(
           getOpenAIClient(),
-          queryStr,
-          faissResult.results
+          rewordedQuery || queryStr,
+          faissResult.filteredResults,
+          faissResult.unfilteredResults,
         );
 
         cb(null, {
           answer,
           cited_courses,
-          results: faissResult.results,
+          filteredResults: faissResult.filteredResults,
+          unfilteredResults: faissResult.unfilteredResults,
           time_ms: Date.now() - t0,
           total_docs: faissResult.total_docs,
           mode: `faiss+rag-${DEPLOY_MODE}`,
@@ -310,10 +369,10 @@ function search(queryStr, cb) {
         cb(null, faissResult);
       }
     });
-  }).catch((err) => {
-    console.error('Embedding failed:', err.message || err);
+  } catch (err) {
+    console.error('Search failed:', err.message || err);
     cb(err);
-  });
+  }
 }
 
 // --- HTTP server ---
