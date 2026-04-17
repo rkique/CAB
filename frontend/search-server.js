@@ -519,30 +519,50 @@ function startHTTPServer() {
   });
 }
 
+// --- Exports for search-server-distributed.js ---
+module.exports = {
+  STOPWORDS,
+  MAX_QUERY_LENGTH,
+  MAX_REQUESTS_PER_DAY,
+  EMBEDDING_MODEL,
+  EMBEDDING_DIMENSIONS,
+  tokenize,
+  stemTokens,
+  getFaissK,
+  filterSections,
+  deduplicateResults,
+  parseQueryFilters,
+  getClientIP,
+  getRateLimitInfo,
+  checkRateLimit,
+};
+
 // --- Startup sequence ---
-if (LOCAL_MODE) {
-  console.log('Starting in LOCAL mode (--local flag detected)');
-  loadIndexLocal((e) => {
-    if (e) {
-      console.error('Course loading failed:', e);
-      process.exit(1);
-    }
-    startHTTPServer();
-  });
-} else {
-  startDistributionNode(() => {
-    setupGroup((e) => {
+if (require.main === module) {
+  if (LOCAL_MODE) {
+    console.log('Starting in LOCAL mode (--local flag detected)');
+    loadIndexLocal((e) => {
       if (e) {
-        console.error('Group setup failed:', e);
+        console.error('Course loading failed:', e);
         process.exit(1);
       }
-      loadIndex((e) => {
-        if (e && Object.values(e).length > 0) {
-          console.error('Course loading failed:', e);
+      startHTTPServer();
+    });
+  } else {
+    startDistributionNode(() => {
+      setupGroup((e) => {
+        if (e) {
+          console.error('Group setup failed:', e);
           process.exit(1);
         }
-        startHTTPServer();
+        loadIndex((e) => {
+          if (e && Object.values(e).length > 0) {
+            console.error('Course loading failed:', e);
+            process.exit(1);
+          }
+          startHTTPServer();
+        });
       });
     });
-  });
+  }
 }

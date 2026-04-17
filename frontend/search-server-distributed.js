@@ -6,9 +6,21 @@ const { generateRAGResponse } = require('../scripts/rag.js');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
-const natural = require('natural/lib/natural/stemmers/porter_stemmer');
 const {OpenAI} = require('openai');
+
+// Import shared utilities from search-server.js
+const {
+  MAX_QUERY_LENGTH,
+  MAX_REQUESTS_PER_DAY,
+  EMBEDDING_MODEL,
+  EMBEDDING_DIMENSIONS,
+  getFaissK,
+  filterSections,
+  deduplicateResults,
+  parseQueryFilters,
+  getClientIP,
+  checkRateLimit,
+} = require('./search-server.js');
 
 const CLUSTER_PATH = process.env.CLUSTER_CONFIG ?
   path.resolve(process.env.CLUSTER_CONFIG) :
@@ -33,17 +45,9 @@ const distribution = require('../distribution.js')({
   port: DIST_PORT,
 });
 
-const EMBEDDING_MODEL = 'text-embedding-3-small';
-const EMBEDDING_DIMENSIONS = 256;
-
 let allKeys = [];
 let totalDocs = 0;
 let openaiClient = null;
-
-// --- Rate limiting ---
-const MAX_QUERY_LENGTH = 500;
-const MAX_REQUESTS_PER_DAY = 25;
-const rateLimitMap = new Map();
 
 function logGroup(label, group) {
     console.log(`[coordinator] ${label}`);
@@ -51,169 +55,6 @@ function logGroup(label, group) {
       console.log(`  sid=${sid} -> ${node.ip}:${node.port}`);
     }
   }
-
-function getRateLimitInfo(ip) {
-  const now = Date.now();
-  let entry = rateLimitMap.get(ip);
-  if (!entry || now >= entry.resetTime) {
-    entry = { count: 0, resetTime: now + 24 * 60 * 60 * 1000 };
-    rateLimitMap.set(ip, entry);
-  }
-  return entry;
-}
-
-function checkRateLimit(ip) {
-  const entry = getRateLimitInfo(ip);
-  if (entry.count >= MAX_REQUESTS_PER_DAY) return false;
-  entry.count++;
-  return true;
-}
-
-function getClientIP(req) {
-  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
-}
-
-// Common English stopwords
-const STOPWORDS = new Set([
-  'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-  'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
-  'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
-  'could', 'should', 'may', 'might', 'shall', 'can', 'this', 'that',
-  'these', 'those', 'it', 'its', 'not', 'no', 'as', 'if', 'then', 'than',
-  'so', 'up', 'out', 'about', 'into', 'over', 'after', 'before', 'between',
-  'under', 'above', 'such', 'each', 'which', 'their', 'there', 'they',
-  'them', 'we', 'he', 'she', 'you', 'my', 'your', 'our', 'his', 'her',
-  'all', 'any', 'both', 'few', 'more', 'most', 'other', 'some', 'only',
-  'own', 'same', 'also', 'just', 'very', 'well',
-]);
-
-const stem = natural.stem;
-
-function tokenize(text) {
-  return text.toLowerCase().split(/[^a-z]+/).filter((w) => w && !STOPWORDS.has(w));
-}
-
-function stemTokens(tokens) {
-  return tokens.map((t) => stem(t));
-}
-
-
-// --- Search helpers
-function getFaissK(topK, filter = {}) {
-  let multiplier = 3;
-  if (filter.days?.length > 0) multiplier++;
-  if (filter.season) multiplier++;
-  if (filter.year) multiplier++;
-  return topK * multiplier;
-}
-
-function filterSections(results, filters = {}) {
-  /*Given the search results and the parsed filters, filter out sections that don't match the criteria.*/
-
-  return results
-    .map((course) => {
-      let sections = course.sections || [];
-
-      if (filters.days?.length > 0) {
-        sections = sections.filter((s) =>
-          filters.days.every((d) => s.days.includes(d))
-        );
-      }
-      if (filters.season) {
-        sections = sections.filter((s) => s.season === filters.season);
-      }
-      if (filters.year) {
-        sections = sections.filter((s) => s.year === filters.year);
-      }
-      if (filters.semester) {
-        sections = sections.filter((s) => s.semester === filters.semester);
-      }
-      if (filters.noPermReq) {
-        sections = sections.filter((s) => s.permreq === 'N');
-      }
-
-      return { ...course, sections };
-    })
-    .filter((course) => course.sections.length > 0);
-}
-
-function deduplicateResults(results) {
-  const byTitle = {};
-  for (const course of results) {
-    // strip cross-listing suffixes like "(ENGL 1711L)"
-    const normalizedTitle = course.title.replace(/\s*\(.*?\)\s*$/, '').trim();
-
-    if (!byTitle[normalizedTitle]) {
-      byTitle[normalizedTitle] = {
-        ...course,
-        crossListings: [course.code],
-      };
-    } else {
-      if (course.score > byTitle[normalizedTitle].score) {
-        byTitle[normalizedTitle] = {
-          ...course,
-          crossListings: byTitle[normalizedTitle].crossListings,
-        };
-      }
-      byTitle[normalizedTitle].crossListings.push(course.code);
-    }
-  }
-  return Object.values(byTitle).sort((a, b) => b.score - a.score);
-}
-
-function parseQueryFilters(queryStr) {
-  const filters = {};
-  const lower = queryStr.toLowerCase();
-
-
-  // normalize separators so "Monday, W, and Friday" → "monday w friday"
-  const normalized = lower
-    .replace(/\band\b/g, ' ')
-    .replace(/[,;\/]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-  const days = new Set();
-
-  // MWF shorthand
-  if (normalized.match(/\bmwf\b/)) { days.add('M'); days.add('W'); days.add('F'); }
-  // TuTh / TTh shorthand
-  if (normalized.match(/\b(tuth|tth|tuth)\b/)) { days.add('Tu'); days.add('Th'); }
-  // MW shorthand
-  if (normalized.match(/\bmw\b/)) { days.add('M'); days.add('W'); }
-
-  // individual days — order matters, check longer patterns first
-  if (normalized.match(/\bmonday s?\b|\bmon\b/)) days.add('M');
-  if (normalized.match(/\btuesday s?\b|\btues\b|\btue\b/)) days.add('Tu');
-  if (normalized.match(/\bwednesday s?\b|\bwed\b/)) days.add('W');
-  if (normalized.match(/\bthursday s?\b|\bthurs\b|\bthu\b|\bth\b/)) days.add('Th');
-  if (normalized.match(/\bfriday s?\b|\bfri\b/)) days.add('F');
-
-  // single letter — only if standalone word, Th before T
-  if (normalized.match(/\bth\b/)) days.add('Th');
-  if (normalized.match(/\b(?<!t)m\b/)) days.add('M');
-  if (normalized.match(/\bw\b/)) days.add('W');
-  if (normalized.match(/\bf\b/)) days.add('F');
-
-  if (days.size > 0) filters.days = [...days];
-
-  // season
-  if (normalized.includes('fall')) filters.season = 'Fall';
-  else if (normalized.includes('spring')) filters.season = 'Spring';
-  else if (normalized.includes('summer')) filters.season = 'Summer';
-  else if (normalized.includes('winter')) filters.season = 'Winter';
-
-  // year
-  const yearMatch = normalized.match(/\b(20\d{2})\b/);
-  if (yearMatch) filters.year = parseInt(yearMatch[1]);
-
-  // no permission required
-  if (normalized.match(/\bno perm|\bno permission|\bopen enroll/)) {
-    filters.noPermReq = true;
-  }
-
-  return filters;
-}
 
 
 // --- Cluster bootstrap ---
