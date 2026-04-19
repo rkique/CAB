@@ -82,6 +82,20 @@ const distribution = require('../distribution.js')({ip: '127.0.0.1', port: DIST_
 const EMBEDDING_MODEL = 'text-embedding-3-small';
 const EMBEDDING_DIMENSIONS = 256;
 
+const {
+  FILTER_FIELDS,
+  VALID_OPS,
+  validateFilters,
+  matchesCondition,
+  sectionMatchesAll,
+  applyFilters,
+  getFaissK,
+  buildDepartmentPriorityFilterStages,
+  mergeStageResults,
+  rewriteDepartmentProgramFilters,
+  augmentDepartmentFilters,
+} = require('./filters.js');
+
 let allKeys = [];
 let totalDocs = 0;
 let embeddings = {};   // key -> float[], loaded from embeddings.json if present

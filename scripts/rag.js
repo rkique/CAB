@@ -19,124 +19,74 @@ const currentData = JSON.parse(fs.readFileSync(CURRENT_FILE, 'utf8'));
 const CURRENT_CODES = new Set(currentData.codes);
 const CURRENT_SEMESTERS = currentData.semesters.join(' and ');
 
-const SYSTEM_PROMPT = `You are a knowledgeable Brown University course advisor. A student will ask about courses.
-
------- In Context Data Available -------
-You will receive two JSON arrays of candidate courses from the catalog:
-
-1. CURRENTLY OFFERED — courses available in ${CURRENT_SEMESTERS}. You should primarily recommend from this list.
-
-2. OTHER RELEVANT — courses that match the query but are NOT currently offered. You may briefly mention these as alternatives the student could look into in future semesters, but clearly note they are not currently offered.
-
-- Each course is a JSON object. 
-- Every course has: code, title, description, semesters, meets, instructors. Some courses also have Brown's Critical Review data. When they are available, use them to inform your recommendations:
-
-- cr_avg_hours, cr_max_hours: avg and max hours per week
-- cr_course_avg: course rating (out of 5)
-- cr_prof_avg: professor rating (out of 5)
-- cr_class_size: typical class size
-- cr_grades: grade distribution info
-- cr_attendance: attendance expectations
-- cr_num_respondents: number of Critical Review respondents
-- cr_enrollment: breakdown by class year (frosh/soph/jun/sen/grad) and concentrator status
-- course_rating, professor_rating: additional rating data
-- average_hours, max_hours: workload data
-- programs: curricular programs (e.g. WRIT, DPLL)
-
-Your job:
-- Write a helpful, concise response recommending relevant courses based on the provided lists.
-
-- Use the Critical Review data to inform your recommendations — mention workload (avg hours), course/professor ratings, and class size when relevant to the query. Prioritize the currently offered courses. If none match the query, report this. Mention relevant alternatives if they fit.
-
-- Do NOT invent courses. Only reference courses from the provided lists.
-
-- Prefer in-person courses over online courses unless otherwise specified. If the query specifies a discipline, prefer departments matching that discipline unless otherwise specified.
-
-- Reference courses either with CODE, CODE: Course Name, or CODE with description, ensuring the response focuses on the most relevant and helpful courses.
-
-- Here is an example answer to the query "engineering classes with hands-on components" which uses all three:
-
-"For engineering classes with hands-on components, the best option for this semester is ENGN1240: Biomedical Engineering Design and Innovation. As a capstone course, students work within teams on biomedical engineering projects, applying design principles in a project-based setting with clinical advisors.
-
-Other strong options for Fall 2026 include ENGN 1650, an embedded microprocessor design class, ENGN 1931D, an introduction to designing mechanical components, and ENGN 0030, the classic introductory course which introduces different engineering disciplines and design processes. Some courses which are heavily oriented towards building skills but are not offered this semester are VISA 1720, a course on physical computing, and ENGN 1931Z: Interfaces, Information and Automation."
-
-- Your response should be one holistic answer and can be from 2 - 3 paragraphs. You should describe courses in detail if the detail is relevant to the query.
-
-- After your response, output a JSON block on its own line in this exact format:
-CITED_COURSES: ["CODE1", "CODE2", ...]
-listing every course code you mentioned.
-
-- The user does not directly ask questions to you. Do not end responses with messages such as "If you want, I can ...".
-
-`
+const SYSTEM_PROMPT = fs.readFileSync(path.join(__dirname, 'rag_prompt.txt'), 'utf8').trim();
 
 
+function formatCourse(c) {
+  const sections = c.sections || [];
 
-function buildContext(currentCandidates, otherCandidates) {
-  function formatCourse(c) {
-    const sections = c.sections || [];
+  const obj = {
+    code: c.code,
+    title: c.title,
+    description: (c.description || '').slice(0, MAX_DESC_CHARS),
+    semesters: [...new Set(sections.map((s) => s.semester).filter(Boolean))].slice(0, 5),
+    meets: [...new Set(sections.map((s) => s.meets).filter((m) => m && m !== 'TBA'))].slice(0, 3),
+    instructors: [...new Set(sections.map((s) => s.instr).filter(Boolean))].slice(0, 3),
+  };
 
-    const obj = {
-      code: c.code,
-      title: c.title,
-      description: (c.description || '').slice(0, MAX_DESC_CHARS),
-      semesters: [...new Set(sections.map((s) => s.semester).filter(Boolean))].slice(0, 5),
-      meets: [...new Set(sections.map((s) => s.meets).filter((m) => m && m !== 'TBA'))].slice(0, 3),
-      instructors: [...new Set(sections.map((s) => s.instr).filter(Boolean))].slice(0, 3),
-    };
-
-    // Aggregate CR / rating fields from the most recent section that has them
-    const crFields = [
-      'cr_avg_hours', 'cr_max_hours', 'cr_course_avg', 'cr_prof_avg',
-      'cr_class_size', 'cr_num_respondents', 'cr_attendance', 'cr_grades',
-      'cr_professor', 'cr_edition', 'cr_requirement',
-      'course_rating', 'professor_rating', 'average_hours', 'max_hours',
-      'programs',
-    ];
-    // Pick from the most recent section with data
-    const sorted = [...sections].sort((a, b) => (b.srcdb || '').localeCompare(a.srcdb || ''));
-    for (const field of crFields) {
-      for (const s of sorted) {
-        if (s[field] != null && s[field] !== '') {
-          obj[field] = s[field];
-          break;
-        }
+  // Aggregate CR / rating fields from the most recent section that has them
+  const crFields = [
+    'cr_avg_hours', 'cr_max_hours', 'cr_course_avg', 'cr_prof_avg',
+    'cr_class_size', 'cr_num_respondents', 'cr_attendance', 'cr_grades',
+    'cr_professor', 'cr_edition', 'cr_requirement',
+    'course_rating', 'professor_rating', 'average_hours', 'max_hours',
+    'programs',
+  ];
+  // Pick from the most recent section with data
+  const sorted = [...sections].sort((a, b) => (b.srcdb || '').localeCompare(a.srcdb || ''));
+  for (const field of crFields) {
+    for (const s of sorted) {
+      if (s[field] != null && s[field] !== '') {
+        obj[field] = s[field];
+        break;
       }
     }
-
-    // Enrollment breakdown
-    const enrollFields = ['cr_frosh', 'cr_soph', 'cr_jun', 'cr_sen', 'cr_grad', 'cr_concs', 'cr_nonconcs'];
-    const enrollment = {};
-    for (const field of enrollFields) {
-      for (const s of sorted) {
-        if (s[field] != null && s[field] !== '') {
-          enrollment[field.replace('cr_', '')] = s[field];
-          break;
-        }
-      }
-    }
-    if (Object.keys(enrollment).length > 0) obj.cr_enrollment = enrollment;
-
-    return obj;
   }
 
+  // Enrollment breakdown
+  const enrollFields = ['cr_frosh', 'cr_soph', 'cr_jun', 'cr_sen', 'cr_grad', 'cr_concs', 'cr_nonconcs'];
+  const enrollment = {};
+  for (const field of enrollFields) {
+    for (const s of sorted) {
+      if (s[field] != null && s[field] !== '') {
+        enrollment[field.replace('cr_', '')] = s[field];
+        break;
+      }
+    }
+  }
+  if (Object.keys(enrollment).length > 0) obj.cr_enrollment = enrollment;
+
+  return obj;
+}
+
+function buildContext(bestMatches, otherCandidates) {
   const context = {};
 
-  if (currentCandidates.length > 0) {
-    context.currently_offered = {
-      label: `Courses available in ${CURRENT_SEMESTERS}`,
-      courses: currentCandidates.map(formatCourse),
+  if (bestMatches.length > 0) {
+    context.best_matches = {
+      label: 'Courses matching all specified filters',
+      courses: bestMatches.map(formatCourse),
     };
   } else {
-    context.currently_offered = {
-      label: `None of the retrieved courses are offered in ${CURRENT_SEMESTERS}`,
+    context.best_matches = {
+      label: 'No courses matched all specified filters',
       courses: [],
     };
   }
 
   if (otherCandidates.length > 0) {
     context.other_relevant = {
-      label: 'Courses that match but are NOT currently offered',
+      label: 'Other relevant courses (may not match all filters)',
       courses: otherCandidates.slice(0, 10).map(formatCourse),
     };
   }
@@ -168,20 +118,14 @@ function sanitizeQuery(query) {
   return query.replace(/CITED_COURSES\s*:\s*\[.*?\]/gi, '').trim();
 }
 
-async function generateRAGResponse(client, query, candidates) {
-  query = sanitizeQuery(query);
-  const current = [];
-  const other = [];
 
-  for (const c of candidates.slice(0, MAX_CONTEXT_COURSES)) {
-    if (CURRENT_CODES.has(c.code)) {
-      current.push(c);
-    } else {
-      other.push(c);
-    }
-  }
-
-  const context = buildContext(current, other);
+async function generateRAGResponse(client, query, bestMatches, otherCandidates) {
+  console.log(`[rag] ${bestMatches.map((c) => c.code).join(', ')} matched all filters`);
+  console.log(`[rag] ${otherCandidates.map((c) => c.code).join(', ')} other relevant candidates`);
+  const context = buildContext(
+    bestMatches.slice(0, MAX_CONTEXT_COURSES),
+    otherCandidates.slice(0, MAX_CONTEXT_COURSES),
+  );
 
   const response = await client.chat.completions.create({
     model: GENERATION_MODEL,
