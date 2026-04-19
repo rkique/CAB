@@ -43,7 +43,7 @@ function checkRateLimit(ip) {
 }
 
 function getClientIP(req) {
-  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
+  return req.socket.remoteAddress;
 }
 
 // Common English stopwords
@@ -86,6 +86,59 @@ let allKeys = [];
 let totalDocs = 0;
 let embeddings = {};   // key -> float[], loaded from embeddings.json if present
 let openaiClient = null;
+
+// Concurrency limiter — prevents the distribution framework from being
+// overwhelmed when many requests arrive simultaneously.
+const MAX_CONCURRENT_SEARCHES = 3;
+let activeSearches = 0;
+const searchQueue = [];
+
+function runWithLimit(fn) {
+  return new Promise((resolve, reject) => {
+    const run = () => {
+      activeSearches++;
+      fn().then(resolve, reject).finally(() => {
+        activeSearches--;
+        if (searchQueue.length > 0) searchQueue.shift()();
+      });
+    };
+    if (activeSearches < MAX_CONCURRENT_SEARCHES) run();
+    else searchQueue.push(run);
+  });
+}
+
+// LRU cache — serves repeated queries instantly without hitting OpenAI or
+// the distribution layer. Keys are normalized query strings.
+const CACHE_MAX_SIZE = 100;
+const CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutes
+const searchCache = new Map(); // key -> { result, expiresAt }
+
+function cacheKey(query) {
+  return query.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function cacheGet(query) {
+  const key = cacheKey(query);
+  const entry = searchCache.get(key);
+  if (!entry) return null;
+  if (Date.now() > entry.expiresAt) { searchCache.delete(key); return null; }
+  searchCache.delete(key);
+  searchCache.set(key, entry);
+  return entry.result;
+}
+
+function cachePut(query, result) {
+  const key = cacheKey(query);
+  if (searchCache.size >= CACHE_MAX_SIZE) {
+    searchCache.delete(searchCache.keys().next().value);
+  }
+  searchCache.set(key, { result, expiresAt: Date.now() + CACHE_TTL_MS });
+}
+
+// In-flight map — if multiple identical queries arrive while one is already
+// running, they share the same Promise instead of each hitting the distribution
+// framework separately (thundering herd protection).
+const inFlight = new Map(); // cacheKey -> Promise<result>
 
 // --- helpers
 function getFaissK(topK, filter = {}) {
@@ -391,35 +444,38 @@ function searchFaiss(queryVec, queryStr, t0, cb) {
       });
     }
 
-    let pending = merged.length;
     const fullResults = [];
-    let errored = false;
+    const BATCH_SIZE = 5;
 
-    merged.forEach(({ code, score }) => {
-      distribution[GID].store.get(code, (err, record) => {
-        if (errored) return;
-        if (err) { errored = true; return cb(err); }
+    function fetchBatch(items, done) {
+      if (items.length === 0) return done(null);
+      const batch = items.slice(0, BATCH_SIZE);
+      const rest = items.slice(BATCH_SIZE);
+      let pending = batch.length;
+      let errored = false;
+      batch.forEach(({ code, score }) => {
+        distribution[GID].store.get(code, (err, record) => {
+          if (errored) return;
+          if (err) { errored = true; return done(err); }
+          fullResults.push({ ...record, score });
+          if (--pending === 0) fetchBatch(rest, done);
+        });
+      });
+    }
 
-        fullResults.push({ ...record, score });
-        pending--;
+    fetchBatch(merged, (err) => {
+      if (err) return cb(err);
 
-        if (pending === 0) {
-          const filtered = filterSections(fullResults, filters);
+      const filtered = filterSections(fullResults, filters);
+      const deduped = deduplicateResults(filtered);
+      const ranked = deduped.sort((a, b) => b.score - a.score).slice(0, topK);
 
-          const deduped = deduplicateResults(filtered);
-
-          const ranked = deduped
-            .sort((a, b) => b.score - a.score)
-            .slice(0, topK);
-
-          cb(null, {
-            results: ranked,
-            time_ms: Date.now() - t0,
-            total_docs: totalDocs,
-            mode: 'faiss',
-            filters,  
-          });
-        }
+      cb(null, {
+        results: ranked,
+        time_ms: Date.now() - t0,
+        total_docs: totalDocs,
+        mode: 'faiss',
+        filters,
       });
     });
   });
@@ -599,6 +655,8 @@ function startHTTPServer() {
   const htmlPath = path.join(__dirname, 'search.html');
 
   const server = http.createServer((req, res) => {
+    req.on('error', () => {});
+    res.on('error', () => {});
     if (req.method === 'GET' && (req.url === '/' || req.url === '/index.html')) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(fs.readFileSync(htmlPath, 'utf8'));
@@ -607,7 +665,14 @@ function startHTTPServer() {
 
     // Serve static files from frontend/images/
     if (req.method === 'GET' && req.url.startsWith('/images/')) {
+      const imagesDir = path.join(__dirname, 'images');
       const filePath = path.join(__dirname, req.url);
+      // Prevent path traversal: resolved path must stay inside imagesDir
+      if (!filePath.startsWith(imagesDir + path.sep) && filePath !== imagesDir) {
+        res.writeHead(403);
+        res.end('Forbidden');
+        return;
+      }
       if (fs.existsSync(filePath)) {
         const ext = path.extname(filePath).toLowerCase();
         const types = {'.png': 'image/png', '.jpg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml', '.ico': 'image/x-icon'};
@@ -627,10 +692,23 @@ function startHTTPServer() {
       }
 
       let body = '';
+      let bodySize = 0;
+      let bodyRejected = false;
+      const MAX_BODY_BYTES = 8 * 1024;
       req.on('data', (chunk) => {
+        if (bodyRejected) return;
+        bodySize += chunk.length;
+        if (bodySize > MAX_BODY_BYTES) {
+          bodyRejected = true;
+          res.writeHead(413, {'Content-Type': 'application/json'});
+          res.end(JSON.stringify({error: 'Request body too large'}));
+          req.resume();
+          return;
+        }
         body += chunk.toString();
       });
       req.on('end', () => {
+        if (res.writableEnded) return; // already responded (e.g. 413)
         try {
           const {query} = JSON.parse(body);
           if (!query || typeof query !== 'string') {
@@ -645,15 +723,43 @@ function startHTTPServer() {
             return;
           }
 
-          search(query, (err, result) => {
-            if (err) {
-              console.error('Search error:', err);
-              res.writeHead(500, {'Content-Type': 'application/json'});
-              res.end(JSON.stringify({error: err.message}));
-              return;
-            }
+          const cached = cacheGet(query);
+          if (cached) {
             res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(result));
+            res.end(JSON.stringify({ ...cached, cached: true }));
+            return;
+          }
+
+          const key = cacheKey(query);
+          const sendResult = (result, fromCoalesce) => {
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(fromCoalesce ? { ...result, cached: true } : result));
+          };
+          const sendError = (err) => {
+            console.error('Search error:', err);
+            res.writeHead(500, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({error: 'Search failed. Please try again.'}));
+          };
+
+          if (inFlight.has(key)) {
+            inFlight.get(key).then((r) => sendResult(r, true)).catch(sendError);
+            return;
+          }
+
+          const promise = runWithLimit(() => new Promise((resolve, reject) => {
+            search(query, (err, result) => {
+              if (err) reject(err); else resolve(result);
+            });
+          }));
+
+          inFlight.set(key, promise);
+          promise.then((result) => {
+            inFlight.delete(key);
+            cachePut(query, result);
+            sendResult(result, false);
+          }).catch((err) => {
+            inFlight.delete(key);
+            sendError(err);
           });
         } catch (e) {
           res.writeHead(400, {'Content-Type': 'application/json'});
@@ -666,6 +772,8 @@ function startHTTPServer() {
     res.writeHead(404);
     res.end('Not found');
   });
+
+  server.keepAliveTimeout = 0;
 
   server.listen(HTTP_PORT, '0.0.0.0', () => {
     console.log(`Search UI at http://localhost:${HTTP_PORT}`);

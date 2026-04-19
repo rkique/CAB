@@ -163,7 +163,13 @@ function cleanAnswer(text) {
   return text.replace(/\n?CITED_COURSES:\s*\[.*\]/, '').trim();
 }
 
+function sanitizeQuery(query) {
+  // Strip any CITED_COURSES pattern so a crafted query can't poison the parser
+  return query.replace(/CITED_COURSES\s*:\s*\[.*?\]/gi, '').trim();
+}
+
 async function generateRAGResponse(client, query, candidates) {
+  query = sanitizeQuery(query);
   const current = [];
   const other = [];
 
