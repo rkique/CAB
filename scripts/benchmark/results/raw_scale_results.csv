@@ -1,0 +1,73 @@
+query,wall_latency_s,reported_time_ms,num_results,mode,workers,repeat,trial,startup_s
+easy public health electives,10.41654466700001,10144,40,faiss+rag-distributed-aws,1,0,0,77.970094875
+easy public health electives,11.120258209,10924,40,faiss+rag-distributed-aws,1,0,1,77.970094875
+easy public health electives,9.757424334000007,9524,40,faiss+rag-distributed-aws,1,0,2,77.970094875
+highly rated intro philosophy classes,9.81965550000001,9567,40,faiss+rag-distributed-aws,1,0,0,77.970094875
+highly rated intro philosophy classes,10.231134208000014,9965,40,faiss+rag-distributed-aws,1,0,1,77.970094875
+highly rated intro philosophy classes,9.51651320800002,9227,40,faiss+rag-distributed-aws,1,0,2,77.970094875
+distributed systems courses with less homework,8.753795083,8540,40,faiss+rag-distributed-aws,1,0,0,77.970094875
+distributed systems courses with less homework,9.152824750000008,8946,40,faiss+rag-distributed-aws,1,0,1,77.970094875
+distributed systems courses with less homework,9.415737209000014,9199,40,faiss+rag-distributed-aws,1,0,2,77.970094875
+WRIT classes in neuroscience,10.53602650000002,10309,40,faiss+rag-distributed-aws,1,0,0,77.970094875
+WRIT classes in neuroscience,10.232367832999984,9941,40,faiss+rag-distributed-aws,1,0,1,77.970094875
+WRIT classes in neuroscience,9.312217666999999,9065,40,faiss+rag-distributed-aws,1,0,2,77.970094875
+engineering classes with hands-on components,8.896227459000016,8606,40,faiss+rag-distributed-aws,1,0,0,77.970094875
+engineering classes with hands-on components,11.88185545799999,11650,40,faiss+rag-distributed-aws,1,0,1,77.970094875
+engineering classes with hands-on components,9.85370254199998,9584,40,faiss+rag-distributed-aws,1,0,2,77.970094875
+no permission required fall 2026 classes,11.495029708000004,11274,20,faiss+rag-distributed-aws,1,0,0,77.970094875
+no permission required fall 2026 classes,10.441958625000012,10254,20,faiss+rag-distributed-aws,1,0,1,77.970094875
+no permission required fall 2026 classes,11.615274999999997,11446,20,faiss+rag-distributed-aws,1,0,2,77.970094875
+tuesday thursday history classes,9.786221082999987,9639,0,faiss+rag-distributed-aws,1,0,0,77.970094875
+tuesday thursday history classes,7.883665874999963,7773,0,faiss+rag-distributed-aws,1,0,1,77.970094875
+tuesday thursday history classes,8.19204095799995,8083,0,faiss+rag-distributed-aws,1,0,2,77.970094875
+computer science systems courses,9.981473291000043,9742,40,faiss+rag-distributed-aws,1,0,0,77.970094875
+computer science systems courses,9.521941958999946,9264,40,faiss+rag-distributed-aws,1,0,1,77.970094875
+computer science systems courses,9.455787832999988,9213,40,faiss+rag-distributed-aws,1,0,2,77.970094875
+easy public health electives,11.01931695799999,10773,40,faiss+rag-distributed-aws,2,0,0,65.143296292
+easy public health electives,10.231403499999999,9978,40,faiss+rag-distributed-aws,2,0,1,65.143296292
+easy public health electives,11.157841582999993,10879,40,faiss+rag-distributed-aws,2,0,2,65.143296292
+highly rated intro philosophy classes,9.002975666999987,8723,40,faiss+rag-distributed-aws,2,0,0,65.143296292
+highly rated intro philosophy classes,9.719554958000003,9511,40,faiss+rag-distributed-aws,2,0,1,65.143296292
+highly rated intro philosophy classes,10.217927874999987,10013,40,faiss+rag-distributed-aws,2,0,2,65.143296292
+distributed systems courses with less homework,9.871676665999985,9670,40,faiss+rag-distributed-aws,2,0,0,65.143296292
+distributed systems courses with less homework,10.000345417000005,9775,40,faiss+rag-distributed-aws,2,0,1,65.143296292
+distributed systems courses with less homework,9.82485895800005,9621,40,faiss+rag-distributed-aws,2,0,2,65.143296292
+WRIT classes in neuroscience,10.329339333000007,10087,40,faiss+rag-distributed-aws,2,0,0,65.143296292
+WRIT classes in neuroscience,9.772432208000055,9561,40,faiss+rag-distributed-aws,2,0,1,65.143296292
+WRIT classes in neuroscience,10.702160332999938,10432,40,faiss+rag-distributed-aws,2,0,2,65.143296292
+engineering classes with hands-on components,10.721536457999946,10492,40,faiss+rag-distributed-aws,2,0,0,65.143296292
+engineering classes with hands-on components,9.847672999999986,9620,40,faiss+rag-distributed-aws,2,0,1,65.143296292
+engineering classes with hands-on components,9.81098754200002,9585,40,faiss+rag-distributed-aws,2,0,2,65.143296292
+no permission required fall 2026 classes,11.837399041000026,11674,20,faiss+rag-distributed-aws,2,0,0,65.143296292
+no permission required fall 2026 classes,14.483125459000007,14317,20,faiss+rag-distributed-aws,2,0,1,65.143296292
+no permission required fall 2026 classes,12.35678145899999,12120,20,faiss+rag-distributed-aws,2,0,2,65.143296292
+tuesday thursday history classes,9.109523582999941,9039,0,faiss+rag-distributed-aws,2,0,0,65.143296292
+tuesday thursday history classes,9.321548667000002,9192,0,faiss+rag-distributed-aws,2,0,1,65.143296292
+tuesday thursday history classes,9.091171916999997,9020,0,faiss+rag-distributed-aws,2,0,2,65.143296292
+computer science systems courses,7.907576875000018,10005,40,faiss+rag-distributed-aws,2,0,0,65.143296292
+computer science systems courses,10.791672625000047,10557,40,faiss+rag-distributed-aws,2,0,1,65.143296292
+computer science systems courses,9.929439874999957,9473,40,faiss+rag-distributed-aws,2,0,2,65.143296292
+easy public health electives,11.177926458000002,10882,40,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+easy public health electives,11.939907417000086,11737,40,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+easy public health electives,10.691512750000015,10490,40,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+highly rated intro philosophy classes,10.912223541999992,10710,40,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+highly rated intro philosophy classes,10.932835208000029,10723,40,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+highly rated intro philosophy classes,11.45261816599998,11260,40,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+distributed systems courses with less homework,12.188259832999961,11985,40,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+distributed systems courses with less homework,11.293195707999985,11088,40,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+distributed systems courses with less homework,11.869778333999989,11642,40,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+WRIT classes in neuroscience,10.586055875000056,10392,40,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+WRIT classes in neuroscience,10.61816920800004,10418,40,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+WRIT classes in neuroscience,11.331832625000061,11120,40,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+engineering classes with hands-on components,13.494114875000037,13263,40,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+engineering classes with hands-on components,10.641208749999919,10408,40,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+engineering classes with hands-on components,10.583792916999982,10342,40,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+no permission required fall 2026 classes,14.480627459000061,14277,20,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+no permission required fall 2026 classes,16.76302179100003,16522,20,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+no permission required fall 2026 classes,14.388609624999958,14217,20,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+tuesday thursday history classes,10.60419441700003,10524,0,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+tuesday thursday history classes,10.758857499999976,10688,0,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+tuesday thursday history classes,10.650484042000016,10513,0,faiss+rag-distributed-aws,3,0,2,72.64896245900002
+computer science systems courses,12.315087250000033,12084,40,faiss+rag-distributed-aws,3,0,0,72.64896245900002
+computer science systems courses,11.309348624999984,10942,40,faiss+rag-distributed-aws,3,0,1,72.64896245900002
+computer science systems courses,10.788342083999964,10446,40,faiss+rag-distributed-aws,3,0,2,72.64896245900002

@@ -1,0 +1,40 @@
+{
+  "region": "us-east-2",
+  "project_tag": "CAB",
+  "ssh_user": "ubuntu",
+  "ssh_key": "/Users/IsaacBrownAccount/Downloads/cab-dev-key.pem",
+  "app_dir": "~/CAB",
+  "coordinator": {
+    "name": "cab-coordinator-1",
+    "instance_id": "i-034d014ed2fbc3b8c",
+    "private_ip": "172.31.10.23",
+    "public_ip": "3.22.61.95",
+    "ssh_host": "ubuntu@3.22.61.95"
+  },
+  "workers": [
+    {
+      "name": "worker0",
+      "worker_index": 0,
+      "instance_id": "i-0a46052bf6011a074",
+      "private_ip": "172.31.4.0",
+      "public_ip": "3.135.217.171",
+      "ssh_host": "ubuntu@3.135.217.171"
+    },
+    {
+      "name": "worker1",
+      "worker_index": 1,
+      "instance_id": "i-02afe58cce9af9d16",
+      "private_ip": "172.31.10.185",
+      "public_ip": "3.17.174.67",
+      "ssh_host": "ubuntu@3.17.174.67"
+    },
+    {
+      "name": "worker2",
+      "worker_index": 2,
+      "instance_id": "i-0d660e5ebef262f9b",
+      "private_ip": "172.31.4.201",
+      "public_ip": "18.217.187.59",
+      "ssh_host": "ubuntu@18.217.187.59"
+    }
+  ]
+}

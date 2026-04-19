@@ -179,7 +179,7 @@ function _distFaissSearch(queryVec, k, filters, searchId, cb) {
     }
 
     var queryVector = ${queryVecJson};
-    var results = hasFilters ? searchFn(queryVector, ${k}, filters) : searchFn(queryVector, ${k});
+    var results = globalThis.__localFaissSearch(queryVector, ${faissK});
     console.log('[worker-query] local FAISS returned ' + results.length + ' hits');
     if (results.length > 0) {
       console.log('[worker-query] top local codes: ' + results.slice(0, 5).map(function(r) { return r.code; }).join(', '));
