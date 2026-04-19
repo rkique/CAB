@@ -42,7 +42,7 @@ function checkRateLimit(ip) {
 }
 
 function getClientIP(req) {
-  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress;
+  return req.socket.remoteAddress;
 }
 
 const {OpenAI} = require('openai');
@@ -72,6 +72,59 @@ const {
 let allKeys = [];
 let totalDocs = 0;
 let openaiClient = null;
+
+// Concurrency limiter — prevents the distribution framework from being
+// overwhelmed when many requests arrive simultaneously.
+const MAX_CONCURRENT_SEARCHES = 3;
+let activeSearches = 0;
+const searchQueue = [];
+
+function runWithLimit(fn) {
+  return new Promise((resolve, reject) => {
+    const run = () => {
+      activeSearches++;
+      fn().then(resolve, reject).finally(() => {
+        activeSearches--;
+        if (searchQueue.length > 0) searchQueue.shift()();
+      });
+    };
+    if (activeSearches < MAX_CONCURRENT_SEARCHES) run();
+    else searchQueue.push(run);
+  });
+}
+
+// LRU cache — serves repeated queries instantly without hitting OpenAI or
+// the distribution layer. Keys are normalized query strings.
+const CACHE_MAX_SIZE = 100;
+const CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutes
+const searchCache = new Map(); // key -> { result, expiresAt }
+
+function cacheKey(query) {
+  return query.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function cacheGet(query) {
+  const key = cacheKey(query);
+  const entry = searchCache.get(key);
+  if (!entry) return null;
+  if (Date.now() > entry.expiresAt) { searchCache.delete(key); return null; }
+  searchCache.delete(key);
+  searchCache.set(key, entry);
+  return entry.result;
+}
+
+function cachePut(query, result) {
+  const key = cacheKey(query);
+  if (searchCache.size >= CACHE_MAX_SIZE) {
+    searchCache.delete(searchCache.keys().next().value);
+  }
+  searchCache.set(key, { result, expiresAt: Date.now() + CACHE_TTL_MS });
+}
+
+// In-flight map — if multiple identical queries arrive while one is already
+// running, they share the same Promise instead of each hitting the distribution
+// framework separately (thundering herd protection).
+const inFlight = new Map(); // cacheKey -> Promise<result>
 
 function normalizeSpaces(str) {
   return String(str || '').replace(/\s+/g, ' ').trim();
@@ -271,12 +324,23 @@ function searchFaissLocal(queryVec, filters, t0, cb) {
       ...localIndex[code],
       score,
     }));
-    const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
 
-    console.log(`[local] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}`);
+    // Apply ALL filters to find true full matches
+    const fullFilterMatches = applyFilters(filteredFull, filters);
+    // Apply only dept filter for partial matches (when full filters yield nothing)
+    const deptOnlyMatches = applyFilters(filteredFull, departmentStages[0]);
+
+    console.log(`[local] dept-priority stages: ${departmentStages.length}, full-filter: ${fullFilterMatches.length}, dept-only: ${deptOnlyMatches.length}`);
+
+    // Identify which filters were not satisfied when we have partial but not full matches
+    const unmatchedFilters = fullFilterMatches.length === 0 && deptOnlyMatches.length > 0
+      ? filters.filter((f) => !departmentStages[0].some((sf) => sf.field === f.field && sf.op === f.op))
+      : [];
 
     return cb(null, {
-      filteredResults: filteredSectioned.slice(0, topK),
+      filteredResults: fullFilterMatches.slice(0, topK),
+      partialMatches: fullFilterMatches.length === 0 ? deptOnlyMatches.slice(0, topK) : [],
+      unmatchedFilters,
       unfilteredResults: unfilteredFull.slice(0, topK),
       time_ms: Date.now() - t0,
       total_docs: totalDocs,
@@ -441,12 +505,21 @@ function searchFaiss(queryVec, filters, t0, cb) {
           _hydrateResults(prioritizedMerged, (hydrateErr, filteredFull) => {
             if (hydrateErr) return cb(hydrateErr);
 
-            const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
+            // Apply ALL filters to find true full matches
+            const fullFilterMatches = applyFilters(filteredFull, filters);
+            // Apply only dept filter for partial matches (when full filters yield nothing)
+            const deptOnlyMatches = applyFilters(filteredFull, departmentStages[0]);
 
-            console.log(`[dist] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}, unfiltered: ${unfilteredFull.length}`);
+            console.log(`[dist] dept-priority stages: ${departmentStages.length}, full-filter: ${fullFilterMatches.length}, dept-only: ${deptOnlyMatches.length}, unfiltered: ${unfilteredFull.length}`);
+
+            const unmatchedFilters = fullFilterMatches.length === 0 && deptOnlyMatches.length > 0
+              ? filters.filter((f) => !departmentStages[0].some((sf) => sf.field === f.field && sf.op === f.op))
+              : [];
 
             cb(null, {
-              filteredResults: filteredSectioned.slice(0, topK),
+              filteredResults: fullFilterMatches.slice(0, topK),
+              partialMatches: fullFilterMatches.length === 0 ? deptOnlyMatches.slice(0, topK) : [],
+              unmatchedFilters,
               unfilteredResults: unfilteredFull.slice(0, topK),
               time_ms: Date.now() - t0,
               total_docs: totalDocs,
@@ -516,10 +589,13 @@ async function search(queryStr, cb) {
       try {
         const {answer, cited_courses} = await generateRAGResponse(
           getOpenAIClient(),
-          rewordedQuery || queryStr,
+          queryStr,
           faissResult.filteredResults,
           faissResult.unfilteredResults,
+          faissResult.partialMatches || [],
+          faissResult.unmatchedFilters || [],
         );
+        //pass faiss results to UI for display regardless of RAG success.
         cb(null, {
           answer,
           cited_courses,
@@ -544,8 +620,10 @@ async function search(queryStr, cb) {
 // --- HTTP server ---
 function startHTTPServer() {
   const htmlPath = path.join(__dirname, 'search.html');
-
+  // Basic static file server for the search UI
   const server = http.createServer((req, res) => {
+    req.on('error', () => {});
+    res.on('error', () => {});
     if (req.method === 'GET' && (req.url === '/' || req.url === '/index.html')) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(fs.readFileSync(htmlPath, 'utf8'));
@@ -553,7 +631,14 @@ function startHTTPServer() {
     }
 
     if (req.method === 'GET' && req.url.startsWith('/images/')) {
+      const imagesDir = path.join(__dirname, 'images');
       const filePath = path.join(__dirname, req.url);
+      // Prevent path traversal: resolved path must stay inside imagesDir
+      if (!filePath.startsWith(imagesDir + path.sep) && filePath !== imagesDir) {
+        res.writeHead(403);
+        res.end('Forbidden');
+        return;
+      }
       if (fs.existsSync(filePath)) {
         const ext = path.extname(filePath).toLowerCase();
         const types = {'.png': 'image/png', '.jpg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml', '.ico': 'image/x-icon'};
@@ -565,6 +650,7 @@ function startHTTPServer() {
 
     if (req.method === 'POST' && req.url === '/search') {
       const clientIP = getClientIP(req);
+      // Rate limit check
       if (!checkRateLimit(clientIP)) {
         res.writeHead(429, {'Content-Type': 'application/json'});
         res.end(JSON.stringify({error: 'Daily request limit reached. Please try again tomorrow.'}));
@@ -574,6 +660,7 @@ function startHTTPServer() {
       let body = '';
       req.on('data', (chunk) => { body += chunk.toString(); });
       req.on('end', () => {
+        if (res.writableEnded) return; // already responded (e.g. 413)
         try {
           const {query} = JSON.parse(body);
           if (!query || typeof query !== 'string') {
@@ -586,15 +673,45 @@ function startHTTPServer() {
             res.end(JSON.stringify({error: `Query too long (max ${MAX_QUERY_LENGTH} characters).`}));
             return;
           }
-          search(query, (err, result) => {
-            if (err) {
-              console.error('Search error:', err);
-              res.writeHead(500, {'Content-Type': 'application/json'});
-              res.end(JSON.stringify({error: err.message}));
-              return;
-            }
+          const sendResult = (result, fromCache) => {
+            if (res.writableEnded) return;
             res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(result));
+            res.end(JSON.stringify(fromCache ? { ...result, cached: true } : result));
+          };
+
+          const sendError = (err) => {
+            if (res.writableEnded) return;
+            console.error('Search error:', err);
+            res.writeHead(500, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({error: 'Search failed. Please try again.'}));
+          };
+
+          const key = cacheKey(query);
+          const cached = cacheGet(query);
+          if (cached) {
+            sendResult(cached, true);
+            return;
+          }
+
+          if (inFlight.has(key)) {
+            inFlight.get(key).then((r) => sendResult(r, true)).catch(sendError);
+            return;
+          }
+
+          const promise = runWithLimit(() => new Promise((resolve, reject) => {
+            search(query, (err, result) => {
+              if (err) reject(err); else resolve(result);
+            });
+          }));
+
+          inFlight.set(key, promise);
+          promise.then((result) => {
+            inFlight.delete(key);
+            cachePut(query, result);
+            sendResult(result, false);
+          }).catch((err) => {
+            inFlight.delete(key);
+            sendError(err);
           });
         } catch (e) {
           res.writeHead(400, {'Content-Type': 'application/json'});
@@ -607,6 +724,8 @@ function startHTTPServer() {
     res.writeHead(404);
     res.end('Not found');
   });
+
+  server.keepAliveTimeout = 0;
 
   server.listen(HTTP_PORT, '0.0.0.0', () => {
     console.log(`Search UI at http://localhost:${HTTP_PORT}`);
