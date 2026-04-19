@@ -324,12 +324,23 @@ function searchFaissLocal(queryVec, filters, t0, cb) {
       ...localIndex[code],
       score,
     }));
-    const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
 
-    console.log(`[local] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}`);
+    // Apply ALL filters to find true full matches
+    const fullFilterMatches = applyFilters(filteredFull, filters);
+    // Apply only dept filter for partial matches (when full filters yield nothing)
+    const deptOnlyMatches = applyFilters(filteredFull, departmentStages[0]);
+
+    console.log(`[local] dept-priority stages: ${departmentStages.length}, full-filter: ${fullFilterMatches.length}, dept-only: ${deptOnlyMatches.length}`);
+
+    // Identify which filters were not satisfied when we have partial but not full matches
+    const unmatchedFilters = fullFilterMatches.length === 0 && deptOnlyMatches.length > 0
+      ? filters.filter((f) => !departmentStages[0].some((sf) => sf.field === f.field && sf.op === f.op))
+      : [];
 
     return cb(null, {
-      filteredResults: filteredSectioned.slice(0, topK),
+      filteredResults: fullFilterMatches.slice(0, topK),
+      partialMatches: fullFilterMatches.length === 0 ? deptOnlyMatches.slice(0, topK) : [],
+      unmatchedFilters,
       unfilteredResults: unfilteredFull.slice(0, topK),
       time_ms: Date.now() - t0,
       total_docs: totalDocs,
@@ -494,12 +505,21 @@ function searchFaiss(queryVec, filters, t0, cb) {
           _hydrateResults(prioritizedMerged, (hydrateErr, filteredFull) => {
             if (hydrateErr) return cb(hydrateErr);
 
-            const filteredSectioned = applyFilters(filteredFull, departmentStages[0]);
+            // Apply ALL filters to find true full matches
+            const fullFilterMatches = applyFilters(filteredFull, filters);
+            // Apply only dept filter for partial matches (when full filters yield nothing)
+            const deptOnlyMatches = applyFilters(filteredFull, departmentStages[0]);
 
-            console.log(`[dist] dept-priority stages: ${departmentStages.length}, returned: ${filteredSectioned.length}, unfiltered: ${unfilteredFull.length}`);
+            console.log(`[dist] dept-priority stages: ${departmentStages.length}, full-filter: ${fullFilterMatches.length}, dept-only: ${deptOnlyMatches.length}, unfiltered: ${unfilteredFull.length}`);
+
+            const unmatchedFilters = fullFilterMatches.length === 0 && deptOnlyMatches.length > 0
+              ? filters.filter((f) => !departmentStages[0].some((sf) => sf.field === f.field && sf.op === f.op))
+              : [];
 
             cb(null, {
-              filteredResults: filteredSectioned.slice(0, topK),
+              filteredResults: fullFilterMatches.slice(0, topK),
+              partialMatches: fullFilterMatches.length === 0 ? deptOnlyMatches.slice(0, topK) : [],
+              unmatchedFilters,
               unfilteredResults: unfilteredFull.slice(0, topK),
               time_ms: Date.now() - t0,
               total_docs: totalDocs,
@@ -569,9 +589,11 @@ async function search(queryStr, cb) {
       try {
         const {answer, cited_courses} = await generateRAGResponse(
           getOpenAIClient(),
-          rewordedQuery || queryStr,
+          queryStr,
           faissResult.filteredResults,
           faissResult.unfilteredResults,
+          faissResult.partialMatches || [],
+          faissResult.unmatchedFilters || [],
         );
         //pass faiss results to UI for display regardless of RAG success.
         cb(null, {
