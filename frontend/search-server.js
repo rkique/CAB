@@ -21,7 +21,7 @@ let localIndex = null;
 
 // --- Rate limiting ---
 const MAX_QUERY_LENGTH = 500;
-const MAX_REQUESTS_PER_DAY = 25;
+const MAX_REQUESTS_PER_DAY = 250;
 const rateLimitMap = new Map();
 
 function getRateLimitInfo(ip) {
@@ -577,16 +577,27 @@ function searchFaiss(queryVec, filters, t0, cb) {
 
 async function search(queryStr, cb) {
   const t0 = Date.now();
+  const timing = {};
   const faissSearchFn = LOCAL_MODE ? searchFaissLocal : searchFaiss;
 
   try {
+    const tPreQuery = Date.now();
     const { filters, rewordedQuery } = await preQueryReword(queryStr);
-    console.log(`[search] original: "${queryStr}" → reworded: "${rewordedQuery}" | filters: ${JSON.stringify(filters)}`);
-    const queryVec = await getQueryVector(queryStr, rewordedQuery, filters);
+    timing.prequery_ms = Date.now() - tPreQuery;
 
+    console.log(`[search] original: "${queryStr}" → reworded: "${rewordedQuery}" | filters: ${JSON.stringify(filters)}`);
+
+    const tEmbed = Date.now();
+    const queryVec = await getQueryVector(queryStr, rewordedQuery, filters);
+    timing.embedding_ms = Date.now() - tEmbed;
+
+    const tFaiss = Date.now();
     faissSearchFn(queryVec, filters, t0, async (err, faissResult) => {
+      timing.faiss_ms = Date.now() - tFaiss;
+
       if (err) return cb(err);
       try {
+        const tRag = Date.now();
         const {answer, cited_courses} = await generateRAGResponse(
           getOpenAIClient(),
           queryStr,
@@ -595,20 +606,27 @@ async function search(queryStr, cb) {
           faissResult.partialMatches || [],
           faissResult.unmatchedFilters || [],
         );
+        timing.rag_ms = Date.now() - tRag;
+        timing.total_ms = Date.now() - t0;
+
+        console.log(`[timing] prequery: ${timing.prequery_ms}ms, embedding: ${timing.embedding_ms}ms, faiss: ${timing.faiss_ms}ms, rag: ${timing.rag_ms}ms, total: ${timing.total_ms}ms`);
+
         //pass faiss results to UI for display regardless of RAG success.
         cb(null, {
           answer,
           cited_courses,
           filteredResults: faissResult.filteredResults,
           unfilteredResults: faissResult.unfilteredResults,
-          time_ms: Date.now() - t0,
+          time_ms: timing.total_ms,
+          timing,
           total_docs: faissResult.total_docs,
           mode: 'faiss+rag',
           filters: faissResult.filters,
         });
       } catch (ragErr) {
         console.warn('RAG generation failed, returning FAISS results only:', ragErr.message);
-        cb(null, faissResult);
+        timing.total_ms = Date.now() - t0;
+        cb(null, { ...faissResult, timing });
       }
     });
   } catch (err) {
