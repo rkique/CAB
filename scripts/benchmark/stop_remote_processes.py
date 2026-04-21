@@ -40,7 +40,7 @@ def main() -> None:
         "tmux kill-session -t worker2 2>/dev/null || true; "
         "tmux kill-session -t worker3 2>/dev/null || true; "
         "pkill -f '[w]orker-server-faiss.js' || true; "
-        "pkill -f '[f]rontend/search-server-distributed.js' || true; "
+        "pkill -f '[f]rontend/search-server.js' || true; "
         "echo stopped"
     )
 

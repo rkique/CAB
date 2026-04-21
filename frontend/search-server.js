@@ -13,11 +13,27 @@ globalThis.__buildLocalFaiss = buildLocalFaiss;
 globalThis.__localFaissSearch = localSearch;
 globalThis.__localFaissSearchFiltered = localSearchFiltered;
 
+const DEPLOY_MODE = process.env.DEPLOY_MODE || 'distributed';
 const LOCAL_MODE = process.argv.includes('--local');
-const DIST_PORT = 3001;
-const HTTP_PORT = 3000;
-const GID = 'courses';
+
+const CLUSTER_PATH = process.env.CLUSTER_CONFIG
+  ? path.resolve(process.env.CLUSTER_CONFIG)
+  : path.join(__dirname, '..', 'cluster.aws.json');
+
+if (!fs.existsSync(CLUSTER_PATH)) {
+  console.error(`Missing cluster config: ${CLUSTER_PATH}`);
+  process.exit(1);
+}
+
+const cluster = JSON.parse(fs.readFileSync(CLUSTER_PATH, 'utf8'));
+const coordinator = cluster.coordinator;
+const GID = cluster.gid || 'courses';
+const DIST_PORT = coordinator.distPort;
+const HTTP_PORT = coordinator.httpPort;
+
 let localIndex = null;
+
+
 
 // --- Rate limiting ---
 const MAX_QUERY_LENGTH = 500;
@@ -50,7 +66,10 @@ const {OpenAI} = require('openai');
 const keyPath = path.join(__dirname, '..', 'data', 'openai.key');
 const OPENAI_API_KEY = fs.readFileSync(keyPath, 'utf8').trim();
 
-const distribution = require('../distribution.js')({ip: '127.0.0.1', port: DIST_PORT});
+const distribution = require('../distribution.js')({
+  ip: coordinator.ip,
+  port: DIST_PORT,
+});
 
 const EMBEDDING_MODEL = 'text-embedding-3-small';
 const EMBEDDING_DIMENSIONS = 256;
@@ -225,14 +244,34 @@ function startDistributionNode(cb) {
   });
 }
 
-function setupGroup(cb) {
+function logGroup(label, group) {
+  console.log(`[coordinator] ${label}`);
+  for (const [sid, node] of Object.entries(group)) {
+    console.log(`  sid=${sid} -> ${node.ip}:${node.port}`);
+  }
+}
+
+function buildWorkerGroup() {
   const id = distribution.util.id;
-  const node = distribution.node.config;
   const group = {};
-  group[id.getSID(node)] = node;
-  distribution.local.groups.put({gid: GID}, group, (e) => {
-    if (e) return cb(e);
-    console.log(`Group '${GID}' created`);
+  for (const w of cluster.workers) {
+    const node = { ip: w.ip, port: w.distPort };
+    group[id.getSID(node)] = node;
+  }
+  return group;
+}
+
+function setupWorkerGroup(cb) {
+  const group = buildWorkerGroup();
+  logGroup('installing worker group', group);
+
+  distribution.local.groups.put({ gid: GID }, group, (err, installed) => {
+    if (err) return cb(err);
+
+    console.log(
+      `[coordinator] local.groups.put returned ${Object.keys(installed || {}).length} workers`
+    );
+    logGroup('installed worker group', installed || group);
     cb();
   });
 }
@@ -491,7 +530,7 @@ function searchFaiss(queryVec, filters, t0, cb) {
           unfilteredResults: unfilteredFull.slice(0, topK),
           time_ms: Date.now() - t0,
           total_docs: totalDocs,
-          mode: 'faiss',
+          mode: `faiss-${DEPLOY_MODE}`,
           filters,
         });
       }
@@ -523,7 +562,7 @@ function searchFaiss(queryVec, filters, t0, cb) {
               unfilteredResults: unfilteredFull.slice(0, topK),
               time_ms: Date.now() - t0,
               total_docs: totalDocs,
-              mode: 'faiss',
+              mode: `faiss-${DEPLOY_MODE}`,
               filters,
             });
           });
@@ -566,7 +605,7 @@ function searchFaiss(queryVec, filters, t0, cb) {
             unfilteredResults: unfilteredFull.slice(0, topK),
             time_ms: Date.now() - t0,
             total_docs: totalDocs,
-            mode: 'faiss',
+            mode: `faiss-${DEPLOY_MODE}`,
             filters,
           });
         });
@@ -620,7 +659,7 @@ async function search(queryStr, cb) {
           time_ms: timing.total_ms,
           timing,
           total_docs: faissResult.total_docs,
-          mode: 'faiss+rag',
+          mode: `faiss+rag-${DEPLOY_MODE}`,
           filters: faissResult.filters,
         });
       } catch (ragErr) {
@@ -782,17 +821,24 @@ if (require.main === module) {
       startHTTPServer();
     });
   } else {
-    startDistributionNode(() => {
-      setupGroup((e) => {
-        if (e) {
-          console.error('Group setup failed:', e);
+    startDistributionNode((err) => {
+      if (err) {
+        console.error('Coordinator start failed:', err);
+        process.exit(1);
+      }
+
+      setupWorkerGroup((groupErr) => {
+        if (groupErr) {
+          console.error('Worker group setup failed:', groupErr);
           process.exit(1);
         }
-        loadIndex((e) => {
-          if (e && Object.values(e).length > 0) {
-            console.error('Course loading failed:', e);
+
+        loadIndex((loadErr) => {
+          if (loadErr && Object.values(loadErr).length > 0) {
+            console.error('Distributed index load failed:', loadErr);
             process.exit(1);
           }
+
           startHTTPServer();
         });
       });

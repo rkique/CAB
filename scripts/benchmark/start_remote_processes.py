@@ -66,7 +66,7 @@ def main() -> None:
         f"tmux new-session -d -s coordinator "
         f"'cd {app_dir} && mkdir -p logs && "
         f"DEPLOY_MODE=distributed-aws CLUSTER_CONFIG=./cluster.aws.json "
-        f"node frontend/search-server-distributed.js > logs/coordinator.log 2>&1'"
+        f"node frontend/search-server.js > logs/coordinator.log 2>&1'"
     )
 
     time.sleep(3)
