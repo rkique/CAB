@@ -18,6 +18,31 @@ $ npm i '@brown-ds/distribution'
 
 This command downloads and installs the distribution library.
 
+## Local Course Search Server
+
+Run the local search UI from the CAB root directory:
+
+```sh
+npm install
+node frontend/search-server.js --local
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+Notes:
+- The local server expects an OpenAI key at `data/openai.key`.
+- If port 3000 is already in use, stop the existing process and rerun the command above.
+
+## Search UI Images
+
+![Bruno Course Search UI](frontend/images/bruno.png)
+
+![Brown University Image](frontend/images/brown_u.jpg)
+
 ## Testing
 
 There are several categories of tests:
