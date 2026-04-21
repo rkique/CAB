@@ -69,8 +69,17 @@ function formatCourse(c) {
   return obj;
 }
 
-function buildContext(bestMatches, otherCandidates) {
+function formatFilterDescription(f) {
+  const val = Array.isArray(f.value) ? f.value.join(', ') : f.value;
+  return `${f.field} ${f.op} ${val}`;
+}
+
+function buildContext(bestMatches, otherCandidates, partialMatches, unmatchedFilters, note) {
   const context = {};
+
+  if (note) {
+    context.query_note = note;
+  }
 
   if (bestMatches.length > 0) {
     context.best_matches = {
@@ -81,6 +90,17 @@ function buildContext(bestMatches, otherCandidates) {
     context.best_matches = {
       label: 'No courses matched all specified filters',
       courses: [],
+    };
+  }
+
+  if (partialMatches && partialMatches.length > 0) {
+    const unmatchedDesc = unmatchedFilters && unmatchedFilters.length > 0
+      ? unmatchedFilters.map(formatFilterDescription).join('; ')
+      : 'unknown';
+    context.partial_matches = {
+      label: `Courses matching department filter but NOT: ${unmatchedDesc}`,
+      note: 'These courses match the department/subject but do not satisfy all requested filters. Inform the student which filters could not be satisfied.',
+      courses: partialMatches.map(formatCourse),
     };
   }
 
@@ -113,12 +133,35 @@ function cleanAnswer(text) {
   return text.replace(/\n?CITED_COURSES:\s*\[.*\]/, '').trim();
 }
 
-async function generateRAGResponse(client, query, bestMatches, otherCandidates) {
-  console.log(`[rag] ${bestMatches.map((c) => c.code).join(', ')} matched all filters`);
+function sanitizeQuery(query) {
+  // Strip any CITED_COURSES pattern so a crafted query can't poison the parser
+  return query.replace(/CITED_COURSES\s*:\s*\[.*?\]/gi, '').trim();
+}
+
+
+async function generateRAGResponse(client, query, bestMatches, otherCandidates, partialMatches, unmatchedFilters) {
+  partialMatches = partialMatches || [];
+  unmatchedFilters = unmatchedFilters || [];
+
+  // Auto-generate note when partial matches exist but no full matches
+  let note = null;
+  if (bestMatches.length === 0 && partialMatches.length > 0 && unmatchedFilters.length > 0) {
+    const unmatchedDesc = unmatchedFilters.map(formatFilterDescription).join(', ');
+    note = `No courses matched all filters. The following constraints were not satisfied: ${unmatchedDesc}.`;
+  }
+
+  console.log(`[rag] ${bestMatches.map((c) => c.code).join(', ') || '(none)'} matched all filters`);
+  if (partialMatches.length > 0) {
+    console.log(`[rag] ${partialMatches.map((c) => c.code).join(', ')} partial matches (unmet: ${unmatchedFilters.map(formatFilterDescription).join('; ')})`);
+  }
   console.log(`[rag] ${otherCandidates.map((c) => c.code).join(', ')} other relevant candidates`);
+  if (note) console.log(`[rag] query note: ${note}`);
   const context = buildContext(
     bestMatches.slice(0, MAX_CONTEXT_COURSES),
     otherCandidates.slice(0, MAX_CONTEXT_COURSES),
+    partialMatches.slice(0, MAX_CONTEXT_COURSES),
+    unmatchedFilters,
+    note,
   );
 
   const response = await client.chat.completions.create({
