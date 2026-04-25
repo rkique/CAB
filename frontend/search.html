@@ -27,7 +27,6 @@
       max-width: 840px;
       min-height: auto;
       margin: 60px auto;
-      padding: 0 24px 60px;
       color: #000;
       background: #f0f0f0;
       border-radius: 12px;
@@ -37,17 +36,17 @@
       justify-content: center;
       align-items: center;
     }
+
     body > * { width: 100%; }
 
     /* Header */
     .header {
       text-align: center;
-      padding: 48px 0 32px;
+      padding: 0 0 0 0;
     }
     .header img {
-      width: 400px;
+      width: 20em;
       height: auto;
-      margin-bottom: 12px;
     }
     .header h1 {
       font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
@@ -63,16 +62,22 @@
       font-weight: 400;
       font-style: italic;
       color: #888;
-      margin-top: 4px;
+      padding: 4em 0 0em 0;
+      margin: 0 0 0 0;
     }
     .subtitle {
+      font-size: 1.5rem;
       font-style: regular;
+    }
+    .interface {
+      margin: 2em 1em 2em 1em;
+      padding: 2em 1em 2em 1em;
     }
     /* Search */
     .search-bar {
+      margin: 3rem 0 3rem 0;
       display: flex;
       gap: 0;
-      margin-bottom: 28px;
       border: 1.5px solid #c8c3bb;
       border-radius: 8px;
       overflow: hidden;
@@ -83,7 +88,7 @@
     .search-bar input[type="text"] {
       flex: 1;
       padding: 14px 18px;
-      font-size: 15px;
+      font-size: 1.3rem;
       font-family: 'Inter', sans-serif;
       border: none;
       outline: none;
@@ -167,7 +172,7 @@
     }
     .data-info summary {
       text-decoration: underline;
-      font-size: 13px;
+      font-size: 1.1rem;
       color: #999;
       cursor: pointer;
       list-style: none;
@@ -321,30 +326,22 @@
   </style>
 </head>
 <body>
+<div class="interface">
   <div class="header">
     <img src="images/bruno.png" width="300%" alt="Bruno">
-    <h1><i>Bruno</i>RAG</h1>
-    <div class="subtitle">The best way to plan shopping period </div>
   </div>
 
   <div class="toolbar" id="toolbar" style="cursor:pointer" onclick="exitResultsMode()">
-    <img src="images/bruno.png" alt="Bruno">
-    <h1>BrunoRAG</h1>
+    <img src="images/bruno_tr.png" alt="Bruno">
   </div>
 
   <form id="searchForm">
     <div class="search-bar">
-      <input type="text" id="query" placeholder="classes on physics in earth sciences" maxlength="500" autofocus>
+      <input type="text" id="query" placeholder="apma-econ electives" maxlength="500" autofocus>
       <button type="submit" id="btn">&#9654;</button>
     </div>
   </form>
 
-  <details class="data-info">
-    <summary>What's being searched?</summary>
-    <div class="info-body">
-      BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also draws from Critical Review data and other publically available data sources.
-    </div>
-  </details>
 
   <div class="example-queries">
     <button class="example-query" onclick="document.getElementById('query').value=this.dataset.q;document.getElementById('searchForm').dispatchEvent(new Event('submit'))" data-q="like math 1530 but more chill">
@@ -422,6 +419,13 @@
       <span class="example-text">WRIT classes in economics</span>
     </button>
   </div>
+
+  <details class="data-info">
+    <summary>What's being searched?</summary>
+    <div class="info-body">
+      BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also draws from Critical Review data and other publically available data sources.
+    </div>
+  </details>
 
   <div id="loading">
     <div class="loading-msg" id="loadingMsg"></div>
@@ -626,5 +630,6 @@
       return d.innerHTML;
     }
   </script>
+</div>
 </body>
 </html>

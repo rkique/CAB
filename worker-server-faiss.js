@@ -32,6 +32,7 @@ const distribution = require('./distribution.js')({
   port: worker.distPort,
 });
 
+//Instantiate buildLocalFaiss, Search, and SearchFiltered --- these are called on individual nodes.
 const { buildLocalFaiss, localSearch, localSearchFiltered } = require('./scripts/localIndex.js');
 
 globalThis.__buildLocalFaiss = buildLocalFaiss;
@@ -57,7 +58,6 @@ function logWorkerGroup(label, group) {
       console.log(`  sid=${sid} -> ${node.ip}:${node.port}`);
     }
   }
-
 
 function startDistributionNode(cb) {
   distribution.node.start((err) => {

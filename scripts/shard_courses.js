@@ -21,7 +21,7 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const idUtil = require('../distribution/util/id.js');
+const idUtil = require('@brown-ds/distribution')().util.id;
 
 const ROOT = path.resolve(__dirname, '..');
 const CLUSTER_PATH = process.env.CLUSTER_CONFIG ?

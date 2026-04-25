@@ -32,6 +32,7 @@ function parseDays(meets) {
     return days;
 }
 
+//Builds a mapping of courses by their ${crn}{srcdb} to a courses_overview object.
 async function buildCourseMap() {
     console.log('-------------- courses_overview.json -----------------');
     const raw = JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8'));
@@ -65,15 +66,13 @@ function parseSrcdb(srcdb) {
   };
 }
 
+// Using the courseMap and embeddings file, creates an index file.
 async function buildIndex(courseMap) {
     console.log('---------------- building index --------------');
-
     const index = {};
     let seen = 0;
     let skipped = 0;
-
     const rl = readline.createInterface({input : fs.createReadStream(EMBEDDINGS_FILE)});
-
     for await (const line of rl) {
         if (!line.trim()) continue;
 
