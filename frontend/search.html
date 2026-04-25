@@ -96,9 +96,6 @@
       height: 16px;
       cursor: pointer;
     }
-    .form-options .data-info {
-      margin-bottom: 0;
-    }
     .search-bar {
       display: flex;
       gap: 0;
@@ -162,7 +159,7 @@
       min-height: auto;
     }
     body.results-mode .header { display: none; }
-    body.results-mode .data-info { display: none; }
+    body.results-mode .data-info-link { display: none; }
     body.results-mode .toolbar { display: flex; }
 
     /* Loading indicator */
@@ -189,31 +186,57 @@
       40% { opacity: 1; }
     }
 
-    /* Data info collapsible */
-    .data-info {
-      margin-bottom: 24px;
-      text-align: center;
-    }
-    .data-info summary {
+    /* Data info modal */
+    .data-info-link {
       text-decoration: underline;
       font-size: 1.1rem;
       color: #999;
       cursor: pointer;
-      list-style: none;
+      background: none;
+      border: none;
+      font-family: inherit;
     }
-    .data-info summary::-webkit-details-marker { display: none; }
-    .data-info summary::before { content: ''; }
-    .data-info[open] summary { margin-bottom: 8px; }
-    .data-info .info-body {
-      text-align: left;
-      font-size: 13px;
-      color: #777;
-      line-height: 1.6;
+    .data-info-link:hover { color: #666; }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
       background: #fff;
-      border: 1px solid #e0ddd8;
-      border-radius: 8px;
-      padding: 14px 18px;
+      border-radius: 10px;
+      padding: 28px 32px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      position: relative;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
     }
+    .modal-box h3 {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #999;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #333; }
 
     /* Example queries */
     .example-queries {
@@ -368,12 +391,7 @@
       <label class="fall26">
         <input type="checkbox" id="fallOnly"> Only search Fall '26
       </label>
-      <details class="data-info">
-        <summary>What's being searched?</summary>
-        <div class="info-body">
-          BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also uses Critical Review data and other open data sources.
-        </div>
-      </details>
+      <button type="button" class="data-info-link" onclick="document.getElementById('dataModal').classList.add('active')">What's being searched?</button>
     </div>
   </form>
 
@@ -658,6 +676,14 @@
       return d.innerHTML;
     }
   </script>
+</div>
+
+<div class="modal-overlay" id="dataModal" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('dataModal').classList.remove('active')">&times;</button>
+    <h3>What's being searched?</h3>
+    <p>BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also uses Critical Review data and other open data sources.</p>
+  </div>
 </div>
 </body>
 </html>

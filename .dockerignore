@@ -1,0 +1,16 @@
+node_modules/
+.git/
+shards/
+*.md
+tests/
+non-distribution/
+images/
+.eslintrc
+.shellcheckrc
+.gitattributes
+.gitignore
+.DS_Store
+tsconfig.json
+aws-vars.example.sh
+cluster.local.example.json
+start-workers.txt
