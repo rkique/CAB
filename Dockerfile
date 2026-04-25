@@ -7,6 +7,7 @@ COPY package.json package-lock.json ./
 RUN npm install --omit=dev
 
 # Copy source code
+COPY distribution.js distribution.js
 COPY distribution/ distribution/
 COPY scripts/ scripts/
 COPY frontend/search-server.js frontend/search-server.js
