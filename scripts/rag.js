@@ -150,11 +150,11 @@ async function generateRAGResponse(client, query, bestMatches, otherCandidates, 
     note = `No courses matched all filters. The following constraints were not satisfied: ${unmatchedDesc}.`;
   }
 
-  console.log(`[rag] ${bestMatches.map((c) => c.code).join(', ') || '(none)'} matched all filters`);
+  // console.log(`[rag] ${bestMatches.map((c) => c.code).join(', ') || '(none)'} matched all filters`);
   if (partialMatches.length > 0) {
-    console.log(`[rag] ${partialMatches.map((c) => c.code).join(', ')} partial matches (unmet: ${unmatchedFilters.map(formatFilterDescription).join('; ')})`);
+    // console.log(`[rag] ${partialMatches.map((c) => c.code).join(', ')} partial matches (unmet: ${unmatchedFilters.map(formatFilterDescription).join('; ')})`);
   }
-  console.log(`[rag] ${otherCandidates.map((c) => c.code).join(', ')} other relevant candidates`);
+  // console.log(`[rag] ${otherCandidates.map((c) => c.code).join(', ')} other relevant candidates`);
   if (note) console.log(`[rag] query note: ${note}`);
   const context = buildContext(
     bestMatches.slice(0, MAX_CONTEXT_COURSES),

@@ -74,8 +74,32 @@
       padding: 2em 1em 2em 1em;
     }
     /* Search */
-    .search-bar {
+    .search-form {
       margin: 3rem 0 3rem 0;
+    }
+    .form-options {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .fall26 {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 16.8px;
+      color: #666;
+      cursor: pointer;
+    }
+    .fall26 input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .form-options .data-info {
+      margin-bottom: 0;
+    }
+    .search-bar {
       display: flex;
       gap: 0;
       border: 1.5px solid #c8c3bb;
@@ -335,10 +359,21 @@
     <img src="images/bruno_tr.png" alt="Bruno">
   </div>
 
-  <form id="searchForm">
+  <form id="searchForm" class="search-form">
     <div class="search-bar">
-      <input type="text" id="query" placeholder="apma-econ electives" maxlength="500" autofocus>
+      <input type="text" id="query" placeholder="apma classes for biology concentrators" maxlength="500" autofocus>
       <button type="submit" id="btn">&#9654;</button>
+    </div>
+    <div class="form-options">
+      <label class="fall26">
+        <input type="checkbox" id="fallOnly"> Only search Fall '26
+      </label>
+      <details class="data-info">
+        <summary>What's being searched?</summary>
+        <div class="info-body">
+          BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also uses Critical Review data and other open data sources.
+        </div>
+      </details>
     </div>
   </form>
 
@@ -419,13 +454,6 @@
       <span class="example-text">WRIT classes in economics</span>
     </button>
   </div>
-
-  <details class="data-info">
-    <summary>What's being searched?</summary>
-    <div class="info-body">
-      BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also draws from Critical Review data and other publically available data sources.
-    </div>
-  </details>
 
   <div id="loading">
     <div class="loading-msg" id="loadingMsg"></div>
@@ -563,7 +591,7 @@
         const res = await fetch('/search', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({query})
+          body: JSON.stringify({query, fallOnly: document.getElementById('fallOnly').checked})
         });
         const data = await res.json();
 

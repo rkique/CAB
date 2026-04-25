@@ -575,14 +575,15 @@ function searchFaiss(queryVec, filters, t0, cb) {
   });
 }
 
-async function search(queryStr, cb) {
+async function search(queryStr, cb, userFilters = []) {
   const t0 = Date.now();
   const timing = {};
   const faissSearchFn = LOCAL_MODE ? searchFaissLocal : searchFaiss;
 
   try {
     const tPreQuery = Date.now();
-    const { filters, rewordedQuery } = await preQueryReword(queryStr);
+    const { filters: llmFilters, rewordedQuery } = await preQueryReword(queryStr);
+    const filters = [...llmFilters, ...userFilters];
     timing.prequery_ms = Date.now() - tPreQuery;
 
     console.log(`[search] original: "${queryStr}" → reworded: "${rewordedQuery}" | filters: ${JSON.stringify(filters)}`);
@@ -609,7 +610,7 @@ async function search(queryStr, cb) {
         timing.rag_ms = Date.now() - tRag;
         timing.total_ms = Date.now() - t0;
 
-        console.log(`[timing] prequery: ${timing.prequery_ms}ms, embedding: ${timing.embedding_ms}ms, faiss: ${timing.faiss_ms}ms, rag: ${timing.rag_ms}ms, total: ${timing.total_ms}ms`);
+        // console.log(`[timing] prequery: ${timing.prequery_ms}ms, embedding: ${timing.embedding_ms}ms, faiss: ${timing.faiss_ms}ms, rag: ${timing.rag_ms}ms, total: ${timing.total_ms}ms`);
 
         //pass faiss results to UI for display regardless of RAG success.
         cb(null, {
@@ -680,7 +681,12 @@ function startHTTPServer() {
       req.on('end', () => {
         if (res.writableEnded) return; // already responded (e.g. 413)
         try {
-          const {query} = JSON.parse(body);
+          const {query, fallOnly} = JSON.parse(body);
+          console.log(`[FALLONLY] FallOnly is ${fallOnly}`)
+          const userFilters = fallOnly ? [
+            {field: 'season', op: 'eq', value: 'Fall'},
+            {field: 'year', op: 'eq', value: 2026},
+          ] : [];
           if (!query || typeof query !== 'string') {
             res.writeHead(400, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({error: 'Missing query string'}));
@@ -704,8 +710,9 @@ function startHTTPServer() {
             res.end(JSON.stringify({error: 'Search failed. Please try again.'}));
           };
 
-          const key = cacheKey(query);
-          const cached = cacheGet(query);
+          const cacheQuery = fallOnly ? query + '::fallOnly' : query;
+          const key = cacheKey(cacheQuery);
+          const cached = cacheGet(cacheQuery);
           if (cached) {
             sendResult(cached, true);
             return;
@@ -719,13 +726,13 @@ function startHTTPServer() {
           const promise = runWithLimit(() => new Promise((resolve, reject) => {
             search(query, (err, result) => {
               if (err) reject(err); else resolve(result);
-            });
+            }, userFilters);
           }));
 
           inFlight.set(key, promise);
           promise.then((result) => {
             inFlight.delete(key);
-            cachePut(query, result);
+            cachePut(cacheQuery, result);
             sendResult(result, false);
           }).catch((err) => {
             inFlight.delete(key);
