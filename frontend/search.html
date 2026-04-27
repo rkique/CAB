@@ -224,7 +224,7 @@
       width: 90%;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       position: relative;
-      font-size: 14px;
+      font-size: 0.8em;
       color: #555;
       line-height: 1.7;
     }
@@ -285,7 +285,7 @@
       justify-content: center;
       width: 100%;
       height: 100%;
-      padding: 0 14px;
+      padding: 0.5em 0.4em;
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       color: #555;
@@ -380,6 +380,22 @@
     .show-more-btn:hover {
       background: #fdf5f5;
       border-color: #8b0000;
+    }
+
+    @media (max-width: 600px) {
+      body { margin: 4em 1em; }
+      .form-options * { font-size: 0.7em; }
+      .interface { margin: 0.5em 0.5em; padding: 1em 1em; }
+      .header img { width: 80%; min-width: 10vw; }
+      .search-form { margin: 1.5rem 0; }
+      .search-bar input[type="text"] { font-size: 0.7rem; padding: 0.2em 0.2em; }
+      .search-bar button { padding: 10px 14px; }
+      .example-queries { flex-direction: column; align-items: stretch; gap: 8px; }
+      .example-query { max-width: none; }
+      #answer { padding: 16px 14px; font-size: 13px; }
+      .course-card { padding: 12px 14px; }
+      .card-desc { font-size: 12px; }
+      .card-meta { font-size: 11px; }
     }
   </style>
 </head>
@@ -698,7 +714,9 @@
   <div class="modal-box">
     <button class="modal-close" onclick="document.getElementById('dataModal').classList.remove('active')">&times;</button>
     <h3>What's being searched?</h3>
-    <p>BrunoRAG uses ten years of Courses@Brown (CAB) (Fall of 2016-Fall 2026) to inform course recommendations and suggestions. It also uses Critical Review data and other open data sources.</p>
+    <p>Our course recommendations are informed by Courses@Brown (CAB), <a href="https://www.thecriticalreview.org/">Critical Review</a>, and other open data sources.</p>
+    <br>
+    <p>We'd love to hear feedback! Email eriq.xia@gmail.com with comments or suggestions.</p>
   </div>
 </div>
 </body>
