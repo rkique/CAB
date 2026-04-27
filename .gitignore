@@ -2,15 +2,12 @@
 .DS_Store
 
 node_modules
-package-lock.json
 
 # in case a student adds an ssh key to the repo
 *.pem
 
 store
 log.txt
-embeddings.json
-embeddings.jsonl
 .env
 submission.zip
 

@@ -359,6 +359,8 @@
     }
     .card-score { color: #bbb; font-size: 12px; font-family: 'Inter', sans-serif; }
     .card-desc { margin-top: 6px; font-size: 14px; color: #666; line-height: 1.55; }
+    .card-desc a { color: #8b0000; text-decoration: none; }
+    .card-desc a:hover { text-decoration: underline; }
     .card-meta { margin-top: 6px; font-size: 13px; color: #999; }
 
     .show-more-btn {
@@ -564,7 +566,12 @@
     function renderCard(r, isCited) {
       const div = document.createElement('div');
       div.className = 'course-card' + (isCited ? ' cited' : '');
-      const desc = r.description ? r.description.slice(0, 250) + (r.description.length > 250 ? '...' : '') : '';
+      let desc = r.description ? r.description.slice(0, 250) + (r.description.length > 250 ? '...' : '') : '';
+      desc = desc.replace(/<a\s[^>]*$/, '').replace(/<\/?\w[^>]*$/, '');
+      const openTags = (desc.match(/<a[\s>]/gi) || []).length;
+      const closeTags = (desc.match(/<\/a>/gi) || []).length;
+      if (openTags > closeTags) desc += '</a>';
+      desc = desc.replace(/href="\/search\/\?p=([^"]+)"/g, (_, code) => `href="https://cab.brown.edu/?keyword=${code}"`).replace(/<a /g, '<a target="_blank" ');
       const sections = r.sections || [];
       const semesters = [...new Set(sections.map(s => s.semester).filter(Boolean))].slice(0, 4).join(', ');
       const meets = [...new Set(sections.map(s => s.meets).filter(m => m && m !== 'TBA'))].slice(0, 3).join(' / ') || 'TBA';
@@ -575,7 +582,7 @@
           <div><span class="card-code"><a href="${cabLink(r.code, sections)}" target="_blank">${esc(r.code)}</a></span><span class="card-title">${esc(r.title)}</span></div>
           <span class="card-score">${r.score.toFixed(4)}</span>
         </div>
-        <div class="card-desc">${esc(desc)}</div>
+        <div class="card-desc">${desc}</div>
         <div class="card-meta">${esc(instrs)} &middot; ${esc(meets)}${semesters ? ' &middot; ' + esc(semesters) : ''}</div>
       `;
       return div;
