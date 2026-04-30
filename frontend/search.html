@@ -252,7 +252,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 28px;
+      margin: 2em 0 1em 0;
     }
     .example-query {
       position: relative;
@@ -383,11 +383,11 @@
     }
 
     @media (max-width: 600px) {
-      body { margin: 4em 1em; }
+      body { margin: 2em 1em; }
       .form-options * { font-size: 0.7em; }
-      .interface { margin: 0.5em 0.5em; padding: 1em 1em; }
+      .interface {margin: 0 auto; padding: 1em 1em;}
       .header img { width: 80%; min-width: 10vw; }
-      .search-form { margin: 1.5rem 0; }
+      .search-form { margin: 0.2em 0; }
       .search-bar input[type="text"] { font-size: 0.7rem; padding: 0.2em 0.2em; }
       .search-bar button { padding: 10px 14px; }
       .example-queries { flex-direction: column; align-items: stretch; gap: 8px; }
@@ -396,6 +396,9 @@
       .course-card { padding: 12px 14px; }
       .card-desc { font-size: 12px; }
       .card-meta { font-size: 11px; }
+      .toolbar { padding: 0.2em 0; margin-bottom: 0.1em; border-bottom: none; }
+      .fall26 { display: none; }
+      #meta { margin-bottom: 4px; }
     }
   </style>
 </head>
@@ -579,15 +582,28 @@
       return 'https://cab.brown.edu/?keyword=' + encodeURIComponent(code) + '&srcdb=' + srcdb;
     }
 
+    function fixDescLinks(html) {
+      return html
+        .replace(/href="\/search\/\?p=([^"]+)"/g, (_, code) => `href="https://cab.brown.edu/?keyword=${code}"`)
+        .replace(/<a /g, '<a target="_blank" ');
+    }
+
+    function truncateDesc(html, max) {
+      if (!html || html.length <= max) return html;
+      let truncated = html.slice(0, max);
+      truncated = truncated.replace(/<a\s[^>]*$/, '').replace(/<\/?\w[^>]*$/, '');
+      const open = (truncated.match(/<a[\s>]/gi) || []).length;
+      const close = (truncated.match(/<\/a>/gi) || []).length;
+      if (open > close) truncated += '</a>';
+      return truncated + '...';
+    }
+
     function renderCard(r, isCited) {
       const div = document.createElement('div');
       div.className = 'course-card' + (isCited ? ' cited' : '');
-      let desc = r.description ? r.description.slice(0, 250) + (r.description.length > 250 ? '...' : '') : '';
-      desc = desc.replace(/<a\s[^>]*$/, '').replace(/<\/?\w[^>]*$/, '');
-      const openTags = (desc.match(/<a[\s>]/gi) || []).length;
-      const closeTags = (desc.match(/<\/a>/gi) || []).length;
-      if (openTags > closeTags) desc += '</a>';
-      desc = desc.replace(/href="\/search\/\?p=([^"]+)"/g, (_, code) => `href="https://cab.brown.edu/?keyword=${code}"`).replace(/<a /g, '<a target="_blank" ');
+      const fullDesc = r.description || '';
+      const isLong = fullDesc.length > 250;
+      const shortDesc = isLong ? truncateDesc(fullDesc, 250) : fullDesc;
       const sections = r.sections || [];
       const semesters = [...new Set(sections.map(s => s.semester).filter(Boolean))].slice(0, 4).join(', ');
       const meets = [...new Set(sections.map(s => s.meets).filter(m => m && m !== 'TBA'))].slice(0, 3).join(' / ') || 'TBA';
@@ -596,11 +612,22 @@
       div.innerHTML = `
         <div class="card-header">
           <div><span class="card-code"><a href="${cabLink(r.code, sections)}" target="_blank">${esc(r.code)}</a></span><span class="card-title">${esc(r.title)}</span></div>
-          <span class="card-score">${r.score.toFixed(4)}</span>
         </div>
-        <div class="card-desc">${desc}</div>
-        <div class="card-meta">${esc(instrs)} &middot; ${esc(meets)}${semesters ? ' &middot; ' + esc(semesters) : ''}</div>
+        <div class="card-desc">${fixDescLinks(shortDesc)}</div>
+        <div class="card-meta" style="display:none">${esc(instrs)} &middot; ${esc(meets)}${semesters ? ' &middot; ' + esc(semesters) : ''}</div>
       `;
+
+      div.style.cursor = 'pointer';
+      let expanded = false;
+      div.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') return;
+        expanded = !expanded;
+        const descEl = div.querySelector('.card-desc');
+        const metaEl = div.querySelector('.card-meta');
+        descEl.innerHTML = fixDescLinks(expanded ? fullDesc : shortDesc);
+        metaEl.style.display = expanded ? 'block' : 'none';
+      });
+
       return div;
     }
 

@@ -682,7 +682,7 @@ function startHTTPServer() {
         if (res.writableEnded) return; // already responded (e.g. 413)
         try {
           const {query, fallOnly} = JSON.parse(body);
-          console.log(`[FALLONLY] FallOnly is ${fallOnly}`)
+          // console.log(`[FALLONLY] FallOnly is ${fallOnly}`)
           const userFilters = fallOnly ? [
             {field: 'season', op: 'eq', value: 'Fall'},
             {field: 'year', op: 'eq', value: 2026},
