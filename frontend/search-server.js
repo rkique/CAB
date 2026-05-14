@@ -19,6 +19,25 @@ const HTTP_PORT = 3000;
 const GID = 'courses';
 let localIndex = null;
 
+// --- Query logger ---
+const QUERY_LOG_PATH = path.join(__dirname, '..', 'data', 'queries.log');
+const queryLogStream = fs.createWriteStream(QUERY_LOG_PATH, { flags: 'a' });
+
+function logQuery(ip, query, { fallOnly, filters, reworded, time_ms, cached, error } = {}) {
+  const entry = {
+    ts: new Date().toISOString(),
+    ip,
+    query,
+    fallOnly: !!fallOnly,
+    ...(filters && { filters }),
+    ...(reworded && { reworded }),
+    ...(time_ms !== undefined && { time_ms }),
+    ...(cached && { cached }),
+    ...(error && { error }),
+  };
+  queryLogStream.write(JSON.stringify(entry) + '\n');
+}
+
 // --- Rate limiting ---
 const MAX_QUERY_LENGTH = 500;
 const MAX_REQUESTS_PER_DAY = 250;
@@ -699,12 +718,20 @@ function startHTTPServer() {
           }
           const sendResult = (result, fromCache) => {
             if (res.writableEnded) return;
+            logQuery(clientIP, query, {
+              fallOnly,
+              filters: result.filters,
+              reworded: result.reworded,
+              time_ms: result.time_ms,
+              cached: fromCache,
+            });
             res.writeHead(200, {'Content-Type': 'application/json'});
             res.end(JSON.stringify(fromCache ? { ...result, cached: true } : result));
           };
 
           const sendError = (err) => {
             if (res.writableEnded) return;
+            logQuery(clientIP, query, { fallOnly, error: err.message || String(err) });
             console.error('Search error:', err);
             res.writeHead(500, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({error: 'Search failed. Please try again.'}));

@@ -18,6 +18,7 @@ function buildLocalFaiss(data) {
     allRecords = data;
 
     const dim = data[0].vector.length;
+    //instantiates embeddings of dim length.
     faissIndex = new IndexFlatIP(dim);
     idMap = [];
 
@@ -35,11 +36,10 @@ function buildLocalFaiss(data) {
 Performs a local search on the FAISS index with the given query vector and returns the top K results.
 Each result includes the course code and the similarity score.
 */
-
 function localSearch(queryVector, topK=20) {
     if (!faissIndex || faissIndex.ntotal() === 0) return [];
-
     const k = Math.min(topK, faissIndex.ntotal());
+    //faissIndex.search: 
     const { labels, distances } = faissIndex.search(queryVector, k);
     return labels.map((idx, i) => ({
         code: idMap[idx],

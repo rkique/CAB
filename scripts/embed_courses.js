@@ -36,6 +36,7 @@ async function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+//Async function for embedBatch
 async function embedBatch(client, texts) {
   let delay = 5000;
   for (let attempt = 0; attempt < RETRY_LIMIT; attempt++) {
