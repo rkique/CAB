@@ -20,23 +20,28 @@ const GID = 'courses';
 let localIndex = null;
 
 // --- Query logger ---
-const QUERY_LOG_PATH = path.join(__dirname, '..', 'data', 'queries.log');
-const queryLogStream = fs.createWriteStream(QUERY_LOG_PATH, { flags: 'a' });
+const QUERY_LOG_PATH = process.env.QUERY_LOG_PATH || '/var/log/brunorag/queries.log';
 
 function logQuery(ip, query, { fallOnly, filters, reworded, time_ms, cached, error } = {}) {
-  const entry = {
-    ts: new Date().toISOString(),
-    ip,
-    query,
-    fallOnly: !!fallOnly,
-    ...(filters && { filters }),
-    ...(reworded && { reworded }),
-    ...(time_ms !== undefined && { time_ms }),
-    ...(cached && { cached }),
-    ...(error && { error }),
-  };
-  queryLogStream.write(JSON.stringify(entry) + '\n');
+  try {
+    const entry = {
+      ts: new Date().toISOString(),
+      ip,
+      query,
+      fallOnly: !!fallOnly,
+      ...(filters && { filters }),
+      ...(reworded && { reworded }),
+      ...(time_ms !== undefined && { time_ms }),
+      ...(cached && { cached }),
+      ...(error && { error }),
+    };
+    fs.appendFileSync(QUERY_LOG_PATH, JSON.stringify(entry) + '\n');
+  } catch (e) {
+    console.error('[query-log] failed to write:', e.message);
+  }
 }
+
+console.log(`[query-log] logging to ${QUERY_LOG_PATH}`);
 
 // --- Rate limiting ---
 const MAX_QUERY_LENGTH = 500;

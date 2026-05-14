@@ -6,6 +6,10 @@ services:
     restart: always
     expose:
       - "3000"
+    environment:
+      - QUERY_LOG_PATH=/var/log/brunorag/queries.log
+    volumes:
+      - ./logs:/var/log/brunorag
 
   nginx:
     image: nginx:alpine

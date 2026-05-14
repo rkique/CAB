@@ -51,11 +51,15 @@ docker run --rm \
 # (docker compose will mount the host path into the volume)
 mkdir -p certbot-conf certbot-www
 
-# --- 4. Start all services ---
+# --- 4. Create query log directory ---
+echo "==> Creating query log directory..."
+mkdir -p logs
+
+# --- 5. Start all services ---
 echo "==> Building and starting containers..."
 docker compose up -d --build
 
-# --- 5. Set up automatic cert renewal via cron ---
+# --- 6. Set up automatic cert renewal via cron ---
 CRON_CMD="0 3 * * * cd $(pwd) && docker compose run --rm certbot renew --quiet && docker compose exec nginx nginx -s reload"
 if ! crontab -l 2>/dev/null | grep -qF "certbot renew"; then
     echo "==> Adding cert renewal cron job..."
