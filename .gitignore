@@ -25,3 +25,4 @@ aws-vars.sh
 cluster.json
 cluster.local.json
 cluster.aws.json
+logs/

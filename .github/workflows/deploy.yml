@@ -16,6 +16,10 @@ jobs:
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
             cd /root/CAB
-            git pull
-            docker compose up -d --build
+            git fetch origin main
+            git checkout -- nginx/nginx.conf
+            git clean -f logs/
+            git pull origin main
+            docker compose build --no-cache nginx
+            docker compose up -d
             docker compose exec nginx nginx -s reload
