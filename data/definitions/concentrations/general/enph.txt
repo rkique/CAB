@@ -1,0 +1,52 @@
+CONCENTRATION: Engineering and Physics
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/enph/
+========================================================================
+
+The program is designed to ensure that students take a significant portion of the usual curriculum in Engineering and Physics, obtain substantial laboratory experience, and take several upper-level elective courses, focusing on applied science. Students may take either the standard Physics or Engineering programs during their first and second years and then switch to this combined program. The Sc.B. degree program in Engineering and Physics is not accredited by ABET and is mostly intended to prepare students for graduate study in applied science and engineering. Since the requirements include both quantum mechanics with the physics concentrators and analog electronics with EE concentrators, as well as more mathematics than either Physics or Engineering, it is one of the more demanding programs at Brown.
+The following standard program assumes that a student begins mathematics courses at Brown with MATH 0100 or MATH 0190 . Students who begin in MATH 0200 can substitute an additional science, engineering or higher-level mathematics course for the MATH 0190 requirement. To accommodate the diverse preparation of individual students, variations of the following sequences and their prerequisites are possible with permission of the appropriate concentration advisor and the instructors involved. We recommend that each student’s degree program be submitted for prior approval (typically in semester four) and scrutinized for compliance (in semester seven) by one faculty member from the Department of Physics and one faculty member from the School of Engineering.
+
+  Select one of the following two course sequences: 1 | 2
+  ENGN 0030 & ENGN 0040 | Introduction to Engineering and Engineering Statics and Dynamics | 
+  PHYS 0050 & PHYS 0060 | Foundations of Mechanics and Foundations of Electromagnetism and Modern Physics | 
+  PHYS 0070 & PHYS 0160 | Analytical Mechanics and Introduction to Relativity, Waves and Quantum Physics | 
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 1
+  or MATH 0100 | Single Variable Calculus, Part II
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 1
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0350 | Multivariable Calculus With Theory
+  Select three additional higher-level math, applied math or mathematical physics ( PHYS 0720 ) courses. | 3
+  CSCI 0111 | Computing Foundations: Data | 1
+  or APMA 0160 | Introduction to Scientific Computing
+  or CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science
+  or CSCI 0170 | Computer Science: An Integrated Introduction
+  or CSCI 0190 | Accelerated Introduction to Computer Science
+  ENGN 0510 | Electricity and Magnetism | 1
+  or PHYS 0470 | Electricity and Magnetism
+  ENGN 1690 | Photonics Devices and Sensors | 1
+  or PHYS 1510 | Advanced Electromagnetic Theory
+  PHYS 0500 | Advanced Classical Mechanics | 1
+  or ENGN 1370 | Advanced Engineering Mechanics
+  PHYS 1410 | Quantum Mechanics A | 1
+  PHYS 1420 | Quantum Mechanics B | 1
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 1
+  or ENGN 0720 | Thermodynamics
+  ENGN 1620 | Analysis and Design of Electronic Circuits | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  or ENGN 0310 | Mechanics of Solids and Structures
+  or ENGN 0810 | Fluid Mechanics
+  or PHYS 1600 | Computational Physics
+  ENGN 0410 | Materials Science | 1
+  or ENGN 1560 | Applications in Microwave Communications
+  or PHYS 0560 | Experiments in Modern Physics
+  PHYS 1560 | Modern Physics Laboratory (or an approved 2000-level engineering or physics course) | 1
+  or ENGN 1590 | Semiconductor Devices
+  or ENGN 1595 | Lasers and Nonlinear Optics
+  A thesis under the supervision of a physics or engineering faculty member: | 1
+  PHYS 1990 | Senior Conference Course | 
+  or ENGN 1970 | Independent Study in Engineering, Design or Entrepreneurship
+  or ENGN 1971 | Independent Study in Engineering, Design or Entrepreneurship
+  or ENGN 1972 | Independent Study in Engineering Design (Capstone)
+  or ENGN 1973 | Independent Study in Engineering Design (Capstone)
+  * Students are also encouraged to take courses dealing with the philosophical, ethical or political aspects of science and technology. | 
+  Total Credits | 19

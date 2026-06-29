@@ -1,0 +1,21 @@
+CONCENTRATION: Cognitive Science
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/cogs/
+========================================================================
+
+--------------------------
+Concentration Requirements
+--------------------------
+
+-----------
+Common Core
+-----------
+
+----------
+Foundation
+----------
+The goal of the foundation courses is to provide students with a background in the relevant areas of psychological science related to Cognitive Science, as well as provide students with exposure to computational training and foundational knowledge in at least one other discipline related to the study of the mind.
+(A) Three of these foundational courses will be in the CPSY department, specifically providing students with foundations in the psychological sciences related to Cognitive Science. The goal of the foundational courses in the psychological sciences is to provide students with the background in areas of psychology relevant to the study of the mind. This includes cognition, perception, psycholinguistics, and cognitive neuroscience as well as the possibility to study developmental cognitive science or social cognitive science. No student in cognitive science is expected to know all of these topics; rather, the expectation is that students have exposure to a subset of these fields.
+Note however, that we do not accept both CPSY 0610 and CPSY 0700 for the Cognitive Science concentration; students interested in both of these courses are recommended to concentrate in Psychology. Moreover, given the emphasis that some of these courses place on cognitive neuropsychology, one further restriction to these requirements is that students cannot specifically take CPSY 0010, CPSY 0200, and CPSY 0450 to satisfy this foundation requirement. All other combinations are acceptable.
+(B) One foundation course must be outside of the CPSY department. The goal of this requirement is to provide students with exposure to fields related to the study of the mind, not in psychology. These courses contribute to a more interdisciplinary approach to the study of the mind.
+(C) Because the study of cognitive science has a fundamental relation with computational modeling and understanding the computational model of the mind, it is critical that all cognitive science students be familiar with computation and programming. The goal of this last foundation requirement is to provide students with this knowledge base. Note that if students use CPSY1291 or CPSY1492 to satisfy this requirement, they must use a different course to satisfy the research methods requirement listed above.

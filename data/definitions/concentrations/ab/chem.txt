@@ -1,0 +1,29 @@
+CONCENTRATION: Chemistry
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/chem/
+========================================================================
+
+------------------------------------
+Standard program for the A.B. degree
+------------------------------------
+
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  CHEM 0360 | Organic Chemistry II | 1
+  CHEM 0500 | Inorganic Chemistry | 1
+  CHEM 0600 | Preparative Chemistry Lab | .5
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry 1 | 1
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics 1 | 1
+  CHEM 1160 | Physical Chemistry Laboratory 1 | 1
+  One upper level CHEM elective. 2 | 1
+  Total Credits | 8.5
+
+---------------------------------
+Honors Requirements for Chemistry
+---------------------------------
+All Chemistry concentrators who have grades of A or S with distinction in a majority of their concentration courses after their seventh semester are eligible  for Honors; no separate application is necessary.
+The requirements for Honors in Chemistry are:
+* Grades of A or S with distinction in a majority of courses taken for the concentration.
+* Two semesters of Undergraduate Research CHEM 0980 , CHEM 0981 or equivalent. Guidelines and requirements associated with Undergraduate Research are in the Undergraduate Concentration Handbook which can be found at the department website .
+* A Senior Thesis in a form approved  and recommended by the research advisor.  Additional information about thesis guidelines will be provided to seniors  by the Director of Undergraduate Studies.
+* A Senior Poster presentation at the chemistry department's spring undergraduate poster session.

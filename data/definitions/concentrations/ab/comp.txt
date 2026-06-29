@@ -1,0 +1,48 @@
+CONCENTRATION: Computer Science
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/comp/
+========================================================================
+
+------------------------------------------------------
+Requirements for the Standard Track of the A.B. degree
+------------------------------------------------------
+
+  Concentration Requirements (10 courses) | 
+  Core Computer Science: | 
+  Select one of the following series: | 2
+  Series A | 
+  CSCI 0150 & CSCI 0200 | Introduction to Object-Oriented Programming and Computer Science and Program Design with Data Structures and Algorithms | 
+  Series B | 
+  CSCI 0170 & CSCI 0200 | Computer Science: An Integrated Introduction and Program Design with Data Structures and Algorithms | 
+  Series C | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  AND | 
+  An additional CS course 200 or above not otherwise used to satisfy a concentration requirement; this course may be CSCI 0200 , a Foundations course, or a 1000-level course. | 
+  Series D 1 | 
+  CSCI 0111 & CSCI 0200 | Computing Foundations: Data and Program Design with Data Structures and Algorithms | 
+  Introductory Math Foundations 2 | 1
+  CSCI 0220 | Introduction to Discrete Structures and Probability | 
+  or MATH 1530 | Abstract Algebra
+  Foundations Courses | 
+  AB students must take one course from each foundation area | 
+  Foundation Areas | 
+  a. Algorithms/Theory Foundations | 1
+  CSCI 0500 | Data Structures, Algorithms, and Intractability: An Introduction | 
+  b. AI/Machine Learning/Data Science Foundations | 1
+  CSCI 0410 | Foundations of AI and Machine Learning | 
+  c. Systems Foundations | 1
+  CSCI 0300 | Fundamentals of Computer Systems | 
+  or CSCI 0320 | Introduction to Software Engineering
+  or CSCI 0330 | Introduction to Computer Systems
+  CSCI Technical Electives | 2
+  Two CSCI courses at the 1000 level. 3 | 
+  Two additional electives.  These can include: | 2
+  CSCI 0320 | Introduction to Software Engineering (if not used towards System Foundations) | 
+  1000-level and 2000-level CSCI courses (at most one can be a non-technical course as defined in concentration handbook). | 
+  Linear algebra ( MATH 0520 , MATH 0540 , or APMA 0260 ) | 
+  One approved 1000-level course outside of CS (see the concentration handbook for the current list) | 
+  CSCI 1970 | Individual Independent Study 4 | 
+  or CSCI 1973 | Independent Study
+  Capstone | 
+  A capstone taken in the senior year (from the list of approved capstone courses in the concentration handbook). The capstone may also be used to satisfy another requirement. | 
+  Total Credits | 10

@@ -1,0 +1,112 @@
+CONCENTRATION: Statistics
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/stat/
+========================================================================
+
+The Bachelor of Science degree in Statistics is designed to provide foundations that include basic statistical concepts and methodologies, and to expose students to the role of statistical thinking and analysis in interdisciplinary research and in the public sphere. To ensure deep rigorous understanding of the foundations and main methods of analysis in statistics, the program is composed of three parts: a) foundations in mathematics and computing, combined with an introduction to statistical thinking and practice; b) four core courses on the fundamentals of statistical theory and data analysis; and c) more advanced material covering important areas of statistical methodology. A capstone project involving substantial data analysis or focused on methodology/theory is required. Students also have opportunities to acquire practical experience in study design, data management, and statistical analysis by working as undergraduate research assistants in projects in one of the participating academic departments or Research Centers at Brown.
+Statistics equips individuals with the ability to analyze and interpret complex data, a skill essential in a wide range of industries including healthcare, finance, technology, and social sciences. With a solid foundation in statistical methods, students can solve real-world problems using quantitative evidence, making the concentration an excellent choice for those who want to apply mathematical reasoning to diverse and impactful fields.
+The concentration is based on the premise that statistics is a scientific discipline that is essentially concerned with the art and science of data analysis and is best taught in conjunction with specific, substantive applications. To this end, the concentration is designed to provide a foundation of basic concepts and methodology, requiring students to take core courses in the discipline itself, and to expose students to a cross-section of statistical applications. Through either a capstone project or senior honors thesis, each student will carry out a major project of statistical data analysis.
+The program requires twelve one-semester courses.
+
+  Pre-Requisites | 
+  Single-variable calculus is not an enforced requirement for our concentration, but it is a required prerequisite for many of our courses. At Brown, single-variable calculus consists of MATH 0090 followed by one of MATH 0100 , MATH 0170 , or MATH 0190 . | 
+  STAT 1501 | Essentials of Data Analysis (AP Statistics with a score of 5 or another approved introductory statistics course may substitute for PHP 1501. ) | 
+  Mathematical Foundations | 1
+  APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians Students may opt to take both Multivariable Calculus (MATH 0180, MATH 0200, or MATH 0350) and Linear Algebra (MATH 0520 or MATH 0540) to meet this requirement and count one of these courses towards their general elective requirements. | 
+  Statistical Inference and Modeling | 4
+  APMA 1655 | Introduction to Probability and Statistics with Theory | 
+  or MATH 1210 | Probability
+  APMA 1660 | Statistical Inference II | 
+  or MATH 1620 | Mathematical Statistics
+  STAT 1560 | Using R for Data Analysis | 
+  or STAT 2560 | Statistical Programming with R
+  STAT 1511 | Applied Regression Analysis | 
+  Numerical Methods (Choose 1) | 1
+  APMA 0160 | Introduction to Scientific Computing | 
+  APMA 1690 | Computational Probability and Statistics | 
+  ENGN 1950 | Advanced Numerical Methods for Data, Simulation, and Optimization | 
+  Track Electives (3) | 3
+  Students can choose from the tracks, below, and must complete three courses within a track. Other courses may be used with the approval of the Director of the Statistics Concentration. | 
+  Interdisciplinary Track | 
+  Students may design their own track with the approval of the Director of the Undergraduate Concentration. | 
+  General Electives (Choose 2) | 2
+  Students must choose two general elective courses. Pre-approved courses are listed below, but courses may also be chosen from those courses listed in the track electives. Other courses may be used with the approval of the Director of the Statistics Concentration. | 
+  APMA 1080 | Inference in Genomics and Molecular Biology | 
+  APMA 1160 | An Introduction to Numerical Optimization | 
+  APMA 1210 | Operations Research: Deterministic Models | 
+  APMA 1710 | Information Theory | 
+  APMA 1860 | Graphs and Networks | 
+  BIOL 1435 | Computational Methods for Studying Demographic History with Molecular Data | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1430 | Computer Vision | 
+  CSCI 1470 | Deep Learning | 
+  CSCI 1491 | Fairness in Automated Decision Making | 
+  CSCI 1520 | Algorithmic Aspects of Machine Learning | 
+  CSCI 1810 | Computational Molecular Biology | 
+  CSCI 1820 | Algorithmic Foundations of Computational Biology | 
+  CSCI 1951A | Data Science | 
+  ENGN 2520 | Pattern Recognition and Machine Learning | 
+  SOC 1120 | Market and Social Surveys | 
+  SOC 1340 | Principles and Methods of Geographic Information Systems | 
+  SOC 2230 | Techniques of Demographic Analysis | 
+  SOC 2960G | Spatial Data Analysis Techniques in the Social Sciences | 
+  Capstone Project | 1
+  PHP 1970 | Independent Study | 
+  or PHP 1980 | Honors Thesis Preparation
+  Total Credits | 12
+
+PHP 2000: As part of the concentration, students should complete an online course, PHP 2000, at their own pace. This course is a requirement and is meant to give a broad overview of public health and it allows students to see different areas in public health where statistics is being used. The course is a non-credit, asynchronous, online course that is required for all students within the School of Public Health. Students who are in a double concentration in public health are exempt from this course.
+Double Concentrations: Students may count up to three courses towards another concentration. This cannot include your capstone project or honors thesis. You must declare an additional concentration no later than your seventh semester.
+Senior Thesis/Capstone: Statistics concentrators have the option to complete either a capstone project or an honors thesis. Students who complete a thesis and enroll in PHP 1980 for two semesters may count one semester towards their general statistics elective requirements.
+
+-------------------------
+Health Data Science Track
+-------------------------
+
+  Students must complete three courses within a track.  Other courses may be used with the approval fo the Director of the Statistics Concentration | 
+  EPI 0850 | Fundamentals of Epidemiology | 
+  HSP 1480 | Foundations of Health Economics | 
+  EPI 1855 | Infectious Disease Modeling | 
+  EPI 1854 | The Epidemiology and Control of Infectious Diseases | 
+  STAT 2514 | Applied Generalized Linear Models | 
+  STAT 2516 | Applied Longitudinal Data Analysis | 
+  STAT 2517 | Applied Multilevel Data Analysis | 
+  STAT 2650 | Statistical Learning and Big Data | 
+  STAT 2602 | Analysis of Lifetime Data | 
+
+------------------
+Econometrics Track
+------------------
+
+  Students must complete three courses within a track.  Other courses may be used with the approval fo the Director of the Statistics Concentration | 
+  HSP 1480 | Foundations of Health Economics | 
+  ECON 1630 | Mathematical Econometrics I | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1360 | Research Seminar in Health Economics | 
+  ECON 1629 | Applied Research Methods for Economists | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  APMA 1200 | Operations Research: Probabilistic Models | 
+  APMA 1720 | Monte Carlo Simulation with Applications to Finance | 
+
+-----------------------
+Statisical Theory Track
+-----------------------
+
+  Students must complete three courses within a track.  Other courses may be used with the approval fo the Director of the Statistics Concentration | 
+  APMA 1740 | Recent Applications of Probability and Statistics | 
+  APMA 1670 | Statistical Analysis of Time Series | 
+  APMA 1680 | Nonparametric Statistics | 
+  APMA 1690 | Computational Probability and Statistics | 
+  MATH 1630 | Real Analysis I | 
+  STAT 2515 | Fundamentals of Probability and Statistical Inference | 
+  or STAT 2520 | Statistical Inference I
+  STAT 2610 | Causal Inference and Missing Data | 
+  STAT 2530 | Bayesian Statistical Methods | 
+  Total Credits | 0
+
+Honors:
+Students who wish to achieve honors must complete a senior honors thesis and obtain grades of A or S-with-distinction in at least 70% of the Brown University courses used for concentration credit.
+Students pursuing a senior honors thesis undertake an independent research project over two semesters, under the guidance of a faculty advisor. Either the faculty advisor or an additional reader must be a faculty member in the Department of Biostatistics. Students are required to produce a manuscript on their project, which is submitted to the University. Thesis projects may involve a major data analysis, the design of a simulation study to assess the performance of a statistical method, or contributions to the development of new statistical methods.
+Study Abroad/Study Away : Up to two courses taken elsewhere (study abroad or other transfer) may be applied to required courses. Meet with a concentration adviser to discuss; provide a syllabus for each course to be considered for transfer to your concentration plan.
+The program is administered by the Department of Biostatistics, located at 121 South Main Street, 7th floor.
+For additional information please contact: Alice Paul (alice_paul@brown.edu)

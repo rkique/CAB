@@ -1,0 +1,105 @@
+CONCENTRATION: Social Analysis and Research
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/sar/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+
+  Required core: | 
+  MATH 0090 | Single Variable Calculus, Part I | 1
+  SOC 1100 | Introductory Statistics for Social Research | 1
+  or APMA 0650 | Introduction to Probability and Statistics
+  or ECON 1620 | Introduction to Econometrics
+  SOC 1020 | Methods of Social Research | 1
+  SOC 2010 | Multivariate Statistical Methods I | 1
+  SOC 1010 | Classical Sociological Theory | 1
+  SOC 1950 | Senior Seminar | 1
+  Three (3) substantive or theory courses (non-methodological courses) in Sociology, two (2) of which must be at the 1000-level or above. | 3
+  Three (3)  of the following advanced analysis courses: | 3
+  SOC 1117 | Focus Groups for Market and Social Research | 
+  SOC 1118 | Context Research for Innovation | 
+  SOC 1120 | Market and Social Surveys | 
+  SOC 1260 | Market Research in Public and Private Sectors | 
+  SOC 1340 | Principles and Methods of Geographic Information Systems | 
+  SOC 1872N | Ethnography in Organizations | 
+  SOC 2020 | Multivariate Statistical Methods II | 
+  SOC 2070 | Text as Data for Social Science Research | 
+  SOC 2210 | Qualitative Methods | 
+  SOC 2230 | Techniques of Demographic Analysis | 
+  SOC 2240 | Event History Analysis | 
+  SOC 2250 | Ethnography: Theory and Practice | 
+  SOC 2260T | Cultural Theory and Methods | 
+  SOC 2610 | Spatial Thinking in Social Science | 
+  SOC 2612 | Geographic Information Systems and Spatial Analysis for the Social Sciences | 
+  SOC 2960G | Spatial Data Analysis Techniques in the Social Sciences | 
+  SOC 2960Y | Causal Analysis | 
+  SOC 2961A | Advanced Spatial Data Analysis Techniques in the Social Sciences | 
+  Research experience (1 course) | 0-1
+  A one-semester research internship (not for credit or for credit as SOC 1970 - Independant Study), or a summer research internship (not for credit). | 
+  Total Credits | 12-13
+
+A one semester or a summer research internship is required. The research internship is designed to provide students with hands-on experience in social research. Students will typically complete the research internship in their junior year or during the summer between their junior and senior years. Students need to submit an Internship Proposal Form to the Undergraduate Concentration Advisor for approval prior to starting the internship. Upon completion of the internship, students are required to submit to the Undergraduate Concentration Advisor a brief summary report of their experience, which must be signed by the supervisor of the student's internship.
+Academic research internships involve work on a faculty member's research project. Activities may range from data collection, data entry, data file management, descriptive analyses, and more advanced model estimation. Students are encouraged to approach faculty about opportunities for working on their research projects. Academic and off-campus research internships will typically entail 5-10 hours of work per week and may or may not involve compensation.
+Students may receive academic credit for academic research internships and off-campus internships completed during the academic year if they combine the internship experience with an academic component under the direction of a faculty advisor. Students taking an internship for credit should register for an Individual Research Project ( SOC 1970 ).
+***See the Sociology website http://www.brown.edu/academics/sociology/ for details regarding Honors and Independent Studies
+Course substitutions: Students may petition the Director of Undergraduate Studies to use one advanced analysis course taken in another department to count toward the three required advanced analysis courses.
+
+-----------------------------------------
+Organizational Studies Track requirements
+-----------------------------------------
+
+  Required core: | 
+  MATH 0090 | Single Variable Calculus, Part I | 1
+  SOC 1010 | Classical Sociological Theory | 1
+  SOC 1020 | Methods of Social Research | 1
+  SOC 1100 | Introductory Statistics for Social Research | 1
+  or APMA 0650 | Introduction to Probability and Statistics
+  or ECON 1620 | Introduction to Econometrics
+  SOC 1950 | Senior Seminar | 1
+  SOC 2010 | Multivariate Statistical Methods I | 1
+  Any combination of two (2) courses from below: | 2
+  SOC 0300 | Organizations and Society | 
+  SOC 1311 | Micro-Organizational Theory: Social Behavior in Organizations | 
+  SOC 1315 | Macro-Organizational Theory: Organizations in Social Context | 
+  One (1) Advanced Organizational Studies Elective: | 1
+  SOC 1070 | Introduction to Economic Sociology | 
+  SOC 1117 | Focus Groups for Market and Social Research | 
+  SOC 1118 | Context Research for Innovation | 
+  SOC 1120 | Market and Social Surveys | 
+  SOC 1260 | Market Research in Public and Private Sectors | 
+  SOC 1311 | Micro-Organizational Theory: Social Behavior in Organizations | 
+  SOC 1315 | Macro-Organizational Theory: Organizations in Social Context | 
+  SOC 1871C | Sociology of the Legal Profession | 
+  Three (3) of the following Advanced Analysis Courses: | 3
+  SOC 1117 | Focus Groups for Market and Social Research | 
+  SOC 1118 | Context Research for Innovation | 
+  SOC 1120 | Market and Social Surveys | 
+  SOC 1260 | Market Research in Public and Private Sectors | 
+  SOC 1340 | Principles and Methods of Geographic Information Systems | 
+  SOC 1872N | Ethnography in Organizations | 
+  SOC 2020 | Multivariate Statistical Methods II | 
+  SOC 2070 | Text as Data for Social Science Research | 
+  SOC 2210 | Qualitative Methods | 
+  SOC 2230 | Techniques of Demographic Analysis | 
+  SOC 2240 | Event History Analysis | 
+  SOC 2250 | Ethnography: Theory and Practice | 
+  SOC 2260T | Cultural Theory and Methods | 
+  SOC 2610 | Spatial Thinking in Social Science | 
+  SOC 2612 | Geographic Information Systems and Spatial Analysis for the Social Sciences | 
+  SOC 2960G | Spatial Data Analysis Techniques in the Social Sciences | 
+  SOC 2960Y | Causal Analysis | 
+  SOC 2961A | Advanced Spatial Data Analysis Techniques in the Social Sciences | 
+  Research experience (1 course) | 0-1
+  A one-semester research internship (not for credit or for credit as SOC 1970 - Independant Study), or a summer research internship (not for credit). | 
+  Total Credits | 12-13
+
+-------------------
+Research Internship
+-------------------
+A one semester or a summer research internship is required. The research internship is designed to provide students with hands-on experience in social research. Students will typically complete the research internship in their junior year or during the summer between their junior and senior years. Students need to submit an Internship Proposal Form to the Undergraduate Concentration Advisor for approval prior to starting the internship. Upon completion of the internship, students are required to submit to the Undergraduate Concentration Advisor a brief summary report of their experience, which must be signed by the supervisor of the student's internship.
+Academic research internships involve work on a faculty member's research project. Activities may range from data collection, data entry, data file management, descriptive analyses, and more advanced model estimation. Students are encouraged to approach faculty about opportunities for working on their research projects. Academic and off-campus research internships will typically entail 5-10 hours of work per week and may or may not involve compensation.
+Students may receive academic credit for academic research internships and off-campus internships completed during the academic year if they combine the internship experience with an academic component under the direction of a faculty advisor. Students taking an internship for credit should register for an Individual Research Project ( SOC 1970 ).
+***See the Sociology website http://www.brown.edu/academics/sociology/ for details regarding Honors and Independent Studies
+Course substitutions: Students may petition the Director of Undergraduate Studies to count a course not on the list above toward the advanced analysis requirement or the advanced organizational studies requirement.

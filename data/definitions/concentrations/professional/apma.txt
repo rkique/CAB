@@ -1,0 +1,37 @@
+CONCENTRATION: Applied Mathematics
+TRACK: PROFESSIONAL
+URL: https://bulletin.brown.edu/the-college/concentrations/apma/
+========================================================================
+
+------------------
+Professional Track
+------------------
+The requirements for all undergraduate professional tracks within concentrations are standardized and additional information can be found here:
+https://bulletin.brown.edu/undergradproftrack/
+
+------
+Honors
+------
+Concentrators (A.B. or Sc.B.) that demonstrate excellence in grades and in undergraduate research can be awarded departmental honors. Complete guidelines, requirements, and deadlines for honors are published on the department website . The first deadline is at the beginning of the student’s senior year (i.e., the start of the penultimate semester). The main requirements include:
+  • Earning grades of A or S-with-distinction in at least 70% of the courses used for concentration credit, excluding calculus and linear algebra, by the end of the penultimate semester.
+  • Completion of an in-depth, original research project in a STEM discipline carried out under the guidance of a Brown-affiliated faculty advisor and documented with the completion of two semesters of independent study courses under the advisor’s supervision.
+  • Completion of an honors thesis describing this research project that also demonstrates the use of mathematical methodology in the project. The honors thesis must be approved by the student’s thesis advisor and a second reader, at least one of which must be faculty member in the Division of Applied Mathematics.
+Applied Mathematics has a profound impact on our daily lives. Whether it is search engines, climate modeling, weather forecasts, artificial intelligence, secure online shopping, brain imaging, or movie recommendations, none of these would work the way they do without algorithms and tools from the mathematical sciences. More generally, Applied Mathematics is an inherently interdisciplinary subject, covering problems arising in all areas of science, technology, and engineering. Our courses provide a broad qualitative and quantitative background for use in these fields.
+Applied Mathematics appeals to people with a variety of different interests, ranging from those with a desire to obtain a good quantitative background for use in some future career, to those who wish to have a better understanding of the basic mathematical aspects of other fields, or to those who are interested in the fundamental mathematical techniques and approaches in themselves. The program stresses but is not limited to scientific computing, differential equations, probability, and statistics, which are areas of mathematics that are used most often in applications in science, society, and industry. Our curriculum is flexible enough to meet the goals and interests of a very wide range of students.
+Students take courses in applied mathematics for many reasons, not necessarily with an applied mathematics concentration in mind. The value of learning about applied mathematics goes beyond a career opportunity. It provides an education in the use of quantitative methods in thinking about and solving problems, knowledge that is valuable in all walks of life.
+We offer four concentrations for undergraduates: Applied Mathematics (A.B. & Sc.B.), Applied Mathematics-Biology (Sc.B.), Applied Mathematics-Computer Science (Sc.B.), Applied Mathematics-Economics (A.B. & Sc.B.). This page describes the concentration in Applied Mathematics.
+The concentration in Applied Mathematics is the most flexible of all of our concentrations. Students are required to build a foundation in calculus, linear algebra, differential equations, and basic computer programming. Beyond these foundations, there is a great deal of flexibility as to which areas of mathematics and which areas of applications are pursued. Both the A.B. and the Sc.B. allow students to earn concentration credit by taking advanced courses in almost any of the STEM (Science, Technology, Engineering, Mathematics) disciplines. The purpose is to encourage students to develop expertise in both mathematics and an applied area that might be amenable to mathematical investigation.
+
+------------------
+Professional Track
+------------------
+The requirements for all undergraduate professional tracks within concentrations are standardized and additional information can be found here:
+https://bulletin.brown.edu/undergradproftrack/
+
+------
+Honors
+------
+Concentrators (A.B. or Sc.B.) that demonstrate excellence in grades and in undergraduate research can be awarded departmental honors. Complete guidelines, requirements, and deadlines for honors are published on the department website . The first deadline is at the beginning of the student’s senior year (i.e., the start of the penultimate semester). The main requirements include:
+  • Earning grades of A or S-with-distinction in at least 70% of the courses used for concentration credit, excluding calculus and linear algebra, by the end of the penultimate semester.
+  • Completion of an in-depth, original research project in a STEM discipline carried out under the guidance of a Brown-affiliated faculty advisor and documented with the completion of two semesters of independent study courses under the advisor’s supervision.
+  • Completion of an honors thesis describing this research project that also demonstrates the use of mathematical methodology in the project. The honors thesis must be approved by the student’s thesis advisor and a second reader, at least one of which must be faculty member in the Division of Applied Mathematics.

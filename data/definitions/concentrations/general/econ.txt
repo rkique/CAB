@@ -1,0 +1,29 @@
+CONCENTRATION: Economics
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/econ/
+========================================================================
+
+Economics is the study of how individuals, businesses, and governments allocate resources to satisfy their objectives. The study of economics helps students understand markets, firms, financial organizations, and public debate about economic policy, including taxation, government expenditure, trade, globalization, health, and welfare. The concentration in Economics prepares students for graduate study in fields such as business and law, for graduate study leading to teaching and research in economics, and can be a stepping-stone to employment in business, finance, non-profit, and government organizations. Students may choose the standard concentration, the business track, or the public policy track, all of which have a corresponding professional track. If you are interested in declaring a concentration in Economics, please refer to this page for more information regarding the process.
+Students are required to begin with ECON 0110 , an introductory course that stresses current economic issues, and the concepts and principles of economic analysis. Intermediate level courses in microeconomics ( ECON 1110 or ECON 1130 ), macroeconomics ( ECON 1210 ), and econometrics ( ECON 1620 followed by ECON 1629 or ECON 1630 ) round out the list of foundation courses for the concentration. Economics concentrators must also fulfill a math requirement ( ECON 0170 ).
+The economics department sponsors a number of concentration options. The most popular is the standard economics concentration, described below. The standard concentration has an optional Business Economics track, as well as a Public Policy track, both described below. Three additional concentration options are administered jointly with other departments and are described separately under their respective titles. They are the concentrations in applied mathematics–economics, mathematical-economics , and computer science–economics. The first two are especially recommended for students interested in graduate study in economics.
+All concentrators in economics programs are encouraged to consult their concentration advisors regularly. Economics concentrators who wish to study abroad should consult first with the department transfer credit advisor.
+
+--------------------------------
+Standard Economics Concentration
+--------------------------------
+
+  ECON 0110 | Principles of Economics 1 | 1
+  ECON 0170 | Essential Mathematics for Economics | 1
+  or MATH 0100 | Single Variable Calculus, Part II
+  or a higher-level math course. 2 | 
+  ECON 1110 | Intermediate Microeconomics | 1
+  or ECON 1130 | Intermediate Microeconomics (Mathematical)
+  ECON 1210 | Intermediate Macroeconomics | 1
+  ECON 1620 | Introduction to Econometrics | 1
+  or MATH 1620 | Mathematical Statistics
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  or APMA 1655 | Introduction to Probability and Statistics with Theory
+  ECON 1629 | Applied Research Methods for Economists | 1
+  or ECON 1630 | Mathematical Econometrics I
+  At least five additional 1000-level Economics courses. 3 | 5
+  Total Credits | 11

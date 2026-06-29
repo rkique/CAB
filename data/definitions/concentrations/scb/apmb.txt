@@ -1,0 +1,34 @@
+CONCENTRATION: Applied Mathematics-Biology
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/apmb/
+========================================================================
+
+---------------------------------------
+S tandard program for the Sc.B. degre e
+---------------------------------------
+
+  Prerequisites – the equivalent of two semesters of single-variable calculus | 
+  Single-variable calculus is not an enforced requirement for our concentration, but it is a required prerequisite for many of our courses. At Brown, single-variable calculus consists of MATH 0090 followed by one of MATH 0100 , MATH 0170 , or MATH 0190 . | 
+  Requirements – 16 courses 1 | 
+  Mathematical Requirements – 7 courses | 
+  MATH 0180 | Multivariable Calculus 2 | 1
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  MATH 0520 | Linear Algebra 2 | 1
+  or MATH 0540 | Linear Algebra With Theory
+  APMA 0355 | Applied Ordinary Differential Equations with Theory 3 | 1
+  APMA 0365 | Applied Partial Differential Equations I with Theory 4 | 1
+  APMA 1655 | Introduction to Probability and Statistics with Theory 5 | 1
+  APMA 1070 | Quantitative Models of Biological Systems | 1
+  APMA 1080 | Inference in Genomics and Molecular Biology | 1
+  or NEUR 2110 | Statistical Neuroscience
+  Scientific Requirements – 7 courses | 
+  One pre-approved course covering Newtonian mechanics, or an alternative approved by the concentration advisor. 6 | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  BIOL 0200 | The Foundation of Living Systems 7 | 1
+  Two BIOL or NEUR courses. 8 | 2
+  Two 1000-level or higher BIOL or NEUR courses from the same Biology track. 8,9 | 2
+  Additional Requirements – 2 courses | 
+  One pre-approved course in the mathematical, biological, or computational sciences, or an alternative approved by the concentration advisor. 10 | 1
+  One pre-approved capstone or senior seminar, or a research-related course approved by the concentration advisor. 11 | 1
+  Total Credits | 16

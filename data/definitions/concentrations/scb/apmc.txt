@@ -1,0 +1,54 @@
+CONCENTRATION: Applied Mathematics-Computer Science
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/apmc/
+========================================================================
+
+--------------------------------------
+Standard Program for the Sc.B. degree.
+--------------------------------------
+
+  Prerequisites – the equivalent of two semesters of single-variable calculus | 
+  A second semester of single-variable calculus is not an enforced requirement for our concentration, but it is a required prerequisite for many of our courses. At Brown, the second semester of calculus is taught in one of MATH 0100 , MATH 0170 , or MATH 0190 . | 
+  Requirements – 17 courses 1 | 
+  Mathematical Requirements – 8 courses | 
+  MATH 0180 | Multivariable Calculus 2 | 1
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  MATH 0520 | Linear Algebra 2 | 1
+  or MATH 0540 | Linear Algebra With Theory
+  or CSCI 0530 | Coding the Matrix: An Introduction to Linear Algebra for Computer Science
+  or APMA 1170 | Introduction to Computational Linear Algebra
+  APMA 0355 | Applied Ordinary Differential Equations with Theory 3 | 1
+  APMA 0365 | Applied Partial Differential Equations I with Theory 4 | 1
+  APMA 1160 | An Introduction to Numerical Optimization | 1
+  or APMA 1170 | Introduction to Computational Linear Algebra
+  or APMA 1180 | Introduction to Numerical Solution of Differential Equations
+  or APMA 1690 | Computational Probability and Statistics
+  or APMA 1740 | Recent Applications of Probability and Statistics
+  Two approved 1000-level or higher APMA courses. 5,6 | 2
+  One 1000-level or higher APMA or MATH course 5,6 | 1
+  Computer Science Requirements – 8 courses | 
+  Select one of the following introductory course sequences: | 2
+  CSCI 0150 & CSCI 0200 | Introduction to Object-Oriented Programming and Computer Science and Program Design with Data Structures and Algorithms | 
+  CSCI 0170 & CSCI 0200 | Computer Science: An Integrated Introduction and Program Design with Data Structures and Algorithms | 
+  CSCI 0111 & CSCI 0200 | Computing Foundations: Data and Program Design with Data Structures and Algorithms 7 | 
+  CSCI 0190 and one CSCI course numbered 0200 or higher | 
+  Select one foundational course in each of three of the following four clusters: | 3
+  1. Algorithms/Theory | 
+  CSCI 0500 | Data Structures, Algorithms, and Intractability: An Introduction | 
+  2. AI/Machine Learning/Data Science | 
+  CSCI 0410 | Foundations of AI and Machine Learning | 
+  3. Systems | 
+  CSCI 0300 | Fundamentals of Computer Systems 8 | 
+  or CSCI 0320 | Introduction to Software Engineering
+  or CSCI 0330 | Introduction to Computer Systems
+  4. Probability | 
+  APMA 1655 | Introduction to Probability and Statistics with Theory 6,9 | 
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  or CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science
+  or MATH 1210 | Probability
+  or MATH 1610 | Probability
+  Three approved 1000-level or higher CSCI courses, which must be technical CS courses. 10 | 3
+  Additional Requirements – 1 course | 1
+  One capstone in computer science or applied mathematics, taken in the student’s senior year, and approved by the concentration advisor (or on the list of approved CS capstone courses). 11 | 
+  Total Credits | 17

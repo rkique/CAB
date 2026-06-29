@@ -1,0 +1,42 @@
+CONCENTRATION: Chemical Physics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/chph/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+Twenty-one semester courses 1 in chemistry, physics, and mathematics, with a minimum of four semester courses in mathematics.  The expectation is that courses required for a concentration in Chemical Physics will be taken for a letter grade.   Core courses are:
+
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  CHEM 0500 | Inorganic Chemistry | 1
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry | 1
+  PHYS 0070 | Analytical Mechanics | 1
+  PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics | 1
+  PHYS 0470 | Electricity and Magnetism | 1
+  Select one of the following laboratory courses: | 1
+  CHEM 1160 | Physical Chemistry Laboratory | 
+  PHYS 0560 | Experiments in Modern Physics | 
+  PHYS 1560 | Modern Physics Laboratory | 
+  Select one course in statistical mechanics: | 1
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 1
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 1
+  MATH 0520 | Linear Algebra | 1
+  Seven courses, primarily at the 1000 or 2000 level, in chemistry or physics. | 7
+  Select two semesters of independent study: | 2
+  PHYS 1990 | Senior Conference Course | 
+  CHEM 0980 | Undergraduate Research | 
+  Total Credits | 21
+
+-----------------------
+Requirements for Honors
+-----------------------
+All Chemical Physics concentrators who have grades of A or S with distinction in a majority of their concentration courses will be considered  for Honors; no separate application is necessary.
+The requirements for Honors in Chemical Physics are:
+* Grades of A or S with distinction in a majority of courses taken for the concentration.
+* Two semesters of Independent Study ( CHEM 0980 or equivalent. Guidelines and requirements associated with Independent Study are in the Undergraduate Concentration Handbook which can be found at the department website .
+* A Thesis in a form approved  and recommended by the research advisor.  Additional information about thesis guidelines will be provided to seniors  by the Concentration Advisor.
+* A Poster presentation at the chemistry department's spring undergraduate poster session.

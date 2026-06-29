@@ -1,0 +1,58 @@
+{"ts":"2026-05-14T15:26:34.976Z","ip":"172.18.0.2","query":"example query","fallOnly":false,"filters":[],"time_ms":7302}
+{"ts":"2026-05-14T15:30:46.941Z","ip":"172.18.0.2","query":"Education classes for chemistry majors","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["CHEM"]}],"time_ms":5973}
+{"ts":"2026-05-14T16:01:50.811Z","ip":"172.18.0.2","query":"drama intensive MWF 4+ instructor rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["M","W","F"]},{"field":"cr_avg_hours","op":"gte","value":4},{"field":"professor_rating","op":"gte","value":4}],"time_ms":7102}
+{"ts":"2026-05-14T16:05:50.829Z","ip":"172.18.0.2","query":"Easy philosophy classes","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["PHIL"]}],"time_ms":4666}
+{"ts":"2026-05-14T16:22:18.153Z","ip":"172.18.0.2","query":"easy stem 1000 level elective","fallOnly":false,"filters":[],"time_ms":8207}
+{"ts":"2026-05-14T17:14:22.400Z","ip":"172.18.0.2","query":"Higher non intensive EEPS or APMA classes","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["APMA"]}],"time_ms":7970}
+{"ts":"2026-05-14T18:04:14.123Z","ip":"172.18.0.2","query":"Ideal freshmam year schedule for physics","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["PHYS"]}],"time_ms":7331}
+{"ts":"2026-05-14T18:06:47.762Z","ip":"172.18.0.2","query":"is taking linear with theory and multi with theory manageable","fallOnly":false,"filters":[],"time_ms":5510}
+{"ts":"2026-05-14T18:07:24.864Z","ip":"172.18.0.2","query":"what does TBIL mean","fallOnly":false,"filters":[],"time_ms":2965}
+{"ts":"2026-05-14T18:07:27.208Z","ip":"172.18.0.2","query":"What classes are fun and community based","fallOnly":false,"filters":[],"time_ms":4297}
+{"ts":"2026-05-14T20:02:56.516Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":5851}
+{"ts":"2026-05-14T20:02:57.169Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":5851,"cached":true}
+{"ts":"2026-05-14T20:03:32.098Z","ip":"172.18.0.2","query":"cool apma","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["APMA"]}],"time_ms":8346}
+{"ts":"2026-05-14T20:39:31.506Z","ip":"172.18.0.2","query":"is taking linear with theory and multi with theory manageable","fallOnly":false,"filters":[],"time_ms":6599}
+{"ts":"2026-05-14T20:43:40.088Z","ip":"172.18.0.2","query":"Biochemistry easy electives","fallOnly":false,"filters":[],"time_ms":5190}
+{"ts":"2026-05-15T00:04:43.682Z","ip":"172.18.0.2","query":"PPE classes that don’t have much math","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":8190}
+{"ts":"2026-05-15T02:44:08.904Z","ip":"172.18.0.2","query":"easiest class possible","fallOnly":false,"filters":[],"time_ms":6298}
+{"ts":"2026-05-15T15:39:20.840Z","ip":"172.18.0.2","query":"what are substitute classes I can take for physics 0500 and engn 1370 in the spring or fall semester","fallOnly":false,"filters":[{"field":"season","op":"eq","value":"Spring"},{"field":"season","op":"eq","value":"Fall"},{"field":"code_prefix","op":"includes_any","value":["ENGN","PHYS"]}],"time_ms":6988}
+{"ts":"2026-05-16T17:00:24.396Z","ip":"172.18.0.2","query":"drama intensive MWF 4+ instructor rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["M","W","F"]},{"field":"cr_prof_avg","op":"gte","value":4}],"time_ms":8195}
+{"ts":"2026-05-17T09:28:41.698Z","ip":"172.18.0.2","query":"WRIT classes in economics","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["ECON"]}],"time_ms":6727}
+{"ts":"2026-05-17T10:19:48.070Z","ip":"172.18.0.2","query":"WRIT classes in economics","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["ECON"]}],"time_ms":6537}
+{"ts":"2026-05-17T15:40:03.537Z","ip":"172.18.0.2","query":"drama intensive MWF 4+ instructor rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["M","W","F"]},{"field":"course_rating","op":"gte","value":4}],"time_ms":6275}
+{"ts":"2026-05-17T15:51:57.598Z","ip":"172.18.0.2","query":"sts type classes with a focus on bodily technologies","fallOnly":false,"filters":[],"time_ms":7172}
+{"ts":"2026-05-17T16:01:31.941Z","ip":"172.18.0.2","query":"physics classes for jocks","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["PHYS"]}],"time_ms":19713}
+{"ts":"2026-05-17T17:38:01.199Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":7127}
+{"ts":"2026-05-17T21:14:44.750Z","ip":"172.18.0.2","query":"easy upper level technical cs electives","fallOnly":false,"filters":[],"time_ms":7728}
+{"ts":"2026-05-17T22:02:59.670Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":5361}
+{"ts":"2026-05-17T22:03:15.864Z","ip":"172.18.0.2","query":"like math 1530","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":4872}
+{"ts":"2026-05-17T22:11:44.168Z","ip":"172.18.0.2","query":"cs classes without a lot of coding","fallOnly":false,"filters":[],"time_ms":4809}
+{"ts":"2026-05-17T22:12:12.722Z","ip":"172.18.0.2","query":"cs classes without a lot of coding","fallOnly":true,"filters":[{"field":"season","op":"eq","value":"Fall"},{"field":"year","op":"eq","value":2026}],"time_ms":4409}
+{"ts":"2026-05-17T22:12:51.293Z","ip":"172.18.0.2","query":"best iapa gateways","fallOnly":true,"filters":[{"field":"season","op":"eq","value":"Fall"},{"field":"year","op":"eq","value":2026}],"time_ms":4597}
+{"ts":"2026-05-17T23:20:51.388Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":6963}
+{"ts":"2026-05-18T04:09:39.202Z","ip":"172.18.0.2","query":"classes for chem-iapa dual","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["CHEM"]}],"time_ms":7269}
+{"ts":"2026-05-18T04:15:52.636Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":5545}
+{"ts":"2026-05-18T04:20:46.879Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":5545,"cached":true}
+{"ts":"2026-05-18T05:26:45.122Z","ip":"172.18.0.2","query":"tth afternoon educ classes 4+ instructor rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["T","T"]},{"field":"course_rating","op":"gte","value":4},{"field":"code_prefix","op":"includes_any","value":["EDUC"]}],"time_ms":8263}
+{"ts":"2026-05-18T05:27:05.938Z","ip":"172.18.0.2","query":"tth afternoon educ classes 4+ instructor rating 0-2000 rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["T","T"]},{"field":"course_rating","op":"gte","value":4},{"field":"year","op":"eq","value":2000},{"field":"code_prefix","op":"includes_any","value":["EDUC"]}],"time_ms":5042}
+{"ts":"2026-05-18T05:27:18.250Z","ip":"172.18.0.2","query":"tth afternoon educ classes 0-2000 course code","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["EDUC"]}],"time_ms":4558}
+{"ts":"2026-05-18T18:15:04.078Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":true,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]},{"field":"season","op":"eq","value":"Fall"},{"field":"year","op":"eq","value":2026}],"time_ms":13329}
+{"ts":"2026-05-18T18:23:24.107Z","ip":"172.18.0.2","query":"Hardest math class ever","fallOnly":true,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]},{"field":"season","op":"eq","value":"Fall"},{"field":"year","op":"eq","value":2026}],"time_ms":12556}
+{"ts":"2026-05-18T18:27:19.938Z","ip":"172.18.0.2","query":"easiest clas","fallOnly":true,"filters":[{"field":"code_prefix","op":"includes_any","value":["CLAS"]},{"field":"season","op":"eq","value":"Fall"},{"field":"year","op":"eq","value":2026}],"time_ms":4547}
+{"ts":"2026-05-18T23:14:16.454Z","ip":"172.18.0.2","query":"drama intensive MWF 4+ instructor rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["M","W","F"]},{"field":"cr_avg_hours","op":"gte","value":4},{"field":"professor_rating","op":"gte","value":4}],"time_ms":5255}
+{"ts":"2026-05-18T23:51:14.948Z","ip":"172.18.0.2","query":"Tuesday Thursday classes that are interesting and chill","fallOnly":true,"filters":[{"field":"days","op":"includes_all","value":["T","Th"]},{"field":"season","op":"eq","value":"Fall"},{"field":"year","op":"eq","value":2026}],"time_ms":6867}
+{"ts":"2026-05-19T13:54:44.278Z","ip":"172.18.0.2","query":"im a sucka for u","fallOnly":false,"filters":[],"time_ms":10629}
+{"ts":"2026-05-19T13:55:06.605Z","ip":"172.18.0.2","query":"comp bio","fallOnly":false,"filters":[],"time_ms":4497}
+{"ts":"2026-05-19T13:55:42.236Z","ip":"172.18.0.2","query":"computational bio","fallOnly":false,"filters":[],"time_ms":6027}
+{"ts":"2026-05-20T22:05:52.300Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":7213}
+{"ts":"2026-05-21T14:40:43.878Z","ip":"172.18.0.2","query":"what courses should I take","fallOnly":false,"filters":[],"time_ms":5408}
+{"ts":"2026-05-21T14:40:46.355Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":6719}
+{"ts":"2026-05-21T14:41:24.285Z","ip":"172.18.0.2","query":"drama intensive MWF 4+ instructor rating","fallOnly":false,"filters":[{"field":"days","op":"includes_all","value":["M","W","F"]},{"field":"course_rating","op":"gte","value":4}],"time_ms":9237}
+{"ts":"2026-05-21T14:45:26.013Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":6719,"cached":true}
+{"ts":"2026-05-25T15:37:35.505Z","ip":"172.18.0.2","query":"Providence","fallOnly":false,"filters":[],"time_ms":7929}
+{"ts":"2026-05-25T16:41:11.456Z","ip":"172.18.0.2","query":"english classes <10 hrs/ week good professor","fallOnly":false,"filters":[{"field":"cr_avg_hours","op":"lt","value":10},{"field":"professor_rating","op":"gte","value":4},{"field":"code_prefix","op":"includes_any","value":["ENGL"]}],"time_ms":8246}
+{"ts":"2026-05-29T19:04:53.571Z","ip":"172.18.0.2","query": v,"fallOnly":false,"filters":[],"time_ms":6092}
+{"ts":"2026-06-09T20:01:00.515Z","ip":"172.18.0.2","query":"WRIT classes in economics","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["ECON"]}],"time_ms":6093}
+{"ts":"2026-06-11T18:04:14.668Z","ip":"172.18.0.2","query":"like math 1530 but more chill","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["MATH"]}],"time_ms":14836}
+{"ts":"2026-06-15T16:11:38.793Z","ip":"172.18.0.2","query":"WRIT classes in economics","fallOnly":false,"filters":[{"field":"code_prefix","op":"includes_any","value":["ECON"]}],"time_ms":6397}
+{"ts":"2026-06-15T16:12:11.496Z","ip":"172.18.0.2","query":"Easiest class","fallOnly":false,"filters":[],"time_ms":5478}

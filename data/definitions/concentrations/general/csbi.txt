@@ -1,0 +1,209 @@
+CONCENTRATION: Computational Biology
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/csbi/
+========================================================================
+
+Computational biology involves the analysis and discovery of biological phenomena using computational tools, and the algorithmic design and analysis of such tools. The field is widely defined and includes foundations in computer science, applied mathematics, statistics, biochemistry, molecular biology, genetics, ecology, evolution, anatomy, neuroscience, and visualization.
+Students may pursue a Bachelor of Arts or a Bachelor of Science. Students pursuing the ScB have the option of electing a concentration in Computational Biology with one of three focus areas: Computer Sciences, Biological Sciences, or Applied Mathematics & Statistics. Both programs require a senior capstone experience that pairs students and faculty in creative research collaborations.
+Due to the interdisciplinary nature of the Computational Biology field, courses for the concentration are drawn from a variety of departments across campus. Students should carefully review the prerequisites for courses that they are interested in and should consult the Bulletin footnotes for any clarifications. Questions about the Bulletin or the concentration may be directed to ccmb@brown.edu.
+
+  Prerequisites (0-3 courses) | 
+  These prerequisites are widely required for many courses in the concentration. Students must either complete or place out of these prerequisites. | 
+  MATH 0100 | Single Variable Calculus, Part II | 
+  or MATH 0170 | Single Variable Calculus, Part II (Accelerated)
+  APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians | 
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  BIOL 0200 | The Foundation of Living Systems | 
+  General Core Requirements: Biology | 2
+  BIOL 0470 | Genetics | 
+  BIOL 0280 | Biochemistry | 
+  or BIOL 0500 | Cell and Molecular Biology
+  General Core Requirements: Chemistry | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 
+  or CHEM 0350 | Organic Chemistry I
+  General Core Requirements: Computer Science | 2
+  Choose one of the following groupings of introductory courses: | 
+  Group A | 
+  CSCI 0111 & CSCI 0200 | Computing Foundations: Data and Program Design with Data Structures and Algorithms | 
+  Group B | 
+  CSCI 0150 & CSCI 0200 | Introduction to Object-Oriented Programming and Computer Science and Program Design with Data Structures and Algorithms | 
+  Group C | 
+  CSCI 0170 & CSCI 0200 | Computer Science: An Integrated Introduction and Program Design with Data Structures and Algorithms | 
+  Group D | 
+  CSCI 0190 & CSCI 0200 | Accelerated Introduction to Computer Science and Program Design with Data Structures and Algorithms (or any full-credit computer science course above CSCI 0190) | 
+  General Core Requirements: Probability & Statistics | 1
+  APMA 1655 | Introduction to Probability and Statistics with Theory 1 | 
+  or CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science
+  or MATH 1210 | Probability
+  Comp Bio Core Course Requirements | 2
+  CSCI 1810 | Computational Molecular Biology | 
+  APMA 1080 | Inference in Genomics and Molecular Biology 1 | 
+  Computational Biology Electives | 2
+  Select two of the following electives. Note: Students should review any pre-requisites for these electives in C@B. | 
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  APMA 1660 | Statistical Inference II | 
+  APMA 1690 | Computational Probability and Statistics | 
+  BIOL 1222A | Current Topics in Functional Genomics | 
+  BIOL 1430 | Foundations of Population Genetics | 
+  BIOL 1435 | Computational Methods for Studying Demographic History with Molecular Data | 
+  BIOL 1525 | Pathogenomics: Analysis, interpretation and applications of microbial genomes | 
+  BIOL 1555 | Methods in Informatics and Data Science for Health | 
+  BIOL 1575 | Evaluation of Health Information Systems | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1470 | Deep Learning | 
+  CSCI 1820 | Algorithmic Foundations of Computational Biology | 
+  STAT 1510 | Principles of Biostatistics and Data Analysis | 
+  STAT 1560 | Using R for Data Analysis | 
+  or other 1000+ level Computational Biology-related course with concentration advisor approval. | 
+  Capstone Experience | 1
+  Students enrolled in the computational biology concentration will complete a research project in their senior year under faculty supervision. The themes of such projects evolve with the field and the technology, but should represent a synthesis of the various specialties of the program. The requirements are either: | 
+  1. One semester of reading and research ( BIOL 1950 /60, CSCI 1970 , APMA 1970 ) with a CCMB Faculty member or approved advisor resulting in an advanced research project. 3 | 
+  2. A 2000-level Computational Biology course that covers an advanced topic within the Computational Biology field and includes an advanced research component. 3 | 
+  Total Credits | 11
+
+--------------------
+Capstone Experience:
+--------------------
+Students enrolled in the computational biology concentration will complete a research project in their senior year under faculty supervision. The themes of such projects evolve with the field and the technology, but should represent a synthesis of the various specialties of the program. The requirements are either one semester of reading and research with a CCMB Faculty member or approved advisor, or a 2000-level Computational Biology course.
+In order to be considered a candidate for honors, students will be expected to maintain an outstanding record. Students must have a majority of either As or S with distinction grades in concentration courses. In addition, students should take at least one semester, and are strongly encouraged to take 2 semesters semesters, of reading and research with a CCMB faculty member or approved advisor.
+Students seeking honors are advised to choose a Thesis Advisor prior to the end of their Junior year. Students must complete the Comp Bio Honors Registration form and submit their honors proposal to ccmb@brown.edu by the first Friday in October of their senior year. Students must submit a honors thesis in April of their senior year and present a public defense of their theses to the CCMB community. More information about the honors guidelines and deadlines can be found here . Any deviation from these rules must be approved by the director of undergraduate studies, in consultation with the student's advisor.
+Computational biology involves the analysis and discovery of biological phenomena using computational tools, and the algorithmic design and analysis of such tools. The field is widely defined and includes foundations in computer science, applied mathematics, statistics, biochemistry, molecular biology, genetics, ecology, evolution, anatomy, neuroscience, and visualization.
+Students may pursue a Bachelor of Arts or a Bachelor of Science. Students pursuing the ScB have the option of electing a concentration in Computational Biology with one of three focus areas: Computer Sciences, Biological Sciences, or Applied Mathematics & Statistics. Both programs require a senior capstone experience that pairs students and faculty in creative research collaborations.
+Due to the interdisciplinary nature of the Computational Biology field, courses for the concentration are drawn from a variety of departments across campus. Students should carefully review the prerequisites for courses that they are interested in and should consult the Bulletin footnotes for any clarifications. Questions about the Bulletin or the concentration may be directed to ccmb@brown.edu.
+
+  Prerequisites (0-3 courses) | 
+  These prerequisites are widely required for many courses in the concentration. Students must either complete or place out of these prerequisites. | 
+  MATH 0100 | Single Variable Calculus, Part II (or equivalent) | 
+  or MATH 0170 | Single Variable Calculus, Part II (Accelerated)
+  APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians | 
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  BIOL 0200 | The Foundation of Living Systems (or equivalent) | 
+  General Core Course Requirements: Biology | 2
+  BIOL 0470 | Genetics (prerequisite BIOL 0200 or equivalent) | 
+  BIOL 0280 | Biochemistry | 
+  or BIOL 0500 | Cell and Molecular Biology
+  General Core Requirements: Chemistry | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 
+  or CHEM 0350 | Organic Chemistry I
+  General Core Requirements: Computer Science | 3
+  CSCI 0220 | Introduction to Discrete Structures and Probability | 
+  AND complete one of the following groupings of introductory courses: | 
+  Group A | 
+  CSCI 0111 & CSCI 0200 | Computing Foundations: Data and Program Design with Data Structures and Algorithms | 
+  Group B | 
+  CSCI 0150 & CSCI 0200 | Introduction to Object-Oriented Programming and Computer Science and Program Design with Data Structures and Algorithms | 
+  Group C | 
+  CSCI 0170 & CSCI 0200 | Computer Science: An Integrated Introduction and Program Design with Data Structures and Algorithms | 
+  Group D | 
+  CSCI 0190 & CSCI 0200 | Accelerated Introduction to Computer Science and Program Design with Data Structures and Algorithms (or any full-credit computer science course above CSCI 0190) | 
+  General Core Requirements: Probability & Statistics | 1
+  APMA 1655 | Introduction to Probability and Statistics with Theory 1 | 
+  or CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science
+  or MATH 1210 | Probability
+  General Core Requirements: Computational Biology | 2
+  APMA 1080 | Inference in Genomics and Molecular Biology 1 | 
+  CSCI 1810 | Computational Molecular Biology | 
+  Six Courses in One Track | 6
+  Choose one of 3 tracks: Computer Science, Biological Sciences, or Applied Mathematics and Statistics. See track requirements below. | 
+  Capstone Experience | 1
+  Students enrolled in the computational biology concentration will complete a research project in their senior year under faculty supervision. The themes of such projects evolve with the field and the technology, but should represent a synthesis of the various specialties of the program. The requirements are either: | 
+  1. One semester of reading and research ( BIOL 1950 /60, CSCI 1970 , APMA 1970 ) with a CCMB Faculty member or approved advisor resulting in an advanced research project. 2 | 
+  2. A 2000-level Computational Biology course that covers an advanced topic within the Computational Biology field and includes an advanced research component. 3 | 
+  Total Credits | 16
+
+------
+Tracks
+------
+Please review the prerequisites required for the courses below in CAB. Students should also be aware of the requirements for enrolling in a given CSCI course, which can be found on the Computer Science website.
+
+  Computer Science Track: | 
+  Three of the following: | 3
+  CSCI 0410 | Foundations of AI and Machine Learning 1 | 
+  CSCI 1230 | Introduction to Computer Graphics | 
+  CSCI 1270 | Database Management Systems | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1430 | Computer Vision | 
+  CSCI 1460 | Computational Linguistics | 
+  CSCI 1470 | Deep Learning | 
+  CSCI 1550 | Probabilistic Methods in Computer Science | 
+  CSCI 1570 | Design and Analysis of Algorithms | 
+  CSCI 1730 | Design and Implementation of Programming Languages | 
+  or other 1000+ level Computer Science course approved by the concentration advisor. | 
+  Three of the following: | 3
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  APMA 1660 | Statistical Inference II | 
+  APMA 1690 | Computational Probability and Statistics | 
+  BIOL 1430 | Foundations of Population Genetics | 
+  BIOL 1435 | Computational Methods for Studying Demographic History with Molecular Data | 
+  BIOL 1525 | Pathogenomics: Analysis, interpretation and applications of microbial genomes | 
+  BIOL 1555 | Methods in Informatics and Data Science for Health | 
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  CPSY 1950 | Deep Learning in Brains, Minds and Machines | 
+  CSCI 1820 | Algorithmic Foundations of Computational Biology | 
+  STAT 1510 | Principles of Biostatistics and Data Analysis | 
+  STAT 1560 | Using R for Data Analysis | 
+  or another 1000+ level computational course approved by the concentration advisor. | 
+  Total Credits | 6
+
+  Biological Sciences track | 
+  At least four 1000+ level courses comprising a coherent theme related to Computational Biology. Examples of themes include: Biochemistry, Ecology, Evolution, Genomics, Immunology, or Neurobiology. Other themes can be approved by your concentration advisor. | 4
+  And two of the following electives: | 2
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  APMA 1660 | Statistical Inference II | 
+  APMA 1690 | Computational Probability and Statistics | 
+  BIOL 1222A | Current Topics in Functional Genomics | 
+  BIOL 1430 | Foundations of Population Genetics | 
+  BIOL 1435 | Computational Methods for Studying Demographic History with Molecular Data | 
+  BIOL 1525 | Pathogenomics: Analysis, interpretation and applications of microbial genomes | 
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CPSY 1950 | Deep Learning in Brains, Minds and Machines | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1470 | Deep Learning | 
+  CSCI 1820 | Algorithmic Foundations of Computational Biology | 
+  STAT 1510 | Principles of Biostatistics and Data Analysis | 
+  STAT 1560 | Using R for Data Analysis | 
+  or other 1000+ level Computational Biology-related course approved by concentration advisor. | 
+  Total Credits | 6
+
+Please review the prerequisites required for the courses below in CAB and on APMA’s website and/or Public Health’s website .
+
+  Applied Mathematics & Statistics Track: | 
+  At least three from the following: | 3
+  APMA 0355 & APMA 0365 | Applied Ordinary Differential Equations with Theory and Applied Partial Differential Equations I with Theory 1 | 
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  APMA 1170 | Introduction to Computational Linear Algebra | 
+  APMA 1660 | Statistical Inference II | 
+  APMA 1690 | Computational Probability and Statistics | 
+  APMA 1740 | Recent Applications of Probability and Statistics | 
+  MATH 1220 | Mathematical Statistics | 
+  STAT 1510 | Principles of Biostatistics and Data Analysis | 
+  STAT 1511 | Applied Regression Analysis | 
+  STAT 1560 | Using R for Data Analysis | 
+  or other 1000+ level APMA or STAT course approved by concentration advisor. | 
+  At least three of the following: | 3
+  BIOL 1222A | Current Topics in Functional Genomics | 
+  BIOL 1430 | Foundations of Population Genetics | 
+  BIOL 1435 | Computational Methods for Studying Demographic History with Molecular Data | 
+  BIOL 1555 | Methods in Informatics and Data Science for Health | 
+  CSCI 0410 | Foundations of AI and Machine Learning 2 | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1470 | Deep Learning | 
+  CSCI 1820 | Algorithmic Foundations of Computational Biology | 
+  or other 1000+ level Computational Biology-related course approved by concentration advisor. | 
+  Total Credits | 6
+
+--------------------
+Capstone Experience:
+--------------------
+Students enrolled in the computational biology concentration will complete a research project in their senior year under faculty supervision.  The themes of such projects evolve with the field and the technology, but should represent a synthesis of the various specialties of the program. The requirements are either one semester of reading and research with a CCMB Faculty member or approved advisor, or a 2000-level Computational Biology course.
+
+-------
+Honors:
+-------
+In order to be considered a candidate for honors, students will be expected to maintain an outstanding record. Students must have a majority of either As or S with distinction grades in concentration courses. In addition, students should take at least one semester, and are strongly encouraged to take 2 semesters semesters, of reading and research with a CCMB faculty member or approved advisor.
+Students seeking honors are advised to choose a Thesis Advisor prior to the end of their Junior year. Students must complete the Comp Bio Honors Registration form and submit their honors proposal to ccmb@brown.edu by the first Friday in October of their senior year. Students must submit a honors thesis in April of their senior year and present a public defense of their theses to the CCMB community. More information about the honors guidelines and deadlines can be found here . Any deviation from these rules must be approved by the director of undergraduate studies, in consultation with the student's advisor.

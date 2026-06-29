@@ -1,0 +1,52 @@
+CONCENTRATION: Linguistics
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/ling/
+========================================================================
+
+-------------------------------
+A.B. Requirements  (10 courses)
+-------------------------------
+Students are expected to fulfill both breadth and depth requirements. Breadth requirements let students reach common ground understanding of topics in linguistics, and include an introductory gateway course, a class that focuses on phonetics / phonology, a class that focuses on syntax / morphology, a class that focuses on semantics / pragmatics, and a class on language variation. Depth requirements expect students to gain more specialized knowledge in specific domains, by taking additional courses, some of which must be methods / advanced courses, as described below.
+
+  Gateway Course | 1
+  LING 0100 | Introduction to Linguistics | 
+  Phonetics/Phonology Courses | 1
+  LING 1200 | Phonology | 
+  LING 1210 | Phonetics | 
+  Syntax Courses | 1
+  LING 1310 | Introduction to Syntax | 
+  LING 1311 | Linguistic Variation and Universals | 
+  Semantics/Pragmatics Courses | 1
+  LING 1410 | Lexical Semantics | 
+  LING 1440 | Compositional Semantics | 
+  LING 1412 | Pragmatics | 
+  Linguistic Variation Courses | 1
+  LING 1500 | Sociolinguistics | 
+  LING 0511 | Language and Gender | 
+  LING 1311 | Linguistic Variation and Universals | 
+  CPSY 0800 | Language and the Mind | 
+  CPSY 1650 | Child Language Acquisition | 
+  CPSY 1660 | Learning Compositional Language | 
+  CPSY 1800 | Language Processing | 
+  CPSY 1850 | Language Processing in Humans and Machines | 
+  CPSY 1890 | Laboratory in Psycholinguistics | 
+  5 additional appropriate electives forming a thematically related set to be determined in consultation with the Concentration Advisor. At least one of these must be drawn from the list of advanced courses listed below, and we strongly recommend that at least one course be an appropriate methods and a topics course.  No more than 2 of these courses may be drawn from below 1000 level courses. The electives can be drawn from any of the above courses, or any of the other linguistic/language related courses in the program. Electives may also be drawn from courses in other departments in consultation with the Concentration Advisor; a list of courses which standardly count towards the Linguistics Concentration (provided they form part of the thematically related set) is appended below. | 5
+  CPSY 1650 | Child Language Acquisition | 
+  SLAV 1300 | Language and Politics in East Europe and Russia | 
+  Advanced and Methods Courses | 
+  LING 1440 | Compositional Semantics | 
+  LING 1771 | Introduction to Corpus Linguistics | 
+  LING 1870 | Linguistic Field Methods | 
+  CSCI 1460 | Computational Linguistics | 
+  CPSY 1890 | Laboratory in Psycholinguistics | 
+  NOTE: This is NOT an exhaustive list of courses that can be applied towards the Linguistics Concentration requirements. | 
+  Total Credits | 10
+
+Capstone Requirement The AB has a capstone requirement that can be fulfilled in one of the following ways:
+  • An Honors Thesis - A substantial paper researched and written over the course of the senior year under the supervision of a faculty advisor drawn from the primary, secondary, or visiting faculty in Linguistics or Linguistics post-docs. Other faculty including affiliated faculty may at times be supervisors of a Linguistics Honors thesis but the topic and supervisor must be approved by the Linguistics DUS by the second week of the student’s penultimate semester of their senior year. Typically, students writing a thesis will enroll in LING 1970 (Independent Research), for at least one semester during either their junior or senior years.
+  • Independent Study - A one-semester reading/research course LING 1970 under the supervision of a faculty advisor drawn from the primary, secondary, or visiting faculty in Linguistics or Linguistics post-docs. The class should be taken in the students’ junior or senior year, and be declared and approved by the the DUS by the end of the second week of the semester as aiming to satisfy the capstone requirement.
+  • Special Project - A special project undertaken in connection with any of our advanced and methods courses, as listed in the concentration requirements (under 'advanced and methods courses), or other courses if approved by the DUS. Examples include a more-in-depth final paper than is otherwise required or a presentation of some of the material to the class, though students are encouraged to make creative proposals, as well. The specific project should be discussed with, and must be approved by, the instructor of the relevant course. This approval must be made by the end of the second week of the semester, and the course must be one taken in the student’s junior or senior year.
+Non-honors students who take LING 1970 for their capstone may apply this towards their 5 electives.
+Honors (12 courses) Candidates for Honors in Linguistics must meet all of the requirements above, write an Honors thesis, and take two additional courses.  One course is normally LING 19XX (Directed Research in  Linguistics) - intended for work on the Honors thesis.
+Three of the total 12 courses must be drawn from the advanced list above (the Directed Research course counts as one of the advanced courses).
+Refer to the Program in Linguistics webpage for detailed information about the Linguistics Honors program.

@@ -29,7 +29,11 @@ Natural-language queries are supported by an instruct-tuned model. With pre-quer
 
 ## Methodology
 
-At seed time, course data is crawled, converted to structured text, embedded with metadata such as meeting days, times, and professor, and distributed across nodes using consistent hashing. At query time, the user's input is embedded through the OpenAI API to capture semantic similarity to course data. A pre-query model extracts keyword features such as days of the week and professor which are applied programmatically. The query embedding and extracted filters are sent to nodes to retrieve local top-K matches. After filtering, each node uses FAISS to index relevant embeddings and return the most similar results; the coordinator then merges these into a global top-K set, which is passed to the post-query model as context for the final response. A coordinator-layer LRU cache serves repeated queries, bypassing the embedding and retrieval pipeline.
+At seed time, course data is crawled, converted to structured text, embedded with metadata such as meeting days, times, and professor, and distributed across nodes using consistent hashing. 
+
+At query time, the user's input is embedded through the OpenAI API to capture semantic similarity to course data. A pre-query model extracts keyword features such as days of the week and professor which are applied programmatically. The query embedding and extracted filters are sent to nodes to retrieve local top-K matches. 
+
+After filtering, each node uses FAISS to index relevant embeddings and return the most similar results; the coordinator then merges these into a global top-K set, which is passed to the post-query model as context for the final response. A coordinator-layer LRU cache serves repeated queries, bypassing the embedding and retrieval pipeline.
 
 ## UI
 

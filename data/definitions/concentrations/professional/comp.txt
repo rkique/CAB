@@ -1,0 +1,22 @@
+CONCENTRATION: Computer Science
+TRACK: PROFESSIONAL
+URL: https://bulletin.brown.edu/the-college/concentrations/comp/
+========================================================================
+
+------------------------------------------------------------------------
+Requirements for the Professional Track of the both the Sc. B. and A.B. degrees.
+------------------------------------------------------------------------
+
+------
+Honors
+------
+Honors in CS requires a two-semester research project (including writeup and presentation) during the last two semesters. In addition, honors candidates must have earned A's or S-with-distinction in 2/3 (rounding up) of the courses used towards the concentration, excluding introductory-sequence courses (CS courses numbered 0200 or below) and the calculus prerequisite. See the department’s honors webpage for more details.
+
+------------------------------------------------------------------------
+Requirements for the Professional Track of the both the Sc. B. and A.B. degrees.
+------------------------------------------------------------------------
+
+------
+Honors
+------
+Honors in CS requires a two-semester research project (including writeup and presentation) during the last two semesters. In addition, honors candidates must have earned A's or S-with-distinction in 2/3 (rounding up) of the courses used towards the concentration, excluding introductory-sequence courses (CS courses numbered 0200 or below) and the calculus prerequisite. See the department’s honors webpage for more details.

@@ -1,0 +1,105 @@
+CONCENTRATION: Computational Neuroscience
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/cneu/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. Degree
+-------------------------------------
+
+  Background Courses (must take one of each): | 
+  Calculus | 1
+  MATH 0100 | Single Variable Calculus, Part II | 
+  Differential Equations | 1
+  APMA 0350 | Applied Ordinary Differential Equations | 
+  Linear Algebra | 1
+  MATH 0520 | Linear Algebra | 
+  or MATH 0540 | Linear Algebra With Theory
+  Note: APMA 0260 can replace MATH 0100 and MATH 0520 / 0540 | 
+  Statistics | 1
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  or APMA 1655 | Introduction to Probability and Statistics with Theory
+  or CPSY 0900 | Statistical Methods
+  or BIOL 0495 | Statistical Analysis of Biological Data
+  or CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science
+  Core Concentration Courses: | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 1
+  NEUR 1020 | Principles of Neurobiology | 1
+  or NEUR 1030 | Neural Systems
+  CSCI 0111 | Computing Foundations: Data | 1
+  or CSCI 0112 | Computing Foundations: Program Organization
+  or CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science
+  or CSCI 0170 | Computer Science: An Integrated Introduction
+  or CSCI 0190 | Accelerated Introduction to Computer Science
+  CSCI 0200 | Program Design with Data Structures and Algorithms | 1
+  or CSCI 0190 | Accelerated Introduction to Computer Science
+  NEUR 0680 | Introduction to Computational Neuroscience | 1
+  Two Computational Neuroscience Electives From The Below List: | 2
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  NEUR 1440 | Mechanisms and Meaning of Neural Dynamics | 
+  NEUR 1660 | Neural Computation in Learning and Decision-Making | 
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CSCI 1810 | Computational Molecular Biology | 
+  NEUR 1940B | Deep Learning in Neuroethology | 
+  NEUR 1630 | Big Data Neuroscience Ideas Lab | 
+  CPSY 1950 | Deep Learning in Brains, Minds and Machines | 
+  CPSY 1850 | Language Processing in Humans and Machines | 
+  NEUR 2110 | Statistical Neuroscience | 
+  One Course in Artificial Intelligence: | 1
+  CSCI 0410 | Foundations of AI and Machine Learning | 
+  CSCI 1410 | Artificial Intelligence | 
+  CSCI 1411 | Foundations of AI and Machine Learning | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1430 | Computer Vision | 
+  CSCI 1460 | Computational Linguistics | 
+  CSCI 1470 | Deep Learning | 
+  DATA 2060 | Machine Learning: from Theory to Algorithms | 
+  HIST 1956S | History of Artificial Intelligence | 
+  Two Upper-Level Neuroscience Electives | 2
+  Two courses that will enhance your understanding of the field of neuroscience. While electives need not be from the neuroscience department, the following list are common courses taught by Neuroscience and other departments that are often used as electives. We encourage students to explore the broader course catalog and consult with their concentration advisor to explore the full range of electives, rather than limiting themselves to this list.  These electives must be of 1000-level or above. | 
+  CPSY 1400 | The Neural Bases of Cognition | 
+  ENGL 1900Z | Neuroaesthetics and Reading | 
+  ENGN 1220 | Neuroengineering | 
+  NEUR 1540 | Neurobiology of Learning and Memory | 
+  NEUR 1650 | Structure of the Nervous System | 
+  NEUR 1740 | The Diseased Brain: Mechanisms of Neurological and Psychiatric Disorders | 
+  One Elective in Ethics: | 1
+  CSCI 1805 | Computers, Freedom and Privacy | 
+  CSCI 1951I | CS for Social Change | 
+  CSCI 1951Z | Fairness in Automated Decision Making | 
+  DATA 0080 | Data, Ethics and Society | 
+  ECON 1000 | Using Big Data to Solve Economic and Social Problems | 
+  ENGN 1800 | Social Impact of Emerging Technologies: The Role of Scientists and Engineers | 
+  PHIL 0401 | Ethics of Digital Technology | 
+  PHIL 0403 | Ethics and Politics of Data | 
+  APMA 1910 | Race and Gender in the Scientific Community | 
+  STS 1700T | Race, Gender, and Technology in Everyday Life | 
+  Two Additional Electives: | 2
+  Two courses that will enhance your understanding of the field of computational neuroscience. These electives are not limited to a specific department, and are able to be any of the courses already listed for this concentration (though, you cannot cross-count an elective with a named requirement). The following list are courses that we recommend be used as electives, however, we encourage students to explore the broader course catalog and consult with their concentration advisor to explore the full range of electives, rather than limiting themselves to this list.  Students can substitute TWO semesters of independent study (NEUR1970 or equivalent course from another department) for one elective course | 
+  APMA 0160 | Introduction to Scientific Computing | 
+  APMA 0200 | Introduction to Modeling | 
+  APMA 0360 | Applied Partial Differential Equations I | 
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  APMA 1170 | Introduction to Computational Linear Algebra | 
+  APMA 1360 | Applied Dynamical Systems | 
+  APMA 1660 | Statistical Inference II | 
+  APMA 1690 | Computational Probability and Statistics | 
+  APMA 1710 | Information Theory | 
+  APMA 1740 | Recent Applications of Probability and Statistics | 
+  APMA 1860 | Graphs and Networks | 
+  APMA 1941D | Pattern Theory | 
+  BIOL 1435 | Computational Methods for Studying Demographic History with Molecular Data | 
+  BIOL 1555 | Methods in Informatics and Data Science for Health | 
+  CPSY 0450 | Brain Damage and the Mind | 
+  CPSY 0800 | Language and the Mind | 
+  CSCI 0535 | Linear Algebra for Machine Learning | 
+  CSCI 1010 | Theory of Computation | 
+  CSCI 1570 | Design and Analysis of Algorithms | 
+  CSCI 1951A | Data Science | 
+  CSCI 1951Q | Topics in Programming Languages | 
+  ENGN 2912P | Topics in Optimization | 
+  MATH 1210 | Probability | 
+  MATH 1610 | Probability | 
+  PHYS 1610 | Biological Physics | 
+  NEUR 1900 | Capstone | 1
+  Total Credits | 18

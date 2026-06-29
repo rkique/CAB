@@ -1,0 +1,61 @@
+CONCENTRATION: Health & Human Biology
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/hhbi/
+========================================================================
+
+Health and Human Biology is an interdisciplinary concentration that provides a rigorous foundation in the biological sciences with substantive course work in humanities and social sciences within a subfield of Human Health and Disease. The program includes: background courses, biology core courses, a set of theme courses, and a Senior Capstone activity. Background courses provide the essential foundations in chemistry, mathematics, methods, and basic biology. These support the Biology core, which is comprised of a flexible menu of intermediate and advanced courses. A required portion of the Biology core is Genetics, a cornerstone of human biology and its interface with other fields. The Biology core underscores the related coursework within the Health and Disease Theme.  The Theme courses are social science and humanities courses that form a cohesive, thoughtful grouping.  Theme groupings must be approved by the advisor. A required senior capstone course or activity builds on the program's focus.
+
+--------------------
+Program Requirements
+--------------------
+
+  REQUIRED BACKGROUND: | 
+  Four (4) courses including: | 
+  MATH 0090 | Single Variable Calculus, Part I (or equivalent placement) | 1
+  OR | 
+  MATH 0050 & MATH 0060 | Analytic Geometry and Calculus and Analytic Geometry and Calculus | 
+  OR | 
+  MATH 0100 | Single Variable Calculus, Part II | 
+  or MATH 0170 | Single Variable Calculus, Part II (Accelerated)
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  BIOL 0200 | The Foundation of Living Systems | 1
+  Statistics or methods course chosen with advisor's help. | 1
+  CORE PROGRAM: | 
+  In addition to the stated background in Chemistry, Math, Biology and Statistics, five (5) Biology plus four (4) coherently-grouped Theme courses, plus a Senior-Year Capstone course or project. (See description of Capstone at link below this table). | 
+  BIOLOGY: | 
+  Five (5) courses, including: | 5
+  Genetics, which can be fulfilled in the following ways: | 
+  BIOL 0470 | Genetics | 
+  -OR- | 
+  BIOL 0480 & BIOL 0500 | Evolutionary Biology and Cell and Molecular Biology | 
+  -OR- | 
+  BIOL 0480 & BIOL 0510 | Evolutionary Biology and Introductory Microbiology | 
+  -OR- | 
+  BIOL 0480 & BIOL 0280 | Evolutionary Biology and Biochemistry | 
+  Select one course in structure/function/development such as: | 
+  BIOL 0400 | Biological Design: Structural Architecture of Organisms | 
+  BIOL 0800 | Principles of Physiology | 
+  BIOL 1310 | Developmental Biology | 
+  BIOL 1800 | Animal Locomotion | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 
+  One course in organismal/population biology such as: | 
+  BIOL 0380 | The Ecology and Evolution of Infectious Disease | 
+  BIOL 0410 | Invertebrate Zoology | 
+  BIOL 0420 | Principles of Ecology | 
+  BIOL 0480 | Evolutionary Biology | 
+  BIOL 1470 | Conservation Biology | 
+  BIOL 1555 | Methods in Informatics and Data Science for Health | 
+  ENVS 0490 | Environmental Science in a Changing World | 
+  Or a course from the NEUR 1940 series | 
+  Two Biology or Neuroscience courses. At least one must be at the advanced level. | 
+  THEME: With the advisor's assistance, a theme is chosen and a cohesive set of courses are selected from outside of Biology and Neuroscience. | 4
+  No more than TWO courses from a given department may be included in the theme portion | 
+  Students will then select from FOUR theme options: 1) Mind, Brain, Behavior, 2) Planetary Health, 3) Global Health, 4) Social Determinants of Health | 
+  SENIOR CAPSTONE ACTIVITY: Must be conducted during the senior year, fulfilled by one of the following, and related to the students learning goals in the concentration: | 1
+  1) Advisor approved senior seminar or advanced course related to the theme | 
+  2) One semester of independent research/independent study ( BIOL 1950 or BIOL 1960 ); in the case of a senior honors thesis, either BIOL 1950 or BIOL 1960 can be used as the capstone. | 
+  3) An appropriate internship with a scholarly context can be used if coupled with independent study mentored by a Brown faculty member the following semester. | 
+  Total Credits | 14
+
+CAPSTONE: See https://www.brown.edu/academics/biology/undergraduate-education/undergraduate/health-and-human-biology for more information on the Capstone Activity.
+HONORS: See more information about Honors at https://www.brown.edu/academics/biology/undergraduate-education/honors-biological-sciences .

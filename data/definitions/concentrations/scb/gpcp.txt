@@ -1,0 +1,69 @@
+CONCENTRATION: Geophysics and Climate Physics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/gpcp/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+The Geophysics and Climate Physics concentration involves applying physics and mathematics to study processes that operate on and within the Earth and other planets, over short and long timescales.  Geophysical approaches are fundamental for understanding how the oceans, atmosphere and ice sheets respond to climate change, managing resources such as water and geothermal energy, mitigating natural hazards such as earthquakes and volcanoes, and understanding the dynamic processes that shape the surfaces and control the interiors of Earth and other planetary bodies. Geophysics spans both theoretical modeling of physical processes and the analysis of geophysical data (including remote sensing and machine learning), and typically involves computing, as well as lab experiments and field work.
+Both A.B. and Sc.B. degrees are offered, requiring 12 and 19 courses, respectively.  These degrees build skills in critical thinking, data analysis and modeling, finding solutions to complex problems, and written and oral communication.   DEEPS provides a highly collaborative learning environment that emphasizes process-oriented, hands-on approaches in the classroom, in labs and on field trips. There are many opportunities for students to do paid research during the summer or academic year.
+Students interested in this concentration may also wish to consider related concentrations: Earth, Climate and Biology, Geochemistry and Environmental Chemistry, and Earth and Planetary Science.
+This program is recommended for students interested in more in-depth study in climate science, geophysics, planetary science and related fields, potentially including graduate school and careers in these areas. Students will gain hands-on experience with theoretical and numerical modeling of processes, data analysis, and computing.  Some course requirements may be flexible based on consultation with the concentration advisor.
+Note - For students still enrolled with the prior Concentration in Geology-Physics/Mathematics Sc.B., please refer to the Archived Bulletin link on left hand navigation for your requirements for the year you declared.
+
+  Five supporting science courses: | 
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  A course involving mechanics such as: | 1
+  PHYS 0050 | Foundations of Mechanics | 
+  PHYS 0070 | Analytical Mechanics | 
+  ENGN 0040 | Engineering Statics and Dynamics (or the equivalent) | 
+  Three courses in APMA or MATH, one of which must be APMA 0350 or equivalent | 3
+  Fourteen Concentration Courses: | 
+  EEPS 0220 | Earth and Environmental Processes | 1
+  EEPS 0230 | Geochemistry: Earth and Planetary Materials and Processes | 1
+  or EEPS 0240 | Earth: Evolution of a Habitable Planet
+  EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction | 1
+  or EEPS 0350 | Mathematical Methods of Fluid
+  EEPS 1430 | Atmospheric Circulation and Climate Dynamics | 1
+  EEPS 1610 | Solid Earth Geophysics | 1
+  Three of the following courses, can combine different focii: | 3
+  Climate focus: | 
+  EEPS 1310 | Global Water Cycle | 
+  EEPS 1510 | Dynamic Meteorology | 
+  EEPS 1520 | Ocean Circulation and Climate | 
+  Solid Earth and planets focus: | 
+  EEPS 1410 | Mineralogy | 
+  EEPS 1450 | Structural Geology | 
+  EEPS 1620 | Continuum Physics of the Solid Earth | 
+  Data science focus: | 
+  EEPS 1340 | Machine Learning for the Earth and Environment | 
+  EEPS 1690 | Introduction to Methods in Data Analysis | 
+  EEPS 1720 | Tackling Climate Change with Machine Learning | 
+  One additional EEPS course such as: | 1
+  Climate focus: | 
+  EEPS 1130 | Ocean Biogeochemical Cycles | 
+  EEPS 1630 | Introduction to Quantitative Glaciology | 
+  EEPS 1820 | Geophysical Fluid Dynamics: Rotating, Stratified Turbulence Edition | 
+  Solid Earth and planets focus: | 
+  EEPS 1560 | Global Tectonics | 
+  EEPS 1650 | Earthquake Seismology | 
+  EEPS 1810 | Physics of Planetary Evolution | 
+  Data science focus: | 
+  EEPS 1330 | Global Environmental Remote Sensing | 
+  Other alternatives: | 
+  a field or sea course | 
+  or any EEPS course listed in the concentration | 
+  Three courses in physics or engineering such as: | 3
+  PHYS 0060 | Foundations of Electromagnetism and Modern Physics | 
+  PHYS 0470 | Electricity and Magnetism | 
+  PHYS 0500 | Advanced Classical Mechanics | 
+  PHYS 1600 | Computational Physics | 
+  ENGN 0310 | Mechanics of Solids and Structures | 
+  ENGN 0790 | Fundamentals of Environmental Engineering | 
+  ENGN 0510 | Electricity and Magnetism | 
+  ENGN 0810 | Fluid Mechanics | 
+  ENGN 1370 | Advanced Engineering Mechanics | 
+  One additional upper-level science or math course with approval from the concentration advisor | 1
+  EEPS 1970 | Undergraduate Senior Thesis Course | 1
+  Total Credits | 19

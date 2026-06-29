@@ -1,0 +1,112 @@
+CONCENTRATION: Linguistics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/ling/
+========================================================================
+
+-----------------------------
+ScB Requirements (16 courses)
+-----------------------------
+Students who wish to pursue one or more aspects of Linguistics in greater depth than does the A.B., and to focus on some of the more technical, computational, and/or experimental areas of the field may choose to take an Sc.B in Linguistics. Students will choose a focus pathway, in consultation with the Concentration Advisor / Director of Undergraduate Studies, which will direct their choices.
+Students are expected to fulfill both breadth and depth requirements. Breadth requirements let students reach common ground understanding of topics in linguistics, and include an introductory gateway course, a class that focuses on phonetics / phonology, a class that focuses on syntax / morphology, a class that focuses on semantics / pragmatics, and a class on language variation. Depth requirements expect students to gain more specialized knowledge in specific domains, by taking additional courses, some of which must be methods / advanced courses, as described below. Unlike the AB, ScB students are also expected to take electives outside of linguistics, and to complete a capstone course.
+
+  Gateway course | 1
+  LING 0100 | Introduction to Linguistics | 
+  At least one course in phonetics / phonology, such as: | 1
+  LING 1200 | Phonology | 
+  LING 1210 | Phonetics | 
+  At least one course in syntax, such as: | 1
+  LING 1310 | Introduction to Syntax | 
+  LING 1311 | Linguistic Variation and Universals | 
+  At least one course in semantics / pragmatics, such as: | 1
+  LING 1410 | Lexical Semantics | 
+  LING 1412 | Pragmatics | 
+  LING 1440 | Compositional Semantics | 
+  At least one course in linguistics variation, such as: | 1
+  LING 1311 | Linguistic Variation and Universals | 
+  CPSY 0800 | Language and the Mind | 
+  CPSY 1650 | Child Language Acquisition | 
+  CPSY 1660 | Learning Compositional Language | 
+  CPSY 1800 | Language Processing | 
+  CPSY 1890 | Laboratory in Psycholinguistics | 
+  Three electives specifically in the focus area, such as: | 3
+  LING 1741 | Information Theory in Language | 
+  LING 1771 | Introduction to Corpus Linguistics | 
+  CSCI 1460 | Computational Linguistics | 
+  CPSY 1800 | Language Processing | 
+  CPSY 1850 | Language Processing in Humans and Machines | 
+  LING 1310 | Introduction to Syntax | 
+  CPSY 0800 | Language and the Mind | 
+  CPSY 1385 | Topics in Language Acquisition: Language Acquisition and Cognitive Development | 
+  CPSY 1650 | Child Language Acquisition | 
+  CPSY 1660 | Learning Compositional Language | 
+  CPSY 1890 | Laboratory in Psycholinguistics | 
+  LING 1270 | Laboratory in Phonetics | 
+  LING 1311 | Linguistic Variation and Universals | 
+  LING 1410 | Lexical Semantics | 
+  LING 1412 | Pragmatics | 
+  LING 1440 | Compositional Semantics | 
+  PHIL 0990X | Conditionals | 
+  Or many other courses | 
+  Four non-linguistic focus area electives, such as: | 4
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  CSCI 0220 | Introduction to Discrete Structures and Probability | 
+  CSCI 1410 | Artificial Intelligence | 
+  CSCI 1420 | Machine Learning | 
+  CSCI 1951A | Data Science | 
+  STAT 1560 | Using R for Data Analysis | 
+  MATH 0520 | Linear Algebra | 
+  CPSY 0950 | Introduction to programming | 
+  CPSY 2908 | Multivariate Statistical Techniques | 
+  CSCI 1460 | Computational Linguistics | 
+  NEUR 0680 | Introduction to Computational Neuroscience | 
+  PHIL 1770 | Philosophy of Mind | 
+  CPSY 0200 | Human Cognition | 
+  CPSY 0400 | Cognitive Neuroscience | 
+  CPSY 0610 | Children's Thinking: The Nature of Cognitive Development | 
+  CPSY 0900 | Statistical Methods | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  CPSY 1610 | Cognitive Development | 
+  CPSY 1620 | Developmental Cognitive Neuroscience | 
+  CPSY 1900 | Research Methods And Design | 
+  MATH 0750 | Introduction to Higher Mathematics | 
+  PHIL 0990T | Paradox and Infinity | 
+  PHIL 1630 | Mathematical Logic | 
+  CPSY 0700 | Social Psychology | 
+  Or many other courses | 
+  Three additional electives in Linguistics, preferably outside the main focus area, such as: | 3
+  LING 1311 | Linguistic Variation and Universals | 
+  LING 1440 | Compositional Semantics | 
+  LING 1870 | Linguistic Field Methods | 
+  ANTH 1800 | Sociolinguistics, Discourse and Dialogue | 
+  SLAV 1300 | Language and Politics in East Europe and Russia | 
+  CPSY 1660 | Learning Compositional Language | 
+  CPSY 1850 | Language Processing in Humans and Machines | 
+  LING 1771 | Introduction to Corpus Linguistics | 
+  LING 1741 | Information Theory in Language | 
+  CPSY 1800 | Language Processing | 
+  Or many other courses | 
+  One independent study / capstone requirement | 1
+  LING 1970 | Independent Research in Linguistics | 
+  Total Credits | 16
+
+Honors (17 courses)
+The Honors program requires one additional elective, which will typically be a second LING 19XX Directed Research course during the senior year (thus leading to a full year of Directed Reading or Directed Research). Admission to the honors program requires a majority of A grades in the concentration. The student’s work will culminate in an Honors’ thesis on an approved topic (learn more about regulations regarding Honors’ theses at https://linguistics.brown.edu/concentrations ), written under the direction of one or more faculty members, and read by a committee of at least two faculty members (one of whom may be from another department).
+
+==================
+General Guidelines
+==================
+
+----------------------------------
+Do Foreign Language Courses Count?
+----------------------------------
+Foreign language courses will generally not count towards the concentration requirements, except those that focus on the structure or history of the language. Students are, however, advised to gain familiarity with a foreign language, and are encouraged to take at least one course which deals with the structure of a language other than English.
+
+-------------------
+Choice of Electives
+-------------------
+When it comes to the choice of electives, students can complement LING classes with classes that have substantial linguistics content in other departments. However, the specific choice of electives depends on the other classes the student is taking. Students should consult with the concentration adviser / the director of undergraduate studies regarding their specific choices. Additionally, no more than two electives can be 0-level courses.
+
+-------------------
+Overlapping Classes
+-------------------
+Linguistics allows students to double-count at most two classes with other concentrations.

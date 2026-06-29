@@ -1,0 +1,47 @@
+CONCENTRATION: Geochemistry and Environmental Chemistry
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/gcec/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+The Geochemistry and Environmental Chemistry concentration offers two different emphases. Low-temperature geochemistry involves study of chemical and biochemical processes on and near Earth’s surface, including land, oceans and freshwater bodies, and how the geochemical record reflects climate conditions. High-temperature geochemistry includes study of the formation and evolution of the Earth and other planets, magma formation and properties, volcanic activity, and metamorphism.
+Both A.B. and Sc.B. degrees are offered, requiring 12 and 19 courses, respectively.  These degrees build skills in critical thinking, data analysis and modeling, finding solutions to complex problems, and written and oral communication.   DEEPS provides a highly collaborative learning environment that emphasizes process-oriented, hands-on approaches in the classroom, in labs and on field trips. There are many opportunities for students to do paid research during the summer or academic year.
+Students interested in this concentration may also wish to consider related concentrations: Earth, Climate and Biology, Geophysics and Climate Physics, and Earth and Planetary Science.
+This program is recommended for students interested in more in-depth study in geochemistry, climate science, planetary science and related fields, potentially including graduate school and wide-ranging careers in these areas. Some course requirements may be flexible based on consultation with the concentration advisor.
+Note - For students still enrolled with the prior Concentration in Geology-Chemistry Sc.B., please refer to the Archived Bulletin link on left hand navigation for your requirements for the year you declared.
+
+  Basic Supporting Science Courses: | 
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  Four courses to build quantitative skills: | 4
+  MATH 0090 | Single Variable Calculus, Part I (or higher) | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  CSCI 0111 | Computing Foundations: Data | 
+  ENGN 0040 | Engineering Statics and Dynamics (or higher) | 
+  APMA 0350 | Applied Ordinary Differential Equations (or higher) | 
+  PHYS 0050 | Foundations of Mechanics (or higher) | 
+  EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction | 
+  Fourteen Concentration Courses | 
+  EEPS 0220 | Earth and Environmental Processes | 1
+  EEPS 0230 | Geochemistry: Earth and Planetary Materials and Processes | 1
+  EEPS 0240 | Earth: Evolution of a Habitable Planet | 1
+  EEPS 1370 | Environmental Geochemistry | 1
+  EEPS 1410 | Mineralogy | 1
+  Three additional chemistry courses such as: | 3
+  CHEM 0350 | Organic Chemistry I | 
+  CHEM 0360 | Organic Chemistry II | 
+  CHEM 0500 | Inorganic Chemistry | 
+  CHEM 1060 | Advanced Inorganic Chemistry | 
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry | 
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics | 
+  BIOL 0280 | Biochemistry | 
+  Two upper level courses from EEPS such as | 2
+  EEPS 1130 | Ocean Biogeochemical Cycles | 
+  EEPS 1240 | Stratigraphy and Sedimentation | 
+  EEPS 1380 | Environmental Stable Isotopes | 
+  EEPS 1420 | Petrology | 
+  Three additional upper-level science or math courses with approval from the concentration advisor | 3
+  EEPS 1970 | Undergraduate Senior Thesis Course | 1
+  Total Credits | 19

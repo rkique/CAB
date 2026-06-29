@@ -1,0 +1,185 @@
+CONCENTRATION: Applied Mathematics-Economics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/apme/
+========================================================================
+
+========================================
+Requirements for the Bachelor of Science
+========================================
+
+  Prerequisites: | 
+  MATH 0100 | Single Variable Calculus, Part II | 
+  MATH 0520 | Linear Algebra | 
+  or APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians
+  APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians | 
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  Course Requirements: | 
+  Applied Mathematics Requirements | 
+  APMA 0355 | Applied Ordinary Differential Equations with Theory | 1
+  APMA 0365 | Applied Partial Differential Equations I with Theory | 
+  Select one of the following: | 1
+  APMA 0160 | Introduction to Scientific Computing (preferred) | 
+  APMA 0200 | Introduction to Modeling | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  Select one of the following: | 1
+  APMA 1200 | Operations Research: Probabilistic Models | 
+  or APMA 1210 | Operations Research: Deterministic Models
+  APMA 1655 | Introduction to Probability and Statistics with Theory 1 | 1
+  Two 1000-level or higher APMA or MATH courses with at least one in APMA (except APMA1910, APMA1920, MATH1090, MATH1910 and research/independent study). At most one of APMA 1000 , APMA 1001, MATH 1000 , MATH 1001 and at most one of APMA 1650 , APMA 1655 , MATH 1210 , MATH 1610 can be used for concentration credit | 2
+  Economics Requirements: | 
+  ECON 1130 | Intermediate Microeconomics (Mathematical) 2 | 1
+  ECON 1210 | Intermediate Macroeconomics | 1
+  ECON 1630 | Mathematical Econometrics I | 1
+  Three 1000-level courses from the "mathematical-economics" group: 3 | 3
+  ECON 1170 | Welfare Economics and Social Choice Theory | 
+  ECON 1225 | Advanced Macroeconomics: Monetary, Fiscal, and Stabilization Policies | 
+  ECON 1255 | Unemployment: Models and Policies | 
+  ECON 1470 | Bargaining Theory and Applications | 
+  ECON 1490 | Designing Internet Marketplaces | 
+  ECON 1545 | Topics in Macroeconomics, Development and International Economics | 
+  ECON 1560 | Economic Growth | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1750 | Investments II | 
+  ECON 1770 | Crisis Economics | 
+  ECON 1805 | Experimental and Behavioral Economics | 
+  ECON 1820 | Theory of Behavioral Economics | 
+  ECON 1860 | The Theory of General Equilibrium | 
+  ECON 1870 | Game Theory and Applications to Economics | 
+  One 1000-level course from the "data methods" group: 3 | 1
+  ECON 1301 | Economics of Education I | 
+  ECON 1310 | Labor Economics | 
+  ECON 1315 | Health, Education, and Social Policy | 
+  ECON 1330 | Gender and Development | 
+  ECON 1340 | Economics of Global Warming | 
+  ECON 1345 | Climate Change and the Commons | 
+  ECON 1355 | Environmental Issues in Development Economics | 
+  ECON 1360 | Research Seminar in Health Economics | 
+  ECON 1375 | Inequality of Opportunity in the US | 
+  ECON 1385 | Intergenerational Poverty in America | 
+  ECON 1400 | The Economics of Mass Media | 
+  ECON 1410 | Urban Economics | 
+  ECON 1430 | The Economics of Social Policy | 
+  ECON 1510 | Economic Development | 
+  ECON 1520 | Culture, History and Comparative Development | 
+  ECON 1530 | Health, Hunger and the Household in Developing Countries | 
+  ECON 1629 | Applied Research Methods for Economists | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1825 | Behavioral Economics and Public Policy | 
+  ECON 1830 | Behavioral Finance | 
+  Two additional 1000-level economics courses 4 | 2
+  Total Credits | 15
+
+------
+Honors
+------
+Applied Math-Economics concentrators who wish to pursue honors must find a primary faculty thesis advisor in either Economics or Applied Math. They will be held to the Honors requirements of their advisor’s department. Joint concentrators in Applied Mathematics-Economics with an Economics thesis advisor should follow the requirements published here , while concentrators with an Applied Math thesis advisor should follow the requirements published here .
+
+-------------------------------------------------------------------
+Standard program for the Sc.B. degree (Mathematical Finance track):
+-------------------------------------------------------------------
+
+  Prerequisites: | 
+  MATH 0100 | Single Variable Calculus, Part II | 
+  MATH 0520 | Linear Algebra | 
+  or APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians
+  APMA 0260 | Linear Algebra and Multivariable Calculus for Applied Mathematicians | 
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  Course Requirements: 16 courses: 7 Applied Math and 9 Economics | 
+  Applied Mathematics requirements: | 
+  APMA 0355 | Applied Ordinary Differential Equations with Theory | 1
+  and | 
+  APMA 0365 | Applied Partial Differential Equations I with Theory | 1
+  Select one of the following: | 1
+  APMA 0160 | Introduction to Scientific Computing (preferred) | 
+  APMA 0200 | Introduction to Modeling | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  APMA 1200 | Operations Research: Probabilistic Models | 1
+  APMA 1655 | Introduction to Probability and Statistics with Theory 1 | 1
+  Select two of the following: | 2
+  APMA 1160 | An Introduction to Numerical Optimization | 
+  APMA 1180 | Introduction to Numerical Solution of Differential Equations | 
+  APMA 1210 | Operations Research: Deterministic Models | 
+  APMA 1330 | Applied Partial Differential Equations II | 
+  APMA 1360 | Applied Dynamical Systems | 
+  APMA 1660 | Statistical Inference II | 
+  APMA 1670 | Statistical Analysis of Time Series | 
+  APMA 1680 | Nonparametric Statistics | 
+  APMA 1690 | Computational Probability and Statistics | 
+  APMA 1710 | Information Theory | 
+  APMA 1720 | Monte Carlo Simulation with Applications to Finance (preferred) | 
+  APMA 1740 | Recent Applications of Probability and Statistics | 
+  APMA 1860 | Graphs and Networks | 
+  MATH 1010 | Analysis: Functions of One Variable | 
+  APMA 193X, 194X Senior Seminar series, depending on topic 4 | 
+  Economics Requirements: | 
+  ECON 1130 | Intermediate Microeconomics (Mathematical) 3 | 1
+  ECON 1210 | Intermediate Macroeconomics | 1
+  ECON 1630 | Mathematical Econometrics I | 1
+  Select three 1000-level courses from the "financial economics" group: 2 | 3
+  ECON 1710 | Investments I | 
+  ECON 1720 | Corporate Finance | 
+  ECON 1730 | Venture Capital, Private Equity, and Entrepreneurship | 
+  ECON 1750 | Investments II | 
+  ECON 1760 | Financial Institutions | 
+  ECON 1770 | Crisis Economics | 
+  ECON 1780 | Advanced Topics in Corporate Finance | 
+  ECON 1830 | Behavioral Finance | 
+  Select two 1000-level courses from the "mathematical economics" group: 2 | 2
+  ECON 1170 | Welfare Economics and Social Choice Theory | 
+  ECON 1225 | Advanced Macroeconomics: Monetary, Fiscal, and Stabilization Policies | 
+  ECON 1255 | Unemployment: Models and Policies | 
+  ECON 1470 | Bargaining Theory and Applications | 
+  ECON 1490 | Designing Internet Marketplaces | 
+  ECON 1545 | Topics in Macroeconomics, Development and International Economics | 
+  ECON 1560 | Economic Growth | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1750 | Investments II | 
+  ECON 1770 | Crisis Economics | 
+  ECON 1805 | Experimental and Behavioral Economics | 
+  ECON 1820 | Theory of Behavioral Economics | 
+  ECON 1860 | The Theory of General Equilibrium | 
+  ECON 1870 | Game Theory and Applications to Economics | 
+  Select one 1000-level course from the "data methods" group: 2 | 1
+  ECON 1301 | Economics of Education I | 
+  ECON 1310 | Labor Economics | 
+  ECON 1315 | Health, Education, and Social Policy | 
+  ECON 1330 | Gender and Development | 
+  ECON 1345 | Climate Change and the Commons | 
+  ECON 1340 | Economics of Global Warming | 
+  ECON 1355 | Environmental Issues in Development Economics | 
+  ECON 1360 | Research Seminar in Health Economics | 
+  ECON 1375 | Inequality of Opportunity in the US | 
+  ECON 1385 | Intergenerational Poverty in America | 
+  ECON 1400 | The Economics of Mass Media | 
+  ECON 1410 | Urban Economics | 
+  ECON 1430 | The Economics of Social Policy | 
+  ECON 1510 | Economic Development | 
+  ECON 1520 | Culture, History and Comparative Development | 
+  ECON 1530 | Health, Hunger and the Household in Developing Countries | 
+  ECON 1629 | Applied Research Methods for Economists | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1825 | Behavioral Economics and Public Policy | 
+  ECON 1830 | Behavioral Finance | 
+  Total Credits | 16

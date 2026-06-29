@@ -1,0 +1,47 @@
+CONCENTRATION: Earth, Climate, and Biology
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/ecb/
+========================================================================
+
+-----------------------------------
+Standard Program for the ScB Degree
+-----------------------------------
+
+  Five supporting science courses: | 
+  BIOL 0200 | The Foundation of Living Systems (or equivalent) | 1
+  or BIOL 0210 | Diversity of Life
+  CHEM 0330 | Equilibrium, Rate, and Structure (or equivalent) | 1
+  Three courses to build quantitative skills: | 3
+  MATH 0090 | Single Variable Calculus, Part I (or higher) | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  CSCI 0111 | Computing Foundations: Data (or higher) | 
+  ENGN 0040 | Engineering Statics and Dynamics (or higher) | 
+  APMA 0350 | Applied Ordinary Differential Equations (or higher) | 
+  PHYS 0050 | Foundations of Mechanics (or higher) | 
+  Fourteen concentration courses: | 
+  EEPS 0220 | Earth and Environmental Processes | 1
+  EEPS 0240 | Earth: Evolution of a Habitable Planet | 1
+  EEPS 0230 | Geochemistry: Earth and Planetary Materials and Processes | 1
+  or EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction
+  EEPS 1240 | Stratigraphy and Sedimentation | 1
+  Three upper level Biology courses such as: | 3
+  BIOL 0410 | Invertebrate Zoology | 
+  BIOL 0420 | Principles of Ecology | 
+  BIOL 0430 | The Evolution of Plant Diversity | 
+  BIOL 0480 | Evolutionary Biology | 
+  BIOL 1470 | Conservation Biology | 
+  Three upper level EEPS courses such as: | 3
+  EEPS 0850 | Weather and Climate | 
+  EEPS 1120 | Paleoceanography | 
+  EEPS 1130 | Ocean Biogeochemical Cycles | 
+  EEPS 1150 | Limnology: The Study of Lakes | 
+  EEPS 1310 | Global Water Cycle | 
+  EEPS 1320 | Introduction to Geographic Information Systems for Environmental Applications | 
+  EEPS 1330 | Global Environmental Remote Sensing | 
+  EEPS 1370 | Environmental Geochemistry | 
+  EEPS 1430 | Atmospheric Circulation and Climate Dynamics | 
+  EEPS 1615 | Climate Change, Human Rights, and the Policy Process | 
+  Three upper level science or math courses with approval from the concentration advisor | 3
+  EEPS 1970 | Undergraduate Senior Thesis Course (Senior Research Thesis) | 1
+  Total Credits | 19

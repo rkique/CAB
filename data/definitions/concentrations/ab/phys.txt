@@ -1,0 +1,61 @@
+CONCENTRATION: Physics
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/phys/
+========================================================================
+
+------------------------------------------
+Standard concentration for the A.B. degree
+------------------------------------------
+
+  Select one of the following Series: | 2
+  PHYS 0030 | Basic Physics A | 
+  or PHYS 0050 | Foundations of Mechanics
+  or PHYS 0070 | Analytical Mechanics
+  PHYS 0040 | Basic Physics B | 
+  or PHYS 0060 | Foundations of Electromagnetism and Modern Physics
+  or PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics
+  Take each of the following: | 5
+  PHYS 0470 | Electricity and Magnetism | 
+  PHYS 0500 | Advanced Classical Mechanics | 
+  PHYS 0560 | Experiments in Modern Physics | 
+  PHYS 1410 | Quantum Mechanics A | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  One additional 1000-level course or a mathematics course beyond the introductory level. | 1
+  Total Credits | 8
+
+Physics is the scientific study of the fundamental principles governing the behavior of matter and the interaction of matter and energy. Mathematics is used to describe fundamental physical principles, the behavior of matter, and the interactions of matter and energy. As the most fundamental of sciences, physics provides a foundation for other scientific fields as well as the underpinnings of modern technology. The Physics department is unique because of the breadth of its faculty expertise and research, and the relatively intimate size of its classes above the introductory level. Physics concentrators may choose to pursue either the A.B. or the more intensive Sc.B. degree. Course work on either path covers a broad base of topics (for example, electricity and magnetism, classical and quantum mechanics, thermodynamics, and statistical mechanics). The Sc.B. degree requires additional advanced topics as well as a senior thesis project.
+
+----------------------------------------------
+Mathematical Physics Track for the A.B. degree
+----------------------------------------------
+
+  Prerequisites: | 
+  MATH 0090 | Single Variable Calculus, Part I | 1
+  or MATH 0100 | Single Variable Calculus, Part II
+  or MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering)
+  PHYS 0050 | Foundations of Mechanics | 1
+  or PHYS 0070 | Analytical Mechanics
+  Mathematics Courses 1 | 
+  MATH 0180 | Multivariable Calculus | 1
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  MATH 0520 | Linear Algebra | 1
+  or MATH 0540 | Linear Algebra With Theory
+  MATH 1110 | Ordinary Differential Equations | 1
+  Select at least one of the following: | 1
+  MATH 1060 | Differential Geometry | 
+  MATH 1120 | Partial Differential Equations | 
+  MATH 1210 | Probability | 
+  Physics Courses 1 | 
+  PHYS 0060 | Foundations of Electromagnetism and Modern Physics | 1
+  or PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics
+  PHYS 0470 | Electricity and Magnetism | 1
+  PHYS 0500 | Advanced Classical Mechanics | 1
+  PHYS 0560 | Experiments in Modern Physics | 1
+  Select at least two of the following: | 2
+  PHYS 1410 | Quantum Mechanics A | 
+  PHYS 1420 | Quantum Mechanics B | 
+  PHYS 1510 | Advanced Electromagnetic Theory | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  PHYS 1560 | Modern Physics Laboratory | 
+  Total Credits | 12

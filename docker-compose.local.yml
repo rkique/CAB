@@ -1,0 +1,10 @@
+services:
+  app:
+    ports:
+      - "3000:3000"
+
+  nginx:
+    profiles: ["production"]
+
+  certbot:
+    profiles: ["production"]

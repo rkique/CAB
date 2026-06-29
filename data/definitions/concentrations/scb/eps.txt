@@ -1,0 +1,35 @@
+CONCENTRATION: Earth and Planetary Science
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/eps/
+========================================================================
+
+-----------------------------------
+Standard Program for the ScB Degree
+-----------------------------------
+This program is recommended for students interested in more in-depth study in geoscience, planetary science and related fields, potentially including graduate school and wide-ranging careers in these areas.  Some course requirements may be flexible based on consultation with the concentration advisor.
+Note - For students still enrolled with the prior Concentration in Geological Sciences Sc.B., please refer to the Archived Bulletin link on left hand navigation for your requirements for the year you declared.
+
+  Basic supporting science courses | 
+  CHEM 0330 | Equilibrium, Rate, and Structure (or equivalent) | 1
+  Four courses to build quantitative skills: | 4
+  MATH 0090 | Single Variable Calculus, Part I (or higher) | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  CSCI 0111 | Computing Foundations: Data (or higher) | 
+  APMA 0350 | Applied Ordinary Differential Equations (or higher) | 
+  ENGN 0040 | Engineering Statics and Dynamics (or higher) | 
+  PHYS 0050 | Foundations of Mechanics (or higher) | 
+  EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction | 
+  Fourteen Concentration courses | 
+  EEPS 0220 | Earth and Environmental Processes | 1
+  EEPS 0230 | Geochemistry: Earth and Planetary Materials and Processes | 1
+  EEPS 0240 | Earth: Evolution of a Habitable Planet | 1
+  Three of the following: | 3
+  EEPS 1240 | Stratigraphy and Sedimentation | 
+  EEPS 1410 | Mineralogy | 
+  EEPS 1420 | Petrology | 
+  EEPS 1450 | Structural Geology | 
+  Three additional upper level EEPS courses or an approved substitute such as a field course | 3
+  Four upper level science or math courses with approval from the concentration advisor | 4
+  EEPS 1970 | Undergraduate Senior Thesis Course (Senior Research Thesis) | 1
+  Total Credits | 19

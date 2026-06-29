@@ -1,0 +1,51 @@
+CONCENTRATION: Cognitive Neuroscience
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/cogn/
+========================================================================
+
+----------------------------------
+Standard Program for the AB degree
+----------------------------------
+Common Core
+
+--------------------------------
+Requirements for the A.B. degree
+--------------------------------
+
+  CPSY 0900 | Statistical Methods | 1
+  CPSY 1900 | Research Methods And Design | 1
+  Two Foundation Courses in Cognition from the following: | 2
+  CPSY 0010 | Mind, Brain and Behavior: An Interdisciplinary Approach | 
+  CPSY 0100 | Learning and Conditioning | 
+  CPSY 0200 | Human Cognition | 
+  or CPSY 0400 | Cognitive Neuroscience
+  or CPSY 0450 | Brain Damage and the Mind
+  CPSY 0500 | Perception and Mind | 
+  or CPSY 0550 | Science of Consciousness
+  CPSY 0610 | Children's Thinking: The Nature of Cognitive Development | 
+  or CPSY 0700 | Social Psychology
+  One Foundation Course in Neuroscience from the following: | 1
+  CPSY 0400 | Cognitive Neuroscience | 
+  CPSY 0450 | Brain Damage and the Mind | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 
+  One Foundation Course in Computation from the following: | 1
+  CPSY 0950 | Introduction to programming | 
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  CPSY 1950 | Deep Learning in Brains, Minds and Machines | 
+  NEUR 0680 | Introduction to Computational Neuroscience | 
+  Or any introductory CSCI course with a programming component such as: | 
+  CSCI 0111 | Computing Foundations: Data | 
+  or CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science
+  or CSCI 0170 | Computer Science: An Integrated Introduction
+  or CSCI 0190 | Accelerated Introduction to Computer Science
+  Five approved electives: | 5
+  Electives are advanced courses that provide a deeper understanding of Cognitive Neuroscience and should be drawn from CPSY or NEUR, with at least three courses at the 1000 level. At least one elective must be from the NEUR department. Courses from other departments with relevance to Cognitive Neuroscience may be included with approval from the concentration advisor. | 
+  Capstone: Independent Study ( CPSY 1970 , CPSY 1980 ) or approved seminar or lab | 1
+  Total Credits | 12
+
+------------------
+Honors Requirement
+------------------
+The Honors Program in Cognitive Neuroscience gives undergraduates a special opportunity to carry out a research project under the direction of a faculty member.  The program also provides the opportunity for outstanding senior concentrators to receive their undergraduate degree with Honors.  Participation in the program allows students to develop an understanding of research and acquire research skills and background.
+Cognitive Neuroscience is the study of how neural mechanisms give rise to the mental representations and processes that underlie behavior. Cognitive Neuroscience concentrators integrate research in cognitive science, psychology, and neuroscience. Students in the concentration are exposed to both behavioral and experimental methods as well as computational approaches in order to understand the nature of cognition from a neural perspective. Through the elective requirements, students can focus on one of these two avenues of study, or they can propose a balance between the two. Concentrators must also complete a senior capstone seminar course or conduct an independent program of study with members of the Cognitive and Psychological Sciences department, the Department of Neuroscience, or the Carney Institute for Brain Science.  The general goal of the Cognitive Neuroscience requirements is to provide students with the foundational knowledge in Psychology and Neuroscience necessary for an integrative study of the relation between the mind and the brain, while also allowing students to deeply explore one or two areas of focus in Cognitive Neuroscience

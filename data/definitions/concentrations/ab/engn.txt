@@ -1,0 +1,37 @@
+CONCENTRATION: Engineering
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/engn/
+========================================================================
+
+------------------------------------
+Standard Program for the A.B. Degree
+------------------------------------
+Please note that the A.B. degree program is not accredited by ABET. Candidates for the Bachelor of Arts (A.B.) degree with a concentration in Engineering must complete at least eight approved Engineering courses. The eight courses must include at least two 1000-level Engineering courses. Of these two 1000-level courses, one must be a design course (ideally capstone or any design course in accredited Sc.B. programs) or be an independent study course that incorporates elements of student project design (must meet Brown course hour requirements), and the other course would be any 1000-level advanced (with pre-requisites) engineering in-classroom experience course. The set of Engineering courses must be chosen with careful attention to the prerequisites of the 1000-level courses.
+Not all engineering courses may be used to satisfy the Engineering course requirement for the A.B. degree. For example, the following courses, in the table below, cannot be used to satisfy the Engineering course requirement for the A.B. Therefore, the program of study must be developed through consultation with the Concentration Advisor.
+
+  ENGN 0020 | Transforming Society-Technology and Choices for the Future | 
+  ENGN 0090 | Management of Industrial and Nonprofit Organizations | 
+  ENGN 0130 | The Engineer's Burden: Why Changing the World is Difficult | 
+  ENGN 0260 | Mechanical Technology | 
+  ENGN 0350 | Art Fluid Engineering | 
+  ENGN 0610 | Systems Thinking | 
+  ENGN 0620 | Design Brief | 
+  ENGN 0900 | Managerial Decision Making | 
+  ENGN 0930A | Appropriate Technology | 
+  ENGN 0930C | DesignStudio | 
+  ENGN 1010 | The Entrepreneurial Process | 
+  ENGN 1800 | Social Impact of Emerging Technologies: The Role of Scientists and Engineers | 
+  ENGN 1820 | Future of Work | 
+  ENGN 1931Q | Entrepreneurial Management in Adversity | 
+  ENGN 1931W | Selling & Sales Leadership in the Entrepreneurial Environment | 
+  ENGN 1932M | Foundations of Internet Communication Systems | 
+  ENGN 1932R | Leadership in Organizations | 
+  ENGN 2110 | Business Engineering Fundamentals I | 
+  ENGN 2120 | Business Engineering Fundamentals II | 
+  ENGN 2130 | Innovation and Technology Management | 
+  ENGN 2140 | Innovation and Technology Management II | 
+  ENGN 2150 | Technology Entrepreneurship and Commercialization I | 
+  ENGN 2180 | Globalization Immersion Experience and Entrepreneurship Laboratory | 
+  ENGN 2160 | Technology Entrepreneurship and Commercialization II | 
+
+The A.B. program also requires preparation in Mathematics equivalent to MATH 0200 and APMA 0350 , as well as at least one college-level science course from the general areas of chemistry (except CHEM 0100 ), biology, physics, or geological sciences. A programming course is also recommended, but not required. The entire program is subject to approval by an Engineering Concentration Advisor and the Director of Undergraduate Programs in Engineering.

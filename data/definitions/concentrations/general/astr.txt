@@ -1,0 +1,44 @@
+CONCENTRATION: Astronomy
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/astr/
+========================================================================
+
+Along with Greek, Latin, and Mathematics, Astronomy counts as one of the oldest continuously taught subjects in the Brown curriculum. It is the study of the properties of stars, galaxies, and the Universe, and as such combines elements from the disciplines of both Physics and Planetary Geology. Students pursuing this concentration complete introductory coursework in classical mechanics, relativity, and astrophysics, along with mathematics and elecromagnetism. They go on to complete courses in stellar and extragalactic astrophysics as well as cosmology. Facilities available to concentrators include the historic Ladd Observatory.
+Standard concentration for the A.B. degree
+Eleven or twelve courses are required (depending on the satisfaction of prerequisites).
+
+  Prerequisites | 
+  PHYS 0070 | Analytical Mechanics | 1
+  PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics 1 | 1
+  PHYS 0270 | Astronomy and Astrophysics | 1
+  Select one of the following Series: | 1-2
+  MATH 0170 & MATH 0180 | Single Variable Calculus, Part II (Accelerated) and Multivariable Calculus | 
+  MATH 0190 & MATH 0200 | Single Variable Calculus, Part II (Physics/Engineering) and Multivariable Calculus (Physics/Engineering) | 
+  MATH 0350 | Multivariable Calculus With Theory (or equivalent) | 
+  PHYS 0470 | Electricity and Magnetism | 1
+  Program | 
+  Select one of the following mathematics courses: | 1
+  MATH 0520 | Linear Algebra | 
+  MATH 0540 | Linear Algebra With Theory | 
+  PHYS 0720 | Methods of Mathematical Physics | 
+  APMA 0330 | Methods of Applied Mathematics I | 
+  APMA 0340 | Methods of Applied Mathematics II | 
+  Select two of the following astrophysics courses: | 2
+  PHYS 1100 | General Relativity | 
+  PHYS 1250 | Stellar Structure and the Interstellar Medium | 
+  PHYS 1270 | Extragalactic Astronomy and High-Energy Astrophysics | 
+  PHYS 1280 | Introduction to Cosmology | 
+  Three additional 1000- or 2000-level courses in physics or a related field, suggestions: | 3
+  APMA 1670 | Statistical Analysis of Time Series | 
+  EEPS 0810 | Planetary Geology | 
+  EEPS 1710 | Remote Sensing of Earth and Planetary Surfaces | 
+  EEPS 1810 | Physics of Planetary Evolution | 
+  ENGN 1860 | Advanced Fluid Mechanics | 
+  MATH 1060 | Differential Geometry | 
+  PHYS 0500 | Advanced Classical Mechanics | 
+  PHYS 0560 | Experiments in Modern Physics | 
+  PHYS 1410 | Quantum Mechanics A | 
+  PHYS 1510 | Advanced Electromagnetic Theory | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  PHYS 1560 | Modern Physics Laboratory | 
+  Total Credits | 11-12

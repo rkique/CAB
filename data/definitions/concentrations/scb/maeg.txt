@@ -1,0 +1,84 @@
+CONCENTRATION: Materials Engineering
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/maeg/
+========================================================================
+
+-------------------------------------
+Standard Program for the Sc.B. degree
+-------------------------------------
+
+------------------------
+Mathematics Requirements
+------------------------
+As mathematics is a cornerstone of all engineering programs, significant attention is given to early preparation in mathematics in engineering concentrations. It is recognized that students entering Brown will have different levels of mathematics preparation, and the following is offered as general guidance, though the actual choices of courses should be made in consultation with an exploratory advisor. MATH 0190 (or MATH 0100 ), followed by MATH 0200 (or MATH 0180 ) is the preferred sequence of courses to be taken in the freshman year. MATH 0100 and MATH 0180 offer content like that in MATH 0190 and MATH 0200 , respectively, but the latter courses are highly recommended for future engineering students because they offer more examples of relevance to the field. Students who would prefer, or require, a more introductory level calculus course may start the sequence with MATH 0090 . They may then take MATH 0200 (or MATH 0180 ) in the subsequent semester and in that case, would receive engineering concentration credit equivalent to that which they would have received having taken MATH 0190 and MATH 0200 . However, students who find that the step up from MATH 0090 to MATH 0200 is too challenging, have a choice to take MATH 0190 (or MATH 0100 ) upon completion of MATH 0090 , but in this case, MATH 0090 would not carry engineering concentration credit and the student would then need to take MATH 0200 (or MATH 0180 ) in the sophomore year.
+Students who have taken Advanced Placement (AP) calculus courses in high school and/or have shown proficiency through AP examinations may start the calculus sequence at a higher-level than that suggested above. If a student has AP credit and accepts to use it, it then allows the student to place out of MATH 0190 (or MATH 0100 ). These students should enroll in the appropriate higher-level math course, e.g., MATH 0200 (or MATH 0180 ) or possibly MATH 0350 (a more theoretical course that covers similar material). Although it is impossible to place out of MATH 0200 or MATH 0350 with AP credit, we recognize that some students enter with an even higher level of preparation. Those students are advised to enroll in MATH 0520 (Linear Algebra) or MATH 0540 (Honors Linear Algebra), and take their second freshman mathematics course at a higher level, for example, MATH 1460 (Complex Analysis), MATH 1210 (Probability) or MATH 1220 (Mathematical Statistics). Alternatively, for some engineering concentrations, this second MATH credit requirement may be satisfied by taking a course from the Applied Mathematics Department, such as APMA 0350 (Applied Ordinary Differential Equations), APMA 0355 (Applied Ordinary Differential Equations with Theory), APMA 0360 (Applied Partial Differential Equations I), APMA 0365 (Applied Partial Differential Equations I with Theory), APMA 1650 (Introduction to Probability and Statistics with Calculus), APMA 1655 (Introduction to Probability and Statistics with Theory) or APMA 1210 (Operations Research: Deterministic Models) if one of those courses listed is not taken for two APMA concentration credits. Details regarding the mathematics requirement for each concentration are listed in the corresponding programs.
+
+------------------
+Advanced Placement
+------------------
+Courses that have been taken at the secondary school level are typically only used for placement into the appropriate course level at Brown. The examples of how this can be done in mathematics are given above, and there are other instances (such as in selection of the appropriate introductory chemistry course) where AP credit is considered. It should be noted, however, that advanced placement credits cannot be used to substitute for any Engineering concentration requirements; they are instead used to ensure that students are placed into the correct level of courses.
+
+----------------
+Transfer Credits
+----------------
+Some students will also complete courses at other universities during the time they are Brown students (sometimes during summers while they are not in residence at Brown; sometimes during a junior semester abroad). Students who have successfully completed college courses elsewhere may apply to the University for transfer credit. (See the “Study Elsewhere” section of the University Bulletin for procedures.) In addition to the general rules governing such transfers, there are specific rules governing courses that will be offered as satisfying Engineering concentration requirements.
+If the course proposed for transfer credit is offered by another department at Brown (i.e., that it carries a course number that does not start with ENGN), then the equivalent of the course must be established by that other department. This is done by submitting a formal request through the ASK system (https://ask.brown.edu/transfer_credits/information/index). Once this approval has been received from the other department, the student’s internal transcript will show the equivalence and the course in question can be shown in the Engineering concentration declaration as having been completed elsewhere. If the equivalence to a Brown course is not approved, then there may still be “unassigned credit” given for the course. In this case, the situation relative to how it does or does not count for concentration credit needs to be discussed with the Concentration Advisor. In rare cases, students may petition the Engineering Concentration Committee to use courses that do not have an equivalent offered at Brown in order to meet a concentration requirement. Substitutions of this nature can only be approved if the student’s overall program meets published educational outcomes for the concentration and has sufficient basic science, mathematics, and engineering topics courses to meet relevant accreditation requirements. Students should consult their Concentration Advisor for assistance with drafting a petition. The decision whether to award concentration credit is made by majority vote of the Engineering Concentration Committee.
+If the student wishes to transfer a course taken outside of Brown that would normally carry an Engineering course number, the sequence is a bit different. First, the student needs to fill out an Engineering Transfer Credit Approval Request (see https://engineering.brown.edu/undergraduate/concentrations/concentration-options/study-abroad ). This routes the request to the relevant Brown Engineering faculty member for approval. Once this has been obtained, then transfer approval is requested through the ASK system, as described above. This process ensures that the transcript will capture the equivalence of the externally completed course.
+
+----------------------------------
+Substitutions for Required Courses
+----------------------------------
+Students may petition the Engineering Concentration Committee to substitute a course in place of a defined concentration requirement. Such substitutions can only be approved if the student's modified program continues to meet the published educational outcomes for the concentration and has sufficient basic science, mathematics, and engineering topics courses needed to meet accreditation requirements. If the substitution involves taking an equal or higher level course in substantially the same area, whether at Brown or elsewhere, it can be approved by the Concentration Advisor without requiring a formal petition to the Concentration Committee. (For courses taken elsewhere, the credit must be officially transferred as described above.) Students wishing to make substitutions of a broader nature should consult their Concentration Advisor for assistance in drafting their petition to the Engineering Concentration Committee. Such petitions may be approved by a majority vote of the Committee.
+
+  1. Core Courses: | 
+  ENGN 0030 | Introduction to Engineering | 1
+  or ENGN 0032 | Introduction to Engineering: Design
+  ENGN 0040 | Engineering Statics and Dynamics | 1
+  ENGN 0410 | Materials Science | 1
+  ENGN 0510 | Electricity and Magnetism | 1
+  ENGN 0520 | Electrical Circuits and Signals | 1
+  ENGN 0720 | Thermodynamics | 1
+  ENGN 0310 | Mechanics of Solids and Structures | 1
+  or ENGN 0810 | Fluid Mechanics
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 1
+  or MATH 0100 | Single Variable Calculus, Part II
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 1
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0350 | Multivariable Calculus With Theory
+  APMA 0350 | Applied Ordinary Differential Equations 1 | 1
+  or APMA 0355 | Applied Ordinary Differential Equations with Theory
+  APMA 0360 | Applied Partial Differential Equations I 1 | 1
+  or APMA 0365 | Applied Partial Differential Equations I with Theory
+  or APMA 1210 | Operations Research: Deterministic Models
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  or APMA 1655 | Introduction to Probability and Statistics with Theory
+  or MATH 0520 | Linear Algebra
+  CHEM 0350 | Organic Chemistry I | 1
+  or CSCI 0111 | Computing Foundations: Data
+  or CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science
+  or CSCI 0170 | Computer Science: An Integrated Introduction
+  or CSCI 0190 | Accelerated Introduction to Computer Science
+  or ENGN 1230 | Instrumentation Design
+  or ENGN 1740 | Computer Aided Visualization and Design
+  or ENGN 1750 | Advanced Mechanics of Solids
+  or APMA 0160 | Introduction to Scientific Computing
+  2. Upper-Level Materials Engineering Curriculum | 
+  ENGN 1410 | Physical Chemistry of Solids | 1
+  ENGN 1420 | Kinetics Processes in Materials Science and Engineering | 1
+  ENGN 1440 | Mechanical Properties of Materials | 1
+  PHYS 0790 | Physics of Matter | 1
+  or CHEM 0350 | Organic Chemistry I
+  or CHEM 1140 | Physical Chemistry: Quantum Chemistry
+  Three of the following: 2 | 3
+  ENGN 1450 | Properties and Processing of Electronic Materials | 
+  ENGN 1470 | Composite Materials | 
+  ENGN 1475 | Soft Materials | 
+  ENGN 1480 | Metallic Materials | 
+  ENGN 1200 | Biomaterials | 
+  3. Capstone Design 3 | 
+  ENGN 1000 | Projects in Engineering Design I | 1
+  or ENGN 1001 | Projects in Engineering Design II
+  or ENGN 1240 | Biomedical Engineering Design and Innovation I
+  *  In addition to program requirements above, students must take four courses in the humanities and social sciences. | 
+  Total Credits | 21

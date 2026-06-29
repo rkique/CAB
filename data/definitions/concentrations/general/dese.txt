@@ -1,0 +1,98 @@
+CONCENTRATION: Design Engineering
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/dese/
+========================================================================
+
+Design Engineering (DE) teaches students to understand not just the how and what, but the why and why not behind the creation of technologically enabled products, services and systems. Methodologies, frameworks and analytical tools to evaluate strategic and systemic implications and consequences of these products, services and systems are considered. DE prepares students to (a) effectively apply engineering principles and quantitative analysis to make design decisions, (b) utilize complementary and conflicting principles from domains other than engineering in design decisions, (c) adeptly apply systemic principles to show interactions within and between systems, and (d) achieve fluency in human-centered and systems design processes and principles to analyze and synthesize responses to complex real-world problems.
+Visit https://engineering.brown.edu/undergraduate/concentrations/design-engineering
+The DE program has 19 required courses and a required narrative explaining why the student is choosing Design Engineering, their proposed pathway, and how their courses support that pathway. Course requirements include three courses in mathematics; one introductory engineering design course; one engineering gateway course; one natural science course; one computer science course; two engineering design courses ( ENGN 0610 and ENGN 0620 ); three cognitive, psychological or social science courses (either from the list provided or with concentration advisor approval); and six upper-level courses curated by a student's chosen pathway focus, from which four must be engineering courses. The program culminates with a capstone, design or independent study experience. Brown's Design Engineering Bachelor of Science degree is non-ABET accredited.
+
+--------------------
+Program Requirements
+--------------------
+
+  Introduction to Engineering | 
+  ENGN 0032 | Introduction to Engineering: Design | 1
+  or ENGN 0030 | Introduction to Engineering
+  Engineering Gateway (courses selected should include those required for the student’s proposed pathway) | 
+  ENGN 0040 | Engineering Statics and Dynamics | 1
+  or ENGN 0410 | Materials Science
+  or ENGN 0790 | Fundamentals of Environmental Engineering
+  or ENGN 0500 | Digital Computing Systems
+  or ENGN 1200 | Biomaterials
+  Basic Physical/Life Science | 1
+  BIOL 0200 | The Foundation of Living Systems | 
+  CHEM 0330 | Equilibrium, Rate, and Structure | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 
+  Computer Science | 1
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  APMA 0160 | Introduction to Scientific Computing | 
+  Mathematics: Calculus and Methods of Applied Mathematics and Statistics | 
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 1
+  or MATH 0180 | Multivariable Calculus
+  APMA 0350 | Applied Ordinary Differential Equations | 1
+  or APMA 0355 | Applied Ordinary Differential Equations with Theory
+  A third mathematics course from the following list: | 1
+  MATH 0100 | Single Variable Calculus, Part II | 
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 
+  APMA 0360 | Applied Partial Differential Equations I | 
+  or APMA 0365 | Applied Partial Differential Equations I with Theory
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  or APMA 1655 | Introduction to Probability and Statistics with Theory
+  CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science | 
+  MATH 0520 | Linear Algebra | 
+  MATH 0540 | Linear Algebra With Theory | 
+  Design Engineering Specific Requirements | 
+  ENGN 0610 | Systems Thinking | 1
+  ENGN 0620 | Design Brief | 1
+  Social Science Research, Decision Making and Societal Context | 
+  One course that covers Social Science Research Methods: | 1
+  ANTH 1940 | Ethnographic Research Methods | 
+  SOC 1117 | Focus Groups for Market and Social Research | 
+  SOC 1118 | Context Research for Innovation | 
+  POLS 0500 | Foundations of Political Analysis | 
+  Or an equivalent course approved by the Concentration Advisor | 
+  One course on Decision Making and Design: | 1
+  CPSY 0220 | Making Decisions | 
+  CPSY 0010 | Mind, Brain and Behavior: An Interdisciplinary Approach | 
+  CPSY 0700 | Social Psychology | 
+  CPSY 1730 | Psychology in Business and Economics | 
+  EDUC 0800 | Introduction to Human Development and Education | 
+  PHIL 1610 | Decision Theory: Foundations and Applications | 
+  Or an equivalent course approved by the Concentration Advisor | 
+  One course on Societal Context for Design: | 1
+  AMST 1611S | US Popular Culture | 
+  ANTH 0100 | Introduction to Cultural Anthropology | 
+  ANTH 1236 | Urban Life: Anthropology in and of the City | 
+  ARCH 0755 | Engineering and Technology in the Ancient World | 
+  ECON 0110 | Principles of Economics | 
+  ECON 1390 | Inequality of Income, Wealth, and Health in the United States | 
+  HIAA 0140 | Structural and Architectural Analysis | 
+  HIAA 1171 | Cities, Landscapes, and Design in the Age of Pandemics | 
+  PHIL 0401 | Ethics of Digital Technology | 
+  PHIL 0403 | Ethics and Politics of Data | 
+  PHIL 1430 | Moral Theories | 
+  TAPS 0220 | Persuasive Communication | 
+  URBN 1870D | Downtown Development | 
+  Or an equivalent course approved by the Concentration Advisor | 
+  Advanced Courses: Six engineering and/or engineering-related courses, at least four of which are ENGN courses, including two ENGN courses that are above the 1000-level (cannot be Entrepreneurship or Innovation Management and Entrepreneurship (PRIME) program courses). The fifth and the sixth courses can be non-introductory, advanced STEM courses. The pathway must be approved by the Concentration Advisor and constitute a coherent body of work. 1 | 6
+  One Capstone, Design or Independent Study | 1
+  ENGN 1000 | Projects in Engineering Design I | 
+  ENGN 1001 | Projects in Engineering Design II | 
+  ENGN 1140 | Chemical Process Design | 
+  ENGN 1150 | Environmental Engineering Design | 
+  ENGN 1230 | Instrumentation Design | 
+  ENGN 1240 | Biomedical Engineering Design and Innovation I | 
+  ENGN 1250 | Biomedical Engineering Design and Innovation II | 
+  ENGN 1620 | Analysis and Design of Electronic Circuits | 
+  ENGN 1640 | Design of Computing Systems | 
+  ENGN 1650 | Embedded Microprocessor Design | 
+  ENGN 1740 | Computer Aided Visualization and Design | 
+  ENGN 1760 | Design of Space Systems | 
+  ENGN 1931D | Design of Mechanical Assemblies | 
+  ENGN 1972 | Independent Study in Engineering Design (Capstone) | 
+  ENGN 1973 | Independent Study in Engineering Design (Capstone) | 
+  Total Credits | 19

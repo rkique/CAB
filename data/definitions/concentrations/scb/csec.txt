@@ -1,0 +1,67 @@
+CONCENTRATION: Computer Science-Economics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/csec/
+========================================================================
+
+--------------------------------------
+Standard Program for the Sc.B. degree.
+--------------------------------------
+
+  Prerequisites (3 courses): | 
+  MATH 0100 | Single Variable Calculus, Part II | 
+  MATH 0520 | Linear Algebra | 
+  or MATH 0540 | Linear Algebra With Theory
+  or CSCI 0530 | Coding the Matrix: An Introduction to Linear Algebra for Computer Science
+  ECON 0110 | Principles of Economics | 
+  Required Courses: 17 courses: 8 Computer Science,  8 Economics, and a Capstone | 
+  CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science 1 | 1
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  or APMA 1655 | Introduction to Probability and Statistics with Theory
+  Select one of the following Series: | 2
+  Series A | 
+  CSCI 0150 & CSCI 0200 | Introduction to Object-Oriented Programming and Computer Science and Program Design with Data Structures and Algorithms | 
+  Series B | 
+  CSCI 0170 & CSCI 0200 | Computer Science: An Integrated Introduction and Program Design with Data Structures and Algorithms | 
+  Series C | 
+  CSCI 0190 | Accelerated Introduction to Computer Science (and an additional CS course not otherwise used to satisfy a concentration requirement; this course may be CSCI 0200, a Foundations CS course, or a 1000-level course.) | 
+  Series D | 
+  CSCI 0111 & CSCI 0200 | Computing Foundations: Data and Program Design with Data Structures and Algorithms | 
+  Two courses, touching two different Foundations areas | 2
+  a. Algorithms/Theory Foundations | 
+  CSCI 0500 | Data Structures, Algorithms, and Intractability: An Introduction | 
+  b. AI/Machine Learning/Data Science Foundations, No concentration credit for 1410, 1411 | 
+  CSCI 0410 | Foundations of AI and Machine Learning | 
+  c. Systems Foundations, Concentration credit not for both 300, 330 | 
+  CSCI 0300 | Fundamentals of Computer Systems | 
+  or CSCI 0320 | Introduction to Software Engineering
+  or CSCI 0330 | Introduction to Computer Systems
+  Three 1000-level CSCI courses, which must be technical courses as defined in concentration handbook.. One of these can be an additional 100-level Foundations course. | 3
+  ECON 1130 | Intermediate Microeconomics (Mathematical) 2 | 1
+  ECON 1210 | Intermediate Macroeconomics | 1
+  ECON 1630 | Mathematical Econometrics I | 1
+  Three courses from the "mathematical economics" group (CSCI 1951K can be counted as one of them, if it has not been used to satisfy the computer science requirements of the concentration and if the student has taken either ECON 1470 or ECON 1870 ): | 3
+  ECON 1170 | Welfare Economics and Social Choice Theory | 
+  ECON 1225 | Advanced Macroeconomics: Monetary, Fiscal, and Stabilization Policies | 
+  ECON 1255 | Unemployment: Models and Policies | 
+  ECON 1470 | Bargaining Theory and Applications | 
+  ECON 1490 | Designing Internet Marketplaces | 
+  ECON 1545 | Topics in Macroeconomics, Development and International Economics | 
+  ECON 1560 | Economic Growth | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1750 | Investments II | 
+  ECON 1770 | Crisis Economics | 
+  ECON 1805 | Experimental and Behavioral Economics | 
+  ECON 1820 | Theory of Behavioral Economics | 
+  ECON 1860 | The Theory of General Equilibrium | 
+  ECON 1870 | Game Theory and Applications to Economics | 
+  Two additional 1000-level Economics courses excluding 1620, 1960, 1970 3 | 2
+  One capstone course in either CS or Economics: a one-semester course, normally taken in the student's last semester undergraduate year, in which the student (or group of students) use a significant portion of their undergraduate education, broadly interpreted, in studying some current topic (preferably at the intersection of computer science and economics) in depth, to produce a culminating artifact such as a paper or software project.  A senior thesis, which involved two semesters of work, may count as a capstone. | 1
+  Total Credits | 17
+
+------
+Honors
+------
+Students who meet stated requirements are eligible to write an honors thesis in their senior year.  Students should consult the listed honors requirements of whichever of the two departments their primary thesis advisor belongs to, at the respective departments' websites. If the primary thesis advisor belongs to Economics (Computer Science), then students must have a reader in the Computer Science (respectively, Economics) department.

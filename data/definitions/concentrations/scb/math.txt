@@ -1,0 +1,37 @@
+CONCENTRATION: Mathematics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/math/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+
+  Prerequisites: | 
+  Multivariate calculus and linear algebra (choose one of the following sequences): | 2
+  MATH 0180 & MATH 0520 | Multivariable Calculus and Linear Algebra | 
+  MATH 0180 & MATH 0540 | Multivariable Calculus and Linear Algebra With Theory | 
+  MATH 0200 & MATH 0520 | Multivariable Calculus (Physics/Engineering) and Linear Algebra | 
+  MATH 0350 & MATH 0540 | Multivariable Calculus With Theory and Linear Algebra With Theory | 
+  Or the equivalent | 
+  Program: | 
+  MATH 1630 | Real Analysis I (formerly MATH 1130) | 1
+  MATH 1640 | Real Analysis II (formerly MATH 1140) | 1
+  MATH 1530 | Abstract Algebra | 1
+  MATH 1540 | Topics in Abstract Algebra | 1
+  or MATH 1560 | Number Theory
+  Four other 1000- or 2000- level Mathematics courses.   The year-long sequence 0750/0760 may be substituted for one of these course credits. | 4
+  Four additional courses in mathematics, science, economics, or applied mathematics approved by the concentration advisor. | 4
+  Total Credits | 14
+
+------
+Honors
+------
+Honors degrees may be recommended for students who have exhibited high achievement in mathematics. Candidates must complete at least eight mathematics courses at the 1000 or 2000 level with sufficiently good grades and must write an honors thesis under the guidance of a faculty member. The honors thesis is usually written while the candidate is enrolled in MATH 1970 . The candidate should consult with the concentration advisor for the precise grade requirements.
+Those interested in graduate study in mathematics are encouraged to take:
+
+  MATH 1630 | Real Analysis I (formerly MATH 1130) | 
+  MATH 1640 | Real Analysis II (formerly MATH 1140) | 
+  MATH 1460 | Complex Analysis (formerly MATH 1260) | 
+  MATH 1710 | Topology (formerly MATH 1410) | 
+  MATH 1540 | Topics in Abstract Algebra |

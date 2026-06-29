@@ -1,0 +1,38 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  height: 100%;
+  background: url('/images/brown_u.jpg') center/cover no-repeat fixed;
+}
+html::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  max-width: 840px;
+  min-height: auto;
+  margin: 60px auto;
+  color: #000;
+  background: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 0 80px 40px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#root > * { width: 100%; }
+
+@media (max-width: 600px) {
+  #root { margin: 2em 1em; }
+}

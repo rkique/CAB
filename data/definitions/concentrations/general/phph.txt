@@ -1,0 +1,74 @@
+CONCENTRATION: Physics and Philosophy
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/phph/
+========================================================================
+
+The Physics and Philosophy concentration is for students with a deep interest in physics who do not need to acquire the laboratory and computational skills of a professional physicist. The concentration allows students to grapple with computational problems and deepen their investigation of conceptual and epistemological issues. By the end of the program, concentrators possess an excellent conceptual understanding of the most philosophically interesting physics, relativity and quantum mechanics.
+This concentration should prepare a student either for graduate study, especially in a history and philosophy of science (HPS) program, or for employment in science education or journalism. Other professions such as law and medicine will look favorably on such concentrators for having versatile interests and being able to master difficult material. The concentration may serve as an excellent preparation for a law school since physics and philosophy both exercise a rigorous approach to problems of immediate relevance to life but at the same time assume two complimentary and sometimes competing viewpoints.
+
+--------
+Advising
+--------
+Concentration advisors from the Departments of Physics and Philosophy will guide students working towards the A.B. degree.
+
+----------
+Curriculum
+----------
+The curriculum builds around the fields of physics that have had the biggest impact on philosophy, especially Quantum Physics, and the fields of philosophy most relevant for physics, such as Epistemology, Metaphysics and Philosophy of Physics. It is strongly recommended that students complete at least one relevant history course.
+There are 11 required courses (5 in Physics, 5 in Philosophy or History, one course in mathematics) and a final project. The choice of the courses is dictated by the following considerations. The field of physics with both deepest philosophical implications and deepest influence on the rest of physics is Quantum Mechanics. Thus, a 1000-level course in Quantum Mechanics or a closely related field such as Statistical Mechanics is indispensable. The second field of physics most relevant for the concentration is Relativity. This field touches upon and serves as a foundation for a broad list of subjects with major philosophical implications of their own, for example: PHYS 1170 , PHYS 1280 , PHYS 1510 , PHYS 1100 . This requires another 1000-level physics course in the concentration. 1000-level Physics courses cannot be taken without certain preliminary work, most importantly, PHYS 0470 , which serves as a prerequisite for most higher-level physics courses and which relies in turn on PHYS 0160 or PHYS 0060 . Another lower-level physics course is necessary for a student to develop familiarity with the tools which have been employed in producing the physics knowledge.
+A natural introduction into philosophy of physics comes from a course in Early Modern Philosophy. To a large extent, Early Modern Philosophy was shaped by scholars who combined interest in philosophy and physics (e.g., Rene Descartes, Blaise Pascal, Gottfried Wilhelm Leibniz). The influence of the XVII century physics revolution on other central figures such as Kant is unquestionable. Early Modern Philosophy sets an intellectual stage for many subsequent developments in the Philosophy of Physics and directly addresses some of the most perplexing issues like the connection (or lack thereof) between physics and religion. The core of the Philosophy requirement involves two courses in Epistemology, Metaphysics and Philosophy of Science. One course in this field would not be sufficient due to its very broad nature. Students are strongly advised to take a relevant History course. This requirement can be substituted by an additional philosophy course to reflect interests of those students who want a deeper background in Epistemology, Metaphysics and Philosophy of Science or have other related interests such as Ancient Natural Philosophy.
+In addition to the above philosophy courses, PHIL 0210 (Science, Perception, and Reality) serves as a gateway into the concentration. It may be substituted by other relevant courses such as PHYS 0100 (Flat Earth to Quantum Uncertainty: On the Nature and Meaning of Scientific Explanation).
+A course in calculus is a prerequisite for most physics and some philosophy classes.
+Required courses for the A.B. degree are listed below:
+
+  Physics Courses | 
+  Select one of the following  introductory courses in Modern Physics: | 1
+  PHYS 0060 | Foundations of Electromagnetism and Modern Physics | 
+  PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics | 
+  One course in Special Relativity and Classical Field Theory: | 1
+  PHYS 0470 | Electricity and Magnetism | 
+  Select one of the following in Methods of Experimental and Theoretical physics: | 1
+  PHYS 0500 | Advanced Classical Mechanics | 
+  PHYS 0560 | Experiments in Modern Physics | 
+  Select one of the following in Quantum Mechanics and its applications | 1
+  PHYS 1410 | Quantum Mechanics A | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  One more 1000-level Physics course | 1
+  Philosophy Courses | 
+  Select one of the following gateway courses: | 1
+  PHIL 0210 | Early Modern Philosophy | 
+  PHIL 0060 | Modern Science and Human Values | 
+  PHIL 0640 | Logic | 
+  Select one of the following courses in Early Modern Philosophy: | 1
+  PHIL 0210 | Early Modern Philosophy | 
+  PHIL 1210 | Locke, Berkeley, Hume and Others | 
+  PHIL 1220 | 17th Century Continental Rationalism | 
+  PHIL 1230 | Kant: The Critique of Pure Reason | 
+  Select two of the following courses in Epistemology, Metaphysics and Philosophy of Science: | 2
+  PHIL 1705 | Epistemology | 
+  PHIL 1735 | Metaphysics | 
+  PHIL 1755 | Philosophy of Science | 
+  PHIL 1775 | Philosophy of Quantum Mechanics | 
+  PHIL 1780 | Time | 
+  History Courses | 
+  Select one of the following courses in History of Science: 1 | 1
+  HIST 0522N | Reason, Revolution and Reaction in Europe | 
+  HIST 1825M | Science at the Crossroads | 
+  HIST 1976I | Imperialism and Environmental Change | 
+  Calculus | 
+  Select one of the following: | 1
+  MATH 0180 | Multivariable Calculus | 
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 
+  MATH 0350 | Multivariable Calculus With Theory | 
+  Final Project | 
+  Select one of the following: | 1
+  PHIL 1990 | Independent Studies | 
+  PHYS 1990 | Senior Conference Course | 
+  A course from the PHIL 0990 Senior Seminar series | 
+  Any graduate seminar in Philosophy | 
+  Total Credits | 12
+
+------
+Honors
+------
+Seniors wishing to earn honors by presenting a senior honors thesis should consult their concentration advisor during their sixth semester or at the start of the seventh semester concerning procedures and requirements. Students may earn honors by presenting a senior thesis judged to be of honors quality by two readers. In addition to completing the usual nonhonors requirements, the student should also have a grade point average of over 3.4 in physics, philosophy and history of science courses (of which at least five must be taken for a letter grade). Honors theses are usually prepared over a period of two semesters with an advisor from the Department of Physics or the Department of Philosophy.

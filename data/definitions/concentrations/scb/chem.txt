@@ -1,0 +1,106 @@
+CONCENTRATION: Chemistry
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/chem/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+The Chemistry concentration offers courses and research opportunities that range from fundamental studies involving the characterization and preparation of synthetic and naturally occurring molecules, to interdisciplinary studies at the interfaces of chemistry with biology, medicine, physics, engineering, and nanoscience. As early as their first year, undergraduates are able to work with faculty members on cutting edge research projects. The Sc.B. degree provides a thorough foundation for further graduate study or for entry-level technical positions in the molecular sciences. Students seeking the Sc.B. may either pursue the standard Chemistry concentration or one of two possible tracks: Chemical Biology or Materials Chemistry. Students may also pursue the A.B. degree in Chemistry, which provides a core education in the discipline.
+The Chemistry Department offers three options for the Sc.B. Chemistry Concentration – a straight Chemistry option, a Chemical Biology track and a Materials Chemistry track. These tracks are not separate concentrations – your degree will still be an Sc.B. in Chemistry. The Chemical Biology track is designed for students who have a strong interest in the interface of chemistry with biology. The Materials Chemistry track is designed for students who have a strong interest in the interface of chemistry with nanoscience and materials science. It is recommended that courses in the concentration be taken for a letter grade, and any decision to take a concentration course S/NC should be made after consultation with a concentration advisor.
+Concentrating in Chemistry – Three tracks The required/recommended courses for the three tracks are given below.
+
+--------------
+ScB Chemistry:
+--------------
+
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  CHEM 0360 | Organic Chemistry II | 1
+  CHEM 0370 | Organic Chemistry Laboratory | .5
+  CHEM 0500 | Inorganic Chemistry | 1
+  CHEM 0600 | Preparative Chemistry Lab | .5
+  Two semesters of independent study: | 2
+  CHEM 0980 | Undergraduate Research 1 | 
+  or CHEM 0981 | Undergraduate Research - Writing Designated
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry | 1
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics | 1
+  CHEM 1160 | Physical Chemistry Laboratory | 1
+  MATH 0180 or equivalent 2 | 1
+  Two Physics courses, typically 0030/0040 or 0050/0060 | 2
+  Six electives (at least three must be upper level CHEM courses) 3 | 6
+  Total Credits | 19
+
+CHEM 0980 / CHEM 0981 should be carried out with a faculty member with an appointment in the Chemistry Department. Research with faculty advisors outside the Chemistry  Department is also possible after consultation with a Concentration Advisor.
+
+---------------------------------------
+ScB Chemistry - Chemical Biology Track:
+---------------------------------------
+
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  CHEM 0360 | Organic Chemistry II | 1
+  CHEM 0400 | Biophysical and Bioinorganic Chemistry | 1
+  or CHEM 0500 | Inorganic Chemistry
+  CHEM 0600 | Preparative Chemistry Lab | .5
+  Two semesters of independent study: | 2
+  CHEM 0980 | Undergraduate Research 1 | 
+  or CHEM 0981 | Undergraduate Research - Writing Designated
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry | 1
+  CHEM 1230 | Chemical Biology | 1
+  CHEM 1240 | Biochemistry | 1
+  BIOL 0280 | Biochemistry | 1
+  MATH 0180 or equivalent 2 | 1
+  Two Physics courses, typically 0030/0040 or 0050/0060 | 2
+  Select three of the following: 3 | 3
+  BIOL 0470 | Genetics | 
+  BIOL 0500 | Cell and Molecular Biology | 
+  BIOL 0510 | Introductory Microbiology | 
+  BIOL 0530 | Principles of Immunology | 
+  BIOL 0800 | Principles of Physiology | 
+  NEUR 1020 | Principles of Neurobiology | 
+  Two other electives 4 | 2
+  Total Credits | 18.5
+
+CHEM 0980 / CHEM 0981 should be carried out with a faculty member with an appointment in the Chemistry Department. Research with faculty advisors outside the Chemistry  Department is also possible after consultation with a Concentration Advisor.
+
+------------------------------------------
+ScB Chemistry - Materials Chemistry Track:
+------------------------------------------
+
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  CHEM 0360 | Organic Chemistry II | 1
+  CHEM 0500 | Inorganic Chemistry | 1
+  CHEM 0600 | Preparative Chemistry Lab | .5
+  Two semesters of independent study: | 2
+  CHEM 0980 | Undergraduate Research 1 | 
+  or CHEM 0981 | Undergraduate Research - Writing Designated
+  CHEM 1060 | Advanced Inorganic Chemistry 2 | 1
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry | 1
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics 2 | 1
+  CHEM 1700 | Nanoscale Materials:  Synthesis and Applications | 1
+  MATH 0180 or equivalent 3 | 1
+  Two Physics courses, typically 0030/0040 or 0050/0060 5 | 2
+  One of the following courses | 1
+  CHEM 1560S | The Chemistry of Polymeric Organic Materials | 
+  BIOL 1090 | Polymer Science for Biomaterials (or) | 
+  BIOL 1120/ | Biomaterials (or) | 
+  BIOL 1140 | Tissue Engineering (or) | 
+  ENGN 1470 | Composite Materials (or) | 
+  ENGN 1200 | Biomaterials | 
+  Four electives, at least two must be upper level CHEM courses. 4 | 4
+  Total Credits | 18.5
+
+CHEM 0980 / CHEM 0981 should be carried out with a faculty member with an appointment in the Chemistry Department. Research with faculty advisors outside the Chemistry  Department is also possible after consultation with a Concentration Advisor.
+.
+
+---------------------------------
+Honors Requirements for Chemistry
+---------------------------------
+All Chemistry concentrators who have grades of A or S with distinction in a majority of their concentration courses after their seventh semester are eligible  for Honors; no separate application is necessary.
+The requirements for Honors in Chemistry are:
+* Grades of A or S with distinction in a majority of courses taken for the concentration.
+* Two semesters of Undergraduate Research CHEM 0980 , CHEM 0981 or equivalent. Guidelines and requirements associated with Undergraduate Research are in the Undergraduate Concentration Handbook which can be found at the department website .
+* A Senior Thesis in a form approved  and recommended by the research advisor.  Additional information about thesis guidelines will be provided to seniors  by the Director of Undergraduate Studies.
+* A Senior Poster presentation at the chemistry department's spring undergraduate poster session.

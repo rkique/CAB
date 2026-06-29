@@ -1,0 +1,80 @@
+CONCENTRATION: Mathematics-Economics
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/mtec/
+========================================================================
+
+The Mathematics Economics concentration is designed to give a background in economic theory plus the mathematical tools needed to analyze and develop additional theoretical constructions. The emphasis is on the abstract theory itself. Students may choose either the standard or the professional track, both award a Bachelor of Arts degree. If you are interested in declaring a concentration in Mathematics Economics, please refer to this page for more information regarding the process.
+
+----------------------------------------------------
+Standard Mathematics-Economics Concentration Honors:
+----------------------------------------------------
+
+  Economics | 
+  ECON 1130 | Intermediate Microeconomics (Mathematical) 1 | 1
+  ECON 1210 | Intermediate Macroeconomics | 1
+  ECON 1630 | Mathematical Econometrics I | 1
+  Two courses from the "mathematical-economics" group: 2 | 2
+  ECON 1170 | Welfare Economics and Social Choice Theory | 
+  ECON 1225 | Advanced Macroeconomics: Monetary, Fiscal, and Stabilization Policies | 
+  ECON 1255 | Unemployment: Models and Policies | 
+  ECON 1470 | Bargaining Theory and Applications | 
+  ECON 1490 | Designing Internet Marketplaces | 
+  ECON 1545 | Topics in Macroeconomics, Development and International Economics | 
+  ECON 1560 | Economic Growth | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1750 | Investments II | 
+  ECON 1770 | Crisis Economics | 
+  ECON 1805 | Experimental and Behavioral Economics | 
+  ECON 1820 | Theory of Behavioral Economics | 
+  ECON 1860 | The Theory of General Equilibrium | 
+  ECON 1870 | Game Theory and Applications to Economics | 
+  One course from the "data methods" group: 2 | 1
+  ECON 1301 | Economics of Education I | 
+  ECON 1310 | Labor Economics | 
+  ECON 1315 | Health, Education, and Social Policy | 
+  ECON 1330 | Gender and Development | 
+  ECON 1340 | Economics of Global Warming | 
+  ECON 1345 | Climate Change and the Commons | 
+  ECON 1355 | Environmental Issues in Development Economics | 
+  ECON 1360 | Research Seminar in Health Economics | 
+  ECON 1375 | Inequality of Opportunity in the US | 
+  ECON 1385 | Intergenerational Poverty in America | 
+  ECON 1400 | The Economics of Mass Media | 
+  ECON 1410 | Urban Economics | 
+  ECON 1430 | The Economics of Social Policy | 
+  ECON 1510 | Economic Development | 
+  ECON 1530 | Health, Hunger and the Household in Developing Countries | 
+  ECON 1629 | Applied Research Methods for Economists | 
+  ECON 1640 | Mathematical Econometrics II | 
+  ECON 1660 | Big Data | 
+  ECON 1670 | Advanced Topics in Econometrics | 
+  ECON 1680 | Machine Learning, Text Analysis, and Economics | 
+  ECON 1825 | Behavioral Economics and Public Policy | 
+  ECON 1830 | Behavioral Finance | 
+  Two additional 1000-level economics courses 3 | 2
+  Mathematics | 
+  Calculus: MATH 0180 or higher | 1
+  Linear Algebra - one of the following: | 1
+  MATH 0520 | Linear Algebra | 
+  MATH 0540 | Linear Algebra With Theory | 
+  Probability Theory - one of the following: | 1
+  MATH 1210 | Probability (Formerly MATH 1610) | 
+  MATH 1620 | Mathematical Statistics | 
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  Analysis - one of the following: | 1
+  MATH 1010 | Analysis: Functions of One Variable | 
+  MATH 1630 | Real Analysis I (Formerly MATH 1130) | 
+  MATH 1640 | Real Analysis II (Formerly MATH 1140) | 
+  Differential Equations - one of the following: | 1
+  MATH 1110 | Ordinary Differential Equations | 
+  MATH 1120 | Partial Differential Equations | 
+  One additional course from the Probability, Analysis, and Differential Equations courses listed above | 1
+  Total Credits | 14
+
+------
+Honors
+------
+Students who meet stated requirements are eligible to write an honors thesis in their senior year. Students should consult the listed honors requirements of whichever of the two departments their primary thesis advisor belongs to, at the respective departments' websites.

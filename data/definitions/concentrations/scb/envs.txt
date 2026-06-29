@@ -1,0 +1,334 @@
+CONCENTRATION: Environmental Sciences and Studies
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/envs/
+========================================================================
+
+---------------------------------
+Requirements for the Sc.B. Degree
+---------------------------------
+
+  CORE REQUIREMENTS (2 courses total) | 2
+  Two required courses for the ENV degree that build core competency in natural and social sciences related to the environment. | 
+  ENVS 0110 | Humans, Nature, and the Environment: Addressing Environmental Change in the 21st Century | 
+  ENVS 0490 | Environmental Science in a Changing World The core requirement of  ENVS 0490 can be waived for students with an AP exam score of 5 in Environmental Science. | 
+  TOOLS - Pick 1 | 1
+  Courses focused on building qualitative or quantitative research tools. | 
+  ANTH 1201 | Introduction to Geographic Information Systems and Spatial Analysis | 
+  ANTH 1940 | Ethnographic Research Methods | 
+  APMA 0160 | Introduction to Scientific Computing | 
+  APMA 0350 | Applied Ordinary Differential Equations | 
+  APMA 0355 | Applied Ordinary Differential Equations with Theory | 
+  APMA 0360 | Applied Partial Differential Equations I | 
+  APMA 0365 | Applied Partial Differential Equations I with Theory | 
+  APMA 0650 | Introduction to Probability and Statistics | 
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  APMA 1655 | Introduction to Probability and Statistics with Theory | 
+  APMA 1930P | Mathematics and Climate | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  CPSY 0900 | Statistical Methods | 
+  CPSY 0950 | Introduction to programming | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  DATA 0200 | Data Science Fluency | 
+  ECON 1620 | Introduction to Econometrics | 
+  EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction | 
+  EEPS 1250 | New England Field Geology | 
+  EEPS 1320 | Introduction to Geographic Information Systems for Environmental Applications | 
+  EEPS 1330 | Global Environmental Remote Sensing | 
+  EEPS 1340 | Machine Learning for the Earth and Environment | 
+  EEPS 1350 | Spatial Data Science | 
+  EEPS 1400 | Climate Modeling I | 
+  ENGL 1160P | Writing Climate, Writing Community | 
+  ENVS 1107 | Cartography and Geovisualization | 
+  ENVS 1911 | Narrating the Anthropocene | 
+  HMAN 1977P | Wet Ethnographies | 
+  IAPA 1500A | Ethnographic Research Methods | 
+  EPI 1855 | Infectious Disease Modeling | 
+  SOC 1020 | Methods of Social Research | 
+  SOC 1100 | Introductory Statistics for Social Research | 
+  URBN 1100 | Investigating the City: Hands-on Research Methods for Urban Analysis | 
+  Foundations in Earth Sciences and Technology - Pick 1 | 1
+  Courses focusing on earth, atmospheric, engineering or water sciences. | 
+  EEPS 0070 | Introduction to Oceanography | 
+  EEPS 0160M | Natural Disasters | 
+  EEPS 0160W | Earth Science Behind Protest Movements | 
+  EEPS 0220 | Earth and Environmental Processes | 
+  EEPS 0240 | Earth: Evolution of a Habitable Planet | 
+  EEPS 0360 | Solving the Climate and Carbon Challenge | 
+  EEPS 0830 | Water in Our World | 
+  EEPS 0850 | Weather and Climate | 
+  EEPS 1250 | New England Field Geology | 
+  EEPS 1310 | Global Water Cycle | 
+  EEPS 1370 | Environmental Geochemistry | 
+  EEPS 1400 | Climate Modeling I | 
+  EEPS 1510 | Dynamic Meteorology | 
+  EEPS 1720 | Tackling Climate Change with Machine Learning | 
+  ENGN 0790 | Fundamentals of Environmental Engineering | 
+  ENGN 1742 | Groundwater Flow and Transport | 
+  ENGN 1723 | The Chemistry of Environmental Pollution | 
+  Ecology/Biological Sciences - Pick 1 | 1
+  Courses focused on ecological or conservation biology. | 
+  BIOL 0210 | Diversity of Life | 
+  BIOL 0380 | The Ecology and Evolution of Infectious Disease | 
+  BIOL 0420 | Principles of Ecology | 
+  BIOL 0430 | The Evolution of Plant Diversity | 
+  BIOL 0940D | Rhode Island Flora: Understanding and Documenting Local Plant Diversity | 
+  BIOL 1440 | Marine Biology | 
+  BIOL 1470 | Conservation Biology | 
+  BIOL 1515 | Conservation in the Genomics Age | 
+  ENVS 1775 | Biogeography | 
+  Environmental Justice and Equity - Pick 1 | 1
+  Courses focused on environmental issues through a justice and/or equity lens. | 
+  AMST 0192T | Trans*formative Ecologies | 
+  ANTH 1560 | Environmental Archaeology: Sustainability, Catastrophe, and Resilience | 
+  ENVS 0705 | Equity and the Environment: Movements, Scholarship, Solutions | 
+  ENVS 1232 | Land Stewardship, Sovereignty, and Justice | 
+  ENVS 1247 | Clearing the Air: Environmental Studies of Pollution | 
+  ENVS 1554 | Farm Planet: Hunger, Development, and the Future of Food and Agriculture | 
+  ENVS 1601 | Reimagining Climate Change | 
+  ENVS 1878 | EJ and The City: Perspectives on Environmental Justice and Inequality | 
+  ENVS 1909 | Introduction to Critical Botanical Histories | 
+  HIST 1081 | The Environmental History of Subsistence and Extraction in Africa before 1900 | 
+  Environmental Policy and Politics - Pick 1 | 1
+  Courses focused on the policy, politics and/or governance of environmental issues. | 
+  ECON 1050 | Environmental Economics and  Policy | 
+  ENVS 0715 | Political Ecology | 
+  ENVS 0717 | Ocean Conservation: Ecology, Management, and Politics | 
+  ENVS 0718 | People and Oceans: How we Inhabit and Inhibit our Blue Planet | 
+  ENVS 1555 | Local Food Systems and Urban Agriculture | 
+  ENVS 1574 | Climate Policy Research: Organizations and Obstruction | 
+  ENVS 1580 | Environmental Stewardship and Resilience in Urban Systems | 
+  ENVS 1601 | Reimagining Climate Change | 
+  ENVS 1615 | Climate Change, Human Rights, and the Policy Process | 
+  ENVS 1805 | Ocean Governance and Policy | 
+  ENVS 1823 | Climate Media, Discourse, and Power | 
+  ENVS 1925 | Energy Policy and Politics | 
+  IAPA 1702K | The Political Economy of a Global Green Transition | 
+  LACA 1504R | Environmental politics in Latin America: Indigenous Peoples and Afro-descendants' perspectives | 
+  POLS 1015 | Politics and Nature | 
+  POLS 1435 | Politics of Climate Change | 
+  POLS 1820G | Politics and Nature | 
+  Environmental History and Humanities - Pick 1 | 1
+  Courses focused on the role of history, culture, and the arts in the environment. | 
+  AMST 1907K | Environmental Humanities in Queer and Trans Perspective | 
+  ANTH 0680 | Anthropology of Food | 
+  ANTH 1555 | Environmental Anthropology | 
+  ANTH 1560 | Environmental Archaeology: Sustainability, Catastrophe, and Resilience | 
+  ARCH 0680 | Water, Culture and Power | 
+  ARCH 1863 | 12,000 Years of Farming: From Domestication to Globalization | 
+  CHIN 0914 | Environment, Food, and Health in China | 
+  ENGL 1160P | Writing Climate, Writing Community | 
+  ENGL 1190U | Nature Writing | 
+  ENVS 1554 | Farm Planet: Hunger, Development, and the Future of Food and Agriculture | 
+  ENVS 1825 | Commodity Natures: Supply Chains From Extraction to Waste and Alternatives to Endless Growth | 
+  HIST 0270A | From Fire Wielders to Empire Builders: Human Impact on the Global Environment before 1492 | 
+  HIST 0270B | From the Columbian Exchange to Climate Change: Modern Global Environmental History | 
+  HIST 1081 | The Environmental History of Subsistence and Extraction in Africa before 1900 | 
+  HIST 1360 | Amazonia from the Prehuman to the Present | 
+  HIST 1382 | The Environmental History of Latin America | 
+  HIST 1820B | China's Environmental History | 
+  HIST 1825F | Nature, Knowledge, Power in Early Modern Europe | 
+  HIST 1973Q | Environmental Pressures of South Asia | 
+  HIST 1974D | The Practice of History | 
+  HIST 1976I | Imperialism and Environmental Change | 
+  HIST 1976J | Earth Histories: From Creation to Countdown | 
+  HMAN 1977O | The Black Outdoors | 
+  HMAN 1977P | Wet Ethnographies | 
+  HMAN 1977S | Bottom Ecologies: Blackness, Queerness, and the Environment | 
+  LACA 1504P | The Amazon, Climate Change, and Conservation | 
+  RELS 0090B | Earth, Story, and Belonging: Indigenous Ecological Traditions | 
+  RELS 0260 | Religion Gone Wild: Spirituality and the Environment | 
+  Electives - three courses | 3
+  Electives provide increased environmental expertise and further enhance your ability to customize your course of study. Acceptable electives include any ENVS course, a class that's MAIN FOCUS is the environment, and prerequisites for classes you take to fulfill requirements within your declared track. | 
+  Capstone - one or two courses | 1-2
+  The College expects that a capstone will be completed in semesters 7 or 8 - with the intention of providing an opportunity for students to integrate many aspects of their course of study, or area of focus. This requirement can be met with a two-semester thesis ( ENVS 1970 & ENVS 1971 ), one-semester research project ( ENVS 1970 or ENVS 1971 ), or an approved capstone course. | 
+  Additional Track­ specific requirements: | 5
+  Total Credits | 17-18
+
+------
+Tracks
+------
+
+  TRACK 1 - Climate and Energy | 
+  This track is intended for students interested in climate change science, energy systems, and energy/climate change policy. | 
+  FOUNDATIONS - pick two | 2
+  These courses serve as a foundation to understanding energy, climate systems, and data analysis. 1 | 
+  APMA 0160 | Introduction to Scientific Computing | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  CSCI 1951A | Data Science | 
+  CHEM 0330 | Equilibrium, Rate, and Structure | 
+  EEPS 0240 | Earth: Evolution of a Habitable Planet | 
+  EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction | 
+  EEPS 1340 | Machine Learning for the Earth and Environment | 
+  EEPS 1370 | Environmental Geochemistry | 
+  EEPS 1400 | Climate Modeling I | 
+  EEPS 1720 | Tackling Climate Change with Machine Learning | 
+  ENGN 0030 | Introduction to Engineering | 
+  ENGN 0032 | Introduction to Engineering: Design | 
+  ENGN 0790 | Fundamentals of Environmental Engineering | 
+  ENGN 0510 | Electricity and Magnetism | 
+  ENGN 0810 | Fluid Mechanics | 
+  PHYS 0030 | Basic Physics A | 
+  PHYS 0050 | Foundations of Mechanics | 
+  ENERGY, ENVIRONMENTAL TECH, & INFRASTRUCTURE - pick one | 1
+  ENGN 0790 | Fundamentals of Environmental Engineering | 
+  ENGN 1745 | Water Supply and Treatment Systems: Technology and Sustainability | 
+  ENGN 1931P | Energy and the Environment | 
+  ENVS 1400 | Sustainable Design in the Built Environment | 
+  ENVS 1580 | Environmental Stewardship and Resilience in Urban Systems | 
+  CLIMATE - pick one | 1
+  EEPS 0360 | Solving the Climate and Carbon Challenge | 
+  EEPS 0830 | Water in Our World | 
+  EEPS 0850 | Weather and Climate | 
+  EEPS 1400 | Climate Modeling I | 
+  EEPS 1430 | Atmospheric Circulation and Climate Dynamics | 
+  ENGN 1723 | The Chemistry of Environmental Pollution | 
+  ENVS 0465 | Climate Solutions - A multidisciplinary perspective | 
+  ENVS 1247 | Clearing the Air: Environmental Studies of Pollution | 
+  ENERGY & CLIMATE POLICY - pick one | 1
+  ECON 1340 | Economics of Global Warming | 
+  ENVS 1574 | Climate Policy Research: Organizations and Obstruction | 
+  ENVS 1601 | Reimagining Climate Change | 
+  ENVS 1925 | Energy Policy and Politics | 
+  POLS 1435 | Politics of Climate Change | 
+  Total Credits | 5
+
+  TRACK 2 - Conservation Science and Natural Systems | 
+  This track is intended for students interested in ecological and conservation sciences. 1 | 
+  ECOLOGY | 1
+  BIOL 0420 | Principles of Ecology | 
+  CONSERVATION | 1
+  BIOL 1470 | Conservation Biology | 
+  ORGANISMAL DIVERSITY, ECOLOGY & CONSERVATION TOPICS - pick two | 2
+  BIOL 0410 | Invertebrate Zoology | 
+  BIOL 0430 | The Evolution of Plant Diversity | 
+  BIOL 0450 | Evolutionary Behavioral Ecology | 
+  BIOL 0480 | Evolutionary Biology | 
+  BIOL 0940D | Rhode Island Flora: Understanding and Documenting Local Plant Diversity | 
+  BIOL 1515 | Conservation in the Genomics Age | 
+  ENVS 1775 | Biogeography | 
+  POLITICS & HISTORY OF NATURAL SYSTEMS - pick one | 1
+  ANTH 1560 | Environmental Archaeology: Sustainability, Catastrophe, and Resilience | 
+  ENVS 0715 | Political Ecology | 
+  ENVS 0717 | Ocean Conservation: Ecology, Management, and Politics | 
+  ENVS 0718 | People and Oceans: How we Inhabit and Inhibit our Blue Planet | 
+  ENVS 1232 | Land Stewardship, Sovereignty, and Justice | 
+  ENVS 1555 | Local Food Systems and Urban Agriculture | 
+  ENVS 1805 | Ocean Governance and Policy | 
+  LACA 1504R | Environmental politics in Latin America: Indigenous Peoples and Afro-descendants' perspectives | 
+  POLS 1820G | Politics and Nature | 
+  Total Credits | 5
+
+  TRACK 3 – Environmental Justice and Health | 
+  This track is intended for students interested in exploring environmental issues through a justice/equity lens. | 
+  RACE, CLASS, & GENDER INEQUALITY - pick one | 1
+  Any class focused on race, class, or gender - these courses do not have an environmental theme. Many AFRI, ETHN, and GNSS classes count with IBES Curriculum Committee approval. | 
+  AFRI 0090 | An Introduction to Africana Studies | 
+  ETHN 1000 | Introduction to Ethnic Studies | 
+  GNSS 0120 | Introduction to Gender and Sexuality Studies | 
+  SOC 0230 | Sex, Gender, and Society | 
+  SOC 1270 | Race, Class, and Ethnicity in the Modern World | 
+  ENVIRONMENTAL JUSTICE & EQUITY - Pick 2 | 2
+  These courses focus on environmental issues through a justice and/or equity lens. | 
+  ENVS 0705 | Equity and the Environment: Movements, Scholarship, Solutions | 
+  ENVS 1232 | Land Stewardship, Sovereignty, and Justice | 
+  ENVS 1247 | Clearing the Air: Environmental Studies of Pollution | 
+  ENVS 1554 | Farm Planet: Hunger, Development, and the Future of Food and Agriculture | 
+  ENVS 1601 | Reimagining Climate Change | 
+  HIST 1081 | The Environmental History of Subsistence and Extraction in Africa before 1900 | 
+  FOUNDATIONS IN HEALTH & INEQUALITY - pick one | 1
+  These courses offer a foundation or an additional tool to study environmental health and inequality. | 
+  ANTH 1201 | Introduction to Geographic Information Systems and Spatial Analysis | 
+  EEPS 1320 | Introduction to Geographic Information Systems for Environmental Applications | 
+  ENVS 1107 | Cartography and Geovisualization | 
+  HSP 0310 | Health Care in the United States | 
+  PHP 0320 | Introduction to Public Health | 
+  HSP 0330 | Health Law and Policy | 
+  BSS 0400 | Intro. to Health Disparities & Making Connection btw Structure, Social Determinants & Health Equity | 
+  BSS 1650 | Race, Racism and Health | 
+  HSP 1681 | Reproductive Health, Rights and Justice | 
+  EPI 1855 | Infectious Disease Modeling | 
+  PHP 1920 | Social Determinants of Health | 
+  SOC 1020 | Methods of Social Research | 
+  SOC 1100 | Introductory Statistics for Social Research | 
+  SOC 1117 | Focus Groups for Market and Social Research | 
+  SOC 1340 | Principles and Methods of Geographic Information Systems | 
+  ENVIRONMENTAL HEALTH - pick one | 1
+  These courses focus specifically on public health and the environment | 
+  BIOL 1455 | Planetary Health: Global Environmental Change and Emerging Infectious Disease | 
+  BIOL 1820 | Environmental Health and Disease | 
+  ENVS 0120 | Climate Change and Public Health in a Warming World | 
+  PHP 0720 | Global Health and the Environment | 
+  PHP 1070 | Global Burden of Disease | 
+  BSS 1101 | World of Food: Personal to Global Perspectives on Nutrition, Agriculture and Policy | 
+  EPI 1700 | Current Topics in Environmental Health | 
+  EPI 1720 | Environmental Exposure Assessments in Practice | 
+  EPI 1725 | Rural Public Health | 
+  EPI 1730 | Climate Risks and Health Solutions | 
+  PLME 0250 | Planetary Health: Preparing Clinicians for a Changing Planet | 
+  Total Credits | 5
+
+  TRACK 4 - Sustainable Development & Governance | 
+  This track is intended for students interested in the interplay between environmental governance and economics on the global stage, with an emphasis on the non-Western world. | 
+  GLOBAL GOVERNANCE & DEVELOPMENT - pick one | 1
+  Courses focused on global governance or development (some are non environmental). | 
+  ENVS 0717 | Ocean Conservation: Ecology, Management, and Politics | 
+  ENVS 1615 | Climate Change, Human Rights, and the Policy Process | 
+  ENVS 1805 | Ocean Governance and Policy | 
+  IAPA 1001 | Foundations of Development | 
+  IAPA 1404 | Economic Development of China and India | 
+  POLS 0200 | Introduction to Comparative Politics | 
+  POLS 0400 | Introduction to International Politics | 
+  POLS 1435 | Politics of Climate Change | 
+  POLS 1440 | Security, Governance and Development in Africa | 
+  POLS 1500 | The International Law and Politics of Human Rights | 
+  SOC 1490 | Power, Knowledge and Justice in Global Social Change | 
+  ENVIRONMENT, JUSTICE, & NON-WESTERN PERSPECTIVES - pick two | 2
+  Any class focused on the Environment and the Global South and/or other non-Western perspectives. | 
+  AMST 1904K | Power + Water: Material Culture and its Environmental Impact | 
+  ENVS 0705 | Equity and the Environment: Movements, Scholarship, Solutions | 
+  ENVS 1232 | Land Stewardship, Sovereignty, and Justice | 
+  ENVS 1554 | Farm Planet: Hunger, Development, and the Future of Food and Agriculture | 
+  ENVS 1580 | Environmental Stewardship and Resilience in Urban Systems | 
+  ENVS 1601 | Reimagining Climate Change | 
+  ENVS 1825 | Commodity Natures: Supply Chains From Extraction to Waste and Alternatives to Endless Growth | 
+  HIST 1360 | Amazonia from the Prehuman to the Present | 
+  HIST 1382 | The Environmental History of Latin America | 
+  HIST 1960J | More-Than-Human Histories of Africa | 
+  HIST 1973Q | Environmental Pressures of South Asia | 
+  RELS 0090B | Earth, Story, and Belonging: Indigenous Ecological Traditions | 
+  ECONOMIC PERSPECTIVES - pick one | 1
+  These courses are intermediate-level economic tools courses. | 
+  ECON 1050 | Environmental Economics and  Policy | 
+  ECON 1110 | Intermediate Microeconomics | 
+  ECON 1340 | Economics of Global Warming | 
+  ECON 1345 | Climate Change and the Commons | 
+  ECON 1355 | Environmental Issues in Development Economics | 
+  ECON 1410 | Urban Economics | 
+  ECON 1500 | Current Global Macroeconomic Challenges | 
+  ECON 1530 | Health, Hunger and the Household in Developing Countries | 
+  ECON 1560 | Economic Growth | 
+  FINANCE & ECONOMIC PERSPECTIVES - pick one | 1
+  These courses are either intermediate-level economic tools courses, courses focused on sustainable investing and finance, or the social science of economics systems. | 
+  ECON 1050 | Environmental Economics and  Policy | 
+  ECON 1110 | Intermediate Microeconomics | 
+  ECON 1340 | Economics of Global Warming | 
+  ECON 1355 | Environmental Issues in Development Economics | 
+  ECON 1410 | Urban Economics | 
+  ECON 1500 | Current Global Macroeconomic Challenges | 
+  ECON 1530 | Health, Hunger and the Household in Developing Countries | 
+  ECON 1560 | Economic Growth | 
+  ENVS 1207 | Eco-Entrepreneurship | 
+  ENVS 1545 | The Theory and Practice of Sustainable Investing | 
+  ENVS 1547 | Finance and the Environment | 
+  HIST 0150A | History of Capitalism | 
+  IAPA 1701Y | Climate Change, Power, & Money | 
+  PHIL 1561 | Are We Doomed? Ethics, Economics, and the Future | 
+  URBN 1251 | Municipal Money | 
+  Total Credits | 5
+
+------
+Honors
+------
+Students interested in graduating with honors in their concentration must complete a thesis determined to be of the highest quality and must have excelled in their coursework required for the concentration, which is defined here as receiving a grade of "A" in the majority of courses taken to fulfill the concentration. You can learn more by visiting the senior capstones page on the IBES website.

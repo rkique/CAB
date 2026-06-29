@@ -1,0 +1,54 @@
+CONCENTRATION: Cognitive Science
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/cogs/
+========================================================================
+
+---------------------------------
+Requirements for the Sc.B. degree
+---------------------------------
+
+----------
+Foundation
+----------
+Concentrators will additionally take either a 1000-level seminar course in CPSY or an independent research course (CPSY 1970 or 1989( to serve as their capstone experience. Students must consult with their concentration advisor before choosing a capstone course.
+
+  CPSY 0900 | Statistical Methods | 1
+  CPSY 1900 | Research Methods And Design | 1
+  or CPSY 1901 | Research Methods
+  Three Foundation Courses within CPSY: | 3
+  CPSY 0010 | Mind, Brain and Behavior: An Interdisciplinary Approach | 
+  CPSY 0200 | Human Cognition | 
+  or CPSY 0220 | Making Decisions
+  CPSY 0400 | Cognitive Neuroscience | 
+  or CPSY 0450 | Brain Damage and the Mind
+  CPSY 0500 | Perception and Mind | 
+  or CPSY 0550 | Science of Consciousness
+  CPSY 0610 | Children's Thinking: The Nature of Cognitive Development | 
+  or CPSY 0700 | Social Psychology
+  CPSY 0800 | Language and the Mind | 
+  One Foundation Course Outside of CPSY: | 1
+  LING 0100 | Introduction to Linguistics | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 
+  SOC 0010 | Social Forces: An Introduction to Sociology | 
+  Or choose from a set of approved courses in PHIL, ANTH, or SOC | 
+  One Foundation Course in Computation: | 1
+  CPSY 0950 | Introduction to programming | 
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  CPSY 1950 | Deep Learning in Brains, Minds and Machines | 
+  Or any introductory CSCI course with a programming component such as: | 
+  CSCI 0111 | Computing Foundations: Data | 
+  or CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science
+  or CSCI 0170 | Computer Science: An Integrated Introduction
+  or CSCI 0190 | Accelerated Introduction to Computer Science
+  Four Approved Electives related to Cognitive Science | 4
+  Students should take four courses from CPSY, PHIL, NEUR, SOC, ANTH, LING, or CSCI with at least one of these classes coming from CPSY at 1the 1000-level and at least two others at the 1000-level. | 
+  Five Additional STEM Courses, of which at least two (2) must be PCSY courses  at the 1000-level (a lab course is strongly recommended).  Courses in APMA, BIOL, CSCI, CHEM, CPSY, MATH, NEUR, or PHYS will be considered and must be applicable to a concentration in that departmen | 5
+  Capstone: Independent Study ( CPSY 1970 , CPSY 1980 ) or approved seminar | 1
+  Total Credits | 17
+
+------------------
+Honors Requirement
+------------------
+The Honors Program in Cognitive Science gives undergraduates a special opportunity to carry out a research project under the direction of a faculty member.  The program also provides the opportunity for outstanding senior concentrators to receive their undergraduate degree with Honors.  Participation in the program allows students to develop an understanding of research and acquire research skills and background.
+Candidates for Honors in Cognitive Science must meet all of the requirements of the concentration as described above.  Candidates submit their application for the program in semester 7.  We encourage students to seek out a potential faculty mentor prior to semester 7. Candidates for Honors must have completed the Statistics and Research Methods requirements before semester 7.   Please refer to the CPSY Honors Program page for detailed information about the specific requirements for the Honors program in Cognitive Science.

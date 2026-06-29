@@ -1,0 +1,163 @@
+CONCENTRATION: Physics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/phys/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+
+  Prerequisites: | 
+  Select one of each: | 2
+  PHYS 0050 | Foundations of Mechanics | 
+  or PHYS 0070 | Analytical Mechanics
+  PHYS 0060 | Foundations of Electromagnetism and Modern Physics | 
+  or PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics
+  Select one of the following: | 1
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 
+  or MATH 0090 | Single Variable Calculus, Part I
+  or MATH 0100 | Single Variable Calculus, Part II
+  Program: | 8
+  PHYS 0470 | Electricity and Magnetism | 
+  PHYS 0500 | Advanced Classical Mechanics | 
+  PHYS 0560 | Experiments in Modern Physics | 
+  PHYS 1410 | Quantum Mechanics A | 
+  PHYS 1420 | Quantum Mechanics B | 
+  PHYS 1510 | Advanced Electromagnetic Theory | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  PHYS 1560 | Modern Physics Laboratory | 
+  Take one additional 1000 or 2000 level Physics course or upper level course in related fields of science chosen by the student with the agreement of his or her advisor. | 1
+  Four Mathematics courses beyond MATH 0190 or 0090 , 0100 including choices from Applied Mathematics 1 | 4
+  PHYS 1990 | Senior Conference Course 2 | 1
+  Total Credits | 17
+
+---------------------------------------
+Astrophysics Track for the Sc.B. degree
+---------------------------------------
+
+  Prerequisites: | 
+  Select one of each: | 2
+  PHYS 0050 | Foundations of Mechanics | 
+  or PHYS 0070 | Analytical Mechanics
+  PHYS 0060 | Foundations of Electromagnetism and Modern Physics | 
+  or PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics
+  PHYS 0270 | Astronomy and Astrophysics | 1
+  Select one of the following Series: | 2
+  MATH 0170 & MATH 0180 | Single Variable Calculus, Part II (Accelerated) and Multivariable Calculus | 
+  MATH 0190 & MATH 0200 | Single Variable Calculus, Part II (Physics/Engineering) and Multivariable Calculus (Physics/Engineering) | 
+  MATH 0350 | Multivariable Calculus With Theory (or equivalent) | 
+  PHYS 0470 | Electricity and Magnetism | 1
+  Program: | 
+  MATH 0520 | Linear Algebra | 1
+  or MATH 0540 | Linear Algebra With Theory
+  or PHYS 0720 | Methods of Mathematical Physics
+  Select one of the following Math courses: | 1
+  APMA 0330 | Methods of Applied Mathematics I | 
+  APMA 0340 | Methods of Applied Mathematics II | 
+  APMA 0350 | Applied Ordinary Differential Equations | 
+  APMA 0360 | Applied Partial Differential Equations I | 
+  MATH 1110 | Ordinary Differential Equations | 
+  MATH 1120 | Partial Differential Equations | 
+  PHYS 0500 | Advanced Classical Mechanics | 1
+  PHYS 0560 | Experiments in Modern Physics | 1
+  PHYS 1410 | Quantum Mechanics A | 1
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 1
+  Three of the following: | 3
+  PHYS 1100 | General Relativity | 
+  PHYS 1250 | Stellar Structure and the Interstellar Medium | 
+  PHYS 1270 | Extragalactic Astronomy and High-Energy Astrophysics | 
+  PHYS 1280 | Introduction to Cosmology | 
+  Two additonal 1000- or 2000-level courses in physics or a related field which are not listed as requirements. | 2
+  PHYS 1990 | Senior Conference Course 1 | 1
+  Total Credits | 18
+
+---------------------------------------------
+Biological Physics Track for the Sc.B. degree
+---------------------------------------------
+
+  Foundations of Physics | 
+  PHYS 0070 | Analytical Mechanics | 1
+  or PHYS 0050 | Foundations of Mechanics
+  or ENGN 0040 | Engineering Statics and Dynamics
+  PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics | 1
+  or PHYS 0060 | Foundations of Electromagnetism and Modern Physics
+  PHYS 0470 | Electricity and Magnetism | 1
+  PHYS 0500 | Advanced Classical Mechanics | 1
+  PHYS 1410 | Quantum Mechanics A | 1
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 1
+  Select one of the following Series: 1 | 1-2
+  Series A | 
+  PHYS 0720 | Methods of Mathematical Physics | 
+  Series B | 
+  Select one of the following: | 
+  APMA 0330 | Methods of Applied Mathematics I | 
+  APMA 0350 | Applied Ordinary Differential Equations | 
+  MATH 1110 | Ordinary Differential Equations | 
+  And select one of the following: | 
+  MATH 0180 | Multivariable Calculus | 
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 
+  MATH 0350 | Multivariable Calculus With Theory | 
+  MATH 0520 | Linear Algebra | 
+  MATH 0540 | Linear Algebra With Theory | 
+  Basic Biology and Chemistry | 
+  BIOL 0200 | The Foundation of Living Systems (or placement out of BIOL 0200) | 1
+  BIOL 0500 | Cell and Molecular Biology | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  Advanced Biophysical Topics and Techniques | 
+  PHYS 1610 | Biological Physics | 1
+  PHYS 1990 | Senior Conference Course | 1
+  Elective Courses (four chosen from the following list, with at least two 1000-level courses, or additional courses approved by the concentration advisor: | 4
+  APMA 0360 | Applied Partial Differential Equations I | 
+  APMA 0410 | Mathematical Methods in the Brain Sciences | 
+  APMA 0650 | Introduction to Probability and Statistics | 
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  APMA 1080 | Inference in Genomics and Molecular Biology | 
+  BIOL 0280 | Biochemistry | 
+  BIOL 0470 | Genetics | 
+  BIOL 1050 | Biology of the Eukaryotic Cell | 
+  BIOL 1200 | Protein Biophysics and Structure | 
+  BIOL 1270 | Advanced Biochemistry | 
+  BIOL 1870 | Techniques and Clinical Applications in Pathobiology | 
+  CHEM 0350 | Organic Chemistry I | 
+  CHEM 0360 | Organic Chemistry II | 
+  MATH 0090 | Single Variable Calculus, Part I | 
+  MATH 0170 | Single Variable Calculus, Part II (Accelerated) | 
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 
+  MATH 1620 | Mathematical Statistics | 
+  MATH 1210 | Probability | 
+  PHYS 0560 | Experiments in Modern Physics | 
+  PHYS 1510 | Advanced Electromagnetic Theory | 
+  PHYS 1560 | Modern Physics Laboratory | 
+  PHYS 2620F | Selected Topics in Molecular Biophysics | 
+  PHYS 1990 | Senior Conference Course 2 | 1
+  Total Credits | 17-18
+
+-----------------------------------------------
+Mathematical Physics Track for the Sc.B. degree
+-----------------------------------------------
+
+  Prerequisites: | 
+  Select one of the following series: | 2
+  PHYS 0050 | Foundations of Mechanics | 
+  or PHYS 0070 | Analytical Mechanics
+  PHYS 0060 | Foundations of Electromagnetism and Modern Physics | 
+  or PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics
+  Select one of the following: | 1-2
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 
+  MATH 0090 & MATH 0100 | Single Variable Calculus, Part I and Single Variable Calculus, Part II | 
+  Required courses: | 
+  PHYS 0470 | Electricity and Magnetism | 1
+  PHYS 0500 | Advanced Classical Mechanics | 1
+  PHYS 0560 | Experiments in Modern Physics | 1
+  PHYS 1410 | Quantum Mechanics A | 1
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 1
+  MATH 0180 & MATH 0200 | Multivariable Calculus and Multivariable Calculus (Physics/Engineering) | 1-2
+  or MATH 0350 | Multivariable Calculus With Theory
+  MATH 0520 | Linear Algebra | 1
+  or MATH 0540 | Linear Algebra With Theory
+  or PHYS 0720 | Methods of Mathematical Physics
+  MATH 1460 | Complex Analysis | 1
+  Four additional 1000 or 2000 level Physics courses | 4
+  Two additional 1000 or 2000 level Math courses | 2
+  PHYS 1990 | Senior Conference Course 1 | 1
+  Total Credits | 18-20

@@ -1,0 +1,6 @@
+CONCENTRATION: Computational Neuroscience
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/cneu/
+========================================================================
+
+This multidisciplinary concentration spans many fields, including computer science, neuroscience, cognitive science, applied math, and data science. Students studying Computational Neuroscience will learn to use computational models of the brain and nervous system to study complex biological processes and overcome the limitations of human experimentation. They will also learn to use the brain and nervous system as a model to improve the power and efficiency of artificial systems. Concentrators will think critically about the impact of their work on society and understand how biases can negatively influence computational models.

@@ -1,0 +1,39 @@
+CONCENTRATION: Mathematics-Computer Science
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/macs/
+========================================================================
+
+--------------------------------------------------------
+Requirements for the Standard Track of the Sc.B. degree.
+--------------------------------------------------------
+
+  Prerequisites | 
+  Three semesters of Calculus to the level of MATH 0180 , MATH 0200 , or MATH 0350 | 3
+  MATH 0520 | Linear Algebra | 1
+  or MATH 0540 | Linear Algebra With Theory
+  or CSCI 0530 | Coding the Matrix: An Introduction to Linear Algebra for Computer Science
+  Core Courses | 
+  MATH 1530 | Abstract Algebra | 1
+  Select one of the following series: | 2
+  Series A | 
+  CSCI 0150 & CSCI 0200 | Introduction to Object-Oriented Programming and Computer Science and Program Design with Data Structures and Algorithms | 
+  Series B | 
+  CSCI 0170 & CSCI 0200 | Computer Science: An Integrated Introduction and Program Design with Data Structures and Algorithms | 
+  Series C | 
+  CSCI 0190 | Accelerated Introduction to Computer Science (and an additional CS course numbered 200 or above not otherwise used to satisfy a concentration requirement; a Foundations course, or a 1000-level CS course) | 
+  Series D 1 | 
+  CSCI 0111 & CSCI 0200 | Computing Foundations: Data and Program Design with Data Structures and Algorithms | 
+  Foundations Courses: Two courses, touching two different Foundations areas: | 2
+  a. Algorithms/Theory Foundations | 
+  CSCI 0500 | Data Structures, Algorithms, and Intractability: An Introduction | 
+  b. AI/Machine Learning/Data Science Foundations. | 
+  CSCI 0410 | Foundations of AI and Machine Learning | 
+  c. Systems Foundations. Concentration credit for only one of 300/330 | 
+  CSCI 0300 | Fundamentals of Computer Systems | 
+  or CSCI 0320 | Introduction to Software Engineering
+  or CSCI 0330 | Introduction to Computer Systems
+  Three 1000-level Mathematics courses | 3
+  Three courses in Computer Science at the 1000-level or higher. One of these can be an additional 100-level Foundations course or a CSCI non-technical course, as defined by the concentration handbook. | 3
+  Three  additional courses different from any of the above chosen from Mathematics, Computer Science, Applied Mathematics, or related areas 4 | 3
+  A capstone course in Computer Science or Mathematics 5 | 1
+  Total Credits | 19

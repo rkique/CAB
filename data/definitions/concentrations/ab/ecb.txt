@@ -1,0 +1,52 @@
+CONCENTRATION: Earth, Climate, and Biology
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/ecb/
+========================================================================
+
+----------------------------------
+Standard Program for the AB Degree
+----------------------------------
+
+  Basic supporting science courses | 
+  BIOL 0200 | The Foundation of Living Systems (or equivalent) | 1
+  or BIOL 0210 | Diversity of Life
+  CHEM 0330 | Equilibrium, Rate, and Structure (or equivalent) | 1
+  A course to build quantitative skills: | 1
+  MATH 0090 | Single Variable Calculus, Part I (or higher) | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  or APMA 1650 | Introduction to Probability and Statistics with Calculus
+  CSCI 0111 | Computing Foundations: Data (or higher) | 
+  ENGN 0040 | Engineering Statics and Dynamics (or higher) | 
+  PHYS 0050 | Foundations of Mechanics (or higher) | 
+  APMA 0350 | Applied Ordinary Differential Equations (or higher) | 
+  Nine Concentration courses | 
+  Two of these four fundamentals courses: | 2
+  EEPS 0220 | Earth and Environmental Processes | 
+  EEPS 0230 | Geochemistry: Earth and Planetary Materials and Processes | 
+  EEPS 0240 | Earth: Evolution of a Habitable Planet | 
+  EEPS 0250 | Computational Approaches to Modelling and Quantitative Analysis in Natural Sciences: An Introduction | 
+  EEPS 1240 | Stratigraphy and Sedimentation | 1
+  Select three upper level Biology courses such as: | 3
+  BIOL 0410 | Invertebrate Zoology | 
+  BIOL 0420 | Principles of Ecology | 
+  BIOL 0430 | The Evolution of Plant Diversity | 
+  BIOL 0480 | Evolutionary Biology | 
+  BIOL 1470 | Conservation Biology | 
+  Three EEPS courses such as: | 3
+  One of EEPS 0220 , EEPS 0230 , EEPS 0240 , or EEPS 0250 if not already taken | 
+  EEPS 0850 | Weather and Climate | 
+  EEPS 1120 | Paleoceanography | 
+  EEPS 1130 | Ocean Biogeochemical Cycles | 
+  EEPS 1150 | Limnology: The Study of Lakes | 
+  EEPS 1310 | Global Water Cycle | 
+  EEPS 1320 | Introduction to Geographic Information Systems for Environmental Applications | 
+  EEPS 1370 | Environmental Geochemistry | 
+  EEPS 1615 | Climate Change, Human Rights, and the Policy Process | 
+  EEPS 1970 | Undergraduate Senior Thesis Course | 
+  Total Credits | 12
+
+Students in Earth, Climate and Biology apply principles from Earth science, biology, chemistry, and physics to understand how major components of the Earth system, such as its atmosphere and oceans, interact with and sustain life over time. Many courses emphasize climate change, environmental quality, and biogeochemistry, so this concentration is a good match for students interested in studying the environment. Courses also investigate Earth history, including past climate, extinction events, and using the Earth’s sedimentary record to investigate environmental change.
+Both A.B. and Sc.B. degrees are offered, requiring 12 and 19 courses, respectively.  These degrees build skills in critical thinking, data analysis and modeling, finding solutions to complex problems, and written and oral communication.   DEEPS provides a highly collaborative learning environment that emphasizes process-oriented, hands-on approaches in the classroom, in labs and on field trips. There are many opportunities for students to do paid research during the summer or academic year.
+Students interested in this concentration may also wish to consider related concentrations: Geochemistry and Environmental Chemistry, Geophysics and Climate Physics, and Earth and Planetary Science.
+This program is recommended for students interested in more in-depth study in the Earth, environmental, or biological sciences, potentially including graduate school and diverse careers in these areas. It is relevant for students interested in environmental science, paleoclimate, Earth systems science, biogeochemistry, oceanography, or paleobiology. Some course requirements may be flexible based on consultation with the concentration advisor.
+Note - For students still enrolled with the prior Concentration in Geology-Biology Sc.B., please refer to the Archived Bulletin link on left hand navigation for your requirements for the year you declared.

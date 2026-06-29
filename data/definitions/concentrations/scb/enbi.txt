@@ -1,0 +1,75 @@
+CONCENTRATION: Biomedical Engineering
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/enbi/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+
+  1. Core Courses | 
+  ENGN 0030 | Introduction to Engineering | 1
+  or ENGN 0032 | Introduction to Engineering: Design
+  ENGN 0040 | Engineering Statics and Dynamics | 1
+  ENGN 0510 | Electricity and Magnetism | 1
+  or ENGN 0520 | Electrical Circuits and Signals
+  ENGN 0720 | Thermodynamics | 1
+  ENGN 0810 | Fluid Mechanics | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 1
+  or MATH 0100 | Single Variable Calculus, Part II
+  CHEM 0350 | Organic Chemistry I | 1
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 1
+  or MATH 0180 | Multivariable Calculus
+  or MATH 0350 | Multivariable Calculus With Theory
+  APMA 0350 | Applied Ordinary Differential Equations 1 | 1
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 1
+  or BIOL 0495 | Statistical Analysis of Biological Data
+  or STAT 1510 | Principles of Biostatistics and Data Analysis
+  or APMA 1655 | Introduction to Probability and Statistics with Theory
+  2. Upper Level Biomedical Engineering Curriculum | 
+  ENGN 1205 | Transport and Biotransport Processes | 1
+  ENGN 1210 | Biomechanics | 1
+  ENGN 1230 | Instrumentation Design | 1
+  ENGN 1200 | Biomaterials | 1
+  BIOL 0800 | Principles of Physiology | 1
+  3. Additional Biomedical Engineering Electives: Complete at least 3 courses from the following groups; other upper-level courses are subject to Concentration Advisor approval. | 3
+  Select one or two of the following: | 
+  CSCI 1810 | Computational Molecular Biology | 
+  or CSCI 1820 | Algorithmic Foundations of Computational Biology
+  ENGN 0500 | Digital Computing Systems | 
+  ENGN 1220 | Neuroengineering | 
+  ENGN 1221 | Cardiovascular Engineering | 
+  ENGN 1222 | Immunoengineering | 
+  ENGN 1223 | Recent Advances in Biomedical Engineering | 
+  ENGN 1224 | Nanoengineering and Nanomedicine | 
+  ENGN 1225 | Biomedical Optics | 
+  ENGN 1740 | Computer Aided Visualization and Design | 
+  ENGN 2221 | Implantable Devices | 
+  ENGN 2222 | Cancer Nanotechnology | 
+  ENGN 2625 | Optical Microscopy: Fundamentals and Applications | 
+  ENGN 2911R | Analytical Modeling for Biomechanical and Biomedical Systems | 
+  BIOL 1140 | Tissue Engineering | 
+  BIOL 1150 | Stem Cell Engineering | 
+  BIOL 2110 | Drug and Gene Delivery | 
+  At least one or two more courses from: | 
+  BIOL 0280 | Biochemistry | 
+  BIOL 0470 | Genetics | 
+  BIOL 0500 | Cell and Molecular Biology | 
+  BIOL 0510 | Introductory Microbiology | 
+  BIOL 0530 | Principles of Immunology | 
+  BIOL 1090 | Polymer Science for Biomaterials | 
+  BIOL 1100 | Cell Physiology and Biophysics | 
+  BIOL 1555 | Methods in Informatics and Data Science for Health | 
+  APMA 1070 | Quantitative Models of Biological Systems | 
+  CHEM 0360 | Organic Chemistry II | 
+  ENGN 2910G | Topics in Translational Research and Technologies | 
+  NEUR 1020 | Principles of Neurobiology | 
+  NEUR 1440 | Mechanisms and Meaning of Neural Dynamics | 
+  PHYS 1610 | Biological Physics | 
+  BIOL 1810 | 21st Century Applications in Cell and Molecular Biology | 
+  4. Capstone Design 2 | 
+  ENGN 1240 | Biomedical Engineering Design and Innovation I | 1
+  ENGN 1250 | Biomedical Engineering Design and Innovation II | 1
+  5. General Education Requirement: At least four approved courses must be taken in the humanities and social sciences. | 
+  Total Credits | 21

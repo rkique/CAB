@@ -1,0 +1,132 @@
+CONCENTRATION: Biochemistry & Molecular Biology
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/bchm/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+Students must take twenty courses in biology, chemistry, mathematics, and physics, including the following core requirements, some of these may be fulfilled with AP credits.
+
+  Three courses in mathematics including two courses in MATH 0090 / 0100 or MATH 0170 / 0180 with a third class in statistics, math, or computer science. 1 | 3
+  Options for statistics courses include: 1 | 
+  APMA 0650 | Introduction to Probability and Statistics | 
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  APMA 1655 | Introduction to Probability and Statistics with Theory 3 | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  CPSY 0900 | Statistical Methods | 
+  STAT 1501 | Essentials of Data Analysis | 
+  STAT 1510 | Principles of Biostatistics and Data Analysis | 
+  Two courses in physics, typically: 1 | 2
+  PHYS 0030 | Basic Physics A | 
+  or PHYS 0050 | Foundations of Mechanics
+  or ENGN 0040 | Engineering Statics and Dynamics
+  PHYS 0040 | Basic Physics B | 
+  or PHYS 0060 | Foundations of Electromagnetism and Modern Physics
+  Four courses in physical and organic chemistry: | 4
+  CHEM 0330 | Equilibrium, Rate, and Structure | 
+  CHEM 0350 | Organic Chemistry I | 
+  CHEM 0370 | Organic Chemistry Laboratory | 
+  CHEM 0360 | Organic Chemistry II | 
+  One course in biophysical chemistry: | 1
+  CHEM 0400 | Biophysical and Bioinorganic Chemistry | 
+  Three courses in biochemistry: | 3
+  BIOL 0280 | Biochemistry | 
+  Plus two of three upper level biochemistry courses: | 
+  BIOL 1270 | Advanced Biochemistry | 
+  or CHEM 1230 | Chemical Biology
+  or CHEM 1240 | Biochemical Reactions and Mechanisms
+  The two semester research requirement may be satisfied by any two of the following.  Students should discuss alternative arrangements or special situations directly with their concentration advisor to obtain prior approval. | 2
+  Students should aim to complete this requirement in their junior year at the latest to maximize their ability to find a lab able to host them. Finding a lab involves reaching out to professors directly to inquire about research possibilities in their lab prior to receiving an override code for registration for BIOL1950/1960 or Chem 0980/0980S/0981. | 
+  BIOL 1950 | Directed Research/Independent Study | 
+  BIOL 1960 | Directed Research/Independent Study | 
+  CHEM 0980 | Undergraduate Research | 
+  CHEM 0980S | Undergraduate Research - Writing Designated and Mandatory S/NC | 
+  CHEM 0981 | Undergraduate Research - Writing Designated | 
+  A summer research experience with faculty in Biology or Chemistry at Brown equivalent or greater in scope and scale to work the student would pursue in a Biology or Chemistry independent study course to satisfy one semester of the research requirement. | 
+  Suggested Elective Courses: | 
+  Students are required to take five courses from the chart below or, with approval from a concentration advisor, from any science or mathematics course relevant to biochemistry, cell and molecular biology. One of these five courses must have a laboratory component. BIOL 0285 is strongly suggested and recommended for this laboratory course elective, ideally to be taken in the Sophomore or Junior year. | 5
+  Applied Mathematics Electives: | 
+  APMA 0330 | Methods of Applied Mathematics I | 
+  APMA 0410 | Mathematical Methods in the Brain Sciences | 
+  APMA 0650 | Introduction to Probability and Statistics | 
+  Biology Electives: | 
+  BIOL 0030 | Principles of Nutrition | 
+  BIOL 0150D | Techniques in Regenerative Medicine: Cells, Scaffolds and Staining | 
+  BIOL 0170 | Biotechnology in Medicine | 
+  BIOL 0190R | Phage Hunters | 
+  BIOL 0200 | The Foundation of Living Systems | 
+  BIOL 0285 | Inquiry in Biochemistry: From Gene to Protein Function | 
+  BIOL 0380 | The Ecology and Evolution of Infectious Disease | 
+  BIOL 0415 | Microbes in the Environment | 
+  BIOL 0440 | Inquiry in Plant Biology: Analysis of Plant Growth, Reproduction and Adaptive Responses | 
+  BIOL 0470 | Genetics | 
+  BIOL 0500 | Cell and Molecular Biology | 
+  BIOL 0510 | Introductory Microbiology | 
+  BIOL 0530 | Principles of Immunology | 
+  BIOL 0800 | Principles of Physiology | 
+  BIOL 1050 | Biology of the Eukaryotic Cell | 
+  BIOL 1090 | Polymer Science for Biomaterials | 
+  BIOL 1100 | Cell Physiology and Biophysics | 
+  BIOL 1110 | Topics in Signal Transduction | 
+  BIOL 1120 | Biomaterials | 
+  BIOL 1150 | Stem Cell Engineering | 
+  BIOL 1200 | Protein Biophysics and Structure | 
+  BIOL 1210 | Synthetic Biological Systems | 
+  BIOL 1222A | Current Topics in Functional Genomics | 
+  BIOL 1260 | Physiological Pharmacology | 
+  BIOL 1290 | Cancer Biology | 
+  BIOL 1300 | Biomolecular Interactions: Health, Disease and Drug Design | 
+  BIOL 1310 | Developmental Biology | 
+  BIOL 1330 | Biology of Reproduction | 
+  BIOL 1520 | Innate Immunity | 
+  BIOL 1540 | Molecular Genetics | 
+  BIOL 1560 | Virology | 
+  BIOL 1600 | Development of Vaccines to Infectious Diseases | 
+  BIOL 2110 | Drug and Gene Delivery | 
+  BIOL 2350 | The Biology of Aging | 
+  Chemistry Electives: | 
+  CHEM 0500 | Inorganic Chemistry | 
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry | 
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics | 
+  CHEM 1220 | Computational Tools in Biochemistry and Chemical Biology | 
+  CHEM 1230 | Chemical Biology | 
+  CHEM 1240 | Biochemical Reactions and Mechanisms | 
+  CHEM 1450 | Advanced Organic Chemistry | 
+  CHEM 1560H | Chemical Glycobiology | 
+  CHEM 1560N | Organometallic Chemistry | 
+  CHEM 2410 | Organic Mechanisms | 
+  CHEM 2420 | Organic Reactions | 
+  Computer Science Electives: | 
+  CSCI 0080 | A First Byte of Computer Science | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0160 | Introduction to Algorithms and Data Structures | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  CSCI 0180 | Computer Science: An Integrated Introduction | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  CSCI 1810 | Computational Molecular Biology | 
+  Engineering Electives: | 
+  ENGN 0410 | Materials Science | 
+  Neuroscience Electives: 2 | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 
+  NEUR 1020 | Principles of Neurobiology | 
+  NEUR 1030 | Neural Systems | 
+  NEUR 1040 | Introduction to Neurogenetics | 
+  NEUR 1670 | Neuropharmacology and Synaptic Transmission | 
+  NEUR 1740 | The Diseased Brain: Mechanisms of Neurological and Psychiatric Disorders | 
+  Physics Electives: | 
+  PHYS 0160 | Introduction to Relativity, Waves and Quantum Physics | 
+  Public Health Electives: | 
+  STAT 1501 | Essentials of Data Analysis | 
+  Total Credits | 20
+
+------------------------------------
+Honors Requirements for Biochemistry
+------------------------------------
+All ScB Biochemistry concentrators are candidates for Honors; no separate application is necessary.
+The requirements for Honors in Biochemistry are:
+* Students must have a majority of either As or S with distinction grades in concentration courses.
+* Two semesters of Independent Study ( CHEM 0980 , CHEM 0980S , CHEM 0981 , BIOL 1950 , or BIOL 1960 ). Guidelines and requirements associated with Independent Study are in the Undergraduate Concentration Handbook which can be found at the department website .
+* A Thesis in a form approved by the research advisor, and recommended by the research advisor.  Additional information about thesis guidelines will be provided by the Concentration Advisor in the first half of the fall semester.
+* An oral presentation of the thesis in a fifteen-minute senior talk followed by a five-minute question and answer period.

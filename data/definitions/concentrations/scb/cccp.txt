@@ -1,0 +1,59 @@
+CONCENTRATION: Computational Chemistry and Chemical Physics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/cccp/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+Twenty semester courses in chemistry, physics, and mathematics, with a minimum of three semester courses in mathematics. Core courses are:
+
+  Foundational Coursework 1 | 
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  CHEM 0500 | Inorganic Chemistry | 1
+  PHYS 0070 | Analytical Mechanics | 1
+  PHYS 0470 | Electricity and Magnetism | 1
+  One Foundational Computation Course | 1
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  DATA 0250 | Applied Statistics in Python | 
+  DATA 1030 | Hands-on Data Science | 
+  DATA 1050 | Data Engineering | 
+  APMA 0160 | Introduction to Scientific Computing | 
+  APMA 0200 | Introduction to Modeling | 
+  One Experimental or Computational Laboratory Course | 1
+  CHEM 1560K | Computational Chemistry 2 | 
+  CHEM 1560Q | Accelerating Chemical Discovery 2 | 
+  PHYS 1600 | Computational Physics 2 | 
+  PHYS 1640 | Introduction to Computational Physics and Data Analysis 2 | 
+  CHEM 1160 | Physical Chemistry Laboratory 3 | 
+  PHYS 0560 | Experiments in Modern Physics 3 | 
+  PHYS 1560 | Modern Physics Laboratory 3 | 
+  One Quantum Mechanics Course | 1
+  PHYS 1410 | Quantum Mechanics A (Select One: Quantum Mechanics) | 
+  CHEM 1140 | Physical Chemistry: Quantum Chemistry (Select one: Quantum Mechanics) | 
+  One Statistical Mechanics Course | 1
+  CHEM 1150 | Physical Chemistry: Thermodynamics and Statistical Mechanics | 
+  PHYS 1530 | Thermodynamics and Statistical Mechanics | 
+  Three Mathematics Courses 4 | 3
+  MATH 0190 | Single Variable Calculus, Part II (Physics/Engineering) | 
+  MATH 0200 | Multivariable Calculus (Physics/Engineering) | 
+  MATH 0520 | Linear Algebra | 
+  Six courses, primarily at the 1000 or 2000 level, in chemistry, physics or computer science. | 6
+  Two Semesters of Independent Study | 2
+  PHYS 1990 | Senior Conference Course | 
+  CHEM 0980 | Undergraduate Research | 
+  Total Credits | 20
+
+-----------------------
+Requirements for Honors
+-----------------------
+All Computational Chemistry and Chemical Ph ysics concentrators who have grades of A or S with distinction in a majority of their concentration courses will be considered  for Honors; no separate application is necessary.
+The requirements for Honors in Computational Chemistry and Chemical Physics are:
+* Grades of A or S with distinction in a majority of courses taken for the concentration.
+* Two semesters of Independent Study ( CHEM 0980 or equivalent. Guidelines and requirements associated with Independent Study are in the Undergraduate Concentration Handbook which can be found at the department website .
+* A Thesis in a form approved  and recommended by the research advisor.  Additional information about thesis guidelines will be provided to seniors  by the Concentration Advisor.
+* A Poster presentation at the chemistry department's spring undergraduate poster session and presentation at the end-of-year thesis presentations.

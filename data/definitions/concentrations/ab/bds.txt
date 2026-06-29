@@ -1,0 +1,97 @@
+CONCENTRATION: Behavioral Decision Sciences
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/bds/
+========================================================================
+
+----------------------------------
+Standard Program for the AB Degree
+----------------------------------
+
+  Foundational Courses: | 
+  CPSY 0220 | Making Decisions | 1
+  Choose one of the following: | 1
+  CPSY 0200 | Human Cognition | 
+  CPSY 0400 | Cognitive Neuroscience | 
+  CPSY 0450 | Brain Damage and the Mind | 
+  CPSY 0620 | Social and Moral Development | 
+  CPSY 0700 | Social Psychology | 
+  Choose one from the following: | 1
+  CPSY 0710 | The Psychology and Philosophy of Happiness | 
+  CPSY 1280B | Special Topics in Cognition: Collective Cognition and Collective Behavior | 
+  CPSY 1280C | Topics in Cognition: Information and Decision Making | 
+  CPSY 1470 | Mechanisms of Motivated Decision Making | 
+  CPSY 1495 | Affective Neuroscience | 
+  CPSY 1560 | Visually-Guided Action and Cognitive Processes | 
+  CPSY 1680A | Topics in Development: Social Learning | 
+  CPSY 1680H | The Developmental Origins of Cooperation | 
+  CPSY 1730 | Psychology in Business and Economics | 
+  CPSY 1750 | Blame and Punishment | 
+  CPSY 1760 | The Moral Brain | 
+  Distribution Requirements: | 
+  Select one Introductory Course from the following: | 1
+  CPSY 0950 | Introduction to programming | 
+  ECON 0110 | Principles of Economics | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  Select Two Advanced Courses From: | 2
+  CSCI 0410 | Foundations of AI and Machine Learning | 
+  CSCI 1420 | Machine Learning | 
+  ECON 1090 | Introduction to Game Theory | 
+  ECON 1110 | Intermediate Microeconomics | 
+  ECON 1130 | Intermediate Microeconomics (Mathematical) | 
+  ECON 1170 | Welfare Economics and Social Choice Theory | 
+  ECON 1200 | History of Economic Thought | 
+  ECON 1805 | Experimental and Behavioral Economics | 
+  ECON 1820 | Theory of Behavioral Economics | 
+  ECON 1870 | Game Theory and Applications to Economics | 
+  PHIL 1610 | Decision Theory: Foundations and Applications | 
+  PHIL 1430 | Moral Theories | 
+  SOC 1311 | Micro-Organizational Theory: Social Behavior in Organizations | 
+  SOC 1315 | Macro-Organizational Theory: Organizations in Social Context | 
+  Methods Classes: | 
+  Basic Probability and Statistics. Choose One From the Following: | 1
+  CPSY 0900 | Statistical Methods | 
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  APMA 1655 | Introduction to Probability and Statistics with Theory | 
+  CSCI 1450 | Advanced Introduction to Probability for Computing and Data Science | 
+  DATA 0200 | Data Science Fluency | 
+  ECON 1620 | Introduction to Econometrics | 
+  Advanced Methods. Choose one of the following: | 1
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  ECON 1630 | Mathematical Econometrics I | 
+  ECON 1660 | Big Data | 
+  LING 1771 | Introduction to Corpus Linguistics | 
+  SOC 1120 | Market and Social Surveys | 
+  SOC 1260 | Market Research in Public and Private Sectors | 
+  CSCI 0111 | Computing Foundations: Data | 
+  CSCI 0150 | Introduction to Object-Oriented Programming and Computer Science | 
+  CSCI 0170 | Computer Science: An Integrated Introduction | 
+  CSCI 0190 | Accelerated Introduction to Computer Science | 
+  CSCI 0200 | Program Design with Data Structures and Algorithms | 
+  or any advanced course in Computer Science beyond the introductory set of classes | 
+  Choose one of the following Research Methods and Design courses: | 1
+  CPSY 1791 | Laboratory in Social Cognition | 
+  CPSY 1890 | Laboratory in Psycholinguistics | 
+  CPSY 1900 | Research Methods And Design | 
+  CPSY 1901 | Research Methods | 
+  ECON 1629 | Applied Research Methods for Economists | 
+  IAPA 1500A | Ethnographic Research Methods | 
+  POLS 1600 | Political Research Methods | 
+  SOC 1020 | Methods of Social Research | 
+  SOC 1260 | Market Research in Public and Private Sectors | 
+  Electives: | 3
+  Students will choose three additional courses in consultation with a concentration advisor that will constitute an integrated specialization in some area of decision science. Any advanced course taught at Brown is eligible. | 
+  Capstone: | 1
+  CPSY 1960 | Senior Seminar in Behavioral Decision Sciences | 
+  Total Credits | 13
+
+Students will be expected to take no more than 6 courses below the 1000-level within the concentration.  Students with multiple concentrations may not apply more than 2 courses from a second concentration to the AB in Behavioral Decision Sciences.  Students are responsible for satisfying all prerequisites for courses they plan to take.
+
+------
+Honors
+------
+The Honors Program in BDS gives undergraduates a special opportunity to carry out a research project under the direction of a faculty member that they have developed a relationship with.  The program also provides the opportunity for senior concentrators to receive their undergraduate degree with Honors.  Participation in the program allows students to develop an understanding of research and acquire research skills and background.
+Candidates for Honors in BDS must meet all of the requirements of the BDS concentration as described above.  Candidates submit their application for the program at the beginning of semester 7.  We encourage students to seek out a faculty mentor prior to semester 7 and to complete their methods courses and two of their three electives before semester 7. Please refer to the CPSY Honors Program page for detailed information about the specific requirements for the Honors Program in BDS.

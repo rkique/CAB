@@ -1,0 +1,24 @@
+CONCENTRATION: Applied Mathematics
+TRACK: AB
+URL: https://bulletin.brown.edu/the-college/concentrations/apma/
+========================================================================
+
+-------------------------------------
+Standard program for the A.B. degree.
+-------------------------------------
+
+  Prerequisites - the equivalent of two semesters of single-variable calculus | 
+  Single-variable calculus is not an enforced requirement for our concentration, but it is a required prerequisite for many of our courses. At Brown, single-variable calculus consists of MATH 0090 followed by one of MATH 0100 , MATH 0170 , or MATH 0190 . | 
+  Requirements - 10 courses 1 | 
+  MATH 0180 | Multivariable Calculus 2 | 1
+  or MATH 0200 | Multivariable Calculus (Physics/Engineering)
+  or MATH 0350 | Multivariable Calculus With Theory
+  MATH 0520 | Linear Algebra 2 | 1
+  or MATH 0540 | Linear Algebra With Theory
+  APMA 0355 | Applied Ordinary Differential Equations with Theory 3 | 1
+  APMA 0365 | Applied Partial Differential Equations I with Theory 4 | 1
+  One pre-approved course on computer programming, or an alternative approved by the concentration advisor. 5 | 1
+  Three 1000-level or higher APMA courses. 6 | 3
+  One 1000-level or higher APMA or MATH course. 6 | 1
+  One pre-approved 1000-level STEM course, or an alternative approved by the concentration advisor. 7 | 1
+  Total Credits | 10

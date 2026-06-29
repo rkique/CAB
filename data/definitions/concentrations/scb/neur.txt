@@ -1,0 +1,123 @@
+CONCENTRATION: Neuroscience
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/neur/
+========================================================================
+
+-------------------------------------
+Standard program for the Sc.B. degree
+-------------------------------------
+The concentration in neuroscience leads to an Sc.B. degree. The following courses, or their equivalent, are required for the degree. Keep in mind that there are multiple ways to fulfil the various requirements and your concentration advisor can help you go through your options and optimize your course of study:
+
+  Background Courses: | 
+  MATH 0090 | Single Variable Calculus, Part I ((only needed as a prerequisite for MATH 10)) | 1
+  MATH 0100 | Single Variable Calculus, Part II ((or equivalent)) | 1
+  PHYS 0030 | Basic Physics A (Mechanics *see NOTE) | 1
+  PHYS 0040 | Basic Physics B ( Electromagnetism) | 1
+  BIOL 0200 | The Foundation of Living Systems ((or placement test)) | 1
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  Note: ENGN 0030 may be used instead of PHYS 0030 , but ENGN 0040 is NOT equivalent to PHYS 0040 . | 
+  Core Concentration Courses: | 
+  NEUR 0010 | The Brain: An Introduction to Neuroscience | 1
+  NEUR 1020 | Principles of Neurobiology | 1
+  NEUR 1030 | Neural Systems | 1
+  One critical reading course | 1
+  NEUR 1440 | Mechanisms and Meaning of Neural Dynamics | 
+  NEUR 1510 | Neurotechnology: Molecular Tools and Methods for Neurobiology | 
+  NEUR 1530 | Communication In the Brain: What We Know and How We Know It | 
+  NEUR 1560 | Developmental Neurobiology | 
+  NEUR 1660 | Neural Computation in Learning and Decision-Making | 
+  NEUR 1970 | Independent Study (*Two Semesters) | 
+  BIOL 1100 | Cell Physiology and Biophysics | 
+  BIOL 1180 | Comparative Animal Physiology | 
+  BIOL 1190 | Synaptic Transmission and Plasticity | 
+  CPSY 1400 | The Neural Bases of Cognition | 
+  CPSY 1760 | The Moral Brain | 
+  BSS 1890 | The Craving Mind | 
+  1930/40 Topics in Neuroscience | 
+  NOTE: Critical reading courses are small discussion based courses, with around 20 students, with a focus on primary literature around a neuroscience related topic. Other courses not listed here could also fulfil this requirement, please check with your concentration advisor. | 
+  One statistics course | 1
+  STAT 1501 | Essentials of Data Analysis | 
+  STAT 1510 | Principles of Biostatistics and Data Analysis | 
+  STAT 2510 | Principles of Biostatistics and Data Analysis | 
+  APMA 0650 | Introduction to Probability and Statistics | 
+  APMA 1650 | Introduction to Probability and Statistics with Calculus | 
+  CPSY 0900 | Statistical Methods | 
+  SOC 1100 | Introductory Statistics for Social Research | 
+  BIOL 0495 | Statistical Analysis of Biological Data | 
+  EDUC 1230 | Applied Statistics for Ed Research and Policy Analysis | 
+  One lab methods course | 1
+  NEUR 0680 | Introduction to Computational Neuroscience | 
+  NEUR 1440 | Mechanisms and Meaning of Neural Dynamics | 
+  NEUR 1600 | Experimental Neurobiology | 
+  NEUR 1630 | Big Data Neuroscience Ideas Lab | 
+  NEUR 1640 | Behavioral Neurogenetics Laboratory | 
+  NEUR 1650 | Structure of the Nervous System | 
+  NEUR 1660 | Neural Computation in Learning and Decision-Making | 
+  NEUR 1670 | Neuropharmacology and Synaptic Transmission | 
+  NEUR 1680 | Computational Neuroscience | 
+  NEUR 1970 | Independent Study | 
+  *Two Semesters of NEUR1970 can be used to fulfill one critical reading, lab, or elective requirement | 
+  CPSY 1190 | Techniques in Physiological Psychology | 
+  CPSY 1194 | Sleep and Chronobiology Research | 
+  CPSY 1490 | Functional Magnetic Resonance Imaging: Theory and Practice | 
+  CPSY 1491 | Neural Modeling Laboratory | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  BIOL 0800 | Principles of Physiology | 
+  BIOL 1880 | Comparative Biology of the Vertebrates | 
+  Four electives related to neuroscience 1 | 4
+  Four courses that will enhance your understanding of the field of neuroscience.  While electives need not be from the neuroscience department, the following list are common courses taught by Neuroscience and other departments that are often used as electives.  We encourage students to explore the broader course catalog and consult with their concentration advisor to explore the full range of electives, rather than limiting themselves to this list: | 
+  NEUR 0680 | Introduction to Computational Neuroscience | 
+  NEUR 1040 | Introduction to Neurogenetics | 
+  NEUR 1440 | Mechanisms and Meaning of Neural Dynamics | 
+  NEUR 1510 | Neurotechnology: Molecular Tools and Methods for Neurobiology | 
+  NEUR 1530 | Communication In the Brain: What We Know and How We Know It | 
+  NEUR 1540 | Neurobiology of Learning and Memory | 
+  NEUR 1560 | Developmental Neurobiology | 
+  NEUR 1570 | The Non-Neuronal Brain | 
+  NEUR 1600 | Experimental Neurobiology | 
+  NEUR 1630 | Big Data Neuroscience Ideas Lab | 
+  NEUR 1640 | Behavioral Neurogenetics Laboratory | 
+  NEUR 1650 | Structure of the Nervous System | 
+  NEUR 1660 | Neural Computation in Learning and Decision-Making | 
+  NEUR 1740 | The Diseased Brain: Mechanisms of Neurological and Psychiatric Disorders | 
+  NEUR 1970 | Independent Study | 
+  *Two Semesters of NEUR1970 can be used to fulfill one critical reading, lab, or elective requirement | 
+  NEUR 2110 | Statistical Neuroscience | 
+  All NEUR 1930/1940 Seminar Course | 
+  CPSY 0400 | Cognitive Neuroscience | 
+  CPSY 1196 | Sleep, Circadian Rhythms, and Behavioral Health | 
+  CPSY 1291 | Computational Methods for Mind, Brain and Behavior | 
+  CPSY 1420 | Cognitive Neuropsychology | 
+  CPSY 1480H | Disorders of Memory | 
+  CPSY 1480I | Memory, Space, and the Hippocampus | 
+  CPSY 1490 | Functional Magnetic Resonance Imaging: Theory and Practice | 
+  CPSY 1492 | Computational Cognitive Neuroscience | 
+  CPSY 1540 | Perceiving and Acting in 3D | 
+  CPSY 1560 | Visually-Guided Action and Cognitive Processes | 
+  CPSY 1570 | Perceptual Learning | 
+  CPSY 1591 | 3D Vision Laboratory | 
+  CPSY 1760 | The Moral Brain | 
+  CPSY 1950 | Deep Learning in Brains, Minds and Machines | 
+  BIOL 1100 | Cell Physiology and Biophysics | 
+  BIOL 1110 | Topics in Signal Transduction | 
+  BIOL 1155 | Hormones and Behavior | 
+  BIOL 1260 | Physiological Pharmacology | 
+  ENGN 1220 | Neuroengineering | 
+  BSS 1890 | The Craving Mind | 
+  COST 1020 | Cognitive Neuroscience of Meditation | 
+  List 2: Selected common non-neuro courses (no more than 2) - student must be able to justify why it enhances their understanding of Neuro | 
+  BIOL 0470 | Genetics | 
+  BIOL 0800 | Principles of Physiology | 
+  BIOL 1050 | Biology of the Eukaryotic Cell | 
+  BIOL 1540 | Molecular Genetics | 
+  BIOL 1810 | 21st Century Applications in Cell and Molecular Biology | 
+  CPSY 0950 | Introduction to programming | 
+  CPSY 1195 | Life Under Water in the Anthropocene | 
+  CPSY 1500 | Perception and Action | 
+  CSCI 0111 | Computing Foundations: Data | 
+  ENGL 1900Z | Neuroaesthetics and Reading | 
+  PHIL 1770 | Philosophy of Mind | 
+  TAPS 1281Z | Arts and Health: Practice | 
+  Completing the Concentration Research Requirement  As with other ScB concentrations, neuroscience concentrators are required (beginning with the class of 2023) to do the equivalent of one semester of independent study, research or design. This is a chance for the student to explore and apply the concepts that they have learned in their concentration courses. The following are ways in which this research requirement can be met. After consulting with your concentration advisor, be sure to include how you will fulfill your research requirement in the appropriate box within ASK: 1. Enrolling in independent study courses ( NEUR 1970 , CLPS 1970/80 or BIO 1950/60) for work in a lab. Keep in mind to count this towards your concentration two semesters or one semester and a summer are required.  2. Enrolling in independent study ( NEUR 1970 ) to work with a faculty member to explore an integrative topic related to neuroscience. See our section on independent study for more information.  3. Enrolling in a course-based research experience, also known as a CURE course. Current related CURE courses are NEUR 1630 , CLPS 1195, CLPS 1591, but there might be new ones coming down the pipeline.  4. Participating in a structured summer research program (eg. an UTRA or an REU) that is equivalent in scope and scale as would be pursued during a semester of independent research. 5. Participating in a research-focused Fall or Spring UTRA.  6. Pursue a design or independent research project related to neuroscience that could be associated with a different course.  7. Anyone writing an honors thesis automatically fulfils the research requirement, in order to document your research requirement, please describe your plan in your Course Plan Worksheet and in ASK, be sure to discuss it with your concentration advisor to make sure it is appropriate. Honors: Honors in Neuroscience requires a thesis and presentation based on a research project , and quality grades in the concentration. Guidelines and information on faculty research as well as details about declaring Honors are available in the Undergraduate Neuroscience Page [https://www.brown.edu/academics/neuroscience/undergraduate-concentration]. | 
+  Total Credits | 17

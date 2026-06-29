@@ -1,0 +1,6 @@
+CONCENTRATION: Mathematics-Computer Science
+TRACK: GENERAL
+URL: https://bulletin.brown.edu/the-college/concentrations/macs/
+========================================================================
+
+Students may opt to pursue an interdisciplinary Bachelor of Science degree in Math-Computer Science, a concentration administered cooperatively between the mathematics and computer science departments. Course requirements include math- and systems-oriented computer science courses, as well as computational courses in applied math. Students must identify a series of electives that cohere around a common theme. As with other concentrations offered by the Computer Science department, students have the option to pursue the professional track of the ScB program in Mathematics-Computer Science.

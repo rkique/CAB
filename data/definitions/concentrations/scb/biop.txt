@@ -1,0 +1,31 @@
+CONCENTRATION: Biophysics
+TRACK: SCB
+URL: https://bulletin.brown.edu/the-college/concentrations/biop/
+========================================================================
+
+=====================================
+Standard program for the Sc.B. degree
+=====================================
+
+  Physics | 
+  One of the following series: | 2
+  PHYS 0030 & PHYS 0040 | Basic Physics A and Basic Physics B 1 | 
+  PHYS 0050 & PHYS 0060 | Foundations of Mechanics and Foundations of Electromagnetism and Modern Physics | 
+  PHYS 0070 & PHYS 0160 | Analytical Mechanics and Introduction to Relativity, Waves and Quantum Physics | 
+  PHYS 0470 | Electricity and Magnetism | 1
+  Chemisty | 
+  CHEM 0330 | Equilibrium, Rate, and Structure | 1
+  CHEM 0350 | Organic Chemistry I | 1
+  Select one other advanced Chemistry Course | 1
+  Math | 
+  MATH 0090 | Single Variable Calculus, Part I (or equivalent) | 1
+  MATH 0100 | Single Variable Calculus, Part II (or equivalent) | 1
+  MATH 0180 | Multivariable Calculus (or equivalent) | 1
+  Biology | 
+  BIOL 0200 | The Foundation of Living Systems (or equivalent) | 1
+  Select four additional biology or neuroscience courses chosen with approval of the advisor. | 4
+  Directed Research: Students must take two semesters of research which may be satisfied by any of the opportunities listed below: | 2
+  Directed Research in Biology ( BIOL 1950 / BIOL 1960 ),  Chemistry (CHEM 0970/ CHEM 0980 ), or Physics ( PHYS 1980 ) | 
+  A summer research experience in equivalent scope and scale to an independent study, but this would not count as course credit toward the concentration | 
+  Electives: Four electives in biology, physics, math/applied math, chemistry, neuroscience, engineering or computer science; at least 2 courses must be above the introductory level 2 | 4
+  Total Credits | 20
