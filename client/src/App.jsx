@@ -1,4 +1,7 @@
 import { useState, useRef } from 'react'
+import { ConcentrationCard } from './ConcentrationCard'
+import { CourseCard, CappedList } from './CourseCard'
+import { DataModal } from './DataModal'
 import './App.css'
 
 const LOADING_MESSAGES = ['Analyzing query', 'Synthesizing information', 'Preparing advice']
@@ -118,71 +121,12 @@ function renderAnswerHtml(text, citedCodes, resultsByCode) {
   return html.split('\n\n').map(p => p.trim()).filter(Boolean).map(p => `<p>${p}</p>`).join('')
 }
 
-function CourseCard({ result, isCited }) {
-  const [expanded, setExpanded] = useState(false)
-  const { code, title, description = '', sections = [] } = result
-  const isLong = description.length > 250
-  const short = isLong ? truncateDesc(description) : description
-  //Filter semesters, meets, and instrs by whether they match criteria.
-  const semesters = [...new Set(sections.map(s => s.semester).filter(Boolean))].slice(0, 4).join(', ')
-  const meets = [...new Set(sections.map(s => s.meets).filter(m => m && m !== 'TBA'))].slice(0, 3).join(' / ') || 'TBA'
-  const instrs = [...new Set(sections.map(s => s.instr).filter(Boolean))].slice(0, 3).join(', ')
-  const href = cabLink(code, sections)
 
-  return (
-    <div
-      className={`course-card${isCited ? ' cited' : ''}`}
-      onClick={e => { if (e.target.tagName !== 'A') setExpanded(x => !x) }}
-      style={{ cursor: 'pointer' }}>
-      <div className="card-header">
-        <div>
-          <span className="card-code">
-            <a href={href} target="_blank" rel="noreferrer">{code}</a>
-          </span>
-          <span className="card-title">{title}</span>
-        </div>
-      </div>
-      <div
-        className="card-desc"
-        dangerouslySetInnerHTML={{ __html: fixDescLinks(expanded ? description : short) }}
-      />
-      {expanded && (
-        <div className="card-meta">
-          {instrs} · {meets}{semesters ? ` · ${semesters}` : ''}
-        </div>
-      )}
-    </div>
-  )
+function cabSearchLink(code) {
+  return 'https://cab.brown.edu/?keyword=' + encodeURIComponent(code)
 }
 
-function CappedList({ results, isCited, limit = 10 }) {
-  const [showAll, setShowAll] = useState(false)
-  const visible = showAll ? results : results.slice(0, limit)
-  const hidden = results.length - limit
-  return (
-    <>
-      {visible.map(r => <CourseCard key={r.code} result={r} isCited={isCited} />)}
-      {!showAll && hidden > 0 && (
-        <button className="show-more-btn" onClick={() => setShowAll(true)}>
-          Show {hidden} more
-        </button>
-      )}
-    </>
-  )
-}
 
-function DataModal({ onClose }) {
-  return (
-    <div className="modal-overlay active" onClick={e => { if (e.target === e.currentTarget) onClose() }}>
-      <div className="modal-box">
-        <button className="modal-close" onClick={onClose}>&times;</button>
-        <h3>What's being searched?</h3>
-        <p>Our course recommendations are informed by Courses@Brown (CAB), <a href="https://www.thecriticalreview.org/" target="_blank" rel="noreferrer">Critical Review</a>, and other open data sources.</p> <br />
-        <p>We'd love to hear feedback! Email eriq.xia@gmail.com with comments or suggestions.</p>
-      </div>
-    </div>
-  )
-}
 
 
 export default function App() {
@@ -202,6 +146,7 @@ export default function App() {
   const [others, setOthers] = useState([])
   const [resultsByCode, setResultsByCode] = useState({})
   const [citedCodes, setCitedCodes] = useState([])
+  const [concentration, setConcentration] = useState(null)
 
   const timerRef = useRef(null)
   const inputRef = useRef(null)
@@ -230,6 +175,7 @@ export default function App() {
     setAnswer('')
     setCited([])
     setOthers([])
+    setConcentration(null)
     inputRef.current?.focus()
   }
 
@@ -244,6 +190,7 @@ export default function App() {
     setAnswer('')
     setCited([])
     setOthers([])
+    setConcentration(null)
     startLoading()
 
     try {
@@ -262,6 +209,7 @@ export default function App() {
       for (const r of allResults) byCode[r.code] = r
       setResultsByCode(byCode)
       setCitedCodes(data.cited_courses || [])
+      setConcentration(data.concentration || null)
 
       if (data.answer) {
         setAnswer(data.answer)
@@ -341,7 +289,13 @@ export default function App() {
       )}
 
       {error && <div id="error">{error}</div>}
-      {meta && <div id="meta">{meta}</div>}
+
+      {(meta || concentration) && (
+        <div className="results-header">
+          {meta && <div id="meta">{meta}</div>}
+          {concentration && <ConcentrationCard concentration={concentration} />}
+        </div>
+      )}
 
       {answer && (
         <div

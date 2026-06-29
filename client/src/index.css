@@ -16,12 +16,27 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+#announcement-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #8b0000;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+}
+
 #root {
   position: relative;
   z-index: 1;
   max-width: 840px;
   min-height: auto;
-  margin: 60px auto;
+  margin: 88px auto 60px;
   color: #000;
   background: #f0f0f0;
   border-radius: 12px;

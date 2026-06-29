@@ -139,7 +139,7 @@ function sanitizeQuery(query) {
 }
 
 
-async function generateRAGResponse(client, query, bestMatches, otherCandidates, partialMatches, unmatchedFilters) {
+async function generateRAGResponse(client, query, bestMatches, otherCandidates, partialMatches, unmatchedFilters, concentrationContext) {
   partialMatches = partialMatches || [];
   unmatchedFilters = unmatchedFilters || [];
 
@@ -168,7 +168,7 @@ async function generateRAGResponse(client, query, bestMatches, otherCandidates, 
     model: GENERATION_MODEL,
     messages: [
       {role: 'system', content: SYSTEM_PROMPT},
-      {role: 'user', content: `Student query: "${query}"\n\n${context}`},
+      {role: 'user', content: `Student query: "${query}"\n\n${concentrationContext ? `CONCENTRATION REQUIREMENTS (use to inform scheduling and prerequisite advice):\n${concentrationContext}\n\n` : ''}${context}`},
     ],
     temperature: 0.3,
     max_completion_tokens: 1024,

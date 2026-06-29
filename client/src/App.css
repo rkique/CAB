@@ -11,11 +11,12 @@
 .header img { width: 20em; height: auto; }
 
 /* Toolbar */
-.toolbar { display: flex; justify-content: center; align-items: center; padding: 16px 0; margin-bottom: 20px; border-bottom: 1px solid #e0ddd8; }
+.toolbar { display: flex; justify-content: center; align-items: center; padding: 16px 0; margin-bottom: 0; border-bottom: 1px solid #b8b2aa; }
 .toolbar img { width: 180px; height: auto; margin-right: 12px; }
 
 /* Search */
-.search-form { margin: 3rem 0; }
+.search-form { margin: 1.5rem 0 1rem; }
+.results-mode .search-form { border-bottom: 1px solid #b8b2aa; padding-bottom: 1rem; margin-bottom: 0; }
 .search-bar { display: flex; border: 1.5px solid #c8c3bb; border-radius: 8px; overflow: hidden; background: #fff; transition: border-color 0.2s; }
 .search-bar:focus-within { border-color: #8b0000; }
 .search-bar input[type="text"] { flex: 1; padding: 14px 18px; font-size: 1.3rem; font-family: 'Inter', sans-serif; border: none; outline: none; background: transparent; color: #2c2c2c; }
@@ -37,6 +38,41 @@
 .example-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .example-text { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 0 14px; }
 
+/* Results header zone (meta + concentration card + filter pills) */
+.results-header { border-top: 1px solid #b8b2aa; border-bottom: 1px solid #b8b2aa; padding: 12px 0 14px; margin-bottom: 24px; }
+#meta { color: #999; font-size: 13px; margin: 0 0 8px; }
+
+/* Filter pills */
+.filter-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+
+/* Concentration card */
+.conc-card { font-family: 'Inter', sans-serif; color: #1a1a1a; border: 1px solid #1a1a1a; border-radius: 6px; overflow: hidden; }
+.conc-chip { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px; cursor: pointer; user-select: none; gap: 10px; }
+.conc-chip:hover { background: rgba(0,0,0,0.04); }
+.conc-chip-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.conc-chip-name { font-size: 13px; font-weight: 400; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conc-chip-credits { font-size: 11px; color: #888; white-space: nowrap; }
+.conc-chip-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.conc-expand-icon { font-size: 15px; color: #666; }
+.conc-track-toggle { display: flex; gap: 3px; }
+.conc-track-btn { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 4px; border: 1px solid #ccc; background: transparent; color: #888; cursor: pointer; transition: all 0.15s; }
+.conc-track-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.conc-body { padding: 10px 14px 12px; border-top: 1px solid #e0ddd8; }
+.conc-section { margin-bottom: 8px; }
+.conc-section:last-child { margin-bottom: 0; }
+.conc-section-heading { font-size: 10.5px; font-weight: 600; color: #8b0000; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.conc-items { display: flex; flex-direction: column; gap: 1px; }
+.conc-label { font-size: 12px; color: #888; padding: 1px 0; }
+.conc-label-header { font-weight: 600; color: #444; margin-top: 3px; }
+.conc-course { display: flex; align-items: baseline; gap: 8px; padding: 1px 0 1px 8px; font-size: 12.5px; }
+.conc-course.conc-or { padding-left: 22px; }
+.conc-or-label { font-size: 10px; color: #aaa; min-width: 14px; }
+.conc-code { font-weight: 600; color: #8b0000; text-decoration: none; white-space: nowrap; }
+.conc-code:hover { text-decoration: underline; }
+.conc-title { color: #666; }
+.conc-more-link { display: inline-block; margin-top: 8px; font-size: 12px; color: #aaa; text-decoration: none; }
+.conc-more-link:hover { color: #555; }
+
 /* Loading */
 #loading { text-align: center; padding: 40px 0; }
 .loading-msg { font-size: 15px; color: #888; margin-bottom: 4px; }
@@ -45,8 +81,7 @@
 .blinking-dots span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
 
-/* Meta / Error */
-#meta { color: #999; margin-bottom: 16px; font-size: 13px; text-align: center; }
+/* Error */
 #error { color: #8b0000; margin-bottom: 12px; text-align: center; font-size: 14px; }
 
 /* Answer */
@@ -99,5 +134,5 @@
   .card-meta { font-size: 11px; }
   .toolbar { padding: 0.2em 0; margin-bottom: 0.1em; border-bottom: none; }
   .fall26 { display: none; }
-  #meta { margin-bottom: 4px; }
+  .results-header { padding: 8px 0 10px; margin-bottom: 16px; }
 }

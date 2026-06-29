@@ -110,7 +110,7 @@ function matchesCodePrefixFilter(course, op, value) {
 }
 
 function sectionMatchesAll(section, filters, course) {
-  return filters.every((c) => {
+  return filters.every((c) => {` `
     if (c.field === 'code_prefix') {
       return matchesCodePrefixFilter(course, c.op, c.value);
     }

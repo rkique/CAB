@@ -24,6 +24,7 @@ const {
 } = require('./cache.js');
 const { loadIndexLocal, searchFaissLocal } = require('./localSearch.js');
 const distSearch = require('./distributedSearch.js');
+const { detectConcentration, loadConcentrationContext, getConcentrationName, getConcentrationData } = require('./concentrations.js');
 
 const LOCAL_MODE = process.argv.includes('--local');
 const HTTP_PORT = 3000;
@@ -120,6 +121,10 @@ async function search(queryStr, cb, userFilters = []) {
     const filters = [...llmFilters, ...userFilters];
     timing.prequery_ms = Date.now() - tPreQuery;
 
+    const concentrationSlug = detectConcentration(queryStr);
+    const concentrationContext = concentrationSlug ? loadConcentrationContext(concentrationSlug) : null;
+    if (concentrationSlug) console.log(`[search] concentration detected: ${concentrationSlug}`);
+
     console.log(`[search] original: "${queryStr}" → reworded: "${rewordedQuery}" | filters: ${JSON.stringify(filters)}`);
 
     const tEmbed = Date.now();
@@ -139,6 +144,7 @@ async function search(queryStr, cb, userFilters = []) {
           faissResult.unfilteredResults,
           faissResult.partialMatches || [],
           faissResult.unmatchedFilters || [],
+          concentrationContext,
         );
         timing.rag_ms = Date.now() - tRag;
         timing.total_ms = Date.now() - t0;
@@ -153,6 +159,7 @@ async function search(queryStr, cb, userFilters = []) {
           total_docs: faissResult.total_docs,
           mode: 'faiss+rag',
           filters: faissResult.filters,
+          ...(concentrationSlug && { concentration: getConcentrationData(concentrationSlug) }),
         });
       } catch (ragErr) {
         console.warn('RAG generation failed, returning FAISS results only:', ragErr.message);

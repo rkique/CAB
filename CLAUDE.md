@@ -10,7 +10,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Dev Commands
 
 **Node requires v22.** Always `nvm use 22` before running any Node commands.
-
 **Run locally (two terminals from repo root):**
 ```bash
 # Terminal 1 — backend API
@@ -25,7 +24,6 @@ Frontend dev server: http://localhost:5173 (Vite proxies `/search` → port 3000
 ```bash
 cd client && npm run build   # outputs client/dist/
 ```
-
 **Deploy:**
 ```bash
 docker compose up --build
@@ -36,12 +34,10 @@ docker compose up --build
 python3 pipeline/scrape/scrape_concentrations.py
 # outputs to data/definitions/concentrations/{ab,scb,professional,general}/
 ```
-
 **Re-embed courses** (only needed when course data changes):
 ```bash
 node pipeline/embed/embed_courses.js
 ```
-
 ## Architecture
 
 ### Request flow
@@ -51,7 +47,6 @@ Browser → nginx (443) → [static files from client/dist/]
                                                      → FAISS local search
                                                      → OpenAI RAG response
 ```
-
 ### Backend (`backend/`)
 - **`search-server.js`** — HTTP server, `search()` orchestrator, OpenAI client, pre-query rewrite (`preQueryReword`), startup sequence. Entry point: `node backend/search-server.js [--local]`
 - **`cache.js`** — LRU result cache (30min TTL, 100 entries), in-flight dedup (thundering herd), concurrency limiter (max 3 parallel searches), rate limiter (250 req/day/IP), query logger
