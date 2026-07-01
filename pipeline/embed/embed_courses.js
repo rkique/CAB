@@ -19,18 +19,58 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const crypto = require('crypto');
 const {OpenAI} = require('openai');
 
-const KEY_FILE = path.join(__dirname, '..', 'data', 'openai.key');
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const KEY_FILE = path.join(__dirname, '..', '..', 'data', 'openai.key');
+const DATA_DIR = path.join(__dirname, '..', '..', 'data');
 const COURSES_FILE = path.join(DATA_DIR, 'courses_overview.json');
 const EMBEDDINGS_FILE = path.join(DATA_DIR, 'embeddings.jsonl');
+const MANIFEST_FILE = path.join(DATA_DIR, 'manifest.json');
 
-const BATCH_SIZE = 200;  
+const BATCH_SIZE = 200;
 const CONCURRENCY = 1;
 const DIMENSIONS = 256;
 const MODEL = 'text-embedding-3-small';
 const RETRY_LIMIT = 6;
+
+function computeTextHash(text) {
+  return 'sha256:' + crypto.createHash('sha256').update(text, 'utf8').digest('hex');
+}
+
+function loadManifest() {
+  if (!fs.existsSync(MANIFEST_FILE)) {
+    return {
+      version: '1.0',
+      cab: {srcdbs: {}},
+      embeddings: {model: MODEL, dimensions: DIMENSIONS, records: {}},
+      criticalReview: {enabled: false},
+    };
+  }
+  try {
+    return JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
+  } catch (_) {
+    return {
+      version: '1.0',
+      cab: {srcdbs: {}},
+      embeddings: {model: MODEL, dimensions: DIMENSIONS, records: {}},
+      criticalReview: {enabled: false},
+    };
+  }
+}
+
+function saveManifest(mf) {
+  const tmp = MANIFEST_FILE + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(mf, null, 2));
+  fs.renameSync(tmp, MANIFEST_FILE);
+}
+
+function shouldEmbed(mf, key, text) {
+  const rec = (mf.embeddings?.records || {})[key];
+  if (!rec) return true;
+  if (mf.embeddings?.model !== MODEL || mf.embeddings?.dimensions !== DIMENSIONS) return true;
+  return computeTextHash(text) !== rec.textHash;
+}
 
 async function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -103,10 +143,44 @@ async function main() {
 
   const doneKeys = await loadDoneKeys();
   if (doneKeys.size > 0) {
-    console.log(`Resuming: ${doneKeys.size} embeddings already computed, skipping those.`);
+    console.log(`Resuming: ${doneKeys.size} embeddings already computed.`);
   }
 
-  const todo = courses.filter((c) => !doneKeys.has(c.key));
+  const mf = loadManifest();
+
+  // Bootstrap: if manifest has no embedding records but embeddings exist on disk,
+  // trust the existing embeddings and populate manifest hashes from current text.
+  const manifestRecordCount = Object.keys(mf.embeddings?.records || {}).length;
+  if (manifestRecordCount === 0 && doneKeys.size > 0) {
+    console.log(`Bootstrapping manifest with ${doneKeys.size} existing embedding hashes...`);
+    if (!mf.embeddings.records) mf.embeddings.records = {};
+    for (const c of courses) {
+      if (doneKeys.has(c.key)) {
+        mf.embeddings.records[c.key] = {
+          textHash: computeTextHash(c.text),
+          createdAt: new Date().toISOString(),
+        };
+      }
+    }
+    saveManifest(mf);
+    console.log(`Bootstrapped ${Object.keys(mf.embeddings.records).length} manifest records.`);
+  }
+
+  // Filter: embed if key is missing OR text has changed (stale)
+  const todo = [];
+  const staleKeys = new Set();
+  for (const c of courses) {
+    if (!doneKeys.has(c.key)) {
+      todo.push(c);
+    } else if (shouldEmbed(mf, c.key, c.text)) {
+      todo.push(c);
+      staleKeys.add(c.key);
+    }
+  }
+
+  if (staleKeys.size > 0) {
+    console.log(`Found ${staleKeys.size} stale embedding(s) to regenerate.`);
+  }
   console.log(`Embedding ${todo.length} remaining courses...`);
   console.log(`Model: ${MODEL}, dimensions: ${DIMENSIONS}, batch: ${BATCH_SIZE}`);
 
@@ -125,6 +199,16 @@ async function main() {
       const texts = batch.map((c) => c.text);
       const vecs = await embedBatch(client, texts);
       appendBatch(batch, vecs);
+
+      // Update manifest with text hashes
+      for (const c of batch) {
+        const hash = computeTextHash(c.text);
+        if (!mf.embeddings.records) mf.embeddings.records = {};
+        mf.embeddings.records[c.key] = {
+          textHash: hash,
+          createdAt: new Date().toISOString(),
+        };
+      }
     }));
 
     done += chunk.reduce((sum, b) => sum + b.length, 0);
@@ -134,8 +218,31 @@ async function main() {
     console.log(`  ${done}/${todo.length} (${pct}%) — ${elapsed}s elapsed — ${rate} courses/s`);
   }
 
+  // If stale keys were re-embedded, dedup embeddings.jsonl (keep last occurrence)
+  if (staleKeys.size > 0) {
+    console.log('Deduplicating embeddings.jsonl...');
+    const seen = new Map();
+    const rl2 = readline.createInterface({input: fs.createReadStream(EMBEDDINGS_FILE)});
+    for await (const line of rl2) {
+      if (!line.trim()) continue;
+      const k = JSON.parse(line).k;
+      seen.set(k, line);
+    }
+    const tmp = EMBEDDINGS_FILE + '.tmp';
+    const ws = fs.createWriteStream(tmp);
+    for (const line of seen.values()) {
+      ws.write(line + '\n');
+    }
+    await new Promise((resolve) => ws.end(resolve));
+    fs.renameSync(tmp, EMBEDDINGS_FILE);
+    console.log(`Deduplicated: ${seen.size} unique embeddings.`);
+  }
+
+  // Save manifest
+  saveManifest(mf);
+
   const total = ((Date.now() - t0) / 1000).toFixed(1);
-  console.log(`Done. ${doneKeys.size + todo.length} embeddings written to embeddings.jsonl in ${total}s.`);
+  console.log(`Done. ${doneKeys.size + todo.length} embeddings in ${total}s.`);
 }
 
 main().catch((e) => {

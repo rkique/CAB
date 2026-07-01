@@ -4,38 +4,50 @@
 
 ## Abstract
 
-BrunoRAG is a search service that allows users to query for courses using natural language, using vector embeddings to match with the courses database. Using a distributed model allows nodes to distribute both data preprocessing steps (such as crawling and indexing) and live query operations. The result is a fast and effective chat service which allows users to find courses through nearly any factor: interests, timeslots, and even workload, special topics, and exam formats.
+BrunoRAG is a search service that allows users to query for courses at Brown University using natural language. Queries are embedded with OpenAI `text-embedding-3-small` and matched against ~131k course section vectors via FAISS. A pre-query LLM extracts structured filters (days, hours, ratings, instructor, etc.) from the input, and a post-query LLM generates a cited natural-language answer from the top results.
 
 ## Data
 
-We use the Courses@Brown (CAB) API to collect ~131,000 course section records spanning Summer 2016 through Spring 2026, representing ~10,000 unique offerings. We also use Critical Review data from 2019 to 2025.
+Course data is collected from the Courses@Brown (CAB) API: ~131,000 section records spanning Summer 2016 through Spring 2026, representing ~10,000 unique offerings. Critical Review data from 2019–2025 is joined by CRN where available, providing course/professor ratings, workload hours, and class size.
 
-A two-step pipeline queries a search endpoint for listings, then fetches a details endpoint per CRN for descriptions and metadata. Critical Review data, when available, is joined to the dataset via CRN, which the API already exposes per section.
+A refresh pipeline (`pipeline/refresh_data.py`) discovers new CAB terms, fetches only changed data, preserves Critical Review fields, and regenerates stale embeddings automatically:
+
+```bash
+python3 pipeline/refresh_data.py --dry-run   # preview changes
+python3 pipeline/refresh_data.py --apply      # fetch, embed, rebuild
+```
 
 ## Supported Queries
 
-Natural-language queries are supported by an instruct-tuned model. With pre-query filtering, the system automatically extracts filters from your phrasing. The following queries are all validated to produce helpful and informative responses:
+A pre-query model automatically extracts filters from natural language. Example queries:
 
-- semantics in philosophy
+- like math 1530 but more chill
+- drama intensive MWF 4+ instructor rating
+- WRIT classes in economics
 - english classes <10 hours/wk MWF
-- engineering class with hands-on component
 - TuTh systems-heavy CS courses
-- Linguistics courses with paper writing
 - Cities and urban architecture practicum
-- History of music
-- intensive drama courses
 
-**Filterable fields:** department, days of the week, semester/year, permission required, average/max weekly hours, course rating, professor rating, class size, instructor name.
+**Filterable fields:** department, days of the week, semester/year, permission required, average/max weekly hours, course rating, professor rating, class size, instructor name, concentration programs.
 
 ## Methodology
 
-At seed time, course data is crawled, converted to structured text, embedded with metadata such as meeting days, times, and professor, and distributed across nodes using consistent hashing. 
+Each search request runs two LLM calls:
 
-At query time, the user's input is embedded through the OpenAI API to capture semantic similarity to course data. A pre-query model extracts keyword features such as days of the week and professor which are applied programmatically. The query embedding and extracted filters are sent to nodes to retrieve local top-K matches. 
+1. **Pre-query** (JSON mode) — extracts structured filters and produces a cleaned semantic query. Department filters use a two-stage FAISS search: primary department first, then fallback to broader results if top-K isn't filled.
+2. **RAG response** — receives top-40 filtered and top-40 unfiltered FAISS results, generates a cited answer.
 
-After filtering, each node uses FAISS to index relevant embeddings and return the most similar results; the coordinator then merges these into a global top-K set, which is passed to the post-query model as context for the final response. A coordinator-layer LRU cache serves repeated queries, bypassing the embedding and retrieval pipeline.
+Course data is embedded as 256-dimensional vectors and indexed in a FAISS `IndexFlatIP` (cosine similarity) index loaded in-process at startup. An LRU cache (30min TTL, 100 entries) with in-flight deduplication serves repeated queries without re-running the pipeline.
 
 ## UI
 
-The frontend is a single-page HTML/JS interface served by the Node server. It displays both an AI-generated summary citing specific courses and the raw course cards with sections, schedules, ratings, and descriptions.
+The frontend is a single-page React app (Vite + React 19). Features:
+
+- **Search bar** with example query cards on the landing page
+- **"Only search Fall '26" toggle** for filtering to current-semester offerings
+- **AI-generated answer** with inline course code links to CAB
+- **Best Matches / Other Relevant Courses** split — cited courses appear first, with additional results below
+- **Course cards** showing sections, schedules, instructor, ratings, and truncated descriptions
+- **Concentration cards** when a query matches a concentration program
+- **"What's being searched?" modal** showing data coverage details
 
