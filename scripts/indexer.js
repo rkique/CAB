@@ -73,6 +73,7 @@ async function buildIndex(courseMap) {
     let seen = 0;
     let skipped = 0;
     const rl = readline.createInterface({input : fs.createReadStream(EMBEDDINGS_FILE)});
+    //async read of the interface into index.
     for await (const line of rl) {
         if (!line.trim()) continue;
 
@@ -86,13 +87,15 @@ async function buildIndex(courseMap) {
 
         seen++;
 
-        if (!index[course.code]) {
+        const existing = index[course.code];
+        if (!existing || course.srcdb > existing._srcdb) {
             index[course.code] = {
-                code: course.code, 
+                code: course.code,
                 title: course.title,
-                description: course.description || '', 
+                description: course.description || '',
                 vector: normalize(v),
-                sections: [],
+                sections: existing ? existing.sections : [],
+                _srcdb: course.srcdb,
             };
         }
 
@@ -137,6 +140,8 @@ async function buildIndex(courseMap) {
 
         index[course.code].sections.push(section);
     }
+
+    for (const entry of Object.values(index)) delete entry._srcdb;
 
     console.log(`Processed ${seen} embeddings`);
     console.log(`${Object.keys(index).length} unique courses`);

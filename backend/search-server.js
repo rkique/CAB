@@ -23,10 +23,8 @@ const {
   MAX_QUERY_LENGTH,
 } = require('./cache.js');
 const { loadIndexLocal, searchFaissLocal } = require('./localSearch.js');
-const distSearch = require('./distributedSearch.js');
 const { detectConcentration, loadConcentrationContext, getConcentrationName, getConcentrationData } = require('./concentrations.js');
 
-const LOCAL_MODE = process.argv.includes('--local');
 const HTTP_PORT = 3000;
 
 const EMBEDDING_MODEL = 'text-embedding-3-small';
@@ -57,6 +55,7 @@ function normalizeSpaces(str) {
   return String(str || '').replace(/\s+/g, ' ').trim();
 }
 
+//reinjects tokens which the pre-query LLM stripped out.
 function ensureSemanticCoverage(originalQuery, rewordedQuery, preservedTokens = []) {
   const base = normalizeSpaces(rewordedQuery);
   const lowerBase = ` ${base.toLowerCase()} `;
@@ -113,7 +112,7 @@ async function getQueryVector(queryStr, rewordedQuery, filters) {
 async function search(queryStr, cb, userFilters = []) {
   const t0 = Date.now();
   const timing = {};
-  const faissSearchFn = LOCAL_MODE ? searchFaissLocal : distSearch.searchFaiss;
+  const faissSearchFn = searchFaissLocal;
 
   try {
     const tPreQuery = Date.now();
@@ -275,25 +274,10 @@ function startHTTPServer() {
 
 // --- Startup ---
 if (require.main === module) {
-  if (LOCAL_MODE) {
-    console.log('Starting in LOCAL mode (--local flag detected)');
-    loadIndexLocal((e) => {
-      if (e) { console.error('Course loading failed:', e); process.exit(1); }
-      startHTTPServer();
-    });
-  } else {
-    const distribution = require('../distribution.js')({ ip: '127.0.0.1', port: distSearch.DIST_PORT });
-    distSearch.init(distribution);
-    distSearch.startDistributionNode(() => {
-      distSearch.setupGroup((e) => {
-        if (e) { console.error('Group setup failed:', e); process.exit(1); }
-        distSearch.loadIndex((e) => {
-          if (e && Object.values(e).length > 0) { console.error('Course loading failed:', e); process.exit(1); }
-          startHTTPServer();
-        });
-      });
-    });
-  }
+  loadIndexLocal((e) => {
+    if (e) { console.error('Course loading failed:', e); process.exit(1); }
+    startHTTPServer();
+  });
 }
 
 module.exports = {

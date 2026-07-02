@@ -4,8 +4,6 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --omit=dev
 
-COPY distribution.js ./
-COPY distribution/ distribution/
 COPY scripts/ scripts/
 COPY backend/ backend/
 COPY data/openai.key data/openai.key
@@ -15,4 +13,4 @@ COPY data/current_courses.json data/current_courses.json
 COPY data/definitions/ data/definitions/
 
 EXPOSE 3000
-CMD ["node", "backend/search-server.js", "--local"]
+CMD ["node", "backend/search-server.js"]

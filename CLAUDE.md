@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Run locally (two terminals from repo root):**
 ```bash
 # Terminal 1 — backend API
-nvm use 22 && node backend/search-server.js --local
+nvm use 22 && node backend/search-server.js
 
 # Terminal 2 — frontend dev server (after backend prints "Search UI at http://localhost:3000")
 cd client && nvm use 22 && npm run dev
@@ -48,10 +48,9 @@ Browser → nginx (443) → [static files from client/dist/]
                                                      → OpenAI RAG response
 ```
 ### Backend (`backend/`)
-- **`search-server.js`** — HTTP server, `search()` orchestrator, OpenAI client, pre-query rewrite (`preQueryReword`), startup sequence. Entry point: `node backend/search-server.js [--local]`
+- **`search-server.js`** — HTTP server, `search()` orchestrator, OpenAI client, pre-query rewrite (`preQueryReword`), startup sequence. Entry point: `node backend/search-server.js`
 - **`cache.js`** — LRU result cache (30min TTL, 100 entries), in-flight dedup (thundering herd), concurrency limiter (max 3 parallel searches), rate limiter (250 req/day/IP), query logger
-- **`localSearch.js`** — loads `data/embeddings.jsonl` + `data/courses_overview.json` into memory, builds FAISS `IndexFlatIP` in-process, exposes `searchFaissLocal()`. Registers FAISS fns on `globalThis` for distributed mode compatibility.
-- **`distributedSearch.js`** — distributed map-reduce FAISS search via the `distribution` framework (CS1380 origin). Only used without `--local`. For the current 10K-course scale, local mode is faster.
+- **`localSearch.js`** — loads `data/embeddings.jsonl` + `data/courses_overview.json` into memory, builds FAISS `IndexFlatIP` in-process, exposes `searchFaissLocal()`.
 - **`filters.js`** — filter validation, section-level matching, department-priority staging logic, `augmentDepartmentFilters` (infers dept codes from query text)
 - **`prompts/pre_query.txt`** — system prompt for the pre-query LLM that extracts structured filters from natural language
 
@@ -75,7 +74,7 @@ Single-page React app (Vite + React 19). All logic is in `client/src/App.jsx`. N
 - `definitions/concentrations/{ab,scb,professional,general}/` — scraped concentration requirement pages, one `.txt` per concentration per track
 
 ### Docker
-- **`Dockerfile`** — Node API only (`--local` mode, port 3000)
+- **`Dockerfile`** — Node API only (port 3000)
 - **`Dockerfile.nginx`** — multi-stage: builds React → bakes `client/dist/` into nginx image
 - **`docker-compose.local.yml`** — local dev override: moves nginx/certbot to `production` profile, exposes port 3000 directly
 
