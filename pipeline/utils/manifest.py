@@ -85,15 +85,19 @@ def update_term(manifest: dict, srcdb: str, course_count: int, checksum: str) ->
         "lastFetchedAt": datetime.now(timezone.utc).isoformat(),
     }
 
-
-def compute_text_hash(title: str | None, description: str | None) -> str:
-    """Hash the exact text that embed_courses.js embeds (line 98)."""
-    text = f"{title or ''}. {description or ''}".strip()
-    digest = hashlib.sha256(text.encode()).hexdigest()
-    return f"sha256:{digest}"
+def compute_text_hash(record: dict) -> str:
+    """Hash the embedding text for a course record via CourseRecord model."""
+    from .models import CourseRecord
+    return CourseRecord.model_validate(record).text_hash()
 
 
-def should_reembed(manifest: dict, key: str, title: str | None, description: str | None) -> bool:
+def build_embedding_text(record: dict) -> str:
+    """Build embedding text for a course record via CourseRecord model."""
+    from .models import CourseRecord
+    return CourseRecord.model_validate(record).embedding_text()
+
+
+def should_reembed(manifest: dict, key: str, record: dict) -> bool:
     records = manifest.get("embeddings", {}).get("records", {})
     rec = records.get(key)
     if rec is None:
@@ -101,7 +105,7 @@ def should_reembed(manifest: dict, key: str, title: str | None, description: str
     emb = manifest.get("embeddings", {})
     if emb.get("model") != EMBEDDING_MODEL or emb.get("dimensions") != EMBEDDING_DIMENSIONS:
         return True
-    current_hash = compute_text_hash(title, description)
+    current_hash = compute_text_hash(record)
     return current_hash != rec.get("textHash")
 
 

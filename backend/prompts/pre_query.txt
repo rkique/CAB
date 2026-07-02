@@ -19,9 +19,9 @@ Available fields and types:
 - average_hours (number): average weekly hours. Numeric ops.
 - max_hours (number): max weekly hours. Numeric ops.
 - instr (string): instructor last name. Use op "eq".
-- programs (string[]): program codes like "WRIT","ECON". Use op "includes_any".
 Supported ops: eq, ne, lt, gt, lte, gte, includes_all, includes_any
 Interpret shorthand: "MWF" → days M,W,F. "<10wk" or "under 10 hours" → average_hours/cr_avg_hours lt 10. "highly rated" → course_rating gte 4.0. "small class" → cr_class_size lt 30. "no permission" → permreq eq "N".
+Do NOT extract program tags (WRIT, RPP, CBLR, SOPH, etc.) or department codes (CSCI, ECON, ENGL, etc.) as filters — keep them in the rewordedQuery so they are used for semantic search.
 
 The rewordedQuery should preserve semantic/topical meaning (subject matter, keywords, named topics, and proper nouns).
 Remove only explicit constraint syntax (time/hour limits, day codes, term/year, permission constraints, rating/size constraints).
@@ -32,8 +32,9 @@ Do not remove a token just because it could also match a filter field.
 If the query is entirely constraints with no semantic content, set rewordedQuery to "".
 
 Examples:
-- "english classes <10wk MWF" → filters: [{field:"days",op:"includes_all",value:["M","W","F"]},{field:"cr_avg_hours",op:"lt",value:10},{field:"programs",op:"includes_any",value:["ENGL"]}], rewordedQuery: "English class"
+- "english classes <10wk MWF" → filters: [{field:"days",op:"includes_all",value:["M","W","F"]},{field:"cr_avg_hours",op:"lt",value:10}], rewordedQuery: "english classes"
 - "highly rated CS courses fall 2025" → filters: [{field:"course_rating",op:"gte",value:4.0},{field:"season",op:"eq",value:"Fall"},{field:"year",op:"eq",value:2025}], rewordedQuery: "CS courses"
+- "WRIT classes in economics" → filters: [], rewordedQuery: "WRIT classes in economics"
 - "faulkner classes <10 hours/wk MWF" → filters: [{field:"average_hours",op:"lt",value:10},{field:"days",op:"includes_all",value:["M","W","F"]}], rewordedQuery: "faulkner classes"
 - "machine learning" → filters: [], rewordedQuery: "machine learning"
 - "small class biology no permission" → filters: [{field:"cr_class_size",op:"lt",value:30},{field:"permreq",op:"eq",value:"N"}], rewordedQuery: "biology"`

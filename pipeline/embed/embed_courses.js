@@ -118,6 +118,18 @@ function appendBatch(batch, vecs) {
   fs.appendFileSync(EMBEDDINGS_FILE, lines);
 }
 
+function buildEmbeddingText(c) {
+  const parts = [];
+  if (c.code) parts.push(`${c.code}:`);
+  parts.push(`${c.title || ''}.`);
+  if (c.instr) parts.push(`Instructor: ${c.instr}.`);
+  if (Array.isArray(c.programs) && c.programs.length > 0) {
+    parts.push(`Programs: ${c.programs.join(', ')}.`);
+  }
+  parts.push(c.description || '');
+  return parts.join(' ').replace(/\s+/g, ' ').trim();
+}
+
 async function main() {
   if (!fs.existsSync(KEY_FILE)) {
     console.error(`Error: ${KEY_FILE} not found.`);
@@ -135,7 +147,7 @@ async function main() {
     if (!sem.results) continue;
     for (const c of sem.results) {
       const key = `${c.crn}:${c.srcdb || sem.srcdb || ''}`;
-      const text = `${c.title || ''}. ${c.description || ''}`.trim();
+      const text = buildEmbeddingText(c);
       courses.push({key, text});
     }
   }

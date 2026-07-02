@@ -127,6 +127,7 @@ async function search(queryStr, cb, userFilters = []) {
     console.log(`[search] original: "${queryStr}" → reworded: "${rewordedQuery}" | filters: ${JSON.stringify(filters)}`);
 
     const tEmbed = Date.now();
+    //embed query vector
     const queryVec = await getQueryVector(queryStr, rewordedQuery, filters);
     timing.embedding_ms = Date.now() - tEmbed;
 
@@ -136,6 +137,7 @@ async function search(queryStr, cb, userFilters = []) {
       if (err) return cb(err);
       try {
         const tRag = Date.now();
+        //time & obtain response.
         const { answer, cited_courses } = await generateRAGResponse(
           getOpenAIClient(),
           queryStr,

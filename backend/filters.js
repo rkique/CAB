@@ -57,7 +57,7 @@ const FILTER_FIELDS = new Set([
   'days', 'season', 'year', 'permreq',
   'cr_avg_hours', 'cr_max_hours', 'cr_course_avg', 'cr_prof_avg', 'cr_class_size',
   'course_rating', 'professor_rating', 'average_hours', 'max_hours',
-  'instr', 'programs', 'code_prefix',
+  'instr', 'code_prefix',
 ]);
 
 const VALID_OPS = new Set(['eq', 'ne', 'lt', 'gt', 'lte', 'gte', 'includes_all', 'includes_any']);
