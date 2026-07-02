@@ -1,10 +1,17 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { ConcentrationCard } from './ConcentrationCard'
 import { CourseCard, CappedList } from './CourseCard'
 import { DataModal } from './DataModal'
+import loading1 from './assets/loading_1.png'
+import loading2 from './assets/loading_2.png'
+import loading3 from './assets/loading_3.png'
+import loading4 from './assets/loading_4.png'
+import loading5 from './assets/loading_5.png'
+import loading6 from './assets/loading_6.png'
+
+const LOADING_FRAMES = [loading1, loading2, loading3, loading4, loading5, loading6]
 import './App.css'
 
-const LOADING_MESSAGES = ['Analyzing query', 'Synthesizing information', 'Preparing advice']
 
 const EXAMPLES = [
   {
@@ -132,7 +139,7 @@ function cabSearchLink(code) {
 export default function App() {
   //String params: query, loading, error, meta, answer.
   const [query, setQuery] = useState('')
-  const [loadingMsg, setLoadingMsg] = useState('')
+
   const [error, setError] = useState('')
   const [meta, setMeta] = useState('')
   const [answer, setAnswer] = useState('')
@@ -147,23 +154,27 @@ export default function App() {
   const [resultsByCode, setResultsByCode] = useState({})
   const [citedCodes, setCitedCodes] = useState([])
   const [concentration, setConcentration] = useState(null)
+  const [showContact, setShowContact] = useState(false)
+  const [loadingFrame, setLoadingFrame] = useState(0)
 
-  const timerRef = useRef(null)
+  const frameRef = useRef(null)
   const inputRef = useRef(null)
 
-  //timer manages load message display.
   function startLoading() {
-    let idx = 0
-    setLoadingMsg(LOADING_MESSAGES[0])
     setLoading(true)
-    timerRef.current = setInterval(() => {
-      idx++
-      if (idx < LOADING_MESSAGES.length) setLoadingMsg(LOADING_MESSAGES[idx])
-    }, 2000)
   }
 
+  //loading animation
+  useEffect(() => {
+    if (!loading) return
+    setLoadingFrame(0)
+    frameRef.current = setInterval(() => {
+      setLoadingFrame(f => (f + 1) % LOADING_FRAMES.length)
+    }, 167)
+    return () => clearInterval(frameRef.current)
+  }, [loading])
+
   function stopLoading() {
-    clearInterval(timerRef.current)
     setLoading(false)
   }
 
@@ -179,9 +190,9 @@ export default function App() {
     inputRef.current?.focus()
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e, overrideQuery) {
     e?.preventDefault()
-    const q = query.trim()
+    const q = (overrideQuery || query).trim()
     if (!q) return
 
     setResultsMode(true)
@@ -210,7 +221,7 @@ export default function App() {
       setResultsByCode(byCode)
       setCitedCodes(data.cited_courses || [])
       setConcentration(data.concentration || null)
-
+      //sometimes no answer appears.
       if (data.answer) {
         setAnswer(data.answer)
         setCited(data.filteredResults || [])
@@ -227,10 +238,12 @@ export default function App() {
 
   function runExample(q) {
     setQuery(q)
-    setTimeout(() => handleSubmit(), 0)
+    handleSubmit(null, q)
   }
 
   return (
+    <>
+    <div className={`interface-wrapper${resultsMode ? ' results-mode-wrapper' : ''}`}>
     <div className={`interface${resultsMode ? ' results-mode' : ''}`}>
       {/* Header (hidden in results mode) */}
       {!resultsMode && (
@@ -283,8 +296,9 @@ export default function App() {
 
       {loading && (
         <div id="loading">
-          <div className="loading-msg">{loadingMsg}</div>
-          <div className="blinking-dots"><span>.</span><span>.</span><span>.</span></div>
+          <div className="loading-flicker">
+            <img src={LOADING_FRAMES[loadingFrame]} alt="" />
+          </div>
         </div>
       )}
 
@@ -310,7 +324,42 @@ export default function App() {
       {others.length > 0 && <div className="section-label">Other Relevant Courses</div>}
       <CappedList results={others} isCited={false} />
 
-      {showModal && <DataModal onClose={() => setShowModal(false)} />}
     </div>
+    </div>
+
+    <footer className="site-footer">
+      brunoRAG.com &middot;{' '}
+      <button className="footer-link" onClick={() => setShowContact(true)}>Contact</button>
+    </footer>
+
+    {showModal && <DataModal onClose={() => setShowModal(false)} />}
+
+    {showContact && (
+      <div className="modal-overlay active" onClick={e => { if (e.target === e.currentTarget) setShowContact(false) }}>
+        <div className="modal-box contact-modal">
+          <button className="modal-close" onClick={() => setShowContact(false)}>&times;</button>
+          <h3>Contact Me</h3>
+          <form
+            className="contact-form"
+            onSubmit={e => {
+              e.preventDefault()
+              const fd = new FormData(e.target)
+              const subject = encodeURIComponent(fd.get('subject') || 'BrunoRAG Feedback')
+              const body = encodeURIComponent(
+                (fd.get('name') ? `From: ${fd.get('name')}\n\n` : '') + (fd.get('message') || '')
+              )
+              window.open(`mailto:eriq.xia@gmail.com?subject=${subject}&body=${body}`, '_blank')
+              setShowContact(false)
+            }}
+          >
+            <input name="name" type="text" placeholder="email (optional)" className="contact-input" />
+            <input name="subject" type="text" placeholder="It doesn't work for ..." className="contact-input"/>
+            <textarea name="message" placeholder="Any questions or concerns.." className="contact-input contact-textarea" rows={5} required />
+            <button type="submit" className="contact-submit">Send</button>
+          </form>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
